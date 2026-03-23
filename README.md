@@ -1,6 +1,6 @@
 # Teaching Materials
 
-Course materials for UC Davis Economics courses. All documents are authored in [Quarto](https://quarto.org/) and must comply with **WCAG 2.1 Level AA** in accordance with UC accessibility policy.
+Course materials for UC Davis Economics courses. All documents are authored in [Quarto](https://quarto.org/) and must comply with **[WCAG 2.1 Level AA](https://www.w3.org/TR/WCAG21/)** in accordance with UC accessibility policy.
 
 ## Repository Structure
 
