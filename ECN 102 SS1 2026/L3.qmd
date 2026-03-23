@@ -70,6 +70,10 @@ An example: Given an $X$: $$X=\begin{cases}
 4 & 0.1
 \end{cases}$$ we could compute $\mu$, $\sigma^2$, and $\sigma$. What is this r.v. $X$ in words?
 
+. . . 
+
+X is a r.v. that takes value 0 with 10% chance, 2 with 50% chance, 3 with 30% chance, and 4 with 10% chance.
+
 ## Properties of Expectation and Variance
 
 We have some properties that help us evaluate the mean and variance of a r.v. $X$ transformed with $a + bX$.
@@ -105,6 +109,8 @@ Note: we are not talking about the individual realizations of $X$ in each sample
 Let's simulate 1000 draws of increasingly large samples of fair coin tosses, with a 50% chance of heads or tails.
 
 ## Stata: Simulating Coin Toss Sample Means {shrink=20}
+
+A peak under the hood of our simulation:
 
 ```{stata}
 #| label: coin-toss
@@ -170,11 +176,22 @@ Together, these imply that $X\sim(\mu,\sigma^2)$, where $\sim$ is read as "is di
 
 The **population mean of the sample mean** $\bar{X}$ is: $$\mu_{\bar{X}}\equiv E[\bar{X}] = \mu$$ Proof:
 
+. . . 
+
+$$\mu_{\bar{X}} = E[\bar{X}] = E\left[\frac{1}{n}\sum_{i=1}^n X_i\right] = \frac{1}{n}\sum_{i=1}^n E[X_i] = \frac{1}{n}\sum_{i=1}^n \mu = \frac{n\mu}{n} = \mu$$
+
 ## Variance of the Sample Mean
 
 The **population variance of the sample mean** $\bar{X}$ is: $$\sigma^2_{\bar{X}}=Var[\bar{X}] \equiv E[(\bar{X}-\mu_{\bar{X}})^2]=\frac{\sigma^2}{n}$$
 
 Proof:
+
+. . . 
+
+$$\begin{aligned}
+\sigma^2_{\bar{X}} &= \text{Var}[\bar{X}] = \text{Var}\left[\frac{1}{n}\sum_{i=1}^n X_i\right] \\
+&= \frac{1}{n^2}\sum_{i=1}^n \text{Var}[X_i] = \frac{1}{n^2}\sum_{i=1}^n \sigma^2 = \frac{n\sigma^2}{n^2} = \frac{\sigma^2}{n}
+\end{aligned}$$
 
 ## Standard Deviation of the Sample Mean
 
@@ -258,6 +275,53 @@ One such property is **unbiasedness**: the expected value of an estimator is equ
 
 We have shown that $\bar{X}$ is an unbiased estimator for $\mu$ since $$E[\bar{X}]=\mu$$
 
+## Visualizing Bias
+
+```{r}
+#| label: fig-bias-vs-unbiased
+#| fig-cap: 'Sampling distributions of a biased and an unbiased estimator for a population mean $\mu$. The unbiased estimator (solid blue) is centered on $\mu$; the biased estimator (dashed orange) is systematically shifted away from $\mu$.'
+#| fig-alt: "A line graph showing two bell-shaped sampling distributions plotted as density curves. A vertical black line marks the true population mean μ. The unbiased estimator, drawn as a solid blue curve, is centered directly on μ. The biased estimator, drawn as a dashed orange curve, has its center shifted to the right of μ, illustrating that it systematically overestimates the true parameter. Both distributions have the same spread, so the only difference between them is the location of their peak."
+#| fig-width: 8
+#| fig-height: 3.8
+#| out-width: 100%
+library(ggplot2)
+x <- seq(-0.5, 7, length.out = 600)
+mu <- 2
+df <- data.frame(
+  x        = rep(x, 2),
+  density  = c(dnorm(x, mean = mu,       sd = 0.8),
+               dnorm(x, mean = mu + 1.8, sd = 0.8)),
+  Estimator = rep(c("unbiased", "biased"), each = length(x))
+)
+expr_labels <- c(
+  unbiased = expression(paste("Unbiased estimator: centered at ", mu)),
+  biased   = expression(paste("Biased estimator: shifted from ", mu))
+)
+ggplot(df, aes(x = x, y = density, color = Estimator, linetype = Estimator)) +
+  geom_line(linewidth = 1.2) +
+  geom_vline(xintercept = mu, color = "black", linewidth = 0.8) +
+  annotate("text", x = mu - 0.1, y = 0.075,
+           label = expression(paste("True ", mu)), hjust = 1, size = 4) +
+  scale_color_manual(
+    values = c(unbiased = "#0072B2", biased = "#E69F00"),
+    labels = expr_labels
+  ) +
+  scale_linetype_manual(
+    values = c(unbiased = "solid", biased = "dashed"),
+    labels = expr_labels
+  ) +
+  guides(
+    color    = guide_legend(reverse = TRUE),
+    linetype = guide_legend(reverse = TRUE)
+  ) +
+  labs(x = "Estimator value", y = "Density", color = NULL, linetype = NULL) +
+  theme_minimal(base_size = 14) +
+  theme(
+    legend.position = "bottom",
+    panel.grid      = element_blank(),
+    axis.line       = element_line(color = "black")
+  )
+```
 
 ## Consistency
 

@@ -45,6 +45,16 @@ This repository includes a Claude Code skill that converts legacy Beamer/R Markd
 
 The skill will ask for the source `.Rmd` file and target filename, then handle YAML front matter, LaTeX-to-Markdown conversion, heading structure, image alt text, and the full WCAG 2.1 AA checklist automatically.
 
+## Creating Illustrative Graphs in Slides
+
+This repository includes a Claude Code skill that guides the creation of WCAG-compliant illustrative ggplot2 figures for Quarto slide decks. It checks color contrast, estimates Beamer fit, and enforces alt text, captions, and multi-group accessibility. To use it, open Claude Code in this directory and run:
+
+```
+/qmd-graph
+```
+
+The skill will read the target slide for context, verify all colors against WCAG contrast thresholds, estimate whether the figure fits on a Beamer slide alongside surrounding text and equations, and produce a complete R code chunk with `fig-alt`, `fig-cap`, direct `annotate()` labels, and a final WCAG checklist.
+
 ## WCAG Audit for PowerPoint Slides (Legacy)
 
 For slide decks written in R Markdown and compiled to PowerPoint (`.pptx`), this repository includes a legacy tool that runs the same WCAG 2.1 AA accessibility checks and flags any areas of concern. This is an alternative to the Quarto workflow above, provided for instructors who have not yet migrated their materials to Quarto. The tool is no longer actively used in this repository but is maintained here for others.

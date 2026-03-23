@@ -259,7 +259,72 @@ We will consider one more measure of our data, **kurtosis**. This is a measure o
 
 - We define a **normal distribution** as one with symmetry/zero skewness (median=mean) and a kurtosis of exactly 3
 
-- Distributions with a kurtosis $>3$ have fatter tails than the normal, and those with kurtosis $<3$ have thinner tails than the normal
+- Distributions with a kurtosis $>3$ have fatter tails than the normal ("leptokurtic"), and those with kurtosis $<3$ have thinner tails than the normal ("platykurtic")^[I will not test you on these names.].
+
+## Kurtosis: Graphical Representation
+
+```{r}
+#| label: fig-kurtosis
+#| fig-height: 3.4
+#| fig-width: 5.5
+#| fig-cap: "Density curves illustrating kurtosis: leptokurtic ($\\kappa > 3$), normal ($\\kappa = 3$), and platykurtic ($\\kappa < 3$) distributions with equal mean and variance"
+#| fig-alt: "Density plot showing three bell-shaped curves with the same mean and variance, differing only in kurtosis. The purple solid curve is leptokurtic with kurtosis greater than 3, showing a taller sharper peak and heavier tails that decay slowly. The blue solid curve is the standard normal distribution with kurtosis equal to 3, the reference. The red dashed curve is platykurtic with kurtosis less than 3, showing a flatter peak and thinner tails that reach zero within a finite range. Labels on the right side of the plot identify each curve by kurtosis."
+library(ggplot2)
+
+x_seq <- seq(-4.5, 4.5, length.out = 600)
+
+# Leptokurtic: t(df=5) scaled to unit variance — kurtosis = 9
+sc_t   <- sqrt(5 / 3)
+y_lept <- dt(x_seq / sc_t, df = 5) / sc_t
+
+# Normal: N(0, 1) — kurtosis = 3
+y_norm <- dnorm(x_seq)
+
+# Platykurtic: Beta(2, 2) scaled to mean = 0, unit variance — kurtosis ≈ 2.1
+# var(Beta(2,2)) = 2*2 / (4^2 * 5) = 1/20
+sd_b2  <- sqrt(1 / 20)
+u      <- x_seq * sd_b2 + 0.5
+y_plat <- ifelse(u >= 0 & u <= 1, dbeta(u, 2, 2) * sd_b2, 0)
+
+df_kurt <- data.frame(
+  x    = rep(x_seq, 3),
+  y    = c(y_lept, y_norm, y_plat),
+  dist = rep(c("lept", "norm", "plat"), each = length(x_seq))
+)
+
+ggplot(df_kurt, aes(x, y, color = dist, linetype = dist)) +
+  geom_line(linewidth = 0.9) +
+  scale_color_manual(values = c(
+    lept = "#ac47be",
+    norm = "#003087",
+    plat = "#c0392b"
+  )) +
+  scale_linetype_manual(values = c(
+    lept = "solid",
+    norm = "solid",
+    plat = "dashed"
+  )) +
+  annotate("text", x = 2.1, y = 0.32,
+           label = "κ > 3 (leptokurtic)", color = "#ac47be",
+           size = 2.9, hjust = 0, fontface = "italic") +
+  annotate("text", x = 2.1, y = 0.24,
+           label = "κ = 3 (normal)", color = "#003087",
+           size = 2.9, hjust = 0, fontface = "italic") +
+  annotate("text", x = 2.1, y = 0.17,
+           label = "κ < 3 (platykurtic)", color = "#c0392b",
+           size = 2.9, hjust = 0, fontface = "italic") +
+  labs(x = "Value", y = "Density") +
+  scale_x_continuous(limits = c(-4.5, 4.5)) +
+  scale_y_continuous(limits = c(0, 0.56),
+                     expand = expansion(mult = c(0, 0))) +
+  theme_classic() +
+  theme(
+    legend.position = "none",
+    axis.text  = element_blank(),
+    axis.ticks = element_blank(),
+    axis.title = element_text(size = 12)
+  )
+```
 
 ## Putting It Together
 
@@ -343,11 +408,18 @@ We may also want to **standardize** our data and transform it into a **z-score**
 
 Note: z-scores will always have $(0,1)$ as a result but *will not magically become normally distributed*. A non-normal standardized variable will remain non-normal even as $n\rightarrow\infty$. A distribution that *is* normal will remain normal after standardizing.
 
-## Interpreting Z-Scores
+## Interpreting Z-Scores 
 
 Standardized [z-]scores allow us to compare values from series that are scaled differently, such as two different exams with different means and standard deviations. A 1-unit change in a standardized variable will always correspond to $\pm\sigma$ for that series.
 
 If you scored an 80 on an exam with $(65,100)$ and a 62 on an exam with $(50,36)$, on which exam did you perform better *relative to the average*?
+
+. . . 
+
+We must use z-scores to standardize the two exams and compare your performance relative to the average for each exam.
+$$z_1=\frac{80-65}{10}=1.5\hspace{1cm}z_2=\frac{62-50}{6}=2$$
+
+Despite scoring higher on the first exam, you performed better *relative to the average* on the second exam, since $z_2>z_1$.
 
 ## Growth Rates
 

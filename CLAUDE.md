@@ -100,3 +100,15 @@ All Quarto documents in this repository use **MathJax** for math rendering (set 
 - **Why MathJax, not MathML or KaTeX?** MathJax renders `\partial`, prime (`′`), and other symbols conventionally, while also generating hidden MathML for screen readers. This satisfies UC WCAG 2.1 accessibility requirements for math content. KaTeX is not recommended here due to weaker screen reader support.
 - **Do not** add `html-math-method` overrides to individual `.qmd` files unless you need to deviate from MathJax for a specific document. The default is inherited from `_quarto.yml`.
 - **Beamer output** uses LaTeX natively and is unaffected by `html-math-method`.
+
+---
+
+## Available Skills (Claude Code Slash Commands)
+
+The following skills are available in this repository under `.claude/commands/`. Invoke them in Claude Code with the `/` prefix.
+
+| Command | Purpose |
+|---|---|
+| `/Rmd2Qmd-WCAG` | Convert a legacy Beamer/R Markdown `.Rmd` slide deck into a fully WCAG 2.1 AA compliant Quarto `.qmd` file. Handles YAML front matter, LaTeX-to-Markdown conversion, heading structure, image alt text, and the full WCAG checklist. |
+| `/wcag-pptx-rmarkdown` | WCAG 2.1 AA audit and remediation for R Markdown slides compiled to PowerPoint (`.pptx`). Legacy tool; maintained for instructors who have not migrated to Quarto. |
+| `/qmd-graph` | Create or audit an illustrative R ggplot2 figure for a `.qmd` slide. Runs a color-contrast check against WCAG 1.4.3/1.4.11, estimates whether the figure fits cleanly on a Beamer slide alongside any surrounding text and equations, and enforces `fig-alt`, `fig-cap`, multi-group line-type differentiation, and direct annotation labeling. |

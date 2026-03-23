@@ -273,9 +273,15 @@ Remy Beauregard
 <p>We will consider one more measure of our data, <strong>kurtosis</strong>. This is a measure of how fat the tails of our data are; how represented values far away from the mean are.</p>
 <ul>
 <li><p>We define a <strong>normal distribution</strong> as one with symmetry/zero skewness (median=mean) and a kurtosis of exactly 3</p></li>
-<li><p>Distributions with a kurtosis <span class="math inline">\(&gt;3\)</span> have fatter tails than the normal, and those with kurtosis <span class="math inline">\(&lt;3\)</span> have thinner tails than the normal</p></li>
+<li><p>Distributions with a kurtosis <span class="math inline">\(&gt;3\)</span> have fatter tails than the normal (“leptokurtic”), and those with kurtosis <span class="math inline">\(&lt;3\)</span> have thinner tails than the normal (“platykurtic”)<sup>1</sup>.</p></li>
 </ul>
-</section>
+<aside><ol class="aside-footnotes"><li id="fn1"><p>I will not test you on these names.</p></li></ol></aside></section>
+<section id="kurtosis-graphical-representation" class="slide level2">
+<h2>Kurtosis: Graphical Representation</h2>
+
+<img data-src="L2_files/figure-revealjs/fig-kurtosis-1.png" alt="Density plot showing three bell-shaped curves with the same mean and variance, differing only in kurtosis. The purple solid curve is leptokurtic with kurtosis greater than 3, showing a taller sharper peak and heavier tails that decay slowly. The blue solid curve is the standard normal distribution with kurtosis equal to 3, the reference. The red dashed curve is platykurtic with kurtosis less than 3, showing a flatter peak and thinner tails that reach zero within a finite range. Labels on the right side of the plot identify each curve by kurtosis." width="528" class="r-stretch quarto-figure-center" id="fig-kurtosis"><p class="caption">
+Figure&nbsp;1: Density curves illustrating kurtosis: leptokurtic (<span class="math inline">\(\kappa &gt; 3\)</span>), normal (<span class="math inline">\(\kappa = 3\)</span>), and platykurtic (<span class="math inline">\(\kappa &lt; 3\)</span>) distributions with equal mean and variance
+</p></section>
 <section id="putting-it-together" class="slide level2">
 <h2>Putting It Together</h2>
 <p>Together, <em>central tendency, spread, skewness,</em> and <em>kurtosis</em> characterize datasets we will work with. Understanding how our dataset compares to a normal distribution will be important for the statistical inference we will conduct.</p>
@@ -381,6 +387,10 @@ Remy Beauregard
 <h2>Interpreting Z-Scores</h2>
 <p>Standardized [z-]scores allow us to compare values from series that are scaled differently, such as two different exams with different means and standard deviations. A 1-unit change in a standardized variable will always correspond to <span class="math inline">\(\pm\sigma\)</span> for that series.</p>
 <p>If you scored an 80 on an exam with <span class="math inline">\((65,100)\)</span> and a 62 on an exam with <span class="math inline">\((50,36)\)</span>, on which exam did you perform better <em>relative to the average</em>?</p>
+<div class="fragment">
+<p>We must use z-scores to standardize the two exams and compare your performance relative to the average for each exam. <span class="math display">\[z_1=\frac{80-65}{10}=1.5\hspace{1cm}z_2=\frac{62-50}{6}=2\]</span></p>
+<p>Despite scoring higher on the first exam, you performed better <em>relative to the average</em> on the second exam, since <span class="math inline">\(z_2&gt;z_1\)</span>.</p>
+</div>
 </section>
 <section id="growth-rates" class="slide level2">
 <h2>Growth Rates</h2>
@@ -401,6 +411,7 @@ Remy Beauregard
 </ul>
 
 </section></section>
+
     </div>
   <div class="quarto-auto-generated-content" style="display: none;">
 <div class="footer footer-default">

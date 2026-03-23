@@ -48,6 +48,8 @@ describe // what variables are we working with?
 
 ## Sample Statistics for Car Price {.smaller shrink=20}
 
+\vspace{5em} 
+
 We see that $\bar{x}=6165.257$ for this sample of $n=74$. However, we know that we would likely have gotten a different value for $\bar{x}$ if we had (theoretically) drawn a different sample. Do we have enough information to say that average car price *in the population* in 1978 is above \$6000? That it is different from \$5500? To answer this, we need more tools for statistical inference.
 
 ```{stata}
@@ -56,7 +58,9 @@ We see that $\bar{x}=6165.257$ for this sample of $n=74$. However, we know that 
 summarize price
 ```
 
-## Computing the Standard Error {.smaller shrink=20}
+## Computing the Standard Error {.smaller shrink=10}
+
+\vspace{5em} 
 
 The previous summary gives us our obs, mean, and standard deviation for our sample, but we may want our standard error (of the sample mean) computed as well. To have Stata generate this, we use the following command:
 
@@ -269,7 +273,7 @@ Let's practice `ttail()` and `invttail()` for a few one- and two-sided test exam
 
 - $t^*_{38}:\Pr(T<t^*_{38})=0.3$: `di invttail(38, 1-0.3)`
 
-## Hypothesis Test Result: Car Price {.smaller shrink=20}
+## Hypothesis Test Result: Car Price 
 
 Finally, we are ready to answer our hypothesis test from the beginning. We computed $t=1.94$ for $n=74$ with hypotheses
 \begin{align*}
@@ -330,6 +334,8 @@ How do we interpret CIs? We may think that we want the largest CI possible to be
 For a single sample (and a single $\bar{x}$), our CI will have a $100(1-\alpha)$% chance of covering the true value of $\mu$. If we repeatedly resample a large number of times and compute an $\bar{x}$ and CI for each sample, we expect that $100(1-\alpha)$% of those CIs *will* cover the true value of $\mu$.
 
 ## 95% CI for Car Price {.smaller shrink=20}
+
+\vspace{5em} 
 
 ```{stata}
 #| label: mean-again

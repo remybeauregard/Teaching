@@ -1,0 +1,472 @@
+---
+title: "ECN 102: Analysis of Economics Data"
+subtitle: "Chapter 6: The Least Squares Estimator"
+author: "Remy Beauregard"
+lang: en
+format:
+  revealjs:
+    output-file: "ECN 102 Lecture 6.html"
+    slide-level: 2
+    theme: simple
+    transition: none
+    smaller: true
+    include-in-header:
+      text: |
+        <meta name="description" content="Lecture slides 6 for ECN 102.">
+  beamer:
+    output-file: "ECN 102 Lecture 6.pdf"
+  html:
+    output-file: "ECN 102 Lecture 6 Plain.html"
+    include-in-header:
+      text: |
+        <meta name="description" content="Lecture slides 6 for ECN 102.">
+execute:
+  echo: false
+---
+
+## Introduction to the Population Model
+
+Previously, we have estimated a regression line for our sample of data, $\hat{y}=b_1+b_2x$. However, we want to use this sample estimation to say something about the larger (unobserved) population our sample comes from.
+
+Typically, we are interested in learning about the slope coefficient $b_2$: how $Y$ changes when $X$ changes. To do this, we need to impose more structure onto our bivariate regression analysis.
+
+## Conditional Mean and Conditional Values of Y
+
+We wish to model the true population relationship between X and Y, what we could estimate if we could observe the entire population. Doing this would let us calculate $\boldsymbol{E[Y|X=x]}$, the *conditional expected value of Y*, for each value of X.
+
+We would also be able to observe $\boldsymbol{Y|X=x}$, the *conditional values of Y* for each value of X.
+
+## Population Model: Linearity Assumption
+
+The first structure we put on our bivariate linear regression is that the conditional expected value of Y (or conditional mean) is equal to:
+$$E[Y|X=x] = \beta_1+\beta_2x$$
+
+This assertion means that the relationship between X and Y is truly linear and that our sample estimates $b_1,b_2$ are estimators for $\beta_1,\beta_2$.
+
+## The Error Term in the Population Model
+
+Just like our sample regression line, we do not assume that X can always perfectly predict Y (or, that our data points always lie on the line $\beta_1+\beta_2x$). Instead, we introduce an **error term** into the above regression, to allow noise in our population relationship:
+
+$$E[Y|X=x]=\beta_1+\beta_2x+\boldsymbol{u}$$
+
+Importantly, however, this error term is not a *residual* that we aim to minimize — it is the *true noise or disturbance* in the relationship between X and Y. Like our true population model, this true error term is unobserved.
+
+## Zero Conditional Mean of the Error Term
+
+For any individual value of X, we assume that our error term may be positive or negative. In expectation, however, we assume that the conditional mean of the error is zero:
+
+$$E[u|x]=0$$
+
+Alternatively, this means we are assuming:
+
+$$E[y|x]=\beta_1+\beta_2x$$
+
+## Graphical Representation: Y|X vs. E[Y|X]
+
+```{r}
+#| label: fig-cond-values
+#| fig-height: 3.4
+#| fig-width: 5.5
+#| fig-cap: "Population regression model"
+#| fig-alt: "Scatter plot illustrating the population regression model. A line labeled β₁+β₂x passes through the conditional mean E[Y|X=x] (diamond marker) at the value X=x. Individual conditional values Y|X are scattered as dots around the line. At the highlighted value X=x, a dashed vertical line separates points above the line, labeled u greater than 0, from points below it, labeled u less than 0, showing that the error term u is the deviation of each Y|X observation from its conditional mean."
+library(ggplot2)
+
+set.seed(880)
+b1 <- 1.5; b2 <- 0.5; sig <- 3
+xs  <- 5
+
+pts <- do.call(rbind, lapply(xs, function(x0) {
+  data.frame(x = x0,
+             y = rnorm(6, b1 + b2 * x0, sig))
+}))
+mu5 <- b1 + b2 * 5
+
+ggplot() +
+  geom_line(aes(x = c(0.5, 9.5), y = b1 + b2 * c(0.5, 9.5)),
+            color = "#003087", linewidth = 1.1) +
+  geom_vline(xintercept = 5, linetype = "dashed",
+             color = "gray55", linewidth = 0.5) +
+  geom_point(data = pts, aes(x = x, y = y),
+             color = "#ac47be", size = 2.2, alpha = 0.85) +
+  geom_point(data = data.frame(x = xs, y = b1 + b2 * xs),
+             aes(x = x, y = y),
+             color = "#003087", size = 4, shape = 18) +
+  annotate("text", x = 5.25, y = mu5 + 0.75,
+           label = "u > 0", color = "#ac47be",
+           size = 3.2, hjust = 0, fontface = "bold") +
+  annotate("text", x = 5.25, y = mu5 - 0.75,
+           label = "u < 0", color = "#ac47be",
+           size = 3.2, hjust = 0, fontface = "bold") +
+  annotate("text", x = 4.7, y = mu5 + 0.15,
+           label = "E[Y|X=x]", color = "#003087",
+           size = 3.0, hjust = 1, fontface = "italic") +
+  annotate("text", x = 4.5, y = b1 + b2 * 4.5 + 2.5,
+           label = "Y|X=x", color = "#ac47be",
+           size = 3.0, hjust = 0.5, fontface = "italic") +
+  annotate("text", x = 8.3, y = b1 + b2 * 8.3 - 0.38,
+           label = expression(beta[1]+beta[2]*x),
+           color = "#003087", size = 5, hjust = 0) +
+  annotate("text", x = 5.5, y = 0.45,
+           label = "X = x", color = "gray35", size = 4.0, hjust = 0.5) +
+  labs(x = "Some continuous variable X", y = "Y = " ~ beta[1] + beta[2]*X + u) +
+  scale_x_continuous(limits = c(0.5, 9.8)) +
+  scale_y_continuous(limits = c(0.3, 6.5)) +
+  theme_classic() +
+  theme(
+    axis.text  = element_blank(),
+    axis.ticks = element_blank(),
+    axis.title = element_text(size = 12)
+  )
+```
+
+## Variance of Y|X and Homoskedasticity
+
+Since $u$ is the difference between $Y$ and $Y|X$, it follows that $$Var[y|x]=Var[u|x]$$
+
+In the simplest case, we assume that the variance of our error term ("skedasticity") is constant across all possible values of X:
+$$\sigma^2_u=Var[u|x]$$
+
+Constant errors across x we refer to as **homo**skedasticity. Non-constant errors across x we call **hetero**skedasticity.
+
+## Graphical Representation: Skedasticity
+
+:::: {.columns}
+::: {.column width="50%"}
+
+**Homoskedasticity:**
+
+```{r}
+#| label: fig-homo
+#| fig-height: 3.0
+#| fig-width: 4.5
+#| fig-cap: "Homoskedastic data: constant error variance across X"
+#| fig-alt: "Scatter plot of Y against X illustrating homoskedasticity. A regression line runs through the data. The vertical spread of points around the line is roughly constant across all values of X, showing that error variance does not change with X."
+set.seed(11)
+n_sk <- 100
+x_sk <- seq(1, 10, length.out = n_sk)
+df_homo <- data.frame(
+  x = x_sk,
+  y = 1 + 0.6 * x_sk + rnorm(n_sk, 0, 1.4)
+)
+
+ggplot(df_homo, aes(x, y)) +
+  geom_point(color = "#ac47be", size = 1.6, alpha = 0.75) +
+  geom_smooth(method = "lm", se = FALSE,
+              color = "#003087", linewidth = 1.1,
+              formula = y ~ x) +
+  labs(x = "X", y = "Y") +
+  theme_classic() +
+  theme(
+    axis.text  = element_blank(),
+    axis.ticks = element_blank(),
+    axis.title = element_text(size = 12)
+  )
+```
+
+:::
+::: {.column width="50%"}
+
+**Heteroskedasticity:**
+
+```{r}
+#| label: fig-hetero
+#| fig-height: 3.0
+#| fig-width: 4.5
+#| fig-cap: "Heteroskedastic data: error variance increases with X"
+#| fig-alt: "Scatter plot of Y against X illustrating heteroskedasticity. A regression line runs through the data. The vertical spread of points around the line grows larger as X increases, showing that error variance rises with X."
+set.seed(22)
+df_hetero <- data.frame(
+  x = x_sk,
+  y = 1 + 0.6 * x_sk + rnorm(n_sk, 0, 0.25 * x_sk)
+)
+
+ggplot(df_hetero, aes(x, y)) +
+  geom_point(color = "#ac47be", size = 1.6, alpha = 0.75) +
+  geom_smooth(method = "lm", se = FALSE,
+              color = "#003087", linewidth = 1.1,
+              formula = y ~ x) +
+  labs(x = "X", y = "Y") +
+  theme_classic() +
+  theme(
+    axis.text  = element_blank(),
+    axis.ticks = element_blank(),
+    axis.title = element_text(size = 12)
+  )
+```
+
+:::
+::::
+
+## Conditional Distribution of Y: Summary
+
+Taken together, these assumptions give us: $$(Y|X=x_i)\sim(\beta_1+\beta_2x_i,\sigma^2_u)$$
+
+"The random variable for conditional values $Y|X=x_i$ is distributed with population mean $\beta_1+\beta_2x_i$ and population variance $\sigma^2_u$ (if I have errors that are constant across x and conditional mean zero)".
+
+## Four Assumptions for Linear Regression
+
+We can formalize these **four assumptions for linear regression:**
+
+1) **Linearity:** our true population model is linear in X
+
+   The population model is $y_i=\beta_1+\beta_2x_i+u_i$ for all $i$
+
+. . .
+
+2) **Unbiasedness:** the conditional mean of the error term is zero
+
+   $E[u_i|x_i]=0$ for all $i$
+
+. . .
+
+3) **Homoskedasticity:** error term has constant variance across $X$
+
+   $Var[u_i|x_i]=\sigma^2_u$ for all $i$
+
+. . .
+
+4) **Independence:** error terms for different observations do not affect each other
+
+   $u_i \perp \!\!\! \perp u_j$ for all $i\neq j$
+
+## What the Four Assumptions Give Us
+
+What can we do with these assumptions?
+
+Assumptions (1) + (2) allow us to say that $E[b_2]=\beta_2$.
+
+Assumptions (3) + (4)^[and some algebra] allow us to say that $\sigma^2_{b_2}=\frac{\sigma^2_u}{\sum_{i=1}^n(x_i-\bar{x})^2}$
+
+Finally, our CLT says that our computed statistic will be normally distributed whenever $n>30$.
+
+## Asymptotic Normality of the OLS Estimator
+
+All together, these assumptions give us:
+
+$$b_2\sim N(\beta_2,\sigma^2_{b_2})\text{ with }n>30$$
+
+Standardizing $b_2$ yields:
+
+$$\frac{b_2-\beta_2}{\sigma_{b_2}}\sim N(0,1)$$
+
+$b_2$ is asymptotically normally distributed, just like we showed for $\bar{x}$. Like with our standardized $\bar{x}$, we can now do hypothesis testing on our estimated $b_2$ coefficient.
+
+## Unbiasedness and Consistency of OLS
+
+We can claim that our OLS estimator $b_2$ is both *unbiased* and *consistent* under these four population assumptions: $$\underbrace{E[b_2]=\beta_2}_{\text{Unbiased}}\text{ and }\underbrace{\sigma^2_{b_2}=\frac{\sigma^2_u}{\sum_{i=1}^{\boldsymbol{n}}(x_i-\bar{x})^2}\rightarrow0\text{ as }n\rightarrow\infty}_{\text{Consistent}}$$
+
+```{r}
+#| label: fig-ols-properties
+#| fig-height: 2.1
+#| fig-width: 5.0
+#| fig-cap: "Sampling distributions of the OLS estimator $b_2$ (unbiased and consistent) versus a biased estimator"
+#| fig-alt: "Density plot showing three bell-shaped sampling distribution curves. Two blue curves are centered at β₂, the true parameter value marked by a dashed vertical line: a wide, flat long-dashed curve for the OLS estimator at small n, and a tall, narrow solid curve for OLS at large n, illustrating that OLS is unbiased at all sample sizes and consistent as n increases. A purple curve centered to the right of β₂ represents a biased estimator whose distribution does not converge to the true value. The horizontal axis shows the estimator value and the vertical axis shows sampling density."
+b2_true <- 2.5
+sd_sm   <- 0.90   # OLS small n — wide
+sd_lg   <- 0.28   # OLS large n — narrow (consistent)
+mu_bi   <- 4.25   # biased estimator — shifted right
+sd_bi   <- 0.65
+
+x_seq <- seq(0, 6.5, length.out = 600)
+df_dens <- data.frame(
+  x   = rep(x_seq, 3),
+  y   = c(dnorm(x_seq, b2_true, sd_sm),
+          dnorm(x_seq, b2_true, sd_lg),
+          dnorm(x_seq, mu_bi,   sd_bi)),
+  grp = rep(c("ols_sm", "ols_lg", "biased"), each = length(x_seq))
+)
+
+ggplot(df_dens, aes(x, y, color = grp, linetype = grp)) +
+  geom_line(linewidth = 0.9) +
+  geom_vline(xintercept = b2_true,
+             linetype = "dashed", color = "gray45", linewidth = 0.55) +
+  scale_color_manual(values = c(
+    ols_sm = "#003087",
+    ols_lg = "#003087",
+    biased = "#ac47be"
+  )) +
+  scale_linetype_manual(values = c(
+    ols_sm = "longdash",
+    ols_lg = "solid",
+    biased = "solid"
+  )) +
+  annotate("text", x = b2_true - 0.3, y = 0.10,
+           label = expression(beta[2]), color = "gray30",
+           size = 4.0, hjust = 0) +
+  annotate("text", x = 1.5, y = 0.48,
+           label = expression(italic(b)[2]*", small "*italic(n)), color = "#003087",
+           size = 2.9, hjust = 0.5) +
+  annotate("text", x = 2.65, y = 1.47,
+           label = expression(italic(b)[2]*", large "*italic(n)), color = "#003087",
+           size = 2.9, hjust = 0) +
+  annotate("text", x = 5.05, y = 0.43,
+           label = "Biased\nestimator", color = "#ac47be",
+           size = 2.9, hjust = 0, fontface = "italic") +
+  labs(x = "Estimator value", y = "Sampling density") +
+  scale_x_continuous(limits = c(0, 6.5)) +
+  scale_y_continuous(limits = c(0, 1.62),
+                     expand = expansion(mult = c(0, 0))) +
+  theme_classic() +
+  theme(
+    legend.position = "none",
+    axis.text  = element_blank(),
+    axis.ticks = element_blank(),
+    axis.title = element_text(size = 12)
+  )
+```
+
+## OLS is BLUE: Best Linear Unbiased Estimator
+
+We also call OLS **BLUE**: the **Best Linear Unbiased Estimator**:
+
+- **best** means that OLS has the minimum variance of all estimators in its class (not proven^[If you are curious how we would show this, we use something called the **Gauss-Markov theorem** to show any other estimator would have higher variance.] in class)
+
+- **linear** means our assumed population model that we are estimating is linear
+
+- **unbiased** means our conditional error term is mean zero
+
+- **estimator** because we are estimating $\beta_2$ with $b_2$
+
+## Standard Error of the Slope Coefficient
+
+Since we do not actually observe $u$ and thus do not know $\sigma^2_u$, however, we replace $\sigma^2_u$ with $s^2_e$ and take a square root to get: $$s_{b_2}=\frac{s_e}{\sqrt{\sum_{i=1}^n(x_i-\bar{x})^2}}$$
+
+This is our *standard error* of $b_2$, an estimator for the unknown population standard deviation of $b_2$. Notice this uses $s_e$, the standard error of our residual/regression or RMSE, in its numerator, meaning our model fit has a direct impact on the precision of our estimator $b_2$.
+
+## Precision of the Slope Estimator
+
+Given our standard error for $b_2$ above, we observe circumstances under which our slope coefficient $\beta_2$ will be more precisely estimated (or when our standard error of $b_2$ will be smaller): $$s_{b_2}=\frac{s_e}{\sqrt{\sum_{i=1}^n(x_i-\bar{x})^2}}$$
+
+1. When our model fits better ($s_e$ decreases) $\Rightarrow$ numer. $\downarrow$
+
+2. When our sample size ($n$) increases $\Rightarrow$ denom. $\sum_{i=1}^n \uparrow$
+
+3. When our regressor is more widely scattered/spread out relative to its mean $\Rightarrow$ denom. $\sum_i(x_i-\bar{x})^2\uparrow$
+
+## Graphical Representation: Scattered vs. Clustered Data
+
+:::: {.columns}
+::: {.column width="50%"}
+
+**Clustered regressors** (imprecise):
+
+```{r}
+#| label: fig-slope-clustered
+#| fig-height: 3.0
+#| fig-width: 4.5
+#| fig-cap: "Slope estimates from clustered X data"
+#| fig-alt: "Scatter plot of Y against X where all data points are clustered in a narrow band of X values near the center of the horizontal axis. Many plausible regression lines are drawn through the cluster as a fan, showing that the slope coefficient b₂ can take a wide range of values — illustrating high estimation imprecision when the regressor has little spread."
+set.seed(303)
+b1_eg <- 1; b2_eg <- 0.5; sig_eg <- 1.5; n_eg <- 20; nsim_eg <- 16
+
+x_c <- runif(n_eg, 4, 6)
+y_c <- b1_eg + b2_eg * x_c + rnorm(n_eg, 0, sig_eg)
+
+coef_c <- do.call(rbind, lapply(seq_len(nsim_eg), function(i) {
+  xi <- runif(n_eg, 4, 6)
+  yi <- b1_eg + b2_eg * xi + rnorm(n_eg, 0, sig_eg)
+  coef(lm(yi ~ xi))
+}))
+coef_c <- setNames(as.data.frame(coef_c), c("a", "b"))
+
+ggplot() +
+  geom_abline(data = coef_c, aes(intercept = a, slope = b),
+              color = "#ac47be", alpha = 0.28, linewidth = 0.55) +
+  geom_abline(intercept = b1_eg, slope = b2_eg,
+              color = "#003087", linewidth = 1.1, linetype = "dashed") +
+  geom_point(data = data.frame(x = x_c, y = y_c), aes(x, y),
+             color = "#ac47be", size = 1.7, alpha = 0.85) +
+  scale_x_continuous(limits = c(0, 10)) +
+  scale_y_continuous(limits = c(-2, 9)) +
+  labs(x = "X", y = "Y") +
+  theme_classic() +
+  theme(axis.text  = element_blank(),
+        axis.ticks = element_blank(),
+        axis.title = element_text(size = 12))
+```
+
+:::
+::: {.column width="50%"}
+
+**Scattered regressors** (precise):
+
+```{r}
+#| label: fig-slope-spread
+#| fig-height: 3.0
+#| fig-width: 4.5
+#| fig-cap: "Slope estimates from spread-out X data"
+#| fig-alt: "Scatter plot of Y against X where data points are spread widely across the full range of X values. Many regression lines are drawn through the data as a fan, but they are tightly clustered together, showing that the slope coefficient b₂ is estimated precisely when the regressor is widely spread. The true population regression line is shown as a blue dashed line."
+set.seed(404)
+x_s <- runif(n_eg, 1, 9)
+y_s <- b1_eg + b2_eg * x_s + rnorm(n_eg, 0, sig_eg)
+
+coef_s <- do.call(rbind, lapply(seq_len(nsim_eg), function(i) {
+  xi <- runif(n_eg, 1, 9)
+  yi <- b1_eg + b2_eg * xi + rnorm(n_eg, 0, sig_eg)
+  coef(lm(yi ~ xi))
+}))
+coef_s <- setNames(as.data.frame(coef_s), c("a", "b"))
+
+ggplot() +
+  geom_abline(data = coef_s, aes(intercept = a, slope = b),
+              color = "#ac47be", alpha = 0.28, linewidth = 0.55) +
+  geom_abline(intercept = b1_eg, slope = b2_eg,
+              color = "#003087", linewidth = 1.1, linetype = "dashed") +
+  geom_point(data = data.frame(x = x_s, y = y_s), aes(x, y),
+             color = "#ac47be", size = 1.7, alpha = 0.85) +
+  scale_x_continuous(limits = c(0, 10)) +
+  scale_y_continuous(limits = c(-2, 9)) +
+  labs(x = "X", y = "Y") +
+  theme_classic() +
+  theme(axis.text  = element_blank(),
+        axis.ticks = element_blank(),
+        axis.title = element_text(size = 12))
+```
+
+:::
+::::
+
+## Threats to the Regression Assumptions
+
+How can we deal with threats to these four population regression assumptions? Do our statistics fall apart if these fail?
+
+## Assumption Violation 1: Linearity
+
+1. Linearity is violated:
+
+Nonlinearity can be accommodated by least squares regressions to allow for quadratic or other such relationships. This will affect *how* we estimate our coefficients but will not shut down estimation. We will see examples of fitting nonlinear sample regression models in later chapters, such as $\hat{y}=b_1+b_2x+b_3x^2$ or a *quadratic* model.
+
+## Assumption Violation 2: Unbiasedness
+
+2. Unbiasedness is violated:
+
+Bias is a serious problem for estimation and requires careful consideration to tackle properly. We say that a regression is biased when its error term is correlated with its regressor: $Cov[u_i,x_i]\neq0$. We can try to get around this by adding missing variables into the regression, or changing our regression specification around this bias, but this remains a concern.
+
+## Assumption Violation 3: Homoskedasticity
+
+3. Homoskedasticity is violated:
+
+Heteroskedasticity, or errors that vary in magnitude with x, can be accommodated by using **robust standard errors**. This is a relatively easy correction in Stata (or any program) that adjusts our residuals with the magnitude of $X$ to avoid potential heteroskedasticity.
+
+You are not responsible for the robust standard error formula. Broadly, however, we expect it to undo the problematic $f(x)$ making our errors heteroskedastic: $f(x)\sigma^2_u$ (with $f'(x)>0$ or $f'(x)<0$)
+
+
+## Assumption Violation 4: Independence
+
+4. Independence is violated:
+
+Error dependence, or observations influencing the error term of other observations, is common in times series models, where US GDP this year is highly correlated with US GDP last year. We have relatively easy methods to account for this *autocorrelation*.
+
+We also may see errors correlated across units of observation (in cross-sectional or panel data) and will see a method in later chapters for dealing with such error dependence. Like robust standard errors, this will also be relatively simple to implement.
+
+# End of Lecture Material
+
+## Knowledge Check 6
+
+For the following pairs of scenarios, state for which you would expect $\beta_2$ to be *more precisely estimated* and why:
+
+a) $n=45$ vs. $n=100$
+
+b) The regressor ranges from 10 to 20 vs. from 10 to 50
+
+c) The standard error of the regression $s_e=2$ vs. $s_e=9$

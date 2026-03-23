@@ -1,0 +1,863 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.36">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Remy Beauregard">
+
+<title>ECN 102: Analysis of Economics Data</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="L5_files/libs/clipboard/clipboard.min.js"></script>
+<script src="L5_files/libs/quarto-html/quarto.js" type="module"></script>
+<script src="L5_files/libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="L5_files/libs/quarto-html/popper.min.js"></script>
+<script src="L5_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="L5_files/libs/quarto-html/anchor.min.js"></script>
+<link href="L5_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="L5_files/libs/quarto-html/quarto-syntax-highlighting-845c23b38eaddc0f92fda52bfe77a8c8.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="L5_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="L5_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="L5_files/libs/bootstrap/bootstrap-138a6193a3bd40baf1e627da441a4734.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<meta name="description" content="Lecture slides 5 for ECN 102.">
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="quarto-light">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="ECN 102 Lecture 5.html"><i class="bi bi-file-slides"></i>RevealJS</a></li><li><a href="ECN 102 Lecture 5.pdf"><i class="bi bi-file-pdf"></i>Beamer</a></li></ul></div></div>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">ECN 102: Analysis of Economics Data</h1>
+<p class="subtitle lead">Chapter 5: Bivariate Data</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Remy Beauregard </p>
+          </div>
+  </div>
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="correlation-and-covariance" class="level1">
+<h1>Correlation and covariance</h1>
+<section id="introduction-bivariate-data" class="level2">
+<h2 class="anchored" data-anchor-id="introduction-bivariate-data">Introduction: Bivariate Data</h2>
+<p>We will now shift our discussion from univariate data to <strong>bivariate</strong> data involving two variables. While we typically think of these as <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>, remember that we cannot make claims about causality with the methods we will learn in this class - for a given <span class="math inline">\((x,y)\)</span>, we should not claim that <span class="math inline">\(y=f(x)\)</span> or <span class="math inline">\(x=f(y)\)</span>.</p>
+</section>
+<section id="example-studying-and-exam-scores" class="level2">
+<h2 class="anchored" data-anchor-id="example-studying-and-exam-scores">Example: Studying and Exam Scores</h2>
+<p>Let’s say we want to investigate the relationship between average hours spent studying each week and performance on an exam. Let <span class="math inline">\(x\)</span> be hours spent studying and <span class="math inline">\(y\)</span> be exam scores for a sample of 45 students (what type of data is this?)</p>
+<p>How can we analyze the <em>correlation</em> between these two variables?</p>
+</section>
+<section id="visualizing-co-movement-the-scatterplot" class="level2">
+<h2 class="anchored" data-anchor-id="visualizing-co-movement-the-scatterplot">Visualizing Co-movement: The Scatterplot</h2>
+<p>We often start with a <strong>scatterplot</strong> of our two variables plotted against each other. It is sometimes immediately obvious whether or not there is co-movement of our two variables.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="l5scatter.png" class="img-fluid figure-img" style="width:90.0%" alt="Scatterplot of 45 simulated students showing a positive linear association between average weekly studying hours (x-axis) and final exam score as a percentage (y-axis). Points are scattered around an upward-sloping trend with no observations below roughly 30% or above 80%."></p>
+<figcaption>Scatterplot of exam scores versus studying hours.</figcaption>
+</figure>
+</div>
+</section>
+<section id="stata-scatter-command" class="level2">
+<h2 class="anchored" data-anchor-id="stata-scatter-command">Stata: scatter Command</h2>
+<p>To make this plot, we would use the following code with our variables <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">scatter</span> <span class="fu">y</span> x</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Just like we will see in regression, we put our <strong>outcome</strong> or <strong>dependent</strong> variable, <span class="math inline">\(y\)</span>, first and our <strong>explanatory</strong> or <strong>independent</strong> variable, <span class="math inline">\(x\)</span>, second.</p>
+</section>
+<section id="measuring-co-movement-covariance" class="level2">
+<h2 class="anchored" data-anchor-id="measuring-co-movement-covariance">Measuring Co-movement: Covariance</h2>
+<p>A scatterplot is a good visual guide, but we want a more numeric way of evaluating the co-movement of <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>. One such quantity is the <strong>covariance</strong> of x and y, denoted <span class="math inline">\(s_{xy}\)</span>: <span class="math display">\[s_{xy} = \frac{1}{n-1}\sum_{i=1}^n(x_i-\bar{x})(y_i-\bar{y})\]</span></p>
+<p>What does this formula remind you of?</p>
+<p>. . .</p>
+<p>The covariance of a variable with itself will just be equal to its sample variance: <span class="math display">\[s_{xx} = \frac{1}{n-1}\sum_{i=1}^n(x_i-\bar{x})(x_i-\bar{x})=\frac{1}{n-1}\sum_{i=1}^n(x_i-\bar{x})^2=s^2_x\]</span></p>
+</section>
+<section id="interpreting-the-covariance" class="level2">
+<h2 class="anchored" data-anchor-id="interpreting-the-covariance">Interpreting the Covariance</h2>
+<p>Once we compute our covariance, we can use it to tell us how x and y are co-moving: a positive covariance indicates a positive association, zero covariance indicates no association (or <strong>independence</strong>), and a negative covariance indicates a negative association.</p>
+<p>However, just like with two standard deviations, we cannot directly compare the covariance of two different pairs of variables to say which is co-moving more closely, because our series may be on drastically different scales.</p>
+</section>
+<section id="sample-correlation-coefficient" class="level2">
+<h2 class="anchored" data-anchor-id="sample-correlation-coefficient">Sample Correlation Coefficient</h2>
+<p>To convert our <em>covariance</em> into a standardized measure of association, we can divide by the (sample) standard deviation of both x and y. This new quantity is called our <strong>sample correlation coefficient</strong>, <span class="math inline">\(r_{xy}\)</span>: <span class="math display">\[r_{xy}=\frac{s_{xy}}{s_xs_y}=\frac{Cov(x,y)}{s_xs_y}\]</span></p>
+<p>. . .</p>
+<p>We can plug in our formulas for these quantities to get <span class="math display">\[r_{xy}=\frac{\sum_{i=1}^n(x_i-\bar{x})(y_i-\bar{y})}{\sqrt{{\sum_{i=1}^n(x_i-\bar{x})^2}}\sqrt{{\sum_{i=1}^n(y_i-\bar{y})^2}}}\]</span></p>
+</section>
+<section id="simplifying-the-correlation-formula" class="level2">
+<h2 class="anchored" data-anchor-id="simplifying-the-correlation-formula">Simplifying the Correlation Formula</h2>
+<p>Technically, we are missing a piece from our numerator and denominator: <span class="math inline">\(\frac{1}{n-1}\)</span>:</p>
+<p><span class="math display">\[r_{xy}=\frac{\sum_{i=1}^n(x_i-\bar{x})(y_i-\bar{y})/(n-1)}{\sqrt{\frac{\sum_{i=1}^n(x_i-\bar{x})^2}{n-1}}\sqrt{\frac{\sum_{i=1}^n(y_i-\bar{y})^2}{n-1}}}\]</span></p>
+<p>However, since both quantities have the same multiplicative factor, we can cancel them out and get the simplified formula above.</p>
+<p>Our <em>correlation coefficient</em>, <span class="math inline">\(r_{xy}\)</span>, will have the same sign as our covariance, but will now be bound to a standardized scale: <span class="math inline">\(-1\leq r_{xy} \leq 1\)</span>.</p>
+</section>
+<section id="population-vs.-sample-correlation" class="level2">
+<h2 class="anchored" data-anchor-id="population-vs.-sample-correlation">Population vs.&nbsp;Sample Correlation</h2>
+<p>Just like we had a sample mean, <span class="math inline">\(\bar{x}\)</span>, that we used to estimate our population mean, <span class="math inline">\(\mu\)</span>, we are using our sample correlation coefficient <span class="math inline">\(r_{xy}\)</span> to estimate our population correlation coefficient <span class="math inline">\(\rho_{xy}\)</span> (“rho”). Since this population correlation value is unknown, we could also conduct hypotheses testing on <span class="math inline">\(\rho\)</span> using our sample estimate <span class="math inline">\(r_{xy}\)</span> to make inference about the population (linear) relationship between <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>.</p>
+</section>
+<section id="correlation-and-nonlinearity" class="level2">
+<h2 class="anchored" data-anchor-id="correlation-and-nonlinearity">Correlation and Nonlinearity</h2>
+<p>We can interpret the correlation coefficient as a good measure of the association between our two variables with an important caveat: if the true relationship between our variables is nonlinear, we may observe <span class="math inline">\(r_{xy}=0\)</span> for series that are not truly independent. However, series that are independent will always have <span class="math inline">\(r_{xy}=0\)</span>.</p>
+<p>We say that having zero correlation is <strong>necessary but not sufficient</strong> to say two series are independent.</p>
+</section>
+<section id="interpreting-and-computing-correlation" class="level2">
+<h2 class="anchored" data-anchor-id="interpreting-and-computing-correlation">Interpreting and Computing Correlation</h2>
+<p>While we have standardized our measure of co-movement between our two variables, we have not yet identified thresholds at which a correlation is “strong” vs.&nbsp;“weak”. However, the closer our correlation is to <span class="math inline">\(\pm1\)</span>, the stronger we consider it.</p>
+<p>We can find correlation between two series with the following Stata code (the order of variables does not matter):</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">corr</span> <span class="fu">y</span> x <span class="co">// or corr x y</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>(obs=45)
+
+             |        y        x
+-------------+------------------
+           y |   1.0000
+           x |   0.7357   1.0000</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="regression" class="level1">
+<h1>Regression</h1>
+<section id="introduction-to-regression" class="level2">
+<h2 class="anchored" data-anchor-id="introduction-to-regression">Introduction to Regression</h2>
+<p>We now move to the standard methodology for determining the relationship between two variables in Economics: regression. At its most basic, this is just adding a best fit line to a scatterplot.</p>
+<p>Our regression of y on x is given as: <span class="math display">\[\hat{y}=b_1+b_2x\]</span></p>
+<ul>
+<li><p><span class="math inline">\(y\)</span> is our dependent variable, <span class="math inline">\(x\)</span> is our independent variable</p></li>
+<li><p><span class="math inline">\(\hat{y}\)</span> is called our <strong>fitted</strong> or <strong>predicted</strong> value</p></li>
+<li><p><span class="math inline">\(b_1\)</span> is our <strong>intercept</strong> and <span class="math inline">\(b_2\)</span> is our <strong>slope coefficient</strong></p></li>
+</ul>
+</section>
+<section id="regression-residuals" class="level2">
+<h2 class="anchored" data-anchor-id="regression-residuals">Regression Residuals</h2>
+<p>Of course, our regression line will not go through every (or any) data point perfectly. The amount that our regression line misses each data point is called the <strong>residual</strong>, denoted <span class="math inline">\(e\)</span>: <span class="math display">\[e=y-\hat{y}\]</span> For a given data point <span class="math inline">\(i\)</span>: <span class="math display">\[e_i=y_i-\hat{y}_i=y_i-b_1-b_2x\]</span></p>
+</section>
+<section id="minimizing-residuals-the-ols-criterion" class="level2">
+<h2 class="anchored" data-anchor-id="minimizing-residuals-the-ols-criterion">Minimizing Residuals: The OLS Criterion</h2>
+<p>We think that a good regression line is one that <em>minimizes residuals</em>. However, we cannot simply take <span class="math inline">\(\sum_{i=1}^n e_i\)</span> - why not?</p>
+<p>. . .</p>
+<p><span class="math inline">\(\Rightarrow\sum_{i=1}^n e_i=0\)</span> always!</p>
+<p>Instead, we typically choose the estimator that minimizes the <strong>sum of squared residuals</strong>: <span class="math display">\[\arg\min_{b1,b2}\left\{\sum_{i=1}^n e_i^2\right\}\]</span></p>
+</section>
+<section id="deriving-the-ols-estimator" class="level2">
+<h2 class="anchored" data-anchor-id="deriving-the-ols-estimator">Deriving the OLS Estimator</h2>
+<p>How do we minimize <span class="math inline">\(\sum_{i=1}^n e_i^2\)</span>? Like with any function, we take a derivative and set it equal to zero!</p>
+<p><span class="math display">\[\begin{align*}
+\sum_{i=1}^n e_i^2 &amp;= \sum_{i=1}^n(y_i-\hat{y}_i)^2 \\
+&amp;= \sum_{i=1}^n(y_i-b_1-b_2x_i)^2
+\end{align*}\]</span></p>
+<p><span class="math display">\[\frac{\partial}{\partial b_1,b_2} \sum_{i=1}^n(y_i-b_1-b_2x_i)^2=...\]</span></p>
+</section>
+<section id="ols-estimator-formulas" class="level2">
+<h2 class="anchored" data-anchor-id="ols-estimator-formulas">OLS Estimator Formulas</h2>
+<p>The solution to this problem involves quite a lot of algebra, so I will present the final formulas for <span class="math inline">\(b_1\)</span> and <span class="math inline">\(b_2\)</span>:</p>
+<p><span class="math display">\[b_2=\frac{\sum_{i=1}^n(x_i-\bar{x})(y_i-\bar{y})}{\sum_{i=1}^n(x_i-\bar{x})^2}\]</span></p>
+<p><span class="math display">\[b_1 = \bar{y}-b_2\bar{x}\]</span></p>
+<p>What does our formula for <span class="math inline">\(b_2\)</span> remind you of?</p>
+<p>. . .</p>
+<p><span class="math display">\[b_2=\frac{Cov(x,y)}{Var(x)}\]</span></p>
+</section>
+<section id="slope-coefficient-and-correlation" class="level2">
+<h2 class="anchored" data-anchor-id="slope-coefficient-and-correlation">Slope Coefficient and Correlation</h2>
+<p>It can be shown that: <span class="math display">\[b_2=r_{xy}\times\frac{s_y}{s_x}\]</span> This identity allows us to relate our estimated slope coefficient to our correlation coefficient.</p>
+<p>If we were to z-transform both x and y, we would have <span class="math inline">\(s_y,s_x=1\)</span> and thus <span class="math inline">\(b_2=r_{xy}\)</span>. This identity then allows for greater interpretation of the correlation coefficient when we standardize our data: a 1-standard deviation increase in x is now associated with a <span class="math inline">\(b_2=r_{xy}\)</span>-standard deviation change in y.</p>
+</section>
+<section id="interpreting-the-ols-estimator" class="level2">
+<h2 class="anchored" data-anchor-id="interpreting-the-ols-estimator">Interpreting the OLS Estimator</h2>
+<p>We call the resulting estimator for <span class="math inline">\(b_2\)</span> the <strong>OLS</strong> estimator, or Ordinary Least Squares. We will discuss what each of these names mean later on. For now, we know that this is the estimator for the association between y and x that minimizes our predictive errors for y.</p>
+<p>We can also interpret our <span class="math inline">\(b_2\)</span> as the slope of our line of best fit and <span class="math inline">\(b_1\)</span> as our y-intercept. If we have Stata put a best fit line on our scatterplot, its slope and intercept will be exact equal to the <span class="math inline">\(b_1,b_2\)</span> Stata estimates from regressing y on x.</p>
+<p>Let’s return to our studying and grades example.</p>
+</section>
+<section id="scatter-plot-with-best-fit-line" class="level2">
+<h2 class="anchored" data-anchor-id="scatter-plot-with-best-fit-line">Scatter Plot with Best Fit Line</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="l5scatterlfit.png" class="img-fluid figure-img" style="width:100.0%" alt="Scatterplot of studying hours (x-axis, 0–15 hours) versus final exam score (y-axis, percentage) for 45 simulated students, with an OLS best fit line overlaid spanning the full x-axis range. The positive linear trend of the data is captured by the upward-sloping regression line."></p>
+<figcaption>Scatterplot of exam scores versus studying hours with OLS best fit line.</figcaption>
+</figure>
+</div>
+</section>
+<section id="estimating-the-regression" class="level2 smaller" data-shrink="30">
+<h2 class="smaller anchored" data-shrink="30" data-anchor-id="estimating-the-regression">Estimating the Regression</h2>
+<p>Let’s check if our estimated regression matches our best fit line:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">regress</span> <span class="fu">y</span> x</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>      Source |       SS           df       MS      Number of obs   =        45
+-------------+----------------------------------   F(1, 43)        =     50.75
+       Model |  4435.39302         1  4435.39302   Prob &gt; F        =    0.0000
+    Residual |  3758.31282        43  87.4026237   R-squared       =    0.5413
+-------------+----------------------------------   Adj R-squared   =    0.5307
+       Total |  8193.70584        44  186.220587   Root MSE        =    9.3489
+
+------------------------------------------------------------------------------
+           y | Coefficient  Std. err.      t    P&gt;|t|     [95% conf. interval]
+-------------+----------------------------------------------------------------
+           x |   4.687698   .6580453     7.12   0.000     3.360623    6.014772
+       _cons |   .7469838   6.701424     0.11   0.912    -12.76773    14.26169
+------------------------------------------------------------------------------</code></pre>
+</div>
+</div>
+<p><span class="math display">\[\hat{y}=\underbrace{0.75}_{b_1}+\underbrace{4.69}_{b_2}x\]</span></p>
+<p>We see that our estimated regression line is exactly the same as our best fit line, as expected.</p>
+</section>
+<section id="predicting-values-from-the-regression" class="level2">
+<h2 class="anchored" data-anchor-id="predicting-values-from-the-regression">Predicting Values from the Regression</h2>
+<p>We now have our model for the regression of y on x: <span class="math display">\[\widehat{grade}_i=0.75+4.69hours_i\]</span></p>
+<p>We can also use this to <strong>predict</strong> scores: what would we expect the final grade to be for someone who averages 5 hours of studying per week? 10 hours? 15 hours? 30 hours?</p>
+<p>. . .</p>
+<p><span class="math display">\[\widehat{grade}_{5hrs}=0.75+4.69\times5=24.2\%\]</span></p>
+<p><span class="math display">\[\widehat{grade}_{10hrs}=0.75+4.69\times10=47.7\%\]</span></p>
+<p><span class="math display">\[\widehat{grade}_{15hrs}=0.75+4.69\times15=71.2\%\]</span></p>
+<p><span class="math display">\[\widehat{grade}_{30hrs}=0.75+4.69\times30=\textcolor{red}{141.45}\%\]</span></p>
+</section>
+</section>
+<section id="model-fit" class="level1">
+<h1>Model fit</h1>
+<section id="introduction-model-fit" class="level2">
+<h2 class="anchored" data-anchor-id="introduction-model-fit">Introduction: Model Fit</h2>
+<p>We have now identified the estimator for a linear association between y and x that minimizes the sum of squared residuals and used that best fit line to predict values of y based on values of x. However, we should also consider how well this <strong>model fits</strong> our data: how close are our data points to our fitted regression line?</p>
+</section>
+<section id="standard-error-of-the-regression" class="level2">
+<h2 class="anchored" data-anchor-id="standard-error-of-the-regression">Standard Error of the Regression</h2>
+<p>We have two measures we typically use to measure <strong>model fit</strong> for bivariate regression, the first of which is <strong>standard error of the regression</strong>, denoted <span class="math inline">\(s_e\)</span>. This is roughly the standard deviation of the residual: <span class="math display">\[s_e=\sqrt{\frac{1}{n-2}\sum_{i=1}^n(y_i-\hat{y})^2}\]</span></p>
+<p>. . .</p>
+<p>Why do we now divide by <span class="math inline">\(n-2\)</span> instead of <span class="math inline">\(n-1\)</span>? When we compute our fitted values <span class="math inline">\(\hat{y}\)</span>, we use both <span class="math inline">\(b_1\)</span> and <span class="math inline">\(b_2\)</span> that we estimate from our squared error minimization. Since we include two previously computed quantities in our calculation of the standard error for the regression, we lose two <em>degrees of freedom</em>.</p>
+</section>
+<section id="rmse-root-mean-squared-error" class="level2">
+<h2 class="anchored" data-anchor-id="rmse-root-mean-squared-error">RMSE: Root Mean Squared Error</h2>
+<p><span class="math display">\[s_e=\sqrt{\frac{1}{n-2}\sum_{i=1}^n(y_i-\hat{y})^2}\]</span></p>
+<p>This quantity is also sometimes called the <strong>Root Mean Squared Error (RMSE)</strong>, since it is the square root of the average squared residual (error) of the regression. Like with our standard error for the sample mean, this quantity is an estimator for the true (unknown) standard deviation of the residual. Like with covariance, however, our RMSE is not on a standardized scale, making interpreting its magnitude difficult.</p>
+</section>
+<section id="introducing-r-squared" class="level2">
+<h2 class="anchored" data-anchor-id="introducing-r-squared">Introducing R-Squared</h2>
+<p>To address the issue of our RMSE not being standardized, we introduce a second measure of model fit: <strong>R-Squared</strong>.</p>
+</section>
+<section id="sums-of-squares-tss-expss-and-resss" class="level2">
+<h2 class="anchored" data-anchor-id="sums-of-squares-tss-expss-and-resss">Sums of Squares: TSS, ExpSS, and ResSS</h2>
+<p><strong>R-squared</strong> is the <em>fraction of variation in y (around its sample mean <span class="math inline">\(\bar{y}\)</span>) that is explained by the regressor (x)</em>. We need to introduce three (similar-looking) sums to calculate <span class="math inline">\(R^2\)</span>: <span class="math display">\[TSS=\sum_{i=1}^n(y_i-\bar{y})^2\]</span> <span class="math display">\[ExpSS=\sum_{i=1}^n(\hat{y}_i-\bar{y})^2\]</span> <span class="math display">\[ResSS=\sum_{i=1}^n(y_i-\hat{y}_i)^2\]</span></p>
+</section>
+<section id="total-sum-of-squares-tss" class="level2">
+<h2 class="anchored" data-anchor-id="total-sum-of-squares-tss">Total Sum of Squares (TSS)</h2>
+<p>TSS or the <strong>total sum of squares</strong> measures variation in <span class="math inline">\(y\)</span> around its sample mean <span class="math inline">\(\bar{y}\)</span>:</p>
+<p><span class="math display">\[TSS=\sum_{i=1}^n(y_i-\bar{y})^2\]</span></p>
+</section>
+<section id="explained-sum-of-squares-expss" class="level2">
+<h2 class="anchored" data-anchor-id="explained-sum-of-squares-expss">Explained Sum of Squares (ExpSS)</h2>
+<p>ExpSS or <strong>explained sum of squares</strong> measures variation in the fitted values of <span class="math inline">\(y\)</span>, <span class="math inline">\(\hat{y}\)</span>, around the sample mean <span class="math inline">\(\bar{y}\)</span>:</p>
+<p><span class="math display">\[ExpSS=\sum_{i=1}^n(\hat{y}_i-\bar{y})^2\]</span></p>
+</section>
+<section id="residual-sum-of-squares-resss" class="level2">
+<h2 class="anchored" data-anchor-id="residual-sum-of-squares-resss">Residual Sum of Squares (ResSS)</h2>
+<p>ResSS or <strong>residual sum of squares</strong> is the sum of squared residuals between our true values <span class="math inline">\(y\)</span> and our fitted values <span class="math inline">\(\hat{y}\)</span>. Notice, <span class="math inline">\(ResSS=e_i^2\)</span>.</p>
+<p><span class="math display">\[ResSS=\sum_{i=1}^n(y_i-\hat{y}_i)^2\]</span></p>
+</section>
+<section id="r-squared-formula" class="level2">
+<h2 class="anchored" data-anchor-id="r-squared-formula">R-Squared Formula</h2>
+<p>Finally, our measure R-squared is the <em>ratio of explained sum of squares to total sum of squares</em>:</p>
+<p><span class="math display">\[R^2=\frac{ExpSS}{TSS}=1-\frac{ResSS}{TSS}\]</span></p>
+<p>This is also sometimes called the <strong>coefficient of determination</strong>. We interpret this quantity as “(<span class="math inline">\(100\times R^2\)</span>) <em>percent of the variation in <span class="math inline">\(y\)</span> is explained by/accounted for by (variation in) <span class="math inline">\(x\)</span></em>” for a given <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> variable.</p>
+<p>Like our correlation coefficient, <span class="math inline">\(R^2\)</span> is bounded by <span class="math inline">\(0\leq R^2\leq1\)</span> since <span class="math inline">\(r_{xy}^2=R^2\)</span>. Our OLS estimator that minimizes <span class="math inline">\(\sum_i e_i^2\)</span> also then maximizes our <span class="math inline">\(R^2\)</span> by definition.</p>
+</section>
+<section id="r-squared-in-multivariate-regression" class="level2">
+<h2 class="anchored" data-anchor-id="r-squared-in-multivariate-regression">R-Squared in Multivariate Regression</h2>
+<p>As an added bonus, <span class="math inline">\(R^2\)</span> is able to be used for <em>multi</em>variate regressions, or those with more than one regressor, which we will see later, as we cannot compute the correlation of more than two variables. Also, it can be shown that <span class="math inline">\(r_{xy}^2=r_{yx}^2=R^2\)</span>, meaning it does not matter for our bivariate regression which variable is our regressor and which is our outcome. However, <em>the coefficients we obtain from these regressions will not be reciprocals of each other (<span class="math inline">\(a_1\neq b_1^{-1};a_2\neq b_2^{-1}\)</span>) - proof Ch. 5 pg. 115.</em></p>
+</section>
+<section id="interpreting-r-squared-magnitude" class="level2">
+<h2 class="anchored" data-anchor-id="interpreting-r-squared-magnitude">Interpreting R-Squared Magnitude</h2>
+<p>We now have a standardized measure of model fit, <span class="math inline">\(0\leq R^2\leq1\)</span>. However, what is a good fit? What is a bad fit?</p>
+<p>To judge the <span class="math inline">\(R^2\)</span> of a model, we need to think about what we are predicting. Low values of <span class="math inline">\(R^2\)</span> do not necessarily mean our model is bad; they might instead mean that our x has a small but not insignificant effect on y. For example, the effect of a tax cut on GDP. We may think the tax cut did impact GDP and want to measure its effect, but with all the other things affecting GDP the <span class="math inline">\(R^2\)</span> for such a regression is likely to be quite low. In this case, think about what it would mean for a single tax cut to explain 5% or 10% of variation in GDP!</p>
+</section>
+<section id="comparing-r-squared-across-models" class="level2">
+<h2 class="anchored" data-anchor-id="comparing-r-squared-across-models">Comparing R-Squared Across Models</h2>
+<p>Furthermore, since our <span class="math inline">\(R^2\)</span> is constructed with the variation of y, we <em>can only compare the <span class="math inline">\(R^2\)</span> of models that share the same outcome variable.</em> If we perform a nonlinear transformation our y variable (say, taking a log) or substitute in a different y variable, we can no longer compare the <span class="math inline">\(R^2\)</span> of our two models.</p>
+<p>Thus, <span class="math inline">\(R^2\)</span> is most helpful in multivariate regressions where we can fix an outcome variable and test how our <span class="math inline">\(R^2\)</span> changes when we add or remove regressors.</p>
+</section>
+<section id="regression-output-revisited" class="level2 smaller" data-shrink="30">
+<h2 class="smaller anchored" data-shrink="30" data-anchor-id="regression-output-revisited">Regression Output Revisited</h2>
+<p>Let us return to our previous regression, now knowing these measures of model fit:</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>      Source |       SS           df       MS      Number of obs   =        45
+-------------+----------------------------------   F(1, 43)        =     50.75
+       Model |  4435.39302         1  4435.39302   Prob &gt; F        =    0.0000
+    Residual |  3758.31282        43  87.4026237   R-squared       =    0.5413
+-------------+----------------------------------   Adj R-squared   =    0.5307
+       Total |  8193.70584        44  186.220587   Root MSE        =    9.3489
+
+------------------------------------------------------------------------------
+           y | Coefficient  Std. err.      t    P&gt;|t|     [95% conf. interval]
+-------------+----------------------------------------------------------------
+           x |   4.687698   .6580453     7.12   0.000     3.360623    6.014772
+       _cons |   .7469838   6.701424     0.11   0.912    -12.76773    14.26169
+------------------------------------------------------------------------------</code></pre>
+</div>
+</div>
+<p>What is our <span class="math inline">\(s_e\)</span>? What is our <span class="math inline">\(R^2\)</span>? What do these mean?</p>
+<p>. . .</p>
+<p><span class="math display">\[s_e=9.35; R^2=0.54\]</span></p>
+<p>Our model explains 54% of the variation in final exam scores, and our RMSE is 9.35.</p>
+</section>
+<section id="reading-sums-of-squares-in-stata" class="level2 smaller" data-shrink="30">
+<h2 class="smaller anchored" data-shrink="30" data-anchor-id="reading-sums-of-squares-in-stata">Reading Sums of Squares in Stata</h2>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>      Source |       SS           df       MS      Number of obs   =        45
+-------------+----------------------------------   F(1, 43)        =     50.75
+       Model |  4435.39302         1  4435.39302   Prob &gt; F        =    0.0000
+    Residual |  3758.31282        43  87.4026237   R-squared       =    0.5413
+-------------+----------------------------------   Adj R-squared   =    0.5307
+       Total |  8193.70584        44  186.220587   Root MSE        =    9.3489
+
+------------------------------------------------------------------------------
+           y | Coefficient  Std. err.      t    P&gt;|t|     [95% conf. interval]
+-------------+----------------------------------------------------------------
+           x |   4.687698   .6580453     7.12   0.000     3.360623    6.014772
+       _cons |   .7469838   6.701424     0.11   0.912    -12.76773    14.26169
+------------------------------------------------------------------------------</code></pre>
+</div>
+</div>
+<p>Stata reports our three sums of squares with <code>regress</code>. We can verify that <span class="math inline">\(ExpSS+ResSS=TSS\)</span> and <span class="math inline">\(R^2=ExpSS/TSS\)</span>:</p>
+<ul>
+<li><p>TSS=8193</p></li>
+<li><p>ExpSS (ModelSS)=4435</p></li>
+<li><p>ResSS=3758</p></li>
+</ul>
+</section>
+<section id="outliers-and-regression" class="level2">
+<h2 class="anchored" data-anchor-id="outliers-and-regression">Outliers and Regression</h2>
+<p><em>Outliers</em> can have an outsize effect on the slope of our regression line. Consider the following example:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="l5outlier.png" class="img-fluid figure-img" style="width:80.0%" alt="Scatterplot of studying hours versus final exam scores with two OLS fitted lines overlaid. The full-sample regression line is shown in the default color, and a second line fit only to observations with x less than 13 hours is shown in blue. Outlier observations with x greater than 13 are highlighted in red, demonstrating how high-leverage outliers pull the full-sample regression line upward relative to the main data cloud."></p>
+<figcaption>Scatterplot illustrating the effect of outliers on regression.</figcaption>
+</figure>
+</div>
+</section>
+</section>
+<section id="end-of-lecture-material" class="level1">
+<h1>End of lecture material</h1>
+<section id="knowledge-check-5" class="level2">
+<h2 class="anchored" data-anchor-id="knowledge-check-5">Knowledge Check 5</h2>
+<p>Say we perform a regression of y on x and get the following results: <span class="math inline">\(\hat{y}=3+2x\)</span>, <span class="math inline">\(TSS=200,ResSS=50\)</span>, <span class="math inline">\(n=73\)</span></p>
+<ol type="a">
+<li><p>What is <span class="math inline">\(R^2\)</span> What does this quantity mean in words?</p></li>
+<li><p>What are our <span class="math inline">\(b_1\)</span> and <span class="math inline">\(b_2\)</span> coefficients? What do these mean?</p></li>
+<li><p>What can we say about <span class="math inline">\(\sum_i e_i\)</span> for this regression? What can we say about <span class="math inline">\(\sum_i e_i^2\)</span>? How many degrees of freedom does our <span class="math inline">\(s_e\)</span> have and why?</p></li>
+<li><p>If we were to instead regress x on y, what would our <span class="math inline">\(R^2\)</span> be equal to? What would our new regression coefficients <span class="math inline">\(a_1,a_2\)</span> be equal to?</p></li>
+</ol>
+</section>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
