@@ -117,7 +117,7 @@ Any curving or rescaling of the grade distribution for this course will not be d
 
 If you have any form of disability, difficulty understanding English, or other extenuating circumstance you feel will prevent you from doing your best in this course, please meet with me during the first week of class to discuss appropriate arrangements. All course materials are compliant with [WCAG 2.1 Level AA accessibility standards](https://www.w3.org/TR/WCAG21/), in accordance with UC policy. *Students taking the Stata quiz through SDC should expect to purchase a copy of Stata (BE) software for their personal computer.*
 
-## Cheating
+## Academic dishonesty
 
 I have a zero tolerance policy for academic dishonesty. This includes but is not limited to: cheating on exams, submitting work from another student as your own, submitting work from an external source without proper citation, and submitting work produced by generative AI (e.g. ChatGPT). Cheating also includes use of personal electronic devices or talking between students during exams. If you are found to have engaged in any form of academic misconduct on any assignment or exam, you will receive a **zero** for that assignment or exam. Please review the [UC Davis Code of Academic Conduct](https://ossja.ucdavis.edu/code-academic-conduct).
 
