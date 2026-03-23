@@ -240,12 +240,8 @@ window.Quarto = {
 <p>We will consider one more measure of our data, <strong>kurtosis</strong>. This is a measure of how fat the tails of our data are; how represented values far away from the mean are.</p>
 <ul>
 <li><p>We define a <strong>normal distribution</strong> as one with symmetry/zero skewness (median=mean) and a kurtosis of exactly 3</p></li>
-<li><p>Distributions with a kurtosis <span class="math inline">\(&gt;3\)</span> have fatter tails than the normal, and those with kurtosis <span class="math inline">\(&lt;3\)</span> have thinner tails</p></li>
+<li><p>Distributions with a kurtosis <span class="math inline">\(&gt;3\)</span> have fatter tails than the normal, and those with kurtosis <span class="math inline">\(&lt;3\)</span> have thinner tails than the normal</p></li>
 </ul>
-</section>
-<section id="kurtosis-graphical-representation" class="level2">
-<h2 class="anchored" data-anchor-id="kurtosis-graphical-representation">Kurtosis: Graphical Representation</h2>
-<p>Kurtosis graphical representation:</p>
 </section>
 <section id="putting-it-together" class="level2">
 <h2 class="anchored" data-anchor-id="putting-it-together">Putting It Together</h2>
@@ -258,8 +254,8 @@ window.Quarto = {
 <h2 class="anchored" data-anchor-id="overview-1">Overview</h2>
 <p>We will now move to standard ways to visualize data we have collected. This often comes in the form of plots or summary tables. You will be asked to replicate many of these for example data in Stata for homework.</p>
 </section>
-<section id="summary-statistics-table" class="level2">
-<h2 class="anchored" data-anchor-id="summary-statistics-table">Summary Statistics Table</h2>
+<section id="summary-statistics-table" class="level2 smaller" data-shrink="20">
+<h2 class="smaller anchored" data-shrink="20" data-anchor-id="summary-statistics-table">Summary Statistics Table</h2>
 <p>A <em>summary statistics</em> table gives the statistics we have discussed above for a given sample of data:</p>
 <div class="cell" data-collectcode="true">
 <div class="cell-output cell-output-stdout">
@@ -319,17 +315,17 @@ window.Quarto = {
 <p>A <strong>histogram</strong> plots frequency of data values organized into <strong>bins</strong>. As a researcher, it is often up to you to determine the optimal <em>bin width</em> for the data you are presenting. (Common default <span class="math inline">\(\sqrt{n}\)</span>)</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="L2%20bad%20hist.png" class="img-fluid figure-img" style="width:100.0%" alt="Histogram of income data using Stata's default bin width of 16.8, resulting in only a few wide bars that obscure the shape of the distribution. Mean and median lines are overlaid in red and blue respectively. A text label notes the default bin width."></p>
+<p><img src="L2%20bad%20hist.png" class="img-fluid figure-img" style="width:80.0%" alt="Histogram of income data using Stata's default bin width of 16.8, resulting in only a few wide bars that obscure the shape of the distribution. Mean and median lines are overlaid in red and blue respectively. A text label notes the default bin width."></p>
 <figcaption>Histogram of income data with a wide default bin width.</figcaption>
 </figure>
 </div>
 </section>
 <section id="kernel-density-plot" class="level2">
 <h2 class="anchored" data-anchor-id="kernel-density-plot">Kernel Density Plot</h2>
-<p>A <strong>kernel density</strong> plot is a smoothed version of the histogram that uses <strong>windows</strong> instead of bins.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
+<p>A <strong>kernel density</strong> plot is a smoothed version of the histogram that uses <strong>windows</strong> instead of bins. The weights given to values within a window are called <strong>kernel weights</strong>. The kernel density plot is a smooth curve that estimates the underlying distribution of the data, and can be overlaid with a normal distribution for comparison.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="L2Kernel.png" class="img-fluid figure-img" style="width:100.0%" alt="Kernel density plot of income data shown as a smooth curve, with a normal distribution overlaid for comparison. The income distribution is right-skewed relative to the symmetric normal curve."></p>
+<p><img src="L2Kernel.png" class="img-fluid figure-img" style="width:70.0%" alt="Kernel density plot of income data shown as a smooth curve, with a normal distribution overlaid for comparison. The income distribution is right-skewed relative to the symmetric normal curve."></p>
 <figcaption>Kernel density estimate of income with a normal distribution overlay.</figcaption>
 </figure>
 </div>
@@ -387,13 +383,7 @@ window.Quarto = {
 </section>
 </section>
 
-
-<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
-
-<ol>
-<li id="fn1"><p>The weights given to values within a window are called <strong>kernel weights</strong>.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-</ol>
-</section></div></main>
+</main>
 <!-- /main column -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {

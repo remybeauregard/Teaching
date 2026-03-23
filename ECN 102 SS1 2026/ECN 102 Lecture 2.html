@@ -273,12 +273,8 @@ Remy Beauregard
 <p>We will consider one more measure of our data, <strong>kurtosis</strong>. This is a measure of how fat the tails of our data are; how represented values far away from the mean are.</p>
 <ul>
 <li><p>We define a <strong>normal distribution</strong> as one with symmetry/zero skewness (median=mean) and a kurtosis of exactly 3</p></li>
-<li><p>Distributions with a kurtosis <span class="math inline">\(&gt;3\)</span> have fatter tails than the normal, and those with kurtosis <span class="math inline">\(&lt;3\)</span> have thinner tails</p></li>
+<li><p>Distributions with a kurtosis <span class="math inline">\(&gt;3\)</span> have fatter tails than the normal, and those with kurtosis <span class="math inline">\(&lt;3\)</span> have thinner tails than the normal</p></li>
 </ul>
-</section>
-<section id="kurtosis-graphical-representation" class="slide level2">
-<h2>Kurtosis: Graphical Representation</h2>
-<p>Kurtosis graphical representation:</p>
 </section>
 <section id="putting-it-together" class="slide level2">
 <h2>Putting It Together</h2>
@@ -293,7 +289,7 @@ Remy Beauregard
 <h2>Overview</h2>
 <p>We will now move to standard ways to visualize data we have collected. This often comes in the form of plots or summary tables. You will be asked to replicate many of these for example data in Stata for homework.</p>
 </section>
-<section id="summary-statistics-table" class="slide level2">
+<section id="summary-statistics-table" class="slide level2 smaller" data-shrink="20">
 <h2>Summary Statistics Table</h2>
 <p>A <em>summary statistics</em> table gives the statistics we have discussed above for a given sample of data:</p>
 <div class="cell" data-collectcode="true">
@@ -348,17 +344,12 @@ Remy Beauregard
 <h2>Histogram</h2>
 <p>A <strong>histogram</strong> plots frequency of data values organized into <strong>bins</strong>. As a researcher, it is often up to you to determine the optimal <em>bin width</em> for the data you are presenting. (Common default <span class="math inline">\(\sqrt{n}\)</span>)</p>
 
-<img data-src="L2%20bad%20hist.png" style="width:100.0%" alt="Histogram of income data using Stata's default bin width of 16.8, resulting in only a few wide bars that obscure the shape of the distribution. Mean and median lines are overlaid in red and blue respectively. A text label notes the default bin width." class="r-stretch quarto-figure-center"><p class="caption">Histogram of income data with a wide default bin width.</p></section>
+<img data-src="L2%20bad%20hist.png" style="width:80.0%" alt="Histogram of income data using Stata's default bin width of 16.8, resulting in only a few wide bars that obscure the shape of the distribution. Mean and median lines are overlaid in red and blue respectively. A text label notes the default bin width." class="r-stretch quarto-figure-center"><p class="caption">Histogram of income data with a wide default bin width.</p></section>
 <section id="kernel-density-plot" class="slide level2">
 <h2>Kernel Density Plot</h2>
-<p>A <strong>kernel density</strong> plot is a smoothed version of the histogram that uses <strong>windows</strong> instead of bins.<sup>1</sup></p>
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="L2Kernel.png" style="width:100.0%" alt="Kernel density plot of income data shown as a smooth curve, with a normal distribution overlaid for comparison. The income distribution is right-skewed relative to the symmetric normal curve."></p>
-<figcaption>Kernel density estimate of income with a normal distribution overlay.</figcaption>
-</figure>
-</div>
-<aside><ol class="aside-footnotes"><li id="fn1"><p>The weights given to values within a window are called <strong>kernel weights</strong>.</p></li></ol></aside></section>
+<p>A <strong>kernel density</strong> plot is a smoothed version of the histogram that uses <strong>windows</strong> instead of bins. The weights given to values within a window are called <strong>kernel weights</strong>. The kernel density plot is a smooth curve that estimates the underlying distribution of the data, and can be overlaid with a normal distribution for comparison.</p>
+
+<img data-src="L2Kernel.png" style="width:70.0%" alt="Kernel density plot of income data shown as a smooth curve, with a normal distribution overlaid for comparison. The income distribution is right-skewed relative to the symmetric normal curve." class="r-stretch quarto-figure-center"><p class="caption">Kernel density estimate of income with a normal distribution overlay.</p></section>
 <section id="bar-charts-and-pie-charts" class="slide level2">
 <h2>Bar Charts and Pie Charts</h2>
 <p>Some additional charts:</p>
@@ -410,7 +401,6 @@ Remy Beauregard
 </ul>
 
 </section></section>
-
     </div>
   <div class="quarto-auto-generated-content" style="display: none;">
 <div class="footer footer-default">
@@ -447,7 +437,7 @@ Remy Beauregard
 'autoAnimateUnmatched': true,
 'jumpToSlide': true,
 'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
-'smaller': false,
+'smaller': true,
  
         // Display controls in the bottom right corner
         controls: false,

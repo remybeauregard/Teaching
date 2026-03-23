@@ -9,6 +9,7 @@ format:
     slide-level: 2
     theme: simple
     transition: none
+    smaller: true
     include-in-header:
       text: |
         <meta name="description" content="Lecture slides 2 for ECN 102.">
@@ -258,11 +259,7 @@ We will consider one more measure of our data, **kurtosis**. This is a measure o
 
 - We define a **normal distribution** as one with symmetry/zero skewness (median=mean) and a kurtosis of exactly 3
 
-- Distributions with a kurtosis $>3$ have fatter tails than the normal, and those with kurtosis $<3$ have thinner tails
-
-## Kurtosis: Graphical Representation
-
-Kurtosis graphical representation:
+- Distributions with a kurtosis $>3$ have fatter tails than the normal, and those with kurtosis $<3$ have thinner tails than the normal
 
 ## Putting It Together
 
@@ -274,7 +271,7 @@ Together, *central tendency, spread, skewness,* and *kurtosis* characterize data
 
 We will now move to standard ways to visualize data we have collected. This often comes in the form of plots or summary tables. You will be asked to replicate many of these for example data in Stata for homework.
 
-## Summary Statistics Table
+## Summary Statistics Table {.smaller shrink=20}
 
 A *summary statistics* table gives the statistics we have discussed above for a given sample of data:
 
@@ -312,13 +309,13 @@ tab foreign
 
 A **histogram** plots frequency of data values organized into **bins**. As a researcher, it is often up to you to determine the optimal *bin width* for the data you are presenting. (Common default $\sqrt{n}$)
 
-![Histogram of income data with a wide default bin width.](L2 bad hist.png){width=100% fig-alt="Histogram of income data using Stata's default bin width of 16.8, resulting in only a few wide bars that obscure the shape of the distribution. Mean and median lines are overlaid in red and blue respectively. A text label notes the default bin width."}
+![Histogram of income data with a wide default bin width.](L2 bad hist.png){width=80% fig-alt="Histogram of income data using Stata's default bin width of 16.8, resulting in only a few wide bars that obscure the shape of the distribution. Mean and median lines are overlaid in red and blue respectively. A text label notes the default bin width."}
 
 ## Kernel Density Plot
 
-A **kernel density** plot is a smoothed version of the histogram that uses **windows** instead of bins.^[The weights given to values within a window are called **kernel weights**.]
+A **kernel density** plot is a smoothed version of the histogram that uses **windows** instead of bins. The weights given to values within a window are called **kernel weights**. The kernel density plot is a smooth curve that estimates the underlying distribution of the data, and can be overlaid with a normal distribution for comparison.
 
-![Kernel density estimate of income with a normal distribution overlay.](L2Kernel.png){width=100% fig-alt="Kernel density plot of income data shown as a smooth curve, with a normal distribution overlaid for comparison. The income distribution is right-skewed relative to the symmetric normal curve."}
+![Kernel density estimate of income with a normal distribution overlay.](L2Kernel.png){width=70% fig-alt="Kernel density plot of income data shown as a smooth curve, with a normal distribution overlaid for comparison. The income distribution is right-skewed relative to the symmetric normal curve."}
 
 ## Bar Charts and Pie Charts
 
