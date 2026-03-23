@@ -1,0 +1,139 @@
+---
+title: "ECN 099: Undergraduate Reading Group"
+subtitle: "Spring 2026"
+lang: en
+format:
+  html:
+    output-file: "ECN 099 Syllabus SP2026.html"
+    toc: true
+    toc-depth: 2
+    toc-title: "Contents"
+    theme: cosmo
+    include-in-header:
+      text: |
+        <meta name="description" content="Syllabus for ECN 099: Undergraduate Reading Group, Spring 2026, UC Davis.">
+        <style>
+          dl.course-info dt { font-weight: bold; display: inline; }
+          dl.course-info dt::after { content: ":"; margin-right: 0.3em; }
+          dl.course-info dd { display: inline; margin: 0; }
+          dl.course-info dd::after { display: block; content: ""; }
+        </style>
+  pdf:
+    output-file: "ECN 099 Syllabus SP2026.pdf"
+    documentclass: article
+    fontsize: 12pt
+    geometry: "top=2cm, bottom=2cm, left=2cm, right=2cm"
+    linestretch: 1.5
+    fontfamily: helvet
+    fontfamilyoptions: scaled
+    include-in-header:
+      text: |
+        \renewcommand{\familydefault}{\sfdefault}
+        \usepackage{titling}
+        \setlength{\droptitle}{-4em}
+        \posttitle{\par\end{center}\vspace{-1.5em}}
+        \predate{}\date{}\postdate{}
+        \usepackage{titlesec}
+        \titleformat{\subsection}{\large\bfseries}{}{0em}{}
+        \titlespacing*{\subsection}{0pt}{12pt}{2pt}
+execute:
+  echo: false
+---
+
+## Course logistics
+
+<!-- Course info block: definition list for semantic HTML (WCAG 1.3.1) -->
+::: {.content-visible when-format="html"}
+<dl class="course-info" aria-label="Course information">
+  <dt>Organizer</dt><dd>Remy Beauregard</dd>
+  <dt>Email</dt><dd><a href="mailto:rebeauregard@ucdavis.edu">rebeauregard@ucdavis.edu</a></dd>
+  <dt>Meeting time</dt><dd><em>TBD</em></dd>
+  <dt>Meeting location</dt><dd>TBD</dd>
+</dl>
+:::
+
+::: {.content-visible when-format="pdf"}
+**Organizer:** Remy Beauregard\
+**Email:** rebeauregard\@ucdavis.edu\
+**Meeting time:** *TBD*\
+**Meeting location:** TBD
+:::
+
+## About this reading group
+
+This quarter we will be reading Abhijit Banerjee and Esther Duflo's 2019 book [*Good Economics for Hard Times*](https://www.amazon.com/dp/154178894X/), a discussion of many modern global challenges and the ways economics looks to solve them. This book follows the authors' previous book [*Poor Economics* (now revised and updated)](https://www.amazon.com/dp/1541706188/), a radical rethinking of how to study pressing economic problems in the developing world in a way that is respectful, empowering, and culturally conscious. Although not discussed this quarter, I recommend this book as a model for the ethical considerations that ought to guide all research.
+
+Each week I will ask you to read one of the ten chapters of the book, with a breakdown of weeks and page numbers given below. As the authors suggest in Chapter 1, you need not agree with their conclusions or policy suggestions, and I encourage you to note down any time you feel your own logic at odds with that presented. In our weekly meetings, I would like us all to be able to discuss what we learned from the chapter, what it made us think about, what lingering questions we had, and where we may have disagreed. To facilitate these discussions, I include a few prompt questions for each chapter below, which I encourage you to answer as you read. While participation in this reading group is voluntary, I will expect that anyone attending weekly meetings has completed the reading questions and arrived ready to share their thoughts. While I *strongly encourage writing down your thoughts as you read*, you will not be required to submit written answers.
+
+If you will need to be absent from a week's discussion, please let me know via [email](mailto:rebeauregard@ucdavis.edu) as soon as possible. Even if you have not finished fully reading a chapter by the meeting day, I still highly encourage coming to the group to discuss your thoughts. There are no wrong answers or opinions!
+
+## Weekly reading schedule and questions
+
+**Week 1: Introduction Read Preface and Chapter 1, *Make Economics Great Again*, pp. ix--9**
+
+- What do you believe are the most pressing economic issues of today?
+- Have you discussed an example of successful economic policy in your classes?
+
+**Week 2: Chapter 2, *From the Mouth of the Shark*, pp. 10--50**
+
+- Why is it difficult to causally estimate the impact of immigration on wages?
+- Should we think of low rates of migration as a purely information problem?
+- What factor(s) other than higher wages might affect decisions about migration?
+- How could we design effective policy to successfully encourage migration?
+
+**Week 3: Chapter 3, *The Pains from Trade*, pp. 51--97**
+
+- What do economists generally believe optimal trade should look like? Why?
+- Why were Topalova's findings so surprising? How did "stickiness" play a role?
+- What is "clustering" and how does it help explain trade specialization?
+- What are some impacts of US trade and immigration policy decisions today?
+
+**Week 4: Chapter 4, *Likes, Wants, Needs*, pp. 98--145**
+
+- How are "beliefs" different from "preferences" in economics?
+- How is "statistical discrimination" different from "taste-based discrimination"?
+- How might polarization and homophily undermine (perceived) success of economic policies?
+
+**Week 5: Chapter 5, *The End of Growth?*, pp. 146--207**
+
+- How would economists characterize the pace of growth in the US today? In other countries?
+- How do economists typically measure productivity growth? Could this be missing something?
+- What are some policy levers economic policymakers consider to encourage higher growth?
+- What role could "misallocation" play in the story of modern economic growth?
+
+**Week 6: Chapter 6, *In Hot Water*, pp. 208--226**
+
+- What is the 50-10 rule? How does this influence climate policy?
+- What intertemporal tradeoff do developing economies face with regards to emissions?
+- How do the authors argue that preferences for climate-(un)friendly behavior are not fixed?
+
+**Week 7: Chapter 7, *Player Piano*, pp. 227--262**
+
+- How do economists expect AI to affect the labor market? Why? Do the data support this?
+- What should we conclude from the economic legacies of Reagan and Thatcher?
+- How can rising firm concentration help explain why wages have not kept up with GDP?
+- Could a progressive wealth tax successfully reduce income inequality and not real effort?
+
+**Week 8: Chapter 8, *Legit.gov*, pp. 263--276**
+
+- What are some popular arguments against raising taxes? Do the data support these?
+- What are the benefits of transparency in fighting corruption? What are the downsides?
+- What are Conditional Cash Transfer programs (CCTs)? Where have these been successful?
+
+**Week 9: Chapter 9, *Cash and Care*, pp. 277--322**
+
+- How is UBI different from programs like *Progresa/Oportunidades/Prospera* and SNAP?
+- What concern led to the inclusion of work requirements for welfare programs in the US?
+- How is the "income effect" different from the "substitution effect" on hours worked?
+- How does work meaningfulness influence the authors' prescription of UBI? Why?
+- How do the "active labor market policies" the authors discuss address labor misallocation?
+
+**Week 10: Overall recap and discussion of *Conclusion: Good and Bad Economics*, pp. 323--326**
+
+- Have your opinions on any economic policies or positions changed from reading the book?
+- Have you learned any new empirical research methods or theories discussed by the authors?
+- How might you design a study to evaluate the impacts of a policy you are interested in?
+
+## Quotes from the authors
+
+> ...faith in what we as economists have learned best to do, which is to be hard headed about the facts, skeptical of slick answers and magic bullets, modest and honest about what we know and understand, and perhaps most importantly, willing to try ideas and solutions and be wrong, as long as it takes us toward the ultimate goal of building a more humane world. (p. x) ...What is common among a drought-affected farmer in India, a youth in Chicago's South Side, and a fifty-something white man who was just laid off? While they may *have* problems, they are not *the* problem. They are entitled to be seen for who they are and to not be defined by the difficulties besieging them...Defining people by their problems is turning circumstance into essence. It denies hope. A natural response is then to wrap oneself into this identity, with treacherous consequences for society at large. (p. 322)
