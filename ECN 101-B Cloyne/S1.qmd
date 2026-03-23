@@ -48,7 +48,6 @@ We live in interesting times! What can we learn from this class?
 
 We may consider the *growth rate* of variables. We use the Greek letter $\Delta$ ("Delta") to signal change:
 
-\vspace{1em}
 $$\%\Delta X=\frac{\Delta X}{X}=\frac{X_{new}-X_{old}}{X_{old}}$$
 
 **Level vs. Growth Rate:** It is important to distinguish between the level of a variable and its growth rate. The level of X is its actual value at a given point in time (e.g., GDP = \$28 trillion). The growth rate of X measures how quickly that value is changing (e.g., GDP grew 2.8\% last year).
@@ -81,9 +80,6 @@ These rules will appear throughout the course — especially when we work with p
 For example, we know $Revenue=Price\times Quantity$.
 
 If quantity grew by 5\% last year and price grew by 10\%, *by how much did revenue grow*?
-
-\vspace{1em}
-
 $$\begin{align*}
 g_R &= g_P + g_Q\\
 &= 10\% + 5\%\\
