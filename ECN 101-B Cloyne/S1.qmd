@@ -1,0 +1,135 @@
+---
+title: "ECN 101-B Section 1"
+author: "Remy Beauregard"
+lang: en
+format:
+  revealjs:
+    output-file: "ECN 101-B Section 1.html"
+    slide-level: 2
+    theme: simple
+    transition: none
+  beamer:
+    output-file: "ECN 101-B Section 1.pdf"
+  html:
+    output-file: "ECN 101-B Section 1 Plain.html"
+execute:
+  echo: false
+---
+
+## Introductions - Class Logistics
+
+Welcome to ECN 101-B *Intermediate Macroeconomic Theory* — looking forward to working with all of you this quarter!
+
+- Office hours: Wednesdays 4--6pm, Gold/Burgundy Room
+- Email: [rebeauregard@ucdavis.edu](mailto:rebeauregard@ucdavis.edu) ( $\leq$ 24hr response goal)
+- Sections will consist of lecture review and practice questions
+
+## Introductions - About Me
+
+**TA: Remy Beauregard**
+
+- 5th year Ph.D. candidate in Economics
+- Experimental, behavioral, and development economist
+- Research Associate at SF Federal Reserve (2 years)
+- Vassar College '19 — B.A. Economics & Psychology
+
+## Why study Macroeconomics?
+
+We live in interesting times! What can we learn from this class?
+
+- How do we forecast short- and long-run *growth*?
+- How should *wages* be fairly set in an economy?
+- What factors generate higher *inflation*?
+- How can we explain and anticipate *recessions*?
+- How should the Fed set *interest rates*?
+- How do *supply shocks* (e.g. oil shocks) impact the macroeconomy?
+
+## Growth Rates
+
+We may consider the *growth rate* of variables. We use the Greek letter $\Delta$ ("Delta") to signal change:
+
+\vspace{1em}
+$$\%\Delta X=\frac{\Delta X}{X}=\frac{X_{new}-X_{old}}{X_{old}}$$
+
+**Level vs. Growth Rate:** It is important to distinguish between the level of a variable and its growth rate. The level of X is its actual value at a given point in time (e.g., GDP = \$28 trillion). The growth rate of X measures how quickly that value is changing (e.g., GDP grew 2.8\% last year).
+
+## Properties of the Natural Log
+
+We can use the natural logarithm ($\ln$) for:
+
+- Approximating percent change: $\Delta\ln(X)\approx\frac{\Delta X}{X}$
+
+- Breaking up multiplication: $\ln(XY)=\ln(X)+\ln(Y)$
+
+- ...or division: $\ln(X/Y)=\ln(X)-\ln(Y)$
+
+- Breaking up exponents $\ln(X^Y) = Y\times\ln(X)$
+
+## Growth Rate Rules
+
+Using the log properties from the previous slide, we can derive three handy rules (where $g_X$ denotes the growth rate of $X$):
+
+- **Product rule:** $g_{XY} = g_X + g_Y$
+- **Quotient rule:** $g_{X/Y} = g_X - g_Y$
+- **Power rule:** $g_{X^a} = a \cdot g_X$
+
+These rules will appear throughout the course — especially when we work with production functions like $Y = K^\alpha L^{1-\alpha}$ in the Solow model.
+
+
+## Revenue Growth Example
+
+For example, we know $Revenue=Price\times Quantity$.
+
+If quantity grew by 5\% last year and price grew by 10\%, *by how much did revenue grow*?
+
+\vspace{1em}
+
+$$\begin{align*}
+g_R &= g_P + g_Q\\
+&= 10\% + 5\%\\
+&= 15\%
+\end{align*}$$
+
+We can see that revenue grew by approximately 15\% last year.
+
+## Derivatives
+
+We may also want to find the *derivative*, or instantaneous rate of change, of a function $y=f(x)$. We can write this:
+
+- $f'(x)$
+- $\frac{dy}{dx}$ or $\frac{d}{dx}[f(x)]$
+- $f_x(x)$
+
+We express a derivative as: $$f'(x)=\underset{\Delta x\rightarrow0}{lim}\frac{f(x+\Delta x)-f(x)}{\Delta x}$$
+
+## Derivative Rules
+
+Some common rules for derivatives we will take:
+
+- Constant rule: derivative of a constant ( $k$ ) is zero: $\frac{d}{dx}[k]=0$
+- Power rule: derivative of an exponent: $\frac{d}{dx}[x^n]=nx^{n-1}$
+- Product rule: derivative of a product: $\frac{d}{dx}[f(x)g(x)]=f'(x)g(x)+f(x)g'(x)$
+- Chain rule: derivative of nested functions: $\frac{d}{dx}g(f(x))=g'(f(x))\times f'(x)$
+
+## Partial Derivatives
+
+Additionally, we may want to take derivatives of functions with multiple input variables, $f(x,y)$ . In this case, we would take *partial derivatives*, where we hold all other variables constant. We use $\partial$ ("partial") rather than $d$ ("total") here:
+
+- With respect to X holding Y constant: $\frac{\partial}{\partial x}f(x,y)=f_x(x,y)$
+- With respect to Y holding X constant: $\frac{\partial}{\partial y}f(x,y)=f_y(x,y)$
+
+## Math Practice
+
+- $\frac{d}{dx}[10]=$
+
+- $\frac{d}{dx}[x^2]=$
+
+- $\frac{d}{dx}[(x+2)^2]=$
+
+- $\frac{\partial}{\partial x}[2xy]=$
+
+- $\frac{\partial}{\partial x}[x^2+y]=$
+
+- $\frac{\partial}{\partial y}[x^2+y]=$
+
+- If $Y=K^{1/3}$ and $K$ grows at 9\% per year, what is $g_Y$?

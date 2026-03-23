@@ -1,0 +1,8 @@
+project:
+  type: default
+
+format:
+  revealjs:
+    html-math-method: mathjax
+  html:
+    html-math-method: mathjax
