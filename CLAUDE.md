@@ -36,7 +36,15 @@ Each course lives in its own directory (e.g., `ECN 102 SS1 2026/`, `Reading Grou
 - **Syllabi** — render to both HTML (`cosmo` theme) and PDF (custom LaTeX). Always include `toc: true` / `toc-title: "Contents"`.
 - **Slides** — render to Reveal.js HTML (`simple` theme), Beamer PDF, and optionally a plain HTML fallback. No `toc`.
 
-Output filenames follow the pattern `"ECN [number] [Type] [Term] [Year].[ext]"` (e.g., `ECN 102 Syllabus SS1 2026.html`) and are set via `output-file:` in each document's YAML front matter.
+Output filenames are set via `output-file:` in each document's YAML front matter:
+- **Syllabi** — include term and year: `"ECN 102 Syllabus SS1 2026.html"` (syllabi are distributed externally, so they need the datestamp for identification).
+- **Slides and all other documents** — omit term and year (redundant when the file lives in a dated folder): `"ECN 102 Lecture 1.html"`.
+
+**Slides produce three output files** per source `.qmd`: a Reveal.js HTML (primary), a Beamer PDF, and a plain HTML fallback (`"… Plain.html"`) using the `html` format. Set `output-file:` independently in each format block.
+
+**Source file naming convention:** lecture slides → `L#.qmd`; discussion/section slides → `S#.qmd`.
+
+**Meta description in slide files:** include `<meta name="description">` in both the `revealjs` and `html` format blocks (not just one). Format: `"Lecture slides # for ECN ###."` (L# files) or `"Discussion slides # for ECN ###."` (S# files).
 
 Global Quarto settings (MathJax for all HTML/Reveal.js outputs) are in [`_quarto.yml`](_quarto.yml). Do not override `html-math-method` in individual files without a specific reason.
 
