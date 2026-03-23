@@ -1,0 +1,174 @@
+---
+title: "ECN 102: Analysis of Economics Data"
+subtitle: "Summer Session 1 2026"
+lang: en
+format:
+  html:
+    output-file: "ECN 102 Syllabus SS1 2026.html"
+    toc: true
+    toc-depth: 2
+    toc-title: "Contents"
+    theme: cosmo
+    include-in-header:
+      text: |
+        <meta name="description" content="Course syllabus for ECN 102: Analysis of Economics Data, Summer Session 1 2026, UC Davis.">
+        <style>
+          dl.course-info dt { font-weight: bold; display: inline; }
+          dl.course-info dt::after { content: ":"; margin-right: 0.3em; }
+          dl.course-info dd { display: inline; margin: 0; }
+          dl.course-info dd::after { display: block; content: ""; }
+        </style>
+  pdf:
+    output-file: "ECN 102 Syllabus SS1 2026.pdf"
+    documentclass: article
+    fontsize: 12pt
+    geometry: "top=2cm, bottom=2cm, left=2cm, right=2cm"
+    linestretch: 1.5
+    fontfamily: helvet
+    fontfamilyoptions: scaled
+    include-in-header:
+      text: |
+        \renewcommand{\familydefault}{\sfdefault}
+        \usepackage{titling}
+        \setlength{\droptitle}{-4em}
+        \posttitle{\par\end{center}\vspace{-1.5em}}
+        \predate{}\date{}\postdate{}
+        \usepackage{titlesec}
+        \titleformat{\subsection}{\large\bfseries}{}{0em}{}
+        \titlespacing*{\subsection}{0pt}{12pt}{2pt}
+        \usepackage{enumerate}
+        \allowdisplaybreaks
+execute:
+  echo: false
+---
+
+## Course logistics
+
+<!-- Course info block: definition list for semantic HTML (WCAG 1.3.1) -->
+::: {.content-visible when-format="html"}
+<dl class="course-info" aria-label="Course information">
+  <dt>Instructor</dt><dd>Remy Beauregard</dd>
+  <dt>Instructor email</dt><dd><a href="mailto:rebeauregard@ucdavis.edu">rebeauregard@ucdavis.edu</a></dd>
+  <dt>Lectures</dt><dd><em>-</em></dd>
+  <dt>Office hours</dt><dd><em>-</em></dd>
+  <dt>Course email</dt><dd><a href="mailto:beauregard.teaching@gmail.com">beauregard.teaching@gmail.com</a></dd>
+  <dt>Sections</dt><dd>-</dd>
+  <dt>Teaching assistant</dt><dd>-</dd>
+  <dt>TA office hours</dt><dd>-</dd>
+</dl>
+:::
+
+::: {.content-visible when-format="pdf"}
+**Instructor:** Remy Beauregard\
+**Instructor email:** rebeauregard\@ucdavis.edu\
+**Lectures:** -\
+**Office hours:** -\
+**Course email:** beauregard.teaching\@gmail.com\
+**Sections:** -\
+**Teaching assistant:** -\
+**TA office hours:** -
+:::
+
+## Course description
+
+Analysis of economic data to investigate key relationships emphasized in introductory micro and macro economics. Obtaining, transforming, displaying data; statistical analysis of economic data; basic univariate and multivariate regression analysis.
+
+## Course goals
+
+This course aims to provide both a theoretical and applied understanding of how variables and the relationships between variables are visualized and analyzed in Economics. We will use standard statistical software *Stata* to read, clean, visualize, and analyze data. The course serves as a bridge between introductory statistics courses and more advanced courses in Econometrics (e.g. ECN 140, 141, 142). Students should expect to participate in lectures through knowledge check exercises and attend sections to gain familiarity with Stata.
+
+## Course materials
+
+The required textbook for this course is [*Analysis of Economics Data: An Introduction to Econometrics*](https://cameron.econ.ucdavis.edu/aed/) by A. Colin Cameron, available (as a physical copy) through the Equitable Access Bookshelf on Canvas. The tentative schedule of topics and weekly readings are listed below; it is your responsibility to keep up with reading for the course. You are **not** responsible for textbook material not covered in lectures. While lectures will be recorded, your **lecture attendance is still critical** to ask clarifying questions.
+
+## Course prerequisites
+
+ECN 1A--B, Statistics 13 or 32, Math 16A--B.
+
+## Course registration
+
+I cannot offer PTA codes for this course; please contact the [registrar](https://registrar.ucdavis.edu/about/contact) or [EHE advising center](https://bluecluster.ucdavis.edu/advising-center) for help with enrollment.
+
+## Statistical software
+
+The main statistical software for this course is unfortunately locked behind a paywall. However, campus resources exist to access Stata for free. Our sections will be held in Hutchison Hall 93, a basement lab with Stata-equipped computers. The availability of this room outside of class can be checked on the [campus computer rooms availability page](https://computerrooms.ucdavis.edu/available/). After hours, Stata can be accessed remotely using the [IET virtual lab](https://virtuallab.ucdavis.edu/). Please contact me or your TA if you are having issues connecting to Stata. The final access option is purchasing a Stata license for your private machine, but you should not feel at all required to do this. If you do choose to purchase Stata (BE student 6-month for \$48), you can [order a Stata license on the Stata website](https://www.stata.com/order/). You will not need more than Stata BE (Basic Edition) for this course.
+
+## Assignments and grading (% of overall course grade)
+
+Your overall grade in this course (before any curve is applied) is calculated as a weighted sum of the assignments below. No other make-up or extra credit assignments are eligible for credit in this course.
+
+- **Knowledge checks (10% total):** Each chapter slide deck will end with a review exercise to complete and upload to Canvas by the end of the day. These will be completed as a class during lecture. Knowledge checks will be graded on completion, but serve as good practice questions for exams. I will automatically drop up to two missing knowledge checks for the quarter.
+
+- **Homework (10% total):** We will have four homework assignments to map concepts from lecture to actual data and applied problems. Problems requiring Stata will be demonstrated in discussion sections. Homework must be submitted as a single pdf and include all Stata output and code. All homework submissions will be due Sundays at 11:59pm through Canvas. Homework will be graded on completion, with full marks given for submissions that reasonably attempt all questions. No homework will be given during midterm week. Late homework is not accepted. If you must request an extension on a homework submission, please contact the instructor **before the deadline**.
+
+- **Stata quiz (20%):** We will have a quiz Week 5 during discussion sections (X/XX) on data processing, visualization, and analysis using Stata. You can expect questions similar to previous homework assignments. The quiz will be closed-note, but you will have access to all posted homework answer keys. The quiz **cannot** be taken on personal computers except through SDC.
+
+- **Midterm exam (25%) and final exam (35%):** Our midterm will take place July XXth in class. Our final exam will take place July XXth in class. It is your responsibility to **arrive on time** on these days. No makeup time will be given on exams. Both exams will be cumulative and closed-book. No notecards or cheat-sheets are allowed for exams. If you will **need** to miss the midterm, you must notify me at least one week before the exam and give a valid reason for your absence. If I accept your petition to miss the midterm, the weight of the midterm in your course grade will be added to your final exam (60% total). Missing the final exam for any reason will result in either failure of the course or an incomplete ("I") grade with valid justification.
+
+## Regrading policy
+
+Your exam pdf and the grading rubric for each question will be available on Gradescope with points earned/lost. If you feel you were graded incorrectly on one or more questions, you will have one week from when exam scores are released to submit a regrade request on Gradescope with justification for points back. No regrade requests can be made after the one-week window elapses. Regraded exam questions are considered holistically.
+
+## Final grades
+
+Any curving or rescaling of the grade distribution for this course will not be done until all assignments are submitted and evaluated. There is no hard limit on the distribution of grades in this course, but I expect the class average to fall between 80--85%. Prior to all assignments being graded, however, I cannot provide intuition as to the letter grade associated with any percentage grade. Instead, I encourage all students to compute their z-score following exams as a measure of relative performance.
+
+## Student accommodations
+
+If you have any form of disability, difficulty understanding English, or other extenuating circumstance you feel will prevent you from doing your best in this course, please meet with me during the first week of class to discuss appropriate arrangements. All course materials are compliant with [WCAG 2.1 Level AA accessibility standards](https://www.w3.org/TR/WCAG21/), in accordance with UC policy. *Students taking the Stata quiz through SDC should expect to purchase a copy of Stata (BE) software for their personal computer.*
+
+## Cheating
+
+I have a zero tolerance policy for academic dishonesty. This includes but is not limited to: cheating on exams, submitting work from another student as your own, submitting work from an external source without proper citation, and submitting work produced by generative AI (e.g. ChatGPT). Cheating also includes use of personal electronic devices or talking between students during exams. If you are found to have engaged in any form of academic misconduct on any assignment or exam, you will receive a **zero** for that assignment or exam. Please review the [UC Davis Code of Academic Conduct](https://ossja.ucdavis.edu/code-academic-conduct).
+
+## Class culture
+
+My class is built on a foundation of mutual respect and professional courtesy. All individuals should feel welcome, regardless of their age, sex, gender identity, race, ethnicity, national origin, immigration status, sexual orientation, religious beliefs, socioeconomic status, or disability status. Additional university resources can be found on the [UC Davis Inclusive Excellence page](https://excellence.ucdavis.edu/) or through [Student Health and Counseling Services (SHCS)](https://shcs.ucdavis.edu/). If you feel you have experienced any form of discrimination in my class, please report the matter to me or use the link above.
+
+## Course schedule
+
+Broadly, this course is broken down into four main components:
+
+(a) Introduction: what we can do with data
+(b) Univariate analysis: analysis of a single variable (ch. 1--4)
+(c) Bivariate analysis: the relationship between two variables (ch. 5--9)
+(d) Multivariate analysis: the relationship(s) between several variables (ch. 10--15)
+
+A tentative schedule of topics and associated textbook chapters for each week are below:
+
+**Week 1: Monday June 23rd**
+
+Lecture: descriptive statistics; data visualization --- *chapters 1+2*\
+Section: hw 1 examples\
+Hw 1 due 6/29 at 11:59pm
+
+**Week 2: Monday June 30th**
+
+Lecture: the sample mean; univariate inference; bivariate data --- *chapters 3+4+5*\
+Section: hw 2 examples\
+Hw 2 due 7/6 at 11:59pm
+
+**Week 3: Monday July 7th**
+
+Lecture: the least-squares estimator; bivariate inference; bivariate practice --- *chapters 6+7+8*\
+Section: hw 3 examples\
+Hw 3 due 7/13 at 11:59pm
+
+**Week 4: Monday July 14th**
+
+**Midterm 7/14** ch. 1--7\
+Lecture: data transformations for bivariate regressions; multiple regression --- *chapters 9+10*\
+Section: midterm recap
+
+**Week 5: Monday July 21st**
+
+Lecture: multivariate inference; indicator variables --- *chapters 11+12+14*\
+Section: **Stata quiz**\
+Hw 4 due 7/27 at 11:59pm
+
+**Week 6: Monday July 28th**
+
+Lecture: data transformations for multivariate regressions --- *chapter 15*\
+**Final exam 7/30** ch. 1--7; 9--12; 14--15\
+Section: canceled\
+No hw due
