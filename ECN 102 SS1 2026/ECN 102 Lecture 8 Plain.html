@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.36">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Remy Beauregard">
+
+<title>ECN 102: Analysis of Econ Data</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="L8_files/libs/clipboard/clipboard.min.js"></script>
+<script src="L8_files/libs/quarto-html/quarto.js" type="module"></script>
+<script src="L8_files/libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="L8_files/libs/quarto-html/popper.min.js"></script>
+<script src="L8_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="L8_files/libs/quarto-html/anchor.min.js"></script>
+<link href="L8_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="L8_files/libs/quarto-html/quarto-syntax-highlighting-845c23b38eaddc0f92fda52bfe77a8c8.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="L8_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="L8_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="L8_files/libs/bootstrap/bootstrap-138a6193a3bd40baf1e627da441a4734.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<meta name="description" content="Lecture slides 8 for ECN 102.">
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="quarto-light">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="ECN 102 Lecture 8.html"><i class="bi bi-file-slides"></i>RevealJS</a></li><li><a href="ECN 102 Lecture 8.pdf"><i class="bi bi-file-pdf"></i>Beamer</a></li></ul></div></div>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">ECN 102: Analysis of Econ Data</h1>
+<p class="subtitle lead">Chapter 8: Bivariate Practice (With Answers)</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Remy Beauregard </p>
+          </div>
+  </div>
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="dataset-overview" class="level2 smaller" data-shrink="30">
+<h2 class="smaller anchored" data-shrink="30" data-anchor-id="dataset-overview">Dataset Overview</h2>
+<div class="cell" data-collectcode="true">
+<div class="cell-output cell-output-stdout">
+<pre><code>Contains data from HEALTH2009.dta
+ Observations:            34                  Data for A. Colin Cameron (2022), ANALYSIS OF ECONOMIC DATA, Amazon
+    Variables:            13                  22 Jan 2022 14:34
+-----------------------------------------------------------------------------------------------------------------------------------------
+Variable      Storage   Display    Value
+    name         type    format    label      Variable label
+-----------------------------------------------------------------------------------------------------------------------------------------
+country_name    str15   %15s                  Country name, OECD
+year            int     %9.0g                 Year
+hlthgdp         float   %8.0g                 Health as % of GDP
+hlthpc          int     %8.0g                 Health expenditure per capita
+infmort         float   %8.0g                 Infant Mortatility (deaths per 1,000)
+lifeexp         float   %8.0g                 Male Life Expectancy (years)
+gdppc           float   %8.0g                 GDP per capita
+code            str3    %9s                   Three letter country code
+hlthpcsq        float   %9.0g                 Health expenditure per capita squared
+lnhlthpc        float   %9.0g                 Natural logarithm of hlthpc
+lngdppc         float   %9.0g                 Natural logarithm of GDP per capita
+lnlifeexp       float   %9.0g                 Natural logarithm of Life expectancy
+lninfmort       float   %9.0g                 Natural logarithm of Infant mortality
+-----------------------------------------------------------------------------------------------------------------------------------------
+Sorted by: country_name  year</code></pre>
+</div>
+</div>
+<ul>
+<li>What would be some sensible explanatory variables? Some outcome variables?</li>
+</ul>
+<p>. . .</p>
+<p><em>hlthgdp, hlthpc, gdppc</em> might be some sensible independent variables; <em>infmort, lifeexp</em> might be some reasonable dependent variables.</p>
+</section>
+<section id="health-spending-distribution" class="level2 smaller" data-shrink="20">
+<h2 class="smaller anchored" data-shrink="20" data-anchor-id="health-spending-distribution">Health Spending Distribution</h2>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>                     Health as % of GDP
+-------------------------------------------------------------
+      Percentiles      Smallest
+ 1%          6.4            6.4
+ 5%          6.7            6.7
+10%            7            6.9       Obs                  34
+25%            8              7       Sum of wgt.          34
+
+50%          9.6                      Mean           9.673529
+                        Largest       Std. dev.      2.123934
+75%         10.8           11.7
+90%         11.7           11.7       Variance       4.511096
+95%         11.9           11.9       Skewness       1.364484
+99%         17.7           17.7       Kurtosis       7.107991</code></pre>
+</div>
+</div>
+<ul>
+<li>How would we describe this variable in words? What are its measures of central tendency? Spread? What do these each mean?</li>
+</ul>
+<p>. . .</p>
+<p>Our variable has a mean of 9.67 with a median of 9.6, indicating a right-skew. We confirm this with a skewness <span class="math inline">\(&gt;0\)</span>. We have thicker tails than a normal distribution with <span class="math inline">\(Kurt&gt;3\)</span>. Our standard deviation is 2.12. Our IQR is 10.8-8=2.8.</p>
+</section>
+<section id="infant-mortality-and-life-expectancy" class="level2 smaller" data-shrink="20">
+<h2 class="smaller anchored" data-shrink="20" data-anchor-id="infant-mortality-and-life-expectancy">Infant Mortality and Life Expectancy</h2>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>    Variable |        Obs        Mean    Std. dev.       Min        Max
+-------------+---------------------------------------------------------
+     infmort |         34    4.447059    2.720098        1.8       14.7
+     lifeexp |         34    76.70294    2.936756       69.8       79.9</code></pre>
+</div>
+</div>
+<ul>
+<li>Which of these two variables has greater spread relative to its mean? How do we know?</li>
+</ul>
+<p>. . .</p>
+<p><span class="math display">\[CV=\frac{s}{\bar{x}}: \frac{2.72}{4.45} &gt; \frac{2.94}{76.70}\Rightarrow\text{infmort has larger dispersion}\]</span></p>
+<ul>
+<li>What would we expect the standard error (of <span class="math inline">\(\bar{x}\)</span>) of <em>infmort</em> to be?</li>
+</ul>
+<p>. . .</p>
+<p><span class="math display">\[se(\overline{infmort})=\frac{s_{\text{infmort}}}{\sqrt{n}}=\frac{2.72}{\sqrt{34}}\]</span></p>
+</section>
+<section id="regression-of-life-expectancy-on-health-spending" class="level2 smaller" data-shrink="30">
+<h2 class="smaller anchored" data-shrink="30" data-anchor-id="regression-of-life-expectancy-on-health-spending">Regression of Life Expectancy on Health Spending</h2>
+<p>Suppose we regress <em>lifeexp</em> on <em>hlthgdp</em>:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">reg</span> lifeexp hlthgdp</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>      Source |       SS           df       MS      Number of obs   =        34
+-------------+----------------------------------   F(1, 32)        =      6.62
+       Model |  48.7766651         1  48.7766651   Prob &gt; F        =    0.0149
+    Residual |   235.83297        32   7.3697803   R-squared       =    0.1714
+-------------+----------------------------------   Adj R-squared   =    0.1455
+       Total |  284.609635        33  8.62453438   Root MSE        =    2.7147
+
+------------------------------------------------------------------------------
+     lifeexp | Coefficient  Std. err.      t    P&gt;|t|     [95% conf. interval]
+-------------+----------------------------------------------------------------
+     hlthgdp |   .5724111   .2224996     2.57   0.015     .1191942    1.025628
+       _cons |   71.16571   2.202135    32.32   0.000     66.68011    75.65131
+------------------------------------------------------------------------------</code></pre>
+</div>
+</div>
+</section>
+<section id="population-model-and-ols-assumptions" class="level2 smaller" data-shrink="20">
+<h2 class="smaller anchored" data-shrink="20" data-anchor-id="population-model-and-ols-assumptions">Population Model and OLS Assumptions</h2>
+<p>Population model:</p>
+<ul>
+<li>What is the population model we are estimating?</li>
+</ul>
+<p>. . .</p>
+<p><span class="math display">\[y_i = \beta_1 + \beta_2x_i+u_i\]</span></p>
+<ul>
+<li>What four assumptions do we make to use OLS?</li>
+</ul>
+<p>. . .</p>
+<ol type="1">
+<li>Linearity, (2) Unbiasedness, (3) Homoskedasticity, (4) Independence</li>
+</ol>
+<ul>
+<li>What would be a potential threat to each assumption?</li>
+</ul>
+<ol type="1">
+<li><p>Nonlinear relationship between X and Y</p></li>
+<li><p>An omitted variable in our regression</p></li>
+<li><p>Heteroskedasticity - non-uniform distribution of errors</p></li>
+<li><p>Correlation in our errors between observations</p></li>
+</ol>
+</section>
+<section id="sample-estimates" class="level2">
+<h2 class="anchored" data-anchor-id="sample-estimates">Sample Estimates</h2>
+<p>Sample estimate:</p>
+<ul>
+<li>What is <span class="math inline">\(b_1\)</span>? What is <span class="math inline">\(b_2\)</span>? What are these in words? What do these estimate?</li>
+</ul>
+<p>. . .</p>
+<p><span class="math inline">\(b_1=71.166\)</span> is our intercept; <span class="math inline">\(b_2=0.572\)</span> is our slope. We expect a country that spends 0% of its GDP on health to have a male life expectancy of around 71 years and to gain roughly half a year of life expectancy for each 1% additional of GDP spent on health. These estimate <span class="math inline">\(\beta_1\)</span> and <span class="math inline">\(\beta_2\)</span> from the population model.</p>
+<ul>
+<li>What are two properties of our estimator <span class="math inline">\(b_2\)</span>?</li>
+</ul>
+<p>. . .</p>
+<p>We know our OLS estimator to be both <em>unbiased</em> <span class="math inline">\((E[b_2]=\beta_2)\)</span> and <em>consistent</em> <span class="math inline">\((\sigma^2_{b_2}\rightarrow0\text{ as }n\rightarrow\infty)\)</span>.</p>
+</section>
+<section id="more-sample-estimates" class="level2">
+<h2 class="anchored" data-anchor-id="more-sample-estimates">More Sample Estimates</h2>
+<ul>
+<li>What is <span class="math inline">\(s_{b_2}\)</span>? How is this different from <span class="math inline">\(\sigma_{b_2}\)</span>?</li>
+</ul>
+<p>. . .</p>
+<p><span class="math inline">\(s_{b_2}\)</span> is the standard error for our slope coefficient, calculated using all sample quantities. Our population standard deviation for <span class="math inline">\(b_2\)</span>, <span class="math inline">\(\sigma_{b_2}\)</span>, would use population parameters instead (<span class="math inline">\(\sigma_u\)</span> instead of <span class="math inline">\(s_e\)</span>).</p>
+<ul>
+<li>What would we expect the male life expectancy to be for a country that spends 7% of its GDP on health?</li>
+</ul>
+<p>. . .</p>
+<p><span class="math inline">\(E[Y|X=7]=71.166+0.572\times7=75.17\)</span></p>
+</section>
+<section id="model-fit" class="level2">
+<h2 class="anchored" data-anchor-id="model-fit">Model Fit</h2>
+<p>Model fit:</p>
+<ul>
+<li>What is our ExpSS? Our ResSS? Our TSS?</li>
+</ul>
+<p>. . .</p>
+<p><span class="math inline">\(ExpSS=48.78;\ ResSS=235.83;\ TSS=284.61\)</span></p>
+<ul>
+<li>What is our <span class="math inline">\(R^2\)</span>? What is <span class="math inline">\(r_{xy}\)</span>? What do these each mean?</li>
+</ul>
+<p>. . .</p>
+<p><span class="math inline">\(R^2=0.1714;\ r_{xy}=\sqrt{0.1714}=0.41\)</span>. 17.14% of our variation in male life expectancy is explained by (variation in) health spending as a % of GDP. The two variables have a moderate positive correlation of 0.41.</p>
+</section>
+<section id="more-model-fit" class="level2">
+<h2 class="anchored" data-anchor-id="more-model-fit">More Model Fit</h2>
+<ul>
+<li>Can we say <span class="math inline">\(b_2=r_{xy}\)</span>? Why or why not?</li>
+</ul>
+<p>. . .</p>
+<p>We cannot say <span class="math inline">\(b_2=r_{xy}\)</span> without knowing <span class="math inline">\(s_x\)</span> and <span class="math inline">\(s_y\)</span>, since we know <span class="math inline">\(b_2=r_{xy}\frac{s_y}{s_x}\)</span>. It is unlikely the two are exactly equal.</p>
+<ul>
+<li>What are two ways we could calculate <span class="math inline">\(R^2\)</span> manually?</li>
+</ul>
+<p>. . .</p>
+<p><span class="math inline">\(R^2 = \frac{ExpSS}{TSS}=1-\frac{ResSS}{TSS}=\frac{48.78}{284.61}=1-\frac{235.83}{284.61}=0.1714\)</span></p>
+</section>
+<section id="bivariate-inference" class="level2 smaller">
+<h2 class="smaller anchored" data-anchor-id="bivariate-inference">Bivariate Inference</h2>
+<p>Bivariate inference:</p>
+<ul>
+<li>Which hypotheses does the t-statistic for <span class="math inline">\(b_2\)</span> correspond to?</li>
+</ul>
+<p>. . .</p>
+<p><span class="math inline">\(H_0:\beta_2=0\)</span></p>
+<p><span class="math inline">\(H_A:\beta_2\neq0\)</span></p>
+<ul>
+<li>Can we reject this null hypothesis using the p-value approach?</li>
+</ul>
+<p>. . .</p>
+<p>Yes; <code>P&gt;|t|</code> (the probability of getting a test statistic at least as large if the null hypothesis is true) <span class="math inline">\(=0.015&lt;\alpha=0.05\)</span> so we reject the null. There is a statistically significant association between x and y.</p>
+<ul>
+<li>Can we reject this null using our confidence interval?</li>
+</ul>
+<p>. . .</p>
+<p>Yes; our parameter value assumed under the null is not included in our confidence interval, so we can reject the null. There is a statistically significant association between x and y.</p>
+</section>
+<section id="critical-value-and-degrees-of-freedom" class="level2 smaller">
+<h2 class="smaller anchored" data-anchor-id="critical-value-and-degrees-of-freedom">Critical Value and Degrees of Freedom</h2>
+<ul>
+<li>Without using <code>invttail()</code>, what do we know about <span class="math inline">\(t^*_{df,\alpha/2}\)</span>, our critical value?</li>
+</ul>
+<p>. . .</p>
+<p>Since our p-value and critical value approaches must <strong>always</strong> give us the same answer for whether to reject a given null, we know that <span class="math inline">\(t=2.57&gt;t^*_{df,\alpha/2}\)</span> even if we do not know <span class="math inline">\(t^*_{df,\alpha/2}\)</span> itself.</p>
+<ul>
+<li>How many degrees of freedom will our t-statistic above have? Why?</li>
+</ul>
+<p>. . .</p>
+<p>Our test will have <span class="math inline">\(n-2\)</span> degrees of freedom, because two (2) precomputed quantities are used to calculate our test statistic: <span class="math inline">\(b_1\)</span> and <span class="math inline">\(b_2\)</span>.</p>
+<ul>
+<li>State the conclusion of our hypothesis test in words.</li>
+</ul>
+<p>. . .</p>
+<p>We reject the null and state that there is a statistically significant association between % of GDP spent on health and male life expectancy.</p>
+</section>
+<section id="scatter-plot" class="level2 smaller" data-shrink="20">
+<h2 class="smaller anchored" data-shrink="20" data-anchor-id="scatter-plot">Scatter Plot</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="scatter.png" class="img-fluid figure-img" style="width:85.0%" alt="Scatter plot with male life expectancy in years on the vertical axis and health spending as a percentage of GDP on the horizontal axis. Points represent individual OECD countries. A positively sloped fitted regression line is overlaid, showing a general positive association between health spending and life expectancy. The data display considerable spread with residuals appearing larger at lower values of health spending, suggesting possible heteroskedasticity. One prominent outlier appears at the far right of the x-axis with a life expectancy well below the regression line."></p>
+<figcaption>Scatter plot of male life expectancy versus health spending as a percentage of GDP, with a fitted regression line.</figcaption>
+</figure>
+</div>
+<ul>
+<li>What do we notice about this regression and data?</li>
+</ul>
+<p>. . .</p>
+<p>Our data is likely both heteroskedastic (more spread at lower values of x) and has an outlier. We may want to drop the outlier and use robust SEs in our regression.</p>
+</section>
+<section id="homoskedasticity-and-outlier-discussion" class="level2 smaller" data-shrink="10">
+<h2 class="smaller anchored" data-shrink="10" data-anchor-id="homoskedasticity-and-outlier-discussion">Homoskedasticity and Outlier Discussion</h2>
+<ul>
+<li>Which assumption are we now worried our data might violate?</li>
+</ul>
+<p>. . .</p>
+<p>We may be worried our data violates homoskedasticity, our third (3rd) assumption. Our errors appear to be larger for smaller values of x.</p>
+<ul>
+<li>What could we do in response to this concern?</li>
+</ul>
+<p>. . .</p>
+<p>We would need to add the option <code>,robust</code> to our regression in Stata.</p>
+<ul>
+<li>What quantity(ies) would be changed as a result of this?</li>
+</ul>
+<p>. . .</p>
+<p>Our coefficient estimates would not change as a result of using <code>robust</code>, but our standard errors would change. T-statistics, p-values, and CIs would also change.</p>
+<ul>
+<li>How would our regression change if we instead excluded the right-most point?</li>
+</ul>
+<p>. . .</p>
+<p>Our right-most point is significantly below our regression line, indicating it is likely making our <span class="math inline">\(b_2\)</span> much lower than it would be without this point.</p>
+</section>
+<section id="ordinary-least-squares-blue" class="level2 smaller" data-shrink="20">
+<h2 class="smaller anchored" data-shrink="20" data-anchor-id="ordinary-least-squares-blue">Ordinary Least Squares: BLUE</h2>
+<ul>
+<li>What does our OLS estimator <span class="math inline">\(b_2\)</span> minimize? What does it maximize?</li>
+</ul>
+<p>. . .</p>
+<p>Our OLS estimator <span class="math inline">\(b_2\)</span> minimizes the sum of squared residuals, <span class="math inline">\(\sum_{i=1}^ne_i^2\)</span>. By definition, it then also maximizes our coefficient of determination, <span class="math inline">\(R^2\)</span>.</p>
+<ul>
+<li>We called the OLS estimator <strong>BLUE</strong> - what did this mean?</li>
+</ul>
+<p>. . .</p>
+<p>This means that our OLS estimator is the <strong>B</strong>est <strong>L</strong>inear <strong>U</strong>nbiased <strong>E</strong>stimator. This means it is (1) unbiased, (2) linear in form, and (3) has minimum variance of all similar estimators. We said (3) was important to minimize Type II error probability.</p>
+<ul>
+<li>Suppose I obtain a sample of data (<span class="math inline">\(n=63\)</span>) I am certain is <strong>not</strong> normally distributed. I want to use OLS and conduct inference on <span class="math inline">\(b_2\)</span>, but will I be able to? Why or why not?</li>
+</ul>
+<p>. . .</p>
+<p>The magic of the central limit theorem (CLT) says that a statistic computed from a sample with <span class="math inline">\(n&gt;30\)</span> will be normally distributed, even if the data itself is not normally distributed. The <span class="math inline">\(b_2\)</span> we compute from this data can be expected to follow a normal distribution in this case.</p>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

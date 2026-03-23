@@ -100,7 +100,11 @@ Like with univariate inference,
 
 Helpfully, Stata anticipates that we will want to conduct such a 2-sided hypothesis test for $\beta_2=0$ (our **"test of association"**) and provides us with $b_2,s_{b_2}$, our t-statistic, and our p-value for that t-statistic *automatically* when we run a regression. If we run a multivariate regression instead, Stata will report these quatities for each regressor separately (how nice!)
 
-## Regression of Price on MPG {.smaller shrink=20}
+## Regression of Price on MPG {.smaller shrink=32}
+
+\vspace{3em}
+
+Here we regress $price$ on $mpg$: 
 
 ```{stata}
 #| label: reg
@@ -110,15 +114,9 @@ qui drop if mpg>40
 reg price mpg
 ```
 
-## Regression Results: Price on MPG {.smaller shrink=20}
+. . . 
 
-```{stata}
-#| label: reg2
-qui drop if mpg>40
-reg price mpg
-```
-
-$\Rightarrow$ There **is** a statistically significant association between mpg and price based on p-value approach (or confidence interval of $\beta_2$).
+$\Rightarrow$ There **is** a statistically significant association between mpg and price based on p-value approach (or confidence interval of $\beta_2$), as our p-value for the test of association (on $b_2$ for $mpg$) $<0.05$. 
 
 ## Scatter Plot: Price vs. MPG
 
@@ -131,7 +129,7 @@ gr export L7sc.png, replace
 
 What do we notice about our data?
 
-![Scatter plot of car price versus miles per gallon with fitted regression line.](L7sc.png){width=100% fig-alt="Scatter plot with price on the vertical axis and mpg on the horizontal axis. Individual observations are plotted as dots and a downward-sloping fitted regression line is overlaid, showing a negative association between fuel efficiency and price. The data show considerable spread, with a few potentially influential observations at the extremes of the mpg range."}
+![Scatter plot of car price versus miles per gallon with fitted regression line.](L7sc.png){width=100% fig-alt="Scatter plot with price on the vertical axis and mpg on the horizontal axis. Individual observations are plotted as dots and a downward-sloping fitted regression line is overlaid, showing a negative association between fuel efficiency and price. The data show considerable spread and likely heteroskedasticity, with a few potentially influential observations at the extremes of the mpg range."}
 
 ## Robust Standard Errors
 
