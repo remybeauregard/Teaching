@@ -79,7 +79,7 @@ This course aims to provide both a theoretical and applied understanding of how 
 
 ## Course materials
 
-The required textbook for this course is [*Analysis of Economics Data: An Introduction to Econometrics*](https://cameron.econ.ucdavis.edu/aed/) by A. Colin Cameron, available (as a physical copy) through the Equitable Access Bookshelf on Canvas. The tentative schedule of topics and weekly readings are listed below; it is your responsibility to keep up with reading for the course. You are **not** responsible for textbook material not covered in lectures. While lectures will be recorded, your **lecture attendance is still critical** to ask clarifying questions.
+The required textbook for this course is [*Analysis of Economics Data: An Introduction to Econometrics*](https://cameron.econ.ucdavis.edu/aed/) by A. Colin Cameron, available (as a physical copy) through the Equitable Access Bookshelf on Canvas. The tentative schedule of topics and weekly readings are listed below; it is your responsibility to keep up with reading for the course. You are **not** responsible for textbook material not covered in lectures. While lectures will be recorded, **your lecture attendance is still critical** to ask clarifying questions.
 
 ## Course prerequisites
 
