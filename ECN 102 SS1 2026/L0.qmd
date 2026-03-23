@@ -1,0 +1,96 @@
+---
+title: "ECN 102: Analysis of Economics Data"
+subtitle: "Introduction to ECN 102"
+author: "Remy Beauregard"
+lang: en
+format:
+  revealjs:
+    output-file: "ECN 102 Lecture 0.html"
+    slide-level: 2
+    theme: simple
+    transition: none
+    include-in-header:
+      text: |
+        <meta name="description" content="Lecture slides 0 for ECN 102.">
+  beamer:
+    output-file: "ECN 102 Lecture 0.pdf"
+  html:
+    output-file: "ECN 102 Lecture 0 Plain.html"
+    include-in-header:
+      text: |
+        <meta name="description" content="Lecture slides 0 for ECN 102.">
+execute:
+  echo: false
+---
+
+## Course Introductions
+
+Welcome to ECN 102 *Analysis of Economics Data* — I am looking forward to working with all of you this quarter!
+
+Instructor:
+
+- Remy Beauregard, 5th year PhD candidate in Economics
+
+- Experimental, Behavioral, Development Economist
+
+- Research Associate at FRBSF (2 years)
+
+- Vassar College - B.A. Econ & Psych '19
+
+- From East Coast, "Boston" (Cape Ann really)
+
+- Climb in Sac, hike & camp, cat named Toad
+
+## Interested in Research?
+
+Considering research?
+
+- Undergraduate research program (Prof. Wilson)
+
+- ...ECN **140**, 141, 142
+
+- Honors thesis (Prof. Peri)
+
+- Check hallway postings
+
+- Davis Economic Collective (DEC)
+
+- UWIES (Undergrad. Womxn in Economics Society)
+
+- Ask about research!
+
+## TA Introductions
+
+TA introductions:
+
+- TA NAME / DETAILS 
+
+## Class Introductions
+
+Get to know each other! Tell those around you:
+
+- Your name, major, and class year
+
+- Why you wanted to take ECN 102
+
+- Previous classes taken in math, stats, or econ
+
+- Your favorite hobby or pastime
+
+- What you want to do after Davis
+
+- Any other fun fact about you
+
+## Course Logistics
+
+For questions about course logistics, always consult the **syllabus** and Canvas page first! While I am happy to answer questions, these sources already address many FAQs.
+
+Make sure to check all Canvas **announcements**, as I most commonly use these to convey course information (e.g. deadline changes, grades posted, etc.)
+
+. . .
+
+Let's go through the syllabus now...
+
+## Knowledge Check 0
+
+Make sure you have put the dates for our midterm, Stata quiz, and final exam into your calendar! Once you have done this, please write "I have put the exam dates into my calendar" in a note and submit that to Canvas as your knowledge check for today.

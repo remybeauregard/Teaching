@@ -8,10 +8,16 @@ format:
     slide-level: 2
     theme: simple
     transition: none
+    include-in-header:
+      text: |
+        <meta name="description" content="Discussion slides 1 for ECN 101-B.">
   beamer:
     output-file: "ECN 101-B Section 1.pdf"
   html:
     output-file: "ECN 101-B Section 1 Plain.html"
+    include-in-header:
+      text: |
+        <meta name="description" content="Discussion slides 1 for ECN 101-B.">
 execute:
   echo: false
 ---
