@@ -1,0 +1,149 @@
+---
+title: "Undergraduate Reading Group"
+subtitle: "*Good Economics for Hard Times* (2019)"
+author: "Remy Beauregard"
+date: "Spring 2026"
+lang: en
+format:
+  revealjs:
+    output-file: "ECN 099 Slides SP2026.html"
+    smaller: true
+    include-in-header:
+      text: |
+        <meta name="description" content="Discussion slides for ECN 099: Undergraduate Reading Group, Spring 2026, UC Davis.">
+  beamer:
+    output-file: "ECN 099 Slides SP2026.pdf"
+    fontsize: 10pt
+---
+
+## Chapter 1, *MEGA: Make Economics Great Again*
+
+**Big question: what role should economists play in shaping policy?** 
+
+\vspace{0.5em}
+
+- What do you believe are the most pressing economic issues of today?
+
+- Did you discuss an example of successful economic policy in your classes?
+
+## Chapter 2, *From the Mouth of the Shark*
+
+**Big question: what are the causes and effects of migration?**
+
+\vspace{0.5em}
+
+- Why is it difficult to causally estimate the impact of immigration on wages? *(p. 15)*
+
+- Should we think of low rates of migration as a purely information problem? *(p. 18)*
+
+- What factor(s) other than higher wages may affect decisions about migration? *(pp. 31--36)*
+
+- How might we design policy to successfully encourage migration? *(p. 49)*
+
+## Chapter 3, *The Pains from Trade*
+
+**Big question: how does trade liberalization affect growth?**
+
+\vspace{0.5em}
+
+- What do economists generally believe optimal trade should look like? Why? *(pp. 52--53)*
+
+- Why were Topalova's findings so surprising? How did "stickiness" play a role? *(pp. 62--63)*
+
+- What is "clustering" and how does it help explain trade specialization? *(pp. 64--65, 76)*
+
+- What are some impacts of US trade and immigration policy decisions today? *(pp. 92--93)*
+
+## Chapter 4, *Likes, Wants, Needs*
+
+**Big question: what behavioral factors matter for effective policy?**
+
+\vspace{0.5em}
+
+- How are "beliefs" different from "preferences" in economics? *(p. 99)*
+
+- How is "statistical discrimination" different from "taste-based discrimination"? *(pp. 111--112)*
+
+- How might polarization and homophily undermine (perceived) success of economic policies? *(pp. 126--128)*
+
+## Chapter 5, *The End of Growth?*
+
+**Big question: can we achieve higher levels of economic growth?**
+
+\vspace{0.5em}
+
+- How would economists characterize the pace of growth in the US today? In other countries? *(pp. 149--152)*
+
+- How do economists typically measure productivity growth? Could this be missing something? *(p. 153)*
+
+- What are some policy levers economic policymakers consider to encourage higher growth? *(pp. 161--177)*
+
+- What role could "misallocation" play in the story of modern economic growth? *(pp. 188--194)*
+
+## Chapter 6, *In Hot Water*
+
+**Big question: how do environmental constraints affect policy?**
+
+\vspace{0.5em}
+
+- What is the 50-10 rule? How does this influence climate policy? *(pp. 209--210)*
+
+- What intertemporal tradeoff do developing economies face with regards to emissions? *(pp. 212--215)*
+
+- How do the authors argue that preferences for climate-(un)friendly behavior are not fixed? *(pp. 219--220)*
+
+## Chapter 7, *Player Piano*
+
+**Big question: how is economic growth distributed among people?**
+
+\vspace{0.5em}
+
+- How do economists expect AI to affect the labor market? Why? Do the data support this? *(pp. 229--232)*
+
+- What should we conclude from the economic legacies of Reagan and Thatcher? *(pp. 236--241)*
+
+- How does rising firm concentration help explain why wages have not kept up with GDP? *(pp. 241--246)*
+
+- Why might a progressive wealth tax successfully reduce income inequality and not real effort? *(pp. 250--254)*
+
+- How is the issue of affordability presented and discussed in the media today? *(pp. 256--260)*
+
+## Chapter 8, *Legit.gov*
+
+**Big question: how can the government address income inequality?**
+
+\vspace{0.5em}
+
+- What are some popular arguments against raising taxes? Do the data support these? *(pp. 264--265)*
+
+- What are the benefits of transparency in fighting corruption? What are the downsides? *(p. 271)*
+
+- What are Conditional Cash Transfer programs (CCTs)? Where have these been successful? *(pp. 275--276)*
+
+## Chapter 9, *Cash and Care*
+
+**Big question: what benefits can/should the government provide?**
+
+\vspace{0.5em}
+
+- How would UBI differ from programs like *Progresa/Oportunidades/Prospera* and SNAP? *(pp. 278--279)*
+
+- What concern led to the inclusion of work requirements for welfare programs in the US? *(pp. 283--287)*
+
+- How is the "income effect" different from the "substitution effect" on hours worked? *(p. 290)*
+
+- How does work meaningfulness influence the authors' prescription of UBI? Why? *(pp. 299--302)*
+
+- How do the "active labor market policies" the authors discuss address labor misallocation? *(pp. 311--314)*
+
+## Conclusion, *Good and Bad Economics*
+
+**Big question: what role do economists play in shaping policy?**
+
+\vspace{0.5em}
+
+- Have your opinions on any economic policies or positions changed from reading the book?
+
+- Have you learned any new empirical research methods or theories discussed by the authors?
+
+- How might you (an economist!) design a study to evaluate the impacts of a policy you are interested in?
