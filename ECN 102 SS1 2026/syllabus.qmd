@@ -93,7 +93,7 @@ I cannot offer PTA codes for this course; please contact the [registrar](https:/
 
 The main statistical software for this course is unfortunately locked behind a paywall. However, campus resources exist to access Stata for free. Our sections will be held in Hutchison Hall 93, a basement lab with Stata-equipped computers. The availability of this room outside of class can be checked on the [campus computer rooms availability page](https://computerrooms.ucdavis.edu/available/). After hours, Stata can be accessed remotely using the [IET virtual lab](https://virtuallab.ucdavis.edu/). Please contact me or your TA if you are having issues connecting to Stata. The final access option is purchasing a Stata license for your private machine, but you should not feel at all required to do this. If you do choose to purchase Stata (BE student 6-month for \$48), you can [order a Stata license on the Stata website](https://www.stata.com/order/). You will not need more than Stata BE (Basic Edition) for this course.
 
-## Assignments and grading (% of overall course grade)
+## Assignments and grading 
 
 Your overall grade in this course (before any curve is applied) is calculated as a weighted sum of the assignments below. No other make-up or extra credit assignments are eligible for credit in this course.
 
