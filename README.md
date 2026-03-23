@@ -31,6 +31,10 @@ quarto render
 quarto preview path/to/file.qmd
 ```
 
+## Math Rendering
+
+All HTML and Reveal.js outputs use **MathJax**, configured globally in [_quarto.yml](_quarto.yml). MathJax is preferred over alternatives (e.g. KaTeX) for two reasons: it handles a wider range of LaTeX constructs reliably in presentations, and it generates hidden MathML alongside rendered math, which screen readers can use to satisfy WCAG 2.1 accessibility requirements. Do not override `html-math-method` in individual `.qmd` files without a specific reason.
+
 ## Converting R Markdown Slides
 
 This repository includes a Claude Code skill that converts legacy Beamer/R Markdown (`.Rmd`) slide decks into fully WCAG-compliant Quarto `.qmd` files. To use it, open Claude Code in this directory and run:
@@ -40,6 +44,20 @@ This repository includes a Claude Code skill that converts legacy Beamer/R Markd
 ```
 
 The skill will ask for the source `.Rmd` file and target filename, then handle YAML front matter, LaTeX-to-Markdown conversion, heading structure, image alt text, and the full WCAG 2.1 AA checklist automatically.
+
+## WCAG Audit for PowerPoint Slides (Legacy)
+
+For slide decks written in R Markdown and compiled to PowerPoint (`.pptx`), this repository includes a legacy tool that runs the same WCAG 2.1 AA accessibility checks and flags any areas of concern. This is an alternative to the Quarto workflow above, provided for instructors who have not yet migrated their materials to Quarto. The tool is no longer actively used in this repository but is maintained here for others.
+
+**Claude Desktop (skill):** Copy `.claude/wcag-pptx-rmarkdown.skill` into your Claude Desktop skills directory and invoke it by uploading or referencing a `.pptx` file.
+
+**VS Code / Claude Code (command):** Open Claude Code in this directory and run:
+
+```
+/wcag-pptx-rmarkdown
+```
+
+Claude will ask for the path to your `.pptx` file and step through the full audit and remediation workflow. The audit scripts are in [.claude/wcag-pptx-rmarkdown/scripts/](.claude/wcag-pptx-rmarkdown/scripts/).
 
 ## Contributing
 
