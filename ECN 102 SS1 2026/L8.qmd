@@ -77,7 +77,7 @@ $$CV=\frac{s}{\bar{x}}: \frac{2.72}{4.45} > \frac{2.94}{76.70}\Rightarrow\text{i
 
 . . .
 
-$$se_{infmort})=\frac{s_{\text{infmort}}}{\sqrt{n}}=\frac{2.72}{\sqrt{34}}$$
+$$se(\overline{infmort})=\frac{s_{\text{infmort}}}{\sqrt{n}}=\frac{2.72}{\sqrt{34}}$$
 
 ## Regression of Life Expectancy on Health Spending {.smaller shrink=30}
 
