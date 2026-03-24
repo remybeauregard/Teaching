@@ -178,16 +178,6 @@ window.Quarto = {
 <div class="column" style="width:50%;">
 <p>Large type II error region:</p>
 <div class="cell">
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning in is.na(x): is.na() applied to non-(list or vector) of type
-'expression'
-
-Warning in is.na(x): is.na() applied to non-(list or vector) of type
-'expression'
-
-Warning in is.na(x): is.na() applied to non-(list or vector) of type
-'expression'</code></pre>
-</div>
 <div class="cell-output-display">
 <div id="fig-typeII-large" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Schematic density plot illustrating a large type II error region. The null distribution H0 is a solid dark-blue bell curve centered at zero. The alternative distribution HA is a dashed purple bell curve centered slightly to the right, heavily overlapping H0. A vertical dotted line marks the rejection threshold. The large purple-shaded area under HA to the left of the threshold is the type II error region, labeled Type II. The small blue-shaded area under H0 to the right of the threshold is labeled alpha. When the alternative is close to the null, most of HA falls in the fail-to-reject zone, so power is low.">
 <figure class="quarto-float quarto-float-fig figure">
@@ -204,16 +194,6 @@ Figure&nbsp;1: Large type II error region when the alternative is close to the n
 </div><div class="column" style="width:50%;">
 <p>Small type II error region:</p>
 <div class="cell">
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning in is.na(x): is.na() applied to non-(list or vector) of type
-'expression'
-
-Warning in is.na(x): is.na() applied to non-(list or vector) of type
-'expression'
-
-Warning in is.na(x): is.na() applied to non-(list or vector) of type
-'expression'</code></pre>
-</div>
 <div class="cell-output-display">
 <div id="fig-typeII-small" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Schematic density plot illustrating a small type II error region. The null distribution H0 is a solid dark-blue bell curve centered at zero. The alternative distribution HA is a dashed purple bell curve centered far to the right, with almost no overlap with H0. A vertical dotted line marks the rejection threshold. The small purple-shaded sliver under HA to the left of the threshold is labeled Type II with an arrow. Almost all of the HA distribution lies to the right of the threshold, indicating high power.">
 <figure class="quarto-float quarto-float-fig figure">
@@ -236,10 +216,6 @@ Figure&nbsp;2: Small type II error region when the alternative is far from the n
 <div class="column" style="width:50%;">
 <p>Parameter assumption and “best estimator” distribution:</p>
 <div class="cell">
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning in is.na(x): is.na() applied to non-(list or vector) of type
-'expression'</code></pre>
-</div>
 <div class="cell-output-display">
 <div id="fig-power-blue" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Schematic density plot illustrating high power from the best linear unbiased estimator. The null distribution H0 is a solid dark-blue bell curve centered at zero. The BLUE sampling distribution is a narrow dashed purple bell curve centered to the right of the rejection threshold at 1.645, reflecting its low variance and tall narrow shape. The small purple-shaded region under BLUE to the left of the threshold is labeled Type II. The large blue-shaded region to the right is labeled Power. Because BLUE has minimum variance, its distribution is concentrated to the right of the threshold, yielding high power.">
 <figure class="quarto-float quarto-float-fig figure">
@@ -256,10 +232,6 @@ Figure&nbsp;3: High power using the best linear unbiased estimator (minimum vari
 </div><div class="column" style="width:50%;">
 <p>Parameter assumption and other estimator distribution:</p>
 <div class="cell">
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning in is.na(x): is.na() applied to non-(list or vector) of type
-'expression'</code></pre>
-</div>
 <div class="cell-output-display">
 <div id="fig-power-other" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Schematic density plot illustrating low power from a higher-variance linear unbiased estimator. The null distribution H0 is a solid dark-blue bell curve centered at zero. The other linear unbiased estimator's sampling distribution is a wide dashed purple bell curve centered at the same true parameter value as BLUE, but with higher variance giving a shorter and wider shape. The large purple-shaded region to the left of the threshold is labeled Type II. The smaller blue-shaded region to the right is labeled Power. Because this estimator has higher variance than BLUE, its wider spread places more probability mass in the fail-to-reject region, yielding lower power despite having the same center.">
 <figure class="quarto-float quarto-float-fig figure">

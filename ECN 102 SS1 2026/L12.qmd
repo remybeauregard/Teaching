@@ -127,6 +127,7 @@ Large type II error region:
 #| fig-width: 4.5
 #| fig-cap: "Large type II error region when the alternative is close to the null."
 #| fig-alt: "Schematic density plot illustrating a large type II error region. The null distribution H0 is a solid dark-blue bell curve centered at zero. The alternative distribution HA is a dashed purple bell curve centered slightly to the right, heavily overlapping H0. A vertical dotted line marks the rejection threshold. The large purple-shaded area under HA to the left of the threshold is the type II error region, labeled Type II. The small blue-shaded area under H0 to the right of the threshold is labeled alpha. When the alternative is close to the null, most of HA falls in the fail-to-reject zone, so power is low."
+#| warning: false
 library(ggplot2)
 set.seed(42)
 crit <- qnorm(0.95)
@@ -164,6 +165,7 @@ Small type II error region:
 #| fig-width: 4.5
 #| fig-cap: "Small type II error region when the alternative is far from the null."
 #| fig-alt: "Schematic density plot illustrating a small type II error region. The null distribution H0 is a solid dark-blue bell curve centered at zero. The alternative distribution HA is a dashed purple bell curve centered far to the right, with almost no overlap with H0. A vertical dotted line marks the rejection threshold. The small purple-shaded sliver under HA to the left of the threshold is labeled Type II with an arrow. Almost all of the HA distribution lies to the right of the threshold, indicating high power."
+#| warning: false
 library(ggplot2)
 d2 <- data.frame(x = x, h0 = dnorm(x, 0, 1), ha = dnorm(x, 2.8, 1))
 ggplot(d2, aes(x = x)) +
@@ -206,6 +208,7 @@ Parameter assumption and "best estimator" distribution:
 #| fig-width: 4.5
 #| fig-cap: "High power using the best linear unbiased estimator (minimum variance)."
 #| fig-alt: "Schematic density plot illustrating high power from the best linear unbiased estimator. The null distribution H0 is a solid dark-blue bell curve centered at zero. The BLUE sampling distribution is a narrow dashed purple bell curve centered to the right of the rejection threshold at 1.645, reflecting its low variance and tall narrow shape. The small purple-shaded region under BLUE to the left of the threshold is labeled Type II. The large blue-shaded region to the right is labeled Power. Because BLUE has minimum variance, its distribution is concentrated to the right of the threshold, yielding high power."
+#| warning: false
 library(ggplot2)
 xb <- seq(-3.5, 7.0, length.out = 600)
 db <- data.frame(x = xb, h0 = dnorm(xb, 0, 1), ha = dnorm(xb, 2.4, 0.7))
@@ -245,6 +248,7 @@ Parameter assumption and other estimator distribution:
 #| fig-width: 4.5
 #| fig-cap: "Lower power using a higher-variance linear unbiased estimator with the same center as BLUE."
 #| fig-alt: "Schematic density plot illustrating low power from a higher-variance linear unbiased estimator. The null distribution H0 is a solid dark-blue bell curve centered at zero. The other linear unbiased estimator's sampling distribution is a wide dashed purple bell curve centered at the same true parameter value as BLUE, but with higher variance giving a shorter and wider shape. The large purple-shaded region to the left of the threshold is labeled Type II. The smaller blue-shaded region to the right is labeled Power. Because this estimator has higher variance than BLUE, its wider spread places more probability mass in the fail-to-reject region, yielding lower power despite having the same center."
+#| warning: false
 library(ggplot2)
 xp <- seq(-3.5, 7.0, length.out = 600)
 do <- data.frame(x = xp, h0 = dnorm(xp, 0, 1), ha = dnorm(xp, 2.4, 1.4))

@@ -137,6 +137,7 @@ Variation of $x_j$ overlapping with other regressors:
 #| fig-pos: "H"
 #| fig-cap: "Total variation of each regressor (full circle) and the unique variation used for OLS estimation (shaded non-overlapping region)."
 #| fig-alt: "Schematic Venn diagram with three overlapping circles illustrating regressor variation in multivariate OLS. The top circle has a blue border and is labeled x_2 above it. The bottom-left circle has a purple border and is labeled x_3 to its left. The bottom-right circle has a red border and is labeled x_4 to its right. Each circle represents the total variation of one regressor. Only the non-overlapping portion of each circle is shaded, labeled Unique variation outside the circle. The unshaded overlapping regions represent shared variation that cannot be uniquely attributed to any one regressor; an arrow from outside the diagram points to the central overlap region, labeled Shared variation."
+#| warning: false
 library(ggplot2)
 
 r   <- 1.0

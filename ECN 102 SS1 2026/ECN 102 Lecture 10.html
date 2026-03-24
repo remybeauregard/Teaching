@@ -1,13 +1,8 @@
 <!DOCTYPE html>
-<html lang="en"><head>
-<script src="L10_files/libs/clipboard/clipboard.min.js"></script>
-<script src="L10_files/libs/quarto-html/tabby.min.js"></script>
-<script src="L10_files/libs/quarto-html/popper.min.js"></script>
-<script src="L10_files/libs/quarto-html/tippy.umd.min.js"></script>
-<link href="L10_files/libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="L10_files/libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="L10_files/libs/quarto-html/quarto-syntax-highlighting-845c23b38eaddc0f92fda52bfe77a8c8.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.9.36">
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="quarto-1.9.36" />
 
   <meta name="author" content="Remy Beauregard">
   <title>ECN 102: Analysis of Economics Data</title>
@@ -126,11 +121,11 @@
   </style>
   <meta name="description" content="Lecture slides 10 for ECN 102.">
 </head>
-<body class="quarto-light">
+<body>
   <div class="reveal">
     <div class="slides">
 
-<section id="title-slide" class="quarto-title-block center">
+<section id="title-slide" class="quarto-title-block">
   <h1 class="title">ECN 102: Analysis of Economics Data</h1>
   <p class="subtitle">Chapter 10: Multivariate Regression</p>
 
@@ -204,7 +199,7 @@ Remy Beauregard
 <p>Unlike bivariate regression, we cannot easily express a complete formula for our coefficient estimates.</p>
 <p>If we consider <span class="math inline">\(b_j\)</span> to be the coefficient on the <span class="math inline">\(j^{th}\)</span> regressor in a multivariate regression, our coefficient will be equal to the ratio of the covariance (with our residual) to the variance of <em>the residual of a regression of <span class="math inline">\(x_j\)</span> on all other regressors</em>:</p>
 <p><span class="math display">\[b_j=\frac{\sum_{i=1}^n\tilde{x}_{ji}(y_i-\bar{y})}{\sum_{i=1}^n\tilde{x}_{ji}^2}=\frac{Cov(\tilde{x}_j,y)}{Var(\tilde{x}_j)}\]</span></p>
-<p>where our residual <span class="math inline">\(\tilde{x}_{ji}=x_{ji}-\hat{x}_{ji}\)</span> and <span class="math inline">\(\hat{x}_{ji}\)</span> is the predicted value of <span class="math inline">\(x_{ji}\)</span> from a regression of <span class="math inline">\(x_j\)</span> on all other regressors <span class="math inline">\(x_{j'\neq j}\)</span>.</p>
+<p>where our residual <span class="math inline">\(\tilde{x}_{ji}=x_{ji}-\hat{x}_{ji}\)</span> and <span class="math inline">\(\hat{x}_{ji}\)</span> is the predicted value of <span class="math inline">\(x_{ji}\)</span> from a regression of <span class="math inline">\(x_j\)</span> on all other regressors <span class="math inline">\(x_{j&#39;\neq j}\)</span>.</p>
 </section>
 <section id="implications-of-the-b_j-formula" class="slide level2">
 <h2>Implications of the <span class="math inline">\(b_j\)</span> Formula</h2>
@@ -212,7 +207,7 @@ Remy Beauregard
 <ol type="1">
 <li><p><span class="math inline">\(\tilde{x}_{ji}=x_{ji}-\bar{x}_{ji}\)</span> if <span class="math inline">\(x_j\)</span> is independent of all other regressors</p></li>
 <li><p><span class="math inline">\(\tilde{x}_{ji}=x_{ji}-\bar{x}_{ji}\)</span> if <span class="math inline">\(x_j\)</span> is our only regressor (<em>bivariate regression</em>)</p></li>
-<li><p><span class="math inline">\(\tilde{x}_{ji}=0\)</span> if <span class="math inline">\(x_j\)</span> is perfectly colinear (exactly overlaps) with one or more other regressor <span class="math inline">\(x_{j'\neq j}\)</span> in our model</p></li>
+<li><p><span class="math inline">\(\tilde{x}_{ji}=0\)</span> if <span class="math inline">\(x_j\)</span> is perfectly colinear (exactly overlaps) with one or more other regressor <span class="math inline">\(x_{j&#39;\neq j}\)</span> in our model</p></li>
 </ol>
 <p>In cases (1) and (2), we see that <span class="math inline">\(b_j=b_j^{\text{bivariate}}\)</span> when we plug in <span class="math inline">\(\tilde{x}_j\)</span>.</p>
 <p>In case (3), we see that <span class="math inline">\(\tilde{x}_j=0\)</span> will mean <em>we cannot estimate</em> <span class="math inline">\(b_2\)</span> as we will have a zero in our denominator.</p>
@@ -220,14 +215,25 @@ Remy Beauregard
 <section id="overlapping-variation-diagram" class="slide level2">
 <h2>Overlapping Variation: Diagram</h2>
 <p>Variation of <span class="math inline">\(x_j\)</span> overlapping with other regressors:</p>
-
-<img data-src="L10_files/figure-revealjs/fig-venn-overlap-1.png" data-fig-pos="H" alt="Schematic Venn diagram with three overlapping circles illustrating regressor variation in multivariate OLS. The top circle has a blue border and is labeled x_2 above it. The bottom-left circle has a purple border and is labeled x_3 to its left. The bottom-right circle has a red border and is labeled x_4 to its right. Each circle represents the total variation of one regressor. Only the non-overlapping portion of each circle is shaded, labeled Unique variation outside the circle. The unshaded overlapping regions represent shared variation that cannot be uniquely attributed to any one regressor; an arrow from outside the diagram points to the central overlap region, labeled Shared variation." width="528" class="r-stretch quarto-figure-center" id="fig-venn-overlap"><p class="caption">
-Figure&nbsp;1: Total variation of each regressor (full circle) and the unique variation used for OLS estimation (shaded non-overlapping region).
-</p></section>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-venn-overlap" class="quarto-float quarto-figure quarto-figure-center" data-fig-pos="H" alt="Schematic Venn diagram with three overlapping circles illustrating regressor variation in multivariate OLS. The top circle has a blue border and is labeled x_2 above it. The bottom-left circle has a purple border and is labeled x_3 to its left. The bottom-right circle has a red border and is labeled x_4 to its right. Each circle represents the total variation of one regressor. Only the non-overlapping portion of each circle is shaded, labeled Unique variation outside the circle. The unshaded overlapping regions represent shared variation that cannot be uniquely attributed to any one regressor; an arrow from outside the diagram points to the central overlap region, labeled Shared variation.">
+<figure class="quarto-float quarto-float-fig">
+<div aria-describedby="fig-venn-overlap-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img data-src="L10_files/figure-revealjs/fig-venn-overlap-1.png" data-fig-pos="H" alt="Schematic Venn diagram with three overlapping circles illustrating regressor variation in multivariate OLS. The top circle has a blue border and is labeled x_2 above it. The bottom-left circle has a purple border and is labeled x_3 to its left. The bottom-right circle has a red border and is labeled x_4 to its right. Each circle represents the total variation of one regressor. Only the non-overlapping portion of each circle is shaded, labeled Unique variation outside the circle. The unshaded overlapping regions represent shared variation that cannot be uniquely attributed to any one regressor; an arrow from outside the diagram points to the central overlap region, labeled Shared variation." width="528" />
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-venn-overlap-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure 1: Total variation of each regressor (full circle) and the unique variation used for OLS estimation (shaded non-overlapping region).
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
 <section id="why-unique-variation-matters" class="slide level2">
 <h2>Why Unique Variation Matters</h2>
 <p>Why do we need to identify unique variation of <span class="math inline">\(x_j\)</span>, <span class="math inline">\(\tilde{x}_j\)</span>?</p>
-<p>Suppose we want to estimate the associated change in <span class="math inline">\(y\)</span> when <span class="math inline">\(x_2\)</span> changes: this is our coefficient <span class="math inline">\(b_2\)</span>. However, we also know that <span class="math inline">\(x_2\)</span> and <span class="math inline">\(x_3\)</span> are correlated and both appear in our regression<sup>1</sup>.</p>
+<p>Suppose we want to estimate the associated change in <span class="math inline">\(y\)</span> when <span class="math inline">\(x_2\)</span> changes: this is our coefficient <span class="math inline">\(b_2\)</span>. However, we also know that <span class="math inline">\(x_2\)</span> and <span class="math inline">\(x_3\)</span> are correlated and both appear in our regression<a href="#/fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>.</p>
 <p>Now, suppose we observe that:</p>
 <ul>
 <li><p><span class="math inline">\(x_2\)</span> increases</p></li>
@@ -235,27 +241,27 @@ Figure&nbsp;1: Total variation of each regressor (full circle) and the unique va
 <li><p><span class="math inline">\(y\)</span> increases</p></li>
 </ul>
 <p>Did <span class="math inline">\(y\)</span> increase because <span class="math inline">\(x_2\)</span> changed? Or did <span class="math inline">\(y\)</span> increase because <span class="math inline">\(x_3\)</span> changed and <span class="math inline">\(x_2\)</span> changed <em>because it is correlated with</em> <span class="math inline">\(x_3\)</span>? If variation in <span class="math inline">\(x_2\)</span> and <span class="math inline">\(x_3\)</span> (or any regressors) is allowed to overlap, we cannot identify the <em>unique</em> contribution <span class="math inline">\(x_2\)</span> makes to changes in <span class="math inline">\(y\)</span>.</p>
-<aside><ol class="aside-footnotes"><li id="fn1"><p><span class="math inline">\(y=b_1+b_2x_2+b_3x_3+e\)</span></p></li></ol></aside></section>
+</section>
 <section id="example-estimating-coefficients-in-practice" class="slide level2">
 <h2>Example: Estimating Coefficients in Practice</h2>
 <p>What would this look like in practice? Suppose we want to estimate <span class="math display">\[\widehat{final}_i=b_1+b_2MT+b_3StataQuiz+b_4HWavg+b_5KCavg\]</span> for your grade on the final as a function of your other grades in this class. How would we estimate <span class="math inline">\(b_3\)</span>, the coefficient on <em>StataQuiz</em>?</p>
 <p>First, we would regress <em>StataQuiz</em> scores on all other regressors. Then, we would find the residuals of this regression. Finally, we would compute the ratio of the covariance of <span class="math inline">\(x_3\)</span> residuals with the residuals from our main regression to the variance of <span class="math inline">\(x_3\)</span> residuals.</p>
 </section>
 <section id="partial-effect-vs.-total-effect-definitions" class="slide level2">
-<h2>Partial Effect vs.&nbsp;Total Effect: Definitions</h2>
+<h2>Partial Effect vs. Total Effect: Definitions</h2>
 <p>There are two effects from our regressor <span class="math inline">\(b_j\)</span> we might be interested in: the <strong>partial effect</strong> or the <strong>total effect</strong></p>
 <ul>
 <li><p>The <em>partial effect</em> is the impact on our outcome variable when <span class="math inline">\(x_j\)</span> changes and <em>all other regressors are held constant</em>.</p></li>
-<li><p>The <em>total effect</em> is the impact on our outcome variable when <span class="math inline">\(x_j\)</span> changes and we allow all other regressors <span class="math inline">\(x_{j'\neq j}\)</span> that may covary with <span class="math inline">\(x_j\)</span> to change and impact our outcome variable through their associated coefficients.</p></li>
+<li><p>The <em>total effect</em> is the impact on our outcome variable when <span class="math inline">\(x_j\)</span> changes and we allow all other regressors <span class="math inline">\(x_{j&#39;\neq j}\)</span> that may covary with <span class="math inline">\(x_j\)</span> to change and impact our outcome variable through their associated coefficients.</p></li>
 </ul>
-<p>It follows that the partial effect will be equal to the total effect if our regressor <span class="math inline">\(x_j\)</span> is <em>independent from all other regressors</em> <span class="math inline">\(x_{j'\neq j}\)</span>.</p>
+<p>It follows that the partial effect will be equal to the total effect if our regressor <span class="math inline">\(x_j\)</span> is <em>independent from all other regressors</em> <span class="math inline">\(x_{j&#39;\neq j}\)</span>.</p>
 </section>
 <section id="partial-and-total-effects-formulas" class="slide level2">
 <h2>Partial and Total Effects: Formulas</h2>
 <p>We express the <strong>partial effect</strong> as: <span class="math display">\[\frac{\partial\hat{y}}{\partial x_j}=b_j\]</span></p>
 <p>We express the <strong>total effect</strong> as: <span class="math display">\[\begin{align*}
-\frac{d\hat{y}}{d x_j} &amp;= \underbrace{\frac{\partial\hat{y}}{\partial x_j}}_{b_j}\underbrace{\frac{\partial x_j}{\partial x_j}}_1+\sum_{j'\neq j}\underbrace{\frac{\partial\hat{y}}{\partial x_{j'}}}_{b_{j'}}\frac{\partial x_{j'}}{\partial x_j} \\
-&amp;= \underbrace{b_j}_{\text{direct effect}}+\underbrace{\sum_{j'\neq j}b_{j'}\frac{\partial x_{j'}}{\partial x_j}}_{\text{indirect effect(s)}}
+\frac{d\hat{y}}{d x_j} &amp;= \underbrace{\frac{\partial\hat{y}}{\partial x_j}}_{b_j}\underbrace{\frac{\partial x_j}{\partial x_j}}_1+\sum_{j&#39;\neq j}\underbrace{\frac{\partial\hat{y}}{\partial x_{j&#39;}}}_{b_{j&#39;}}\frac{\partial x_{j&#39;}}{\partial x_j} \\
+&amp;= \underbrace{b_j}_{\text{direct effect}}+\underbrace{\sum_{j&#39;\neq j}b_{j&#39;}\frac{\partial x_{j&#39;}}{\partial x_j}}_{\text{indirect effect(s)}}
 \end{align*}\]</span></p>
 </section>
 <section id="total-effect-equals-bivariate-coefficient" class="slide level2">
@@ -274,13 +280,13 @@ Figure&nbsp;1: Total variation of each regressor (full circle) and the unique va
 </section>
 <section id="the-problem-with-r2" class="slide level2">
 <h2>The Problem with <span class="math inline">\(R^2\)</span></h2>
-<p>Unhelpfully, our <span class="math inline">\(R^2\)</span> will always weakly increase as we add regressors<sup>1</sup>, but we may face other downsides to endlessly adding regressors to our model.</p>
+<p>Unhelpfully, our <span class="math inline">\(R^2\)</span> will always weakly increase as we add regressors<a href="#/fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>, but we may face other downsides to endlessly adding regressors to our model.</p>
 <p>We therefore might want to introduce a measure of model fit that:</p>
 <ol type="1">
 <li><p>Allows us to compare standardized fit between models</p></li>
 <li><p>Penalizes models that endlessly add (useless) regressors</p></li>
 </ol>
-<aside><ol class="aside-footnotes"><li id="fn2"><p>Since <span class="math inline">\(\sum e_i^2\)</span> will never increase as more regressors are added, R-squared will either remain unchanged or increase as more regressors are added.</p></li></ol></aside></section>
+</section>
 <section id="adjusted-r2" class="slide level2">
 <h2>Adjusted <span class="math inline">\(R^2\)</span></h2>
 <p>Thus, we introduce <strong>adjusted R-squared</strong>:</p>
@@ -288,7 +294,7 @@ Figure&nbsp;1: Total variation of each regressor (full circle) and the unique va
 <p>This statistic still gives us a standardized measure of model fit but also <em>is decreasing in the number of regressors we add</em> (<span class="math inline">\(k\)</span>). We typically prefer to use this statistic for multivariate regressions over the standard <span class="math inline">\(R^2\)</span>.</p>
 </section>
 <section id="multivariate-regression-example" class="slide level2 smaller" data-shrink="30">
-<h2>Multivariate Regression Example</h2>
+<h2 class="smaller" data-shrink="30">Multivariate Regression Example</h2>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code>      Source |       SS           df       MS      Number of obs   =        69
@@ -311,7 +317,7 @@ Figure&nbsp;1: Total variation of each regressor (full circle) and the unique va
 <p><span class="math display">\[\widehat{price}=\underbrace{-1939.87}_{b_1}-\underbrace{52.22}_{b_2}\underbrace{mpg}_{x_2}+\underbrace{2.11}_{b_3}\underbrace{weight}_{x_3}+\underbrace{820.81}_{b_4}\underbrace{rep78}_{x_4}\]</span></p>
 </section>
 <section>
-<section id="end-of-lecture-material" class="title-slide slide level1 center">
+<section id="end-of-lecture-material" class="title-slide slide level1">
 <h1>End of Lecture Material</h1>
 
 </section>
@@ -323,15 +329,21 @@ Figure&nbsp;1: Total variation of each regressor (full circle) and the unique va
 <li><p>How do we compute the coefficient <span class="math inline">\(b_j\)</span> in a multivariate regression with <span class="math inline">\(k&gt;2\)</span> regressors (in words)?</p></li>
 <li><p>How does the partial effect of <span class="math inline">\(x_j\)</span> differ from the total effect?</p></li>
 </ol>
-
-</section></section>
-
-    </div>
-  <div class="quarto-auto-generated-content" style="display: none;">
+<div class="quarto-auto-generated-content" style="display: none;">
 <div class="footer footer-default">
 
 </div>
-</div></div>
+</div>
+</section></section>
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr />
+<ol>
+<li id="fn1"><p><span class="math inline">\(y=b_1+b_2x_2+b_3x_3+e\)</span><a href="#/fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>Since <span class="math inline">\(\sum e_i^2\)</span> will never increase as more regressors are added, R-squared will either remain unchanged or increase as more regressors are added.<a href="#/fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
+    </div>
+  </div>
 
   <script>window.backupDefine = window.define; window.define = undefined;</script>
   <script src="L10_files/libs/revealjs/dist/reveal.js"></script>
@@ -353,17 +365,7 @@ Figure&nbsp;1: Total variation of each regressor (full circle) and the unique va
 
       // Full list of configuration options available at:
       // https://revealjs.com/config/
-      Reveal.initialize({
-'controlsAuto': true,
-'previewLinksAuto': false,
-'pdfSeparateFragments': false,
-'autoAnimateEasing': "ease",
-'autoAnimateDuration': 1,
-'autoAnimateUnmatched': true,
-'jumpToSlide': true,
-'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
-'smaller': true,
- 
+      Reveal.initialize({ 
         // Display controls in the bottom right corner
         controls: false,
 
@@ -532,8 +534,7 @@ Figure&nbsp;1: Total variation of each regressor (full circle) and the unique va
         },
 
         // reveal.js plugins
-        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, QuartoSupport,
-
+        plugins: [
           RevealMath,
           RevealNotes,
           RevealSearch,
@@ -579,7 +580,7 @@ Figure&nbsp;1: Total variation of each regressor (full circle) and the unique va
       })();
     </script>
 
-    <script id="quarto-html-after-body" type="application/javascript">
+    <script id = "quarto-html-after-body" type="application/javascript">
       window.document.addEventListener("DOMContentLoaded", function (event) {
         const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
         tabsets.forEach(function(tabset) {
@@ -747,6 +748,5 @@ Figure&nbsp;1: Total variation of each regressor (full circle) and the unique va
         }
       });
       </script>
-    
-
-</body></html>
+    </body>
+</html>

@@ -69,6 +69,7 @@ $$E[y|x]=\beta_1+\beta_2x$$
 #| fig-width: 5.5
 #| fig-cap: "Population regression model"
 #| fig-alt: "Scatter plot illustrating the population regression model. A line labeled β₁+β₂x passes through the conditional mean E[Y|X=x] (diamond marker) at the value X=x. Individual conditional values Y|X are scattered as dots around the line. At the highlighted value X=x, a dashed vertical line separates points above the line, labeled u greater than 0, from points below it, labeled u less than 0, showing that the error term u is the deviation of each Y|X observation from its conditional mean."
+#| warning: false
 library(ggplot2)
 
 set.seed(880)
@@ -261,6 +262,7 @@ We can claim that our OLS estimator $b_2$ is both *unbiased* and *consistent* un
 #| fig-width: 5.0
 #| fig-cap: "Sampling distributions of the OLS estimator $b_2$ (unbiased and consistent) versus a biased estimator"
 #| fig-alt: "Density plot showing three bell-shaped sampling distribution curves. Two blue curves are centered at β₂, the true parameter value marked by a dashed vertical line: a wide, flat long-dashed curve for the OLS estimator at small n, and a tall, narrow solid curve for OLS at large n, illustrating that OLS is unbiased at all sample sizes and consistent as n increases. A purple curve centered to the right of β₂ represents a biased estimator whose distribution does not converge to the true value. The horizontal axis shows the estimator value and the vertical axis shows sampling density."
+#| warning: false
 b2_true <- 2.5
 sd_sm   <- 0.90   # OLS small n — wide
 sd_lg   <- 0.28   # OLS large n — narrow (consistent)

@@ -136,10 +136,6 @@ window.Quarto = {
 <section id="graphical-representation-yx-vs.-eyx" class="level2">
 <h2 class="anchored" data-anchor-id="graphical-representation-yx-vs.-eyx">Graphical Representation: Y|X vs.&nbsp;E[Y|X]</h2>
 <div class="cell">
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning in is.na(x): is.na() applied to non-(list or vector) of type
-'expression'</code></pre>
-</div>
 <div class="cell-output-display">
 <div id="fig-cond-values" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Scatter plot illustrating the population regression model. A line labeled β₁+β₂x passes through the conditional mean E[Y|X=x] (diamond marker) at the value X=x. Individual conditional values Y|X are scattered as dots around the line. At the highlighted value X=x, a dashed vertical line separates points above the line, labeled u greater than 0, from points below it, labeled u less than 0, showing that the error term u is the deviation of each Y|X observation from its conditional mean.">
 <figure class="quarto-float quarto-float-fig figure">
@@ -245,16 +241,6 @@ Figure&nbsp;3: Heteroskedastic data: error variance increases with X
 <h2 class="anchored" data-anchor-id="unbiasedness-and-consistency-of-ols">Unbiasedness and Consistency of OLS</h2>
 <p>We can claim that our OLS estimator <span class="math inline">\(b_2\)</span> is both <em>unbiased</em> and <em>consistent</em> under these four population assumptions: <span class="math display">\[\underbrace{E[b_2]=\beta_2}_{\text{Unbiased}}\text{ and }\underbrace{\sigma^2_{b_2}=\frac{\sigma^2_u}{\sum_{i=1}^{\boldsymbol{n}}(x_i-\bar{x})^2}\rightarrow0\text{ as }n\rightarrow\infty}_{\text{Consistent}}\]</span></p>
 <div class="cell">
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning in is.na(x): is.na() applied to non-(list or vector) of type
-'expression'
-
-Warning in is.na(x): is.na() applied to non-(list or vector) of type
-'expression'
-
-Warning in is.na(x): is.na() applied to non-(list or vector) of type
-'expression'</code></pre>
-</div>
 <div class="cell-output-display">
 <div id="fig-ols-properties" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Density plot showing three bell-shaped sampling distribution curves. Two blue curves are centered at β₂, the true parameter value marked by a dashed vertical line: a wide, flat long-dashed curve for the OLS estimator at small n, and a tall, narrow solid curve for OLS at large n, illustrating that OLS is unbiased at all sample sizes and consistent as n increases. A purple curve centered to the right of β₂ represents a biased estimator whose distribution does not converge to the true value. The horizontal axis shows the estimator value and the vertical axis shows sampling density.">
 <figure class="quarto-float quarto-float-fig figure">

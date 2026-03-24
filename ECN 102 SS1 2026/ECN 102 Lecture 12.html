@@ -1,13 +1,8 @@
 <!DOCTYPE html>
-<html lang="en"><head>
-<script src="L12_files/libs/clipboard/clipboard.min.js"></script>
-<script src="L12_files/libs/quarto-html/tabby.min.js"></script>
-<script src="L12_files/libs/quarto-html/popper.min.js"></script>
-<script src="L12_files/libs/quarto-html/tippy.umd.min.js"></script>
-<link href="L12_files/libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="L12_files/libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="L12_files/libs/quarto-html/quarto-syntax-highlighting-845c23b38eaddc0f92fda52bfe77a8c8.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.9.36">
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="quarto-1.9.36" />
 
   <meta name="author" content="Remy Beauregard">
   <title>ECN 102: Analysis of Economics Data</title>
@@ -126,11 +121,11 @@
   </style>
   <meta name="description" content="Lecture slides 12 for ECN 102.">
 </head>
-<body class="quarto-light">
+<body>
   <div class="reveal">
     <div class="slides">
 
-<section id="title-slide" class="quarto-title-block center">
+<section id="title-slide" class="quarto-title-block">
   <h1 class="title">ECN 102: Analysis of Economics Data</h1>
   <p class="subtitle">Chapter 12: Errors and Prediction</p>
 
@@ -186,7 +181,7 @@ Remy Beauregard
 <li><p>Compute our <span class="math inline">\(b_2^*\)</span> for each of these samples and compute the mean across these samples, <span class="math inline">\(\bar{b_2^*}\)</span></p></li>
 <li><p>Estimate our variance with <span class="math inline">\(\hat{V}_{boot}[b_2]=\frac{1}{S-1}\sum_{s=1}^S\left(b_{2_s}^*-\bar{b_2^*}\right)^2\)</span></p></li>
 </ol>
-<p>If our population model was quadratic e.g.&nbsp;<span class="math inline">\(y=\beta_1+\beta_2x+\beta_3x^2+u\)</span> we would expect to find <span class="math inline">\(\hat{V}_{boot}[b_2]&lt;s^2_{b_2}\)</span> indicating our regular OLS standard errors were overestimating the variability of <span class="math inline">\(b_2\)</span> due to our model being ill-fitting. We should therefore adjust our regression.</p>
+<p>If our population model was quadratic e.g. <span class="math inline">\(y=\beta_1+\beta_2x+\beta_3x^2+u\)</span> we would expect to find <span class="math inline">\(\hat{V}_{boot}[b_2]&lt;s^2_{b_2}\)</span> indicating our regular OLS standard errors were overestimating the variability of <span class="math inline">\(b_2\)</span> due to our model being ill-fitting. We should therefore adjust our regression.</p>
 </section>
 <section id="choosing-the-right-standard-error" class="slide level2">
 <h2>Choosing the Right Standard Error</h2>
@@ -201,7 +196,7 @@ Remy Beauregard
 </ul>
 </section>
 <section id="prediction-average-vs.-individual-values" class="slide level2">
-<h2>Prediction: Average vs.&nbsp;Individual Values</h2>
+<h2>Prediction: Average vs. Individual Values</h2>
 <p>We may want to use our regression to predict both average values and individual values of our outcome based on our regressors. Average values will be the conditional mean of y, <span class="math inline">\(E[y|x_2,...,x_k]\)</span>, while actual values will be the conditional value of y, <span class="math inline">\(y|x_2,...,x_k\)</span>. It should be clear that the second quantity will be more widely dispersed than the first; it represents the full range of outcome values we might expect, not just the average values in the middle.</p>
 <p>In both cases, we would use <span class="math inline">\(y|x^*_2,...,x_k^*\)</span> for a given <span class="math inline">\(x=x^*\)</span> by multiplying our regressor values by our estimated coefficients, but we would also need to consider the addition of the error term <span class="math inline">\(u\)</span> for our individual values. We do not know very much about this error (besides it being conditional mean zero under assumption 2) but it will affect how spread out our predicted individual values will be.</p>
 </section>
@@ -220,10 +215,10 @@ Remy Beauregard
 <div id="fig-typeII-large" class="quarto-float quarto-figure quarto-figure-center" alt="Schematic density plot illustrating a large type II error region. The null distribution H0 is a solid dark-blue bell curve centered at zero. The alternative distribution HA is a dashed purple bell curve centered slightly to the right, heavily overlapping H0. A vertical dotted line marks the rejection threshold. The large purple-shaded area under HA to the left of the threshold is the type II error region, labeled Type II. The small blue-shaded area under H0 to the right of the threshold is labeled alpha. When the alternative is close to the null, most of HA falls in the fail-to-reject zone, so power is low.">
 <figure class="quarto-float quarto-float-fig">
 <div aria-describedby="fig-typeII-large-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img data-src="L12_files/figure-revealjs/fig-typeII-large-1.png" alt="Schematic density plot illustrating a large type II error region. The null distribution H0 is a solid dark-blue bell curve centered at zero. The alternative distribution HA is a dashed purple bell curve centered slightly to the right, heavily overlapping H0. A vertical dotted line marks the rejection threshold. The large purple-shaded area under HA to the left of the threshold is the type II error region, labeled Type II. The small blue-shaded area under H0 to the right of the threshold is labeled alpha. When the alternative is close to the null, most of HA falls in the fail-to-reject zone, so power is low." width="432">
+<img data-src="L12_files/figure-revealjs/fig-typeII-large-1.png" alt="Schematic density plot illustrating a large type II error region. The null distribution H0 is a solid dark-blue bell curve centered at zero. The alternative distribution HA is a dashed purple bell curve centered slightly to the right, heavily overlapping H0. A vertical dotted line marks the rejection threshold. The large purple-shaded area under HA to the left of the threshold is the type II error region, labeled Type II. The small blue-shaded area under H0 to the right of the threshold is labeled alpha. When the alternative is close to the null, most of HA falls in the fail-to-reject zone, so power is low." width="432" />
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-typeII-large-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1: Large type II error region when the alternative is close to the null.
+Figure 1: Large type II error region when the alternative is close to the null.
 </figcaption>
 </figure>
 </div>
@@ -236,16 +231,17 @@ Figure&nbsp;1: Large type II error region when the alternative is close to the n
 <div id="fig-typeII-small" class="quarto-float quarto-figure quarto-figure-center" alt="Schematic density plot illustrating a small type II error region. The null distribution H0 is a solid dark-blue bell curve centered at zero. The alternative distribution HA is a dashed purple bell curve centered far to the right, with almost no overlap with H0. A vertical dotted line marks the rejection threshold. The small purple-shaded sliver under HA to the left of the threshold is labeled Type II with an arrow. Almost all of the HA distribution lies to the right of the threshold, indicating high power.">
 <figure class="quarto-float quarto-float-fig">
 <div aria-describedby="fig-typeII-small-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img data-src="L12_files/figure-revealjs/fig-typeII-small-1.png" alt="Schematic density plot illustrating a small type II error region. The null distribution H0 is a solid dark-blue bell curve centered at zero. The alternative distribution HA is a dashed purple bell curve centered far to the right, with almost no overlap with H0. A vertical dotted line marks the rejection threshold. The small purple-shaded sliver under HA to the left of the threshold is labeled Type II with an arrow. Almost all of the HA distribution lies to the right of the threshold, indicating high power." width="432">
+<img data-src="L12_files/figure-revealjs/fig-typeII-small-1.png" alt="Schematic density plot illustrating a small type II error region. The null distribution H0 is a solid dark-blue bell curve centered at zero. The alternative distribution HA is a dashed purple bell curve centered far to the right, with almost no overlap with H0. A vertical dotted line marks the rejection threshold. The small purple-shaded sliver under HA to the left of the threshold is labeled Type II with an arrow. Almost all of the HA distribution lies to the right of the threshold, indicating high power." width="432" />
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-typeII-small-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2: Small type II error region when the alternative is far from the null.
+Figure 2: Small type II error region when the alternative is far from the null.
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
-</div></div>
+</div>
+</div>
 </section>
 <section id="power-estimator-distribution" class="slide level2">
 <h2>Power: Estimator Distribution</h2>
@@ -257,10 +253,10 @@ Figure&nbsp;2: Small type II error region when the alternative is far from the n
 <div id="fig-power-blue" class="quarto-float quarto-figure quarto-figure-center" alt="Schematic density plot illustrating high power from the best linear unbiased estimator. The null distribution H0 is a solid dark-blue bell curve centered at zero. The BLUE sampling distribution is a narrow dashed purple bell curve centered to the right of the rejection threshold at 1.645, reflecting its low variance and tall narrow shape. The small purple-shaded region under BLUE to the left of the threshold is labeled Type II. The large blue-shaded region to the right is labeled Power. Because BLUE has minimum variance, its distribution is concentrated to the right of the threshold, yielding high power.">
 <figure class="quarto-float quarto-float-fig">
 <div aria-describedby="fig-power-blue-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img data-src="L12_files/figure-revealjs/fig-power-blue-1.png" alt="Schematic density plot illustrating high power from the best linear unbiased estimator. The null distribution H0 is a solid dark-blue bell curve centered at zero. The BLUE sampling distribution is a narrow dashed purple bell curve centered to the right of the rejection threshold at 1.645, reflecting its low variance and tall narrow shape. The small purple-shaded region under BLUE to the left of the threshold is labeled Type II. The large blue-shaded region to the right is labeled Power. Because BLUE has minimum variance, its distribution is concentrated to the right of the threshold, yielding high power." width="432">
+<img data-src="L12_files/figure-revealjs/fig-power-blue-1.png" alt="Schematic density plot illustrating high power from the best linear unbiased estimator. The null distribution H0 is a solid dark-blue bell curve centered at zero. The BLUE sampling distribution is a narrow dashed purple bell curve centered to the right of the rejection threshold at 1.645, reflecting its low variance and tall narrow shape. The small purple-shaded region under BLUE to the left of the threshold is labeled Type II. The large blue-shaded region to the right is labeled Power. Because BLUE has minimum variance, its distribution is concentrated to the right of the threshold, yielding high power." width="432" />
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-power-blue-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3: High power using the best linear unbiased estimator (minimum variance).
+Figure 3: High power using the best linear unbiased estimator (minimum variance).
 </figcaption>
 </figure>
 </div>
@@ -270,19 +266,20 @@ Figure&nbsp;3: High power using the best linear unbiased estimator (minimum vari
 <p>Parameter assumption and other estimator distribution:</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-power-other" class="quarto-float quarto-figure quarto-figure-center" alt="Schematic density plot illustrating low power from a higher-variance linear unbiased estimator. The null distribution H0 is a solid dark-blue bell curve centered at zero. The other linear unbiased estimator's sampling distribution is a wide dashed purple bell curve centered at the same true parameter value as BLUE, but with higher variance giving a shorter and wider shape. The large purple-shaded region to the left of the threshold is labeled Type II. The smaller blue-shaded region to the right is labeled Power. Because this estimator has higher variance than BLUE, its wider spread places more probability mass in the fail-to-reject region, yielding lower power despite having the same center.">
+<div id="fig-power-other" class="quarto-float quarto-figure quarto-figure-center" alt="Schematic density plot illustrating low power from a higher-variance linear unbiased estimator. The null distribution H0 is a solid dark-blue bell curve centered at zero. The other linear unbiased estimator&#39;s sampling distribution is a wide dashed purple bell curve centered at the same true parameter value as BLUE, but with higher variance giving a shorter and wider shape. The large purple-shaded region to the left of the threshold is labeled Type II. The smaller blue-shaded region to the right is labeled Power. Because this estimator has higher variance than BLUE, its wider spread places more probability mass in the fail-to-reject region, yielding lower power despite having the same center.">
 <figure class="quarto-float quarto-float-fig">
 <div aria-describedby="fig-power-other-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img data-src="L12_files/figure-revealjs/fig-power-other-1.png" alt="Schematic density plot illustrating low power from a higher-variance linear unbiased estimator. The null distribution H0 is a solid dark-blue bell curve centered at zero. The other linear unbiased estimator's sampling distribution is a wide dashed purple bell curve centered at the same true parameter value as BLUE, but with higher variance giving a shorter and wider shape. The large purple-shaded region to the left of the threshold is labeled Type II. The smaller blue-shaded region to the right is labeled Power. Because this estimator has higher variance than BLUE, its wider spread places more probability mass in the fail-to-reject region, yielding lower power despite having the same center." width="432">
+<img data-src="L12_files/figure-revealjs/fig-power-other-1.png" alt="Schematic density plot illustrating low power from a higher-variance linear unbiased estimator. The null distribution H0 is a solid dark-blue bell curve centered at zero. The other linear unbiased estimator&#39;s sampling distribution is a wide dashed purple bell curve centered at the same true parameter value as BLUE, but with higher variance giving a shorter and wider shape. The large purple-shaded region to the left of the threshold is labeled Type II. The smaller blue-shaded region to the right is labeled Power. Because this estimator has higher variance than BLUE, its wider spread places more probability mass in the fail-to-reject region, yielding lower power despite having the same center." width="432" />
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-power-other-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;4: Lower power using a higher-variance linear unbiased estimator with the same center as BLUE.
+Figure 4: Lower power using a higher-variance linear unbiased estimator with the same center as BLUE.
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
-</div></div>
+</div>
+</div>
 </section>
 <section id="multiple-hypothesis-testing" class="slide level2">
 <h2>Multiple Hypothesis Testing</h2>
@@ -291,13 +288,13 @@ Figure&nbsp;4: Lower power using a higher-variance linear unbiased estimator wit
 <p>These <strong>multiple hypothesis corrections</strong> will be used to show the robustness of our results when we have to run many tests and are worried that our probability of a type I error has compounded to a worryingly large amount.</p>
 </section>
 <section>
-<section id="end-of-lecture-material" class="title-slide slide level1 center">
+<section id="end-of-lecture-material" class="title-slide slide level1">
 <h1>End of lecture material</h1>
 
 </section>
 <section id="knowledge-check-12" class="slide level2">
 <h2>Knowledge Check 12</h2>
-<p>Consider a test for some parameter <span class="math inline">\(\theta\)</span> (e.g.&nbsp;<span class="math inline">\(\beta_2\)</span>) with <span class="math display">\[H_0:\theta=0\]</span> <span class="math display">\[H_A:\theta\neq0\]</span></p>
+<p>Consider a test for some parameter <span class="math inline">\(\theta\)</span> (e.g. <span class="math inline">\(\beta_2\)</span>) with <span class="math display">\[H_0:\theta=0\]</span> <span class="math display">\[H_A:\theta\neq0\]</span></p>
 <p>Suppose we know that the probability of rejecting <span class="math inline">\(H_0\)</span> is 0.10 when <span class="math inline">\(\theta=0\)</span> and 0.75 when <span class="math inline">\(\theta\neq0\)</span>. Please give:</p>
 <ol type="a">
 <li><p>The size of the test</p></li>
@@ -306,14 +303,14 @@ Figure&nbsp;4: Lower power using a higher-variance linear unbiased estimator wit
 <li><p>The power of the test</p></li>
 </ol>
 <p>Suppose <span class="math inline">\(n\)</span> is fixed. What could we do to ensure our test is as well-powered as possible?</p>
-
-</section></section>
-    </div>
-  <div class="quarto-auto-generated-content" style="display: none;">
+<div class="quarto-auto-generated-content" style="display: none;">
 <div class="footer footer-default">
 
 </div>
-</div></div>
+</div>
+</section></section>
+    </div>
+  </div>
 
   <script>window.backupDefine = window.define; window.define = undefined;</script>
   <script src="L12_files/libs/revealjs/dist/reveal.js"></script>
@@ -335,17 +332,7 @@ Figure&nbsp;4: Lower power using a higher-variance linear unbiased estimator wit
 
       // Full list of configuration options available at:
       // https://revealjs.com/config/
-      Reveal.initialize({
-'controlsAuto': true,
-'previewLinksAuto': false,
-'pdfSeparateFragments': false,
-'autoAnimateEasing': "ease",
-'autoAnimateDuration': 1,
-'autoAnimateUnmatched': true,
-'jumpToSlide': true,
-'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
-'smaller': true,
- 
+      Reveal.initialize({ 
         // Display controls in the bottom right corner
         controls: false,
 
@@ -514,8 +501,7 @@ Figure&nbsp;4: Lower power using a higher-variance linear unbiased estimator wit
         },
 
         // reveal.js plugins
-        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, QuartoSupport,
-
+        plugins: [
           RevealMath,
           RevealNotes,
           RevealSearch,
@@ -561,7 +547,7 @@ Figure&nbsp;4: Lower power using a higher-variance linear unbiased estimator wit
       })();
     </script>
 
-    <script id="quarto-html-after-body" type="application/javascript">
+    <script id = "quarto-html-after-body" type="application/javascript">
       window.document.addEventListener("DOMContentLoaded", function (event) {
         const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
         tabsets.forEach(function(tabset) {
@@ -729,6 +715,5 @@ Figure&nbsp;4: Lower power using a higher-variance linear unbiased estimator wit
         }
       });
       </script>
-    
-
-</body></html>
+    </body>
+</html>

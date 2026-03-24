@@ -452,3 +452,4 @@ reg price i.dcolor // regression with factor variable
 ## Knowledge Check 14
 
 Suppose we estimate the following regression: $$y_i = \beta_1 + \beta_2x_i + \alpha_1d_i + \alpha_2(d_i\times x_i)+ u_i$$ where $d$ is a dummy variable for being in category $C$ or not. How would we interpret the coefficients $b_1,b_2,a_1,$ and $a_2$?
+
