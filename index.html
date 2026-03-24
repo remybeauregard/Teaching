@@ -1,326 +1,438 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Course materials for ECN 099, ECN 101-B, and ECN 102 taught by Beauregard at UC Davis.">
-  <title>Beauregard — Teaching Materials</title>
-  <style>
-    *, *::before, *::after { box-sizing: border-box; }
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Course materials for ECN 099, ECN 101-B, and ECN 102 taught by Beauregard at UC Davis." />
+    <title>Teaching Materials — Remy Beauregard</title>
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+      /* ── Teaching-page specific ── */
 
-    body {
-      font-family: system-ui, -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
-      max-width: 900px;
-      margin: 2rem auto;
-      padding: 0 1.5rem 3rem;
-      color: #1a1a1a;
-      line-height: 1.65;
-      background: #fff;
-    }
+      .page-intro h1 {
+        font-size: 2rem;
+        font-weight: 700;
+        color: var(--navy);
+        letter-spacing: -0.02em;
+        margin: 0 0 0.3rem;
+      }
 
-    header { margin-bottom: 2.5rem; }
-    header h1 { font-size: 1.8rem; margin: 0 0 0.2rem; }
-    header p { margin: 0; color: #444; }
+      .page-intro .subtitle {
+        color: var(--muted);
+        margin: 0;
+        font-size: 1rem;
+      }
 
-    h2 {
-      font-size: 1.3rem;
-      margin: 2.75rem 0 0.2rem;
-      padding-bottom: 0.3rem;
-      border-bottom: 2px solid #1a1a1a;
-    }
-    h2 .term { font-weight: 400; color: #444; font-size: 1rem; margin-left: 0.4rem; }
+      .section h2 {
+        display: flex;
+        align-items: baseline;
+        gap: 0.6rem;
+        flex-wrap: wrap;
+        margin-bottom: 0;
+      }
 
-    h3 {
-      font-size: 1rem;
-      font-weight: 600;
-      margin: 1.75rem 0 0.4rem;
-      text-transform: uppercase;
-      letter-spacing: 0.04em;
-      color: #444;
-    }
+      .section h2 .abstract-toggle {
+        margin-left: auto;
+        font-size: 1.1rem;
+      }
 
-    /* Tables for tabular data only */
-    table {
-      border-collapse: collapse;
-      width: 100%;
-      margin-top: 0.25rem;
-      font-size: 0.93rem;
-    }
-    thead th {
-      text-align: left;
-      padding: 0.45rem 0.8rem;
-      background: #f2f2f2;
-      font-weight: 600;
-      border-bottom: 2px solid #ccc;
-    }
-    tbody td {
-      padding: 0.4rem 0.8rem;
-      border-bottom: 1px solid #e4e4e4;
-      vertical-align: top;
-    }
-    tbody tr:last-child td { border-bottom: none; }
-    tbody tr:hover { background: #fafafa; }
+      .course-body {
+        margin-top: 1.75rem;
+      }
 
-    .topic { color: #1a1a1a; }
-    .links { white-space: nowrap; }
-    .links a {
-      display: inline-block;
-      margin-right: 0.5rem;
-      font-size: 0.85rem;
-      color: #1a4f7a;
-      text-decoration: none;
-      border: 1px solid #1a4f7a;
-      border-radius: 3px;
-      padding: 0.1rem 0.45rem;
-    }
-    .links a:hover { background: #1a4f7a; color: #fff; }
-    .links a:visited { color: #5b3480; border-color: #5b3480; }
-    .links a:visited:hover { background: #5b3480; color: #fff; }
+      .section h2 .term {
+        font-weight: 400;
+        font-size: 1rem;
+        color: var(--muted);
+        letter-spacing: 0;
+      }
 
-    .note {
-      font-size: 0.88rem;
-      color: #555;
-      margin-top: 0.5rem;
-    }
+      .section h3 {
+        font-size: 1.05rem;
+        font-weight: 600;
+        color: var(--navy);
+        border-bottom: 1px solid var(--border);
+        padding-bottom: 0.4rem;
+        margin: 2rem 0 0.75rem;
+      }
 
-    footer {
-      margin-top: 3rem;
-      padding-top: 1rem;
-      border-top: 1px solid #ddd;
-      font-size: 0.85rem;
-      color: #666;
-    }
-  </style>
-</head>
-<body>
+      .note {
+        font-size: 0.88rem;
+        color: var(--muted);
+        margin: 0 0 0.75rem;
+      }
 
-<header>
-  <h1>Teaching Materials</h1>
-  <p>Remy Beauregard &mdash; University of California, Davis</p>
-</header>
+      table {
+        border-collapse: collapse;
+        width: 100%;
+        margin-top: 0.25rem;
+        font-size: 0.93rem;
+      }
 
-<main>
+      thead th {
+        text-align: left;
+        padding: 0.45rem 0.8rem;
+        background: var(--bg-alt);
+        font-weight: 600;
+        border-bottom: 2px solid var(--border);
+        color: var(--navy);
+      }
 
-  <!-- ═══════════════════════════════════════════════════════ -->
-  <h2>ECN 102: Analysis of Economics Data <span class="term">SS1 2026</span></h2>
+      tbody td {
+        padding: 0.4rem 0.8rem;
+        border-bottom: 1px solid var(--border);
+        vertical-align: top;
+      }
 
-  <p>Introductory econometrics course covering descriptive statistics, statistical inference, and regression analysis.</p>
+      tbody tr:last-child td { border-bottom: none; }
+      tbody tr:hover { background: var(--bg-alt); }
 
-  <p><a href="ECN%20102%20SS1%202026/ECN%20102%20Syllabus%20SS1%202026.html">Syllabus (HTML)</a>
-  &ensp;&middot;&ensp;
-  <a href="ECN%20102%20SS1%202026/ECN%20102%20Syllabus%20SS1%202026.pdf">Syllabus (PDF)</a></p>
+      .links { white-space: nowrap; }
 
-  <h3>Lectures</h3>
-  <p class="note">Slides open as an interactive presentation in your browser. Use the PDF for a printable version, or Plain for a simple scrollable page.</p>
+      .links a {
+        display: inline-block;
+        margin-right: 0.4rem;
+        font-size: 0.83rem;
+        color: var(--primary);
+        text-decoration: none;
+        border: 1px solid var(--primary);
+        border-radius: 3px;
+        padding: 0.1rem 0.45rem;
+      }
 
-  <table>
-    <thead>
-      <tr>
-        <th scope="col">#</th>
-        <th scope="col">Topic</th>
-        <th scope="col">Links</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>0</td>
-        <td class="topic">Introduction to ECN 102</td>
-        <td class="links">
-          <a href="ECN%20102%20SS1%202026/ECN%20102%20Lecture%200.html">Slides</a>
-          <a href="ECN%20102%20SS1%202026/ECN%20102%20Lecture%200.pdf">PDF</a>
-          <a href="ECN%20102%20SS1%202026/ECN%20102%20Lecture%200%20Plain.html">Plain</a>
-        </td>
-      </tr>
-      <tr>
-        <td>1</td>
-        <td class="topic">Introduction to Data</td>
-        <td class="links">
-          <a href="ECN%20102%20SS1%202026/ECN%20102%20Lecture%201.html">Slides</a>
-          <a href="ECN%20102%20SS1%202026/ECN%20102%20Lecture%201.pdf">PDF</a>
-          <a href="ECN%20102%20SS1%202026/ECN%20102%20Lecture%201%20Plain.html">Plain</a>
-        </td>
-      </tr>
-      <tr>
-        <td>2</td>
-        <td class="topic">Univariate Data</td>
-        <td class="links">
-          <a href="ECN%20102%20SS1%202026/ECN%20102%20Lecture%202.html">Slides</a>
-          <a href="ECN%20102%20SS1%202026/ECN%20102%20Lecture%202.pdf">PDF</a>
-          <a href="ECN%20102%20SS1%202026/ECN%20102%20Lecture%202%20Plain.html">Plain</a>
-        </td>
-      </tr>
-      <tr>
-        <td>3</td>
-        <td class="topic">The Sample Mean</td>
-        <td class="links">
-          <a href="ECN%20102%20SS1%202026/ECN%20102%20Lecture%203.html">Slides</a>
-          <a href="ECN%20102%20SS1%202026/ECN%20102%20Lecture%203.pdf">PDF</a>
-          <a href="ECN%20102%20SS1%202026/ECN%20102%20Lecture%203%20Plain.html">Plain</a>
-        </td>
-      </tr>
-      <tr>
-        <td>4</td>
-        <td class="topic">Univariate Statistical Inference</td>
-        <td class="links">
-          <a href="ECN%20102%20SS1%202026/ECN%20102%20Lecture%204.html">Slides</a>
-          <a href="ECN%20102%20SS1%202026/ECN%20102%20Lecture%204.pdf">PDF</a>
-          <a href="ECN%20102%20SS1%202026/ECN%20102%20Lecture%204%20Plain.html">Plain</a>
-        </td>
-      </tr>
-      <tr>
-        <td>5</td>
-        <td class="topic">Bivariate Data</td>
-        <td class="links">
-          <a href="ECN%20102%20SS1%202026/ECN%20102%20Lecture%205.html">Slides</a>
-          <a href="ECN%20102%20SS1%202026/ECN%20102%20Lecture%205.pdf">PDF</a>
-          <a href="ECN%20102%20SS1%202026/ECN%20102%20Lecture%205%20Plain.html">Plain</a>
-        </td>
-      </tr>
-      <tr>
-        <td>6</td>
-        <td class="topic">The Least Squares Estimator</td>
-        <td class="links">
-          <a href="ECN%20102%20SS1%202026/ECN%20102%20Lecture%206.html">Slides</a>
-          <a href="ECN%20102%20SS1%202026/ECN%20102%20Lecture%206.pdf">PDF</a>
-          <a href="ECN%20102%20SS1%202026/ECN%20102%20Lecture%206%20Plain.html">Plain</a>
-        </td>
-      </tr>
-      <tr>
-        <td>7</td>
-        <td class="topic">Bivariate Statistical Inference</td>
-        <td class="links">
-          <a href="ECN%20102%20SS1%202026/ECN%20102%20Lecture%207.html">Slides</a>
-          <a href="ECN%20102%20SS1%202026/ECN%20102%20Lecture%207.pdf">PDF</a>
-          <a href="ECN%20102%20SS1%202026/ECN%20102%20Lecture%207%20Plain.html">Plain</a>
-        </td>
-      </tr>
-      <tr>
-        <td>8</td>
-        <td class="topic">Bivariate Practice (With Answers)</td>
-        <td class="links">
-          <a href="ECN%20102%20SS1%202026/ECN%20102%20Lecture%208.html">Slides</a>
-          <a href="ECN%20102%20SS1%202026/ECN%20102%20Lecture%208.pdf">PDF</a>
-          <a href="ECN%20102%20SS1%202026/ECN%20102%20Lecture%208%20Plain.html">Plain</a>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+      .links a:hover {
+        background: var(--primary);
+        color: #fff;
+        text-decoration: none;
+      }
 
-  <h3>Homework</h3>
+      .links a:visited {
+        color: #6d28d9;
+        border-color: #6d28d9;
+      }
 
-  <table>
-    <thead>
-      <tr>
-        <th scope="col">Assignment</th>
-        <th scope="col">Questions</th>
-        <th scope="col">Answer Key</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>Homework 1</td>
-        <td class="links">
-          <a href="ECN%20102%20SS1%202026/ECN%20102%20Homework%201.html">HTML</a>
-          <a href="ECN%20102%20SS1%202026/ECN%20102%20Homework%201.pdf">PDF</a>
-        </td>
-        <td class="links">
-          <a href="ECN%20102%20SS1%202026/ECN%20102%20Homework%201%20AK.html">HTML</a>
-          <a href="ECN%20102%20SS1%202026/ECN%20102%20Homework%201%20AK.pdf">PDF</a>
-        </td>
-      </tr>
-      <tr>
-        <td>Homework 2</td>
-        <td class="links">
-          <a href="ECN%20102%20SS1%202026/ECN%20102%20Homework%202.html">HTML</a>
-          <a href="ECN%20102%20SS1%202026/ECN%20102%20Homework%202.pdf">PDF</a>
-        </td>
-        <td class="links">
-          <a href="ECN%20102%20SS1%202026/ECN%20102%20Homework%202%20AK.html">HTML</a>
-          <a href="ECN%20102%20SS1%202026/ECN%20102%20Homework%202%20AK.pdf">PDF</a>
-        </td>
-      </tr>
-      <tr>
-        <td>Homework 3</td>
-        <td class="links">
-          <a href="ECN%20102%20SS1%202026/ECN%20102%20Homework%203.html">HTML</a>
-          <a href="ECN%20102%20SS1%202026/ECN%20102%20Homework%203.pdf">PDF</a>
-        </td>
-        <td class="links">
-          <a href="ECN%20102%20SS1%202026/ECN%20102%20Homework%203%20AK.html">HTML</a>
-          <a href="ECN%20102%20SS1%202026/ECN%20102%20Homework%203%20AK.pdf">PDF</a>
-        </td>
-      </tr>
-      <tr>
-        <td>Homework 4</td>
-        <td class="links">
-          <a href="ECN%20102%20SS1%202026/ECN%20102%20Homework%204.html">HTML</a>
-          <a href="ECN%20102%20SS1%202026/ECN%20102%20Homework%204.pdf">PDF</a>
-        </td>
-        <td class="links">
-          <a href="ECN%20102%20SS1%202026/ECN%20102%20Homework%204%20AK.html">HTML</a>
-          <a href="ECN%20102%20SS1%202026/ECN%20102%20Homework%204%20AK.pdf">PDF</a>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+      .links a:visited:hover {
+        background: #6d28d9;
+        color: #fff;
+      }
+    </style>
+  </head>
+  <body>
 
-  <!-- ═══════════════════════════════════════════════════════ -->
-  <h2>ECN 101-B: Intermediate Macroeconomics <span class="term">SQ 2026, Cloyne</span></h2>
+    <header class="site-header">
+      <nav class="nav container">
+        <a class="nav-name" href="https://remybeauregard.github.io">Remy Beauregard</a>
+        <ul class="nav-links">
+          <li><a href="#ecn102">ECN 102</a></li>
+          <li><a href="#ecn101b">ECN 101-B</a></li>
+          <li><a href="#ecn099">ECN 099</a></li>
+        </ul>
+        <div class="nav-actions">
+          <a href="https://www.linkedin.com/in/rebeauregard/"
+             target="_blank" rel="noopener noreferrer"
+             aria-label="LinkedIn" class="icon-link" title="LinkedIn">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="20" height="20" aria-hidden="true">
+              <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+            </svg>
+          </a>
+          <a href="https://bsky.app/profile/rebeau.bsky.social"
+             target="_blank" rel="noopener noreferrer"
+             aria-label="Bluesky" class="icon-link" title="Bluesky">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 530" fill="currentColor" width="22" height="20" aria-hidden="true">
+              <path d="m135.72 44.03c66.496 49.921 138.02 151.14 164.28 205.46 26.262-54.316 97.782-155.54 164.28-205.46 47.98-36.021 125.72-63.892 125.72 24.795 0 17.712-10.155 148.79-16.111 170.07-20.703 73.984-96.144 92.854-163.25 81.433 117.3 19.964 147.14 86.091 82.697 152.22-122.39 125.59-175.91-31.511-189.63-71.766-2.514-7.3797-3.6904-10.832-3.7077-7.8964-0.0174-2.9357-1.1937 0.51669-3.7077 7.8964-13.714 40.255-67.233 197.36-189.63 71.766-64.444-66.128-34.605-132.26 82.697-152.22-67.108 11.421-142.55-7.4491-163.25-81.433-5.9562-21.282-16.111-152.36-16.111-170.07 0-88.687 77.742-60.816 125.72-24.795z"/>
+            </svg>
+          </a>
+          <a href="https://www.alltrails.com/en/members/remy-beauregard-1"
+             target="_blank" rel="noopener noreferrer"
+             aria-label="AllTrails" class="icon-link" title="AllTrails">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="20" height="20" aria-hidden="true">
+              <path d="M19.441 8.451c-.653-1.247-1.158-1.841-1.813-1.841-.731 0-1.053.387-1.494 1.079-.357.464-.7 1.1-1.273 1.036-.604-.063-.954-1.491-1.41-2.686-.625-1.63-.985-3.322-2.024-3.322-.593 0-1.111.54-1.915 1.747l-8.301 12.73c-.954 1.593-1.753 2.704-.742 3.748 1.187 1.142 3.975-.857 5.883-2.063 1.908-1.205 3.859-2.38 6.615-2.316 3.71.085 5.512 3.808 7.76 4.516 1.526.487 2.926-.074 3.223-1.65.174-.866-.129-1.707-.547-2.604zm-.254 7.467c-.753.56-1.803-.339-2.481-.72-.72-.401-1.94-1.364-4.124-1.332-1.78.021-2.745.687-3.805 1.407-2.3 1.565-4.379 3.384-4.972 2.443-.382-.603.646-1.809 3.063-5.574 1.718-2.676 2.927-4.813 3.785-4.813.948 0 1 .93 1.145 1.883.272 1.518 1.014 2.308 1.978 2.433 1.08.146 2.014-.76 2.756-.751.693.014 1.15 1.018 1.722 2.065.725 1.301 1.482 2.546.933 2.959z"/>
+            </svg>
+          </a>
+          <a href="https://github.com/remybeauregard"
+             target="_blank" rel="noopener noreferrer"
+             aria-label="GitHub" class="icon-link" title="GitHub">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="20" height="20" aria-hidden="true">
+              <path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/>
+            </svg>
+          </a>
+        </div>
+      </nav>
+    </header>
 
-  <h3>Discussion Sections</h3>
+    <main>
 
-  <table>
-    <thead>
-      <tr>
-        <th scope="col">#</th>
-        <th scope="col">Links</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>Section 1</td>
-        <td class="links">
-          <a href="ECN%20101-B%20Cloyne/ECN%20101-B%20Section%201.html">Slides</a>
-          <a href="ECN%20101-B%20Cloyne/ECN%20101-B%20Section%201.pdf">PDF</a>
-          <a href="ECN%20101-B%20Cloyne/ECN%20101-B%20Section%201%20Plain.html">Plain</a>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+      <!-- ── Intro ── -->
+      <section class="section page-intro">
+        <div class="container">
+          <h1>Teaching Materials</h1>
+          <p class="subtitle">Remy Beauregard &mdash; University of California, Davis</p>
+        </div>
+      </section>
 
-  <!-- ═══════════════════════════════════════════════════════ -->
-  <h2>ECN 099: Reading Group <span class="term">SQ 2026</span></h2>
+      <!-- ── ECN 102 ── -->
+      <section id="ecn102" class="section alt">
+        <div class="container">
+          <h2>ECN 102: Analysis of Economics Data <span class="term">SS1 2026</span>
+            <button class="abstract-toggle" aria-expanded="true" aria-controls="ecn102-body" title="Collapse">&#9650;</button>
+          </h2>
 
-  <p><a href="ECN%20099%20Reading%20Group/ECN%20099%20Syllabus%20SP2026.html">Syllabus (HTML)</a>
-  &ensp;&middot;&ensp;
-  <a href="ECN%20099%20Reading%20Group/ECN%20099%20Syllabus%20SP2026.pdf">Syllabus (PDF)</a></p>
+          <div id="ecn102-body" class="course-body">
 
-  <h3>Slides</h3>
+          <p>Introductory econometrics course covering descriptive statistics, statistical inference, and regression analysis.</p>
 
-  <table>
-    <thead>
-      <tr>
-        <th scope="col">Session</th>
-        <th scope="col">Links</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>SQ 2026</td>
-        <td class="links">
-          <a href="ECN%20099%20Reading%20Group/ECN%20099%20Slides%20SQ2026.html">Slides</a>
-          <a href="ECN%20099%20Reading%20Group/ECN%20099%20Slides%20SQ2026.pdf">PDF</a>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+          <p><a href="ECN%20102%20SS1%202026/ECN%20102%20Syllabus%20SS1%202026.html">Syllabus (HTML)</a>
+          &ensp;&middot;&ensp;
+          <a href="ECN%20102%20SS1%202026/ECN%20102%20Syllabus%20SS1%202026.pdf">Syllabus (PDF)</a></p>
 
-</main>
+          <h3>Lectures</h3>
+          <p class="note">Slides open as an interactive presentation in your browser. Use the PDF for a printable version, or Plain for a simple scrollable page.</p>
 
-<footer>
-  <p>University of California, Davis &mdash; Department of Economics.
-  Source files available on <a href="https://github.com/remybeauregard/Teaching">GitHub</a>.</p>
-</footer>
+          <table>
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Topic</th>
+                <th scope="col">Links</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>0</td>
+                <td>Introduction to ECN 102</td>
+                <td class="links">
+                  <a href="ECN%20102%20SS1%202026/ECN%20102%20Lecture%200.html">Slides</a>
+                  <a href="ECN%20102%20SS1%202026/ECN%20102%20Lecture%200.pdf">PDF</a>
+                  <a href="ECN%20102%20SS1%202026/ECN%20102%20Lecture%200%20Plain.html">Plain</a>
+                </td>
+              </tr>
+              <tr>
+                <td>1</td>
+                <td>Introduction to Data</td>
+                <td class="links">
+                  <a href="ECN%20102%20SS1%202026/ECN%20102%20Lecture%201.html">Slides</a>
+                  <a href="ECN%20102%20SS1%202026/ECN%20102%20Lecture%201.pdf">PDF</a>
+                  <a href="ECN%20102%20SS1%202026/ECN%20102%20Lecture%201%20Plain.html">Plain</a>
+                </td>
+              </tr>
+              <tr>
+                <td>2</td>
+                <td>Univariate Data</td>
+                <td class="links">
+                  <a href="ECN%20102%20SS1%202026/ECN%20102%20Lecture%202.html">Slides</a>
+                  <a href="ECN%20102%20SS1%202026/ECN%20102%20Lecture%202.pdf">PDF</a>
+                  <a href="ECN%20102%20SS1%202026/ECN%20102%20Lecture%202%20Plain.html">Plain</a>
+                </td>
+              </tr>
+              <tr>
+                <td>3</td>
+                <td>The Sample Mean</td>
+                <td class="links">
+                  <a href="ECN%20102%20SS1%202026/ECN%20102%20Lecture%203.html">Slides</a>
+                  <a href="ECN%20102%20SS1%202026/ECN%20102%20Lecture%203.pdf">PDF</a>
+                  <a href="ECN%20102%20SS1%202026/ECN%20102%20Lecture%203%20Plain.html">Plain</a>
+                </td>
+              </tr>
+              <tr>
+                <td>4</td>
+                <td>Univariate Statistical Inference</td>
+                <td class="links">
+                  <a href="ECN%20102%20SS1%202026/ECN%20102%20Lecture%204.html">Slides</a>
+                  <a href="ECN%20102%20SS1%202026/ECN%20102%20Lecture%204.pdf">PDF</a>
+                  <a href="ECN%20102%20SS1%202026/ECN%20102%20Lecture%204%20Plain.html">Plain</a>
+                </td>
+              </tr>
+              <tr>
+                <td>5</td>
+                <td>Bivariate Data</td>
+                <td class="links">
+                  <a href="ECN%20102%20SS1%202026/ECN%20102%20Lecture%205.html">Slides</a>
+                  <a href="ECN%20102%20SS1%202026/ECN%20102%20Lecture%205.pdf">PDF</a>
+                  <a href="ECN%20102%20SS1%202026/ECN%20102%20Lecture%205%20Plain.html">Plain</a>
+                </td>
+              </tr>
+              <tr>
+                <td>6</td>
+                <td>The Least Squares Estimator</td>
+                <td class="links">
+                  <a href="ECN%20102%20SS1%202026/ECN%20102%20Lecture%206.html">Slides</a>
+                  <a href="ECN%20102%20SS1%202026/ECN%20102%20Lecture%206.pdf">PDF</a>
+                  <a href="ECN%20102%20SS1%202026/ECN%20102%20Lecture%206%20Plain.html">Plain</a>
+                </td>
+              </tr>
+              <tr>
+                <td>7</td>
+                <td>Bivariate Statistical Inference</td>
+                <td class="links">
+                  <a href="ECN%20102%20SS1%202026/ECN%20102%20Lecture%207.html">Slides</a>
+                  <a href="ECN%20102%20SS1%202026/ECN%20102%20Lecture%207.pdf">PDF</a>
+                  <a href="ECN%20102%20SS1%202026/ECN%20102%20Lecture%207%20Plain.html">Plain</a>
+                </td>
+              </tr>
+              <tr>
+                <td>8</td>
+                <td>Bivariate Practice (With Answers)</td>
+                <td class="links">
+                  <a href="ECN%20102%20SS1%202026/ECN%20102%20Lecture%208.html">Slides</a>
+                  <a href="ECN%20102%20SS1%202026/ECN%20102%20Lecture%208.pdf">PDF</a>
+                  <a href="ECN%20102%20SS1%202026/ECN%20102%20Lecture%208%20Plain.html">Plain</a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
 
-</body>
+          <h3>Homework</h3>
+
+          <table>
+            <thead>
+              <tr>
+                <th scope="col">Assignment</th>
+                <th scope="col">Questions</th>
+                <th scope="col">Answer Key</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Homework 1</td>
+                <td class="links">
+                  <a href="ECN%20102%20SS1%202026/ECN%20102%20Homework%201.html">HTML</a>
+                  <a href="ECN%20102%20SS1%202026/ECN%20102%20Homework%201.pdf">PDF</a>
+                </td>
+                <td class="links">
+                  <a href="ECN%20102%20SS1%202026/ECN%20102%20Homework%201%20AK.html">HTML</a>
+                  <a href="ECN%20102%20SS1%202026/ECN%20102%20Homework%201%20AK.pdf">PDF</a>
+                </td>
+              </tr>
+              <tr>
+                <td>Homework 2</td>
+                <td class="links">
+                  <a href="ECN%20102%20SS1%202026/ECN%20102%20Homework%202.html">HTML</a>
+                  <a href="ECN%20102%20SS1%202026/ECN%20102%20Homework%202.pdf">PDF</a>
+                </td>
+                <td class="links">
+                  <a href="ECN%20102%20SS1%202026/ECN%20102%20Homework%202%20AK.html">HTML</a>
+                  <a href="ECN%20102%20SS1%202026/ECN%20102%20Homework%202%20AK.pdf">PDF</a>
+                </td>
+              </tr>
+              <tr>
+                <td>Homework 3</td>
+                <td class="links">
+                  <a href="ECN%20102%20SS1%202026/ECN%20102%20Homework%203.html">HTML</a>
+                  <a href="ECN%20102%20SS1%202026/ECN%20102%20Homework%203.pdf">PDF</a>
+                </td>
+                <td class="links">
+                  <a href="ECN%20102%20SS1%202026/ECN%20102%20Homework%203%20AK.html">HTML</a>
+                  <a href="ECN%20102%20SS1%202026/ECN%20102%20Homework%203%20AK.pdf">PDF</a>
+                </td>
+              </tr>
+              <tr>
+                <td>Homework 4</td>
+                <td class="links">
+                  <a href="ECN%20102%20SS1%202026/ECN%20102%20Homework%204.html">HTML</a>
+                  <a href="ECN%20102%20SS1%202026/ECN%20102%20Homework%204.pdf">PDF</a>
+                </td>
+                <td class="links">
+                  <a href="ECN%20102%20SS1%202026/ECN%20102%20Homework%204%20AK.html">HTML</a>
+                  <a href="ECN%20102%20SS1%202026/ECN%20102%20Homework%204%20AK.pdf">PDF</a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          </div><!-- /ecn102-body -->
+        </div>
+      </section>
+
+      <!-- ── ECN 101-B ── -->
+      <section id="ecn101b" class="section">
+        <div class="container">
+          <h2>ECN 101-B: Intermediate Macroeconomic Theory <span class="term">Cloyne</span>
+            <button class="abstract-toggle" aria-expanded="true" aria-controls="ecn101b-body" title="Collapse">&#9650;</button>
+          </h2>
+
+          <div id="ecn101b-body" class="course-body">
+
+          <h3>Discussion Sections</h3>
+
+          <table>
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Links</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Section 1</td>
+                <td class="links">
+                  <a href="ECN%20101-B%20Cloyne/ECN%20101-B%20Section%201.html">Slides</a>
+                  <a href="ECN%20101-B%20Cloyne/ECN%20101-B%20Section%201.pdf">PDF</a>
+                  <a href="ECN%20101-B%20Cloyne/ECN%20101-B%20Section%201%20Plain.html">Plain</a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          </div><!-- /ecn101b-body -->
+        </div>
+      </section>
+
+      <!-- ── ECN 099 ── -->
+      <section id="ecn099" class="section alt">
+        <div class="container">
+          <h2>ECN 099: Reading Group <span class="term">SQ 2026</span>
+            <button class="abstract-toggle" aria-expanded="true" aria-controls="ecn099-body" title="Collapse">&#9650;</button>
+          </h2>
+
+          <div id="ecn099-body" class="course-body">
+
+          <p><a href="ECN%20099%20Reading%20Group/ECN%20099%20Syllabus%20SP2026.html">Syllabus (HTML)</a>
+          &ensp;&middot;&ensp;
+          <a href="ECN%20099%20Reading%20Group/ECN%20099%20Syllabus%20SP2026.pdf">Syllabus (PDF)</a></p>
+
+          <h3>Slides</h3>
+
+          <table>
+            <thead>
+              <tr>
+                <th scope="col">Session</th>
+                <th scope="col">Links</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>SQ 2026</td>
+                <td class="links">
+                  <a href="ECN%20099%20Reading%20Group/ECN%20099%20Slides%20SQ2026.html">Slides</a>
+                  <a href="ECN%20099%20Reading%20Group/ECN%20099%20Slides%20SQ2026.pdf">PDF</a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          </div><!-- /ecn099-body -->
+        </div>
+      </section>
+
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>University of California, Davis &mdash; Department of Economics.
+        Source files available on <a href="https://github.com/remybeauregard/Teaching">GitHub</a>.</p>
+      </div>
+    </footer>
+
+  <script>
+    document.querySelectorAll('.abstract-toggle').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const expanded = btn.getAttribute('aria-expanded') === 'true';
+        btn.setAttribute('aria-expanded', String(!expanded));
+        btn.innerHTML = expanded ? '&#9660;' : '&#9650;';
+        btn.title = expanded ? 'Expand' : 'Collapse';
+        document.getElementById(btn.getAttribute('aria-controls')).hidden = expanded;
+      });
+    });
+  </script>
+  </body>
 </html>
