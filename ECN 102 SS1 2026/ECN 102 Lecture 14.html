@@ -1,8 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="generator" content="quarto-1.9.36" />
+<html lang="en"><head>
+<script src="L14_files/libs/clipboard/clipboard.min.js"></script>
+<script src="L14_files/libs/quarto-html/tabby.min.js"></script>
+<script src="L14_files/libs/quarto-html/popper.min.js"></script>
+<script src="L14_files/libs/quarto-html/tippy.umd.min.js"></script>
+<link href="L14_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="L14_files/libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="L14_files/libs/quarto-html/quarto-syntax-highlighting-845c23b38eaddc0f92fda52bfe77a8c8.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.9.36">
 
   <meta name="author" content="Remy Beauregard">
   <title>ECN 102: Analysis of Economics Data</title>
@@ -187,11 +192,11 @@
   </style>
   <meta name="description" content="Lecture slides 14 for ECN 102.">
 </head>
-<body>
+<body class="quarto-light">
   <div class="reveal">
     <div class="slides">
 
-<section id="title-slide" class="quarto-title-block">
+<section id="title-slide" class="quarto-title-block center">
   <h1 class="title">ECN 102: Analysis of Economics Data</h1>
   <p class="subtitle">Chapter 14: Indicator Variables</p>
 
@@ -208,7 +213,7 @@ Remy Beauregard
 <h2>Indicator Variables: Introduction</h2>
 <p>We previously asserted that categorical variables, such as “shirt color”, are not typically included in regression, since it is difficult to interpret a numerical coefficient for a discrete categorical series.</p>
 <p>One common exception is using <strong>indicator variables</strong> which encode categorical information. A special kind of indicator variable is called a <strong>dummy variable</strong> which are coded as being only zero or one.</p>
-<p>We may have a single indicator variable for a binary outcome (<em>male</em>=1 vs. <em>male</em>=0) or a set of indicator variables that span the possible options (<em>red shirt, blue shirt, green shirt, …</em>). Indicator variables give us a powerful way to analyze differences in means and slopes for different groups within our regression.</p>
+<p>We may have a single indicator variable for a binary outcome (<em>male</em>=1 vs.&nbsp;<em>male</em>=0) or a set of indicator variables that span the possible options (<em>red shirt, blue shirt, green shirt, …</em>). Indicator variables give us a powerful way to analyze differences in means and slopes for different groups within our regression.</p>
 </section>
 <section id="simple-dummy-variable-regression" class="slide level2">
 <h2>Simple Dummy Variable Regression</h2>
@@ -223,21 +228,10 @@ b_1 &amp; ECN_i=0
 <section id="graph-final-grade-on-ecn-major-status" class="slide level2">
 <h2>Graph: Final Grade on ECN Major Status</h2>
 <p><span class="math inline">\(\widehat{final}_i=b_1+a_1 ECN_i\)</span>:</p>
-<div class="cell">
-<div class="cell-output-display">
-<div id="fig-dummy-intercept-only" class="quarto-float quarto-figure quarto-figure-center" alt="Schematic graph with Hours studying on the x-axis and Final grade on the y-axis, both unlabeled numerically, with the y-axis starting at zero. Two horizontal lines span the full x-range: a solid dark-blue line for Non-major (ECN = 0) at a lower level, and a dashed purple line for Econ major (ECN = 1) at a higher level. A double-headed vertical arrow near the y-axis labeled b1 spans from the x-axis at y equals zero up to the non-major line, showing the y-intercept. A second double-headed vertical arrow between the two lines labeled a1 shows the upward shift from the dummy variable. The graph illustrates that with only a dummy regressor the model predicts a constant grade for each group, differing only by a1 above the baseline b1.">
-<figure class="quarto-float quarto-float-fig">
-<div aria-describedby="fig-dummy-intercept-only-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img data-src="L14_files/figure-revealjs/fig-dummy-intercept-only-1.png" alt="Schematic graph with Hours studying on the x-axis and Final grade on the y-axis, both unlabeled numerically, with the y-axis starting at zero. Two horizontal lines span the full x-range: a solid dark-blue line for Non-major (ECN = 0) at a lower level, and a dashed purple line for Econ major (ECN = 1) at a higher level. A double-headed vertical arrow near the y-axis labeled b1 spans from the x-axis at y equals zero up to the non-major line, showing the y-intercept. A second double-headed vertical arrow between the two lines labeled a1 shows the upward shift from the dummy variable. The graph illustrates that with only a dummy regressor the model predicts a constant grade for each group, differing only by a1 above the baseline b1." width="528" />
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-dummy-intercept-only-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure 1: Schematic regression lines showing the effect of a binary dummy variable on the outcome, with no continuous regressor.
-</figcaption>
-</figure>
-</div>
-</div>
-</div>
-</section>
+
+<img data-src="L14_files/figure-revealjs/fig-dummy-intercept-only-1.png" alt="Schematic graph with Hours studying on the x-axis and Final grade on the y-axis, both unlabeled numerically, with the y-axis starting at zero. Two horizontal lines span the full x-range: a solid dark-blue line for Non-major (ECN = 0) at a lower level, and a dashed purple line for Econ major (ECN = 1) at a higher level. A double-headed vertical arrow near the y-axis labeled b1 spans from the x-axis at y equals zero up to the non-major line, showing the y-intercept. A second double-headed vertical arrow between the two lines labeled a1 shows the upward shift from the dummy variable. The graph illustrates that with only a dummy regressor the model predicts a constant grade for each group, differing only by a1 above the baseline b1." width="528" class="r-stretch quarto-figure-center" id="fig-dummy-intercept-only"><p class="caption">
+Figure&nbsp;1: Schematic regression lines showing the effect of a binary dummy variable on the outcome, with no continuous regressor.
+</p></section>
 <section id="dummy-variables-in-multivariate-regression" class="slide level2">
 <h2>Dummy Variables in Multivariate Regression</h2>
 <p>We may also want to include dummy variables in a multivariate regression with other continuous numerical regressors. In this case, the partial effect (estimated coefficient) of the dummy variable is the change in our outcome when our dummy goes from 0 to 1, all other regressors held constant. The total effect is our partial effect added to the product of any correlated movement in other variables and its associated coefficient.</p>
@@ -246,21 +240,10 @@ Figure 1: Schematic regression lines showing the effect of a binary dummy varia
 <section id="graph-final-grade-hours-and-ecn-major-status" class="slide level2">
 <h2>Graph: Final Grade, Hours, and ECN Major Status</h2>
 <p><span class="math inline">\(\widehat{final}_i=b_1+b_2hrs_i+a_1 ECN_i\)</span>:</p>
-<div class="cell">
-<div class="cell-output-display">
-<div id="fig-dummy-parallel" class="quarto-float quarto-figure quarto-figure-center" alt="Schematic graph with Hours studying on the x-axis and Final grade on the y-axis, both unlabeled numerically, with the y-axis starting at zero. Two upward-sloping parallel lines: a solid dark-blue line for Non-major (ECN = 0) and a dashed purple line for Econ major (ECN = 1) above it. A double-headed vertical arrow near the y-axis labeled b1 spans from just above the x-axis to just below the y-intercept of the non-major line, with equal gaps at each end. A second double-headed vertical arrow slightly to the right labeled a1 shows the constant gap between the two parallel lines, with equal gaps at each end. A slope triangle on the non-major line shows a dotted horizontal run and a dotted vertical rise labeled b2, illustrating the shared slope of both lines.">
-<figure class="quarto-float quarto-float-fig">
-<div aria-describedby="fig-dummy-parallel-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img data-src="L14_files/figure-revealjs/fig-dummy-parallel-1.png" alt="Schematic graph with Hours studying on the x-axis and Final grade on the y-axis, both unlabeled numerically, with the y-axis starting at zero. Two upward-sloping parallel lines: a solid dark-blue line for Non-major (ECN = 0) and a dashed purple line for Econ major (ECN = 1) above it. A double-headed vertical arrow near the y-axis labeled b1 spans from just above the x-axis to just below the y-intercept of the non-major line, with equal gaps at each end. A second double-headed vertical arrow slightly to the right labeled a1 shows the constant gap between the two parallel lines, with equal gaps at each end. A slope triangle on the non-major line shows a dotted horizontal run and a dotted vertical rise labeled b2, illustrating the shared slope of both lines." width="528" />
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-dummy-parallel-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure 2: Schematic parallel regression lines showing a binary dummy variable added to a regression with a continuous regressor.
-</figcaption>
-</figure>
-</div>
-</div>
-</div>
-</section>
+
+<img data-src="L14_files/figure-revealjs/fig-dummy-parallel-1.png" alt="Schematic graph with Hours studying on the x-axis and Final grade on the y-axis, both unlabeled numerically, with the y-axis starting at zero. Two upward-sloping parallel lines: a solid dark-blue line for Non-major (ECN = 0) and a dashed purple line for Econ major (ECN = 1) above it. A double-headed vertical arrow near the y-axis labeled b1 spans from just above the x-axis to just below the y-intercept of the non-major line, with equal gaps at each end. A second double-headed vertical arrow slightly to the right labeled a1 shows the constant gap between the two parallel lines, with equal gaps at each end. A slope triangle on the non-major line shows a dotted horizontal run and a dotted vertical rise labeled b2, illustrating the shared slope of both lines." width="528" class="r-stretch quarto-figure-center" id="fig-dummy-parallel"><p class="caption">
+Figure&nbsp;2: Schematic parallel regression lines showing a binary dummy variable added to a regression with a continuous regressor.
+</p></section>
 <section id="interacting-a-dummy-variable-with-a-regressor" class="slide level2">
 <h2>Interacting a Dummy Variable with a Regressor</h2>
 <p>Finally, we could <strong>interact</strong> our dummy variable with another regressor to capture the average difference in <em>slopes</em> between one category and another. Adding to our regression of final grades, we could estimate <span class="math display">\[final_i=\beta_1+\beta_2hrs_i+\alpha_1ECN_i+\alpha_2(ECN_i\times hrs_i)+u_i\]</span></p>
@@ -274,21 +257,10 @@ Figure 2: Schematic parallel regression lines showing a binary dummy variable a
 <section id="graph-interacted-dummy-regression" class="slide level2">
 <h2>Graph: Interacted Dummy Regression</h2>
 <p><span class="math inline">\(\widehat{final}_i=b_1+b_2hrs_i+a_1ECN_i+a_2(ECN_i\times hrs_i)\)</span>:</p>
-<div class="cell">
-<div class="cell-output-display">
-<div id="fig-dummy-interaction" class="quarto-float quarto-figure quarto-figure-center" alt="Schematic graph with Hours studying on the x-axis and Final grade on the y-axis, both unlabeled numerically, with the y-axis starting at zero. Two upward-sloping lines diverge strongly as hours increase: a solid dark-blue line for Non-major (ECN = 0) with a shallower slope, and a dashed purple line for Econ major (ECN = 1) with a much steeper slope. A double-headed vertical arrow near the y-axis labeled b1 spans from just above the x-axis to just below the y-intercept of the non-major line. A text label a1 appears centered vertically between the two curves near the y-axis, indicating the intercept difference between the two groups. A slope triangle on the non-major line shows a dotted horizontal run and a dotted vertical rise labeled b2. An identical-run slope triangle on the Econ major line has a dashed tick separating the lower b2 portion from the upper dotted rise labeled a2, illustrating the extra slope for Econ majors. The Econ major curve label appears above the dashed line. The slope difference between the two groups is pronounced, making the a2 contribution visually prominent.">
-<figure class="quarto-float quarto-float-fig">
-<div aria-describedby="fig-dummy-interaction-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img data-src="L14_files/figure-revealjs/fig-dummy-interaction-1.png" alt="Schematic graph with Hours studying on the x-axis and Final grade on the y-axis, both unlabeled numerically, with the y-axis starting at zero. Two upward-sloping lines diverge strongly as hours increase: a solid dark-blue line for Non-major (ECN = 0) with a shallower slope, and a dashed purple line for Econ major (ECN = 1) with a much steeper slope. A double-headed vertical arrow near the y-axis labeled b1 spans from just above the x-axis to just below the y-intercept of the non-major line. A text label a1 appears centered vertically between the two curves near the y-axis, indicating the intercept difference between the two groups. A slope triangle on the non-major line shows a dotted horizontal run and a dotted vertical rise labeled b2. An identical-run slope triangle on the Econ major line has a dashed tick separating the lower b2 portion from the upper dotted rise labeled a2, illustrating the extra slope for Econ majors. The Econ major curve label appears above the dashed line. The slope difference between the two groups is pronounced, making the a2 contribution visually prominent." width="528" />
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-dummy-interaction-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure 3: Schematic regression lines showing a binary dummy variable interacted with a continuous regressor.
-</figcaption>
-</figure>
-</div>
-</div>
-</div>
-</section>
+
+<img data-src="L14_files/figure-revealjs/fig-dummy-interaction-1.png" alt="Schematic graph with Hours studying on the x-axis and Final grade on the y-axis, both unlabeled numerically, with the y-axis starting at zero. Two upward-sloping lines diverge strongly as hours increase: a solid dark-blue line for Non-major (ECN = 0) with a shallower slope, and a dashed purple line for Econ major (ECN = 1) with a much steeper slope. A double-headed vertical arrow near the y-axis labeled b1 spans from just above the x-axis to just below the y-intercept of the non-major line. A text label a1 appears centered vertically between the two curves near the y-axis, indicating the intercept difference between the two groups. A slope triangle on the non-major line shows a dotted horizontal run and a dotted vertical rise labeled b2. An identical-run slope triangle on the Econ major line has a dashed tick separating the lower b2 portion from the upper dotted rise labeled a2, illustrating the extra slope for Econ majors. The Econ major curve label appears above the dashed line. The slope difference between the two groups is pronounced, making the a2 contribution visually prominent." width="528" class="r-stretch quarto-figure-center" id="fig-dummy-interaction"><p class="caption">
+Figure&nbsp;3: Schematic regression lines showing a binary dummy variable interacted with a continuous regressor.
+</p></section>
 <section id="interpreting-the-interacted-dummy-slopes-and-intercepts" class="slide level2">
 <h2>Interpreting the Interacted Dummy: Slopes and Intercepts</h2>
 <p>For an interacted dummy variable regression: <span class="math display">\[\hat{y}_i=b_1+b_2x_i+a_1d_i+a_2(d_i\times x_i)\]</span></p>
@@ -323,7 +295,7 @@ d_i=1\text{: }\hat{y}_i&amp;=b_1+b_2x_i+a_1d_i+a_2(d_i\cdot x_i)\\
 <p>We compute both in Stata using the <code>lincom</code> command.</p>
 </section>
 <section id="example-car-prices-mpg-and-country-of-origin" class="slide level2 smaller" data-shrink="35">
-<h2 class="smaller" data-shrink="35">Example: Car Prices, MPG, and Country of Origin</h2>
+<h2>Example: Car Prices, MPG, and Country of Origin</h2>
 <p>How would we interpret the following regression results with indicator variable <em>foreign</em>?</p>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
@@ -349,21 +321,10 @@ d_i=1\text{: }\hat{y}_i&amp;=b_1+b_2x_i+a_1d_i+a_2(d_i\cdot x_i)\\
 <section id="graph-price-on-mpg-by-country-of-origin" class="slide level2">
 <h2>Graph: Price on MPG by Country of Origin</h2>
 <p>Graph of <span class="math inline">\(price\)</span> on <span class="math inline">\(mpg\)</span> across <span class="math inline">\(foreign\)</span>:</p>
-<div class="cell">
-<div class="cell-output-display">
-<div id="fig-price-mpg-foreign" class="quarto-float quarto-figure quarto-figure-center" alt="Schematic graph with MPG on the x-axis and Price in dollars on the y-axis, both unlabeled numerically, with the y-axis starting at zero. Two downward-sloping regression lines start from nearly the same y-intercept: a solid dark-blue line for Domestic (foreign = 0) with a steeper negative slope and a dashed purple line for Foreign (foreign = 1) with a shallower negative slope, so the lines diverge as MPG increases with foreign cars priced higher at higher MPG levels. A double-headed vertical arrow near the y-axis labeled b1 spans from just above the x-axis to just below the domestic y-intercept, indicating the shared y-intercept value. A text label a1 approximately 0 appears just above the y-intercept zone, indicating no significant intercept difference between groups.">
-<figure class="quarto-float quarto-float-fig">
-<div aria-describedby="fig-price-mpg-foreign-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img data-src="L14_files/figure-revealjs/fig-price-mpg-foreign-1.png" alt="Schematic graph with MPG on the x-axis and Price in dollars on the y-axis, both unlabeled numerically, with the y-axis starting at zero. Two downward-sloping regression lines start from nearly the same y-intercept: a solid dark-blue line for Domestic (foreign = 0) with a steeper negative slope and a dashed purple line for Foreign (foreign = 1) with a shallower negative slope, so the lines diverge as MPG increases with foreign cars priced higher at higher MPG levels. A double-headed vertical arrow near the y-axis labeled b1 spans from just above the x-axis to just below the domestic y-intercept, indicating the shared y-intercept value. A text label a1 approximately 0 appears just above the y-intercept zone, indicating no significant intercept difference between groups." width="528" />
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-price-mpg-foreign-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure 4: Schematic regression lines for car price on miles per gallon, by domestic and foreign origin.
-</figcaption>
-</figure>
-</div>
-</div>
-</div>
-</section>
+
+<img data-src="L14_files/figure-revealjs/fig-price-mpg-foreign-1.png" alt="Schematic graph with MPG on the x-axis and Price in dollars on the y-axis, both unlabeled numerically, with the y-axis starting at zero. Two downward-sloping regression lines start from nearly the same y-intercept: a solid dark-blue line for Domestic (foreign = 0) with a steeper negative slope and a dashed purple line for Foreign (foreign = 1) with a shallower negative slope, so the lines diverge as MPG increases with foreign cars priced higher at higher MPG levels. A double-headed vertical arrow near the y-axis labeled b1 spans from just above the x-axis to just below the domestic y-intercept, indicating the shared y-intercept value. A text label a1 approximately 0 appears just above the y-intercept zone, indicating no significant intercept difference between groups." width="528" class="r-stretch quarto-figure-center" id="fig-price-mpg-foreign"><p class="caption">
+Figure&nbsp;4: Schematic regression lines for car price on miles per gallon, by domestic and foreign origin.
+</p></section>
 <section id="ordered-and-unordered-categorical-variables" class="slide level2">
 <h2>Ordered and Unordered Categorical Variables</h2>
 <p>We may use indicator variables that take values other than 0 or 1 if we have an <em>ordered</em> or <em>ranked</em> categorical variable, such as class year (freshman, sophomore, etc.). We could capture these with a single variable called <span class="math inline">\(Class\)</span> which takes values 0, 1, 2, or 3 depending on the incoming year (with 4 for super-senior+). Our only caveat in this case would be that we are assuming the effect of going from freshman to sophomore is the same as going from junior to senior.</p>
@@ -378,9 +339,9 @@ Figure 4: Schematic regression lines for car price on miles per gallon, by dome
 <h2>Why the Dummy Variable Trap Occurs</h2>
 <p>Why do we encounter the dummy variable trap?</p>
 <p>Suppose we have a category <span class="math inline">\(c\)</span> that takes values 1, 2, or 3 and every observation falls into exactly one category. Now suppose we construct dummy variables <span class="math inline">\(d_1,d_2,d_3\)</span> for if an observation falls into category 1, 2, or 3, respectively.</p>
-<p>If <span class="math inline">\(d_1=0\)</span> and <span class="math inline">\(d_2=0\)</span>, it <strong>must</strong> be the case that <span class="math inline">\(d_3=1\)</span>.<a href="#/fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
+<p>If <span class="math inline">\(d_1=0\)</span> and <span class="math inline">\(d_2=0\)</span>, it <strong>must</strong> be the case that <span class="math inline">\(d_3=1\)</span>.<sup>1</sup></p>
 <p>We can then rewrite <span class="math inline">\(d_3\)</span> as <span class="math inline">\(d_3=1-d_1-d_2\)</span>. This means <span class="math inline">\(d_3\)</span> is a <em>linear combination</em> of other regressors in our model and thus <em>perfectly collinear</em>. If we try to include <span class="math inline">\(d_3\)</span> in our model along with <span class="math inline">\(d_1\)</span> and <span class="math inline">\(d_2\)</span>, we will not be able to estimate our coefficients.</p>
-</section>
+<aside><ol class="aside-footnotes"><li id="fn1"><p>Or if <span class="math inline">\(d_1=1\)</span> or <span class="math inline">\(d_2=1\)</span>, it must be the case that <span class="math inline">\(d_3=0\)</span>.</p></li></ol></aside></section>
 <section id="rule-at-most-n1-dummy-variables" class="slide level2">
 <h2>Rule: At Most n−1 Dummy Variables</h2>
 <p>Generally, if we have <span class="math inline">\(n\)</span> mutually exclusive and exhaustive categories each with a dummy variable, we can include at most <span class="math inline">\(n-1\)</span> dummy variables in our regression (<span class="math inline">\(d_1,...,d_{n-1}\)</span>).</p>
@@ -392,7 +353,7 @@ Figure 4: Schematic regression lines for car price on miles per gallon, by dome
 <p>When we conduct inference on dummy variables with a leave-out group, we are not testing whether the included dummy is different from zero, but rather <em>if the difference between that group and the leave-out group</em> is zero. Our F-test for overall significance, however, still measures whether all <em>included</em> regressors meaningfully predict our outcome variable.</p>
 </section>
 <section id="example-values-of-the-foreign-variable" class="slide level2 smaller" data-shrink="20">
-<h2 class="smaller" data-shrink="20">Example: Values of the Foreign Variable</h2>
+<h2>Example: Values of the Foreign Variable</h2>
 <p>In our car example, our variable <em>foreign</em> takes the following values:</p>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
@@ -410,7 +371,7 @@ r(111);</code></pre>
 </ol>
 </section>
 <section id="avoiding-the-dummy-variable-trap" class="slide level2 smaller" data-shrink="35">
-<h2 class="smaller" data-shrink="35">Avoiding the Dummy Variable Trap</h2>
+<h2>Avoiding the Dummy Variable Trap</h2>
 <p>Do we run into the dummy variable trap here? Why or why not?</p>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
@@ -426,37 +387,32 @@ r(111);</code></pre>
 <h2>Creating Factor Variable Dummies in Stata</h2>
 <p>We can easily create dummies for these discrete mutually exclusive <strong>factor variables</strong> in Stata:</p>
 <div class="cell">
-<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource stata cell-code number-lines"><code class="sourceCode stata"><span id="cb4-1"><a href="#cb4-1"></a><span class="kw">tab</span> shirtcolor, g(dcolor) <span class="co">// generate dummies</span></span>
-<span id="cb4-2"><a href="#cb4-2"></a><span class="kw">reg</span> price dcolor1 dcolor2 ... <span class="co">// dummy regression</span></span></code></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource stata number-lines code-with-copy"><code class="sourceCode stata"><span id="cb4-1"><a href=""></a><span class="kw">tab</span> shirtcolor, g(dcolor) <span class="co">// generate dummies</span></span>
+<span id="cb4-2"><a href=""></a><span class="kw">reg</span> price dcolor1 dcolor2 ... <span class="co">// dummy regression</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>We can also call on dummy variables directly in our regression. However, Stata makes us first convert categorical variables into numeric variables before we do this (<em>R</em> does not):</p>
 <div class="cell">
-<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource stata cell-code number-lines"><code class="sourceCode stata"><span id="cb5-1"><a href="#cb5-1"></a><span class="kw">encode</span> shirtcolor, g(dcolor) <span class="co">// conversion</span></span>
-<span id="cb5-2"><a href="#cb5-2"></a><span class="kw">reg</span> price i.dcolor <span class="co">// regression with factor variable</span></span></code></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource stata number-lines code-with-copy"><code class="sourceCode stata"><span id="cb5-1"><a href=""></a><span class="kw">encode</span> shirtcolor, g(dcolor) <span class="co">// conversion</span></span>
+<span id="cb5-2"><a href=""></a><span class="kw">reg</span> price i.dcolor <span class="co">// regression with factor variable</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section>
-<section id="end-of-lecture-material" class="title-slide slide level1">
+<section id="end-of-lecture-material" class="title-slide slide level1 center">
 <h1>End of Lecture Material</h1>
 
 </section>
 <section id="knowledge-check-14" class="slide level2">
 <h2>Knowledge Check 14</h2>
 <p>Suppose we estimate the following regression: <span class="math display">\[y_i = \beta_1 + \beta_2x_i + \alpha_1d_i + \alpha_2(d_i\times x_i)+ u_i\]</span> where <span class="math inline">\(d\)</span> is a dummy variable for being in category <span class="math inline">\(C\)</span> or not. How would we interpret the coefficients <span class="math inline">\(b_1,b_2,a_1,\)</span> and <span class="math inline">\(a_2\)</span>?</p>
-<div class="quarto-auto-generated-content" style="display: none;">
+
+</section></section>
+
+    </div>
+  <div class="quarto-auto-generated-content" style="display: none;">
 <div class="footer footer-default">
 
 </div>
-</div>
-</section></section>
-<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
-<hr />
-<ol>
-<li id="fn1"><p>Or if <span class="math inline">\(d_1=1\)</span> or <span class="math inline">\(d_2=1\)</span>, it must be the case that <span class="math inline">\(d_3=0\)</span>.<a href="#/fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-</ol>
-</section>
-    </div>
-  </div>
+</div></div>
 
   <script>window.backupDefine = window.define; window.define = undefined;</script>
   <script src="L14_files/libs/revealjs/dist/reveal.js"></script>
@@ -478,7 +434,17 @@ r(111);</code></pre>
 
       // Full list of configuration options available at:
       // https://revealjs.com/config/
-      Reveal.initialize({ 
+      Reveal.initialize({
+'controlsAuto': true,
+'previewLinksAuto': false,
+'pdfSeparateFragments': false,
+'autoAnimateEasing': "ease",
+'autoAnimateDuration': 1,
+'autoAnimateUnmatched': true,
+'jumpToSlide': true,
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'smaller': true,
+ 
         // Display controls in the bottom right corner
         controls: false,
 
@@ -647,7 +613,8 @@ r(111);</code></pre>
         },
 
         // reveal.js plugins
-        plugins: [
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, QuartoSupport,
+
           RevealMath,
           RevealNotes,
           RevealSearch,
@@ -693,7 +660,7 @@ r(111);</code></pre>
       })();
     </script>
 
-    <script id = "quarto-html-after-body" type="application/javascript">
+    <script id="quarto-html-after-body" type="application/javascript">
       window.document.addEventListener("DOMContentLoaded", function (event) {
         const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
         tabsets.forEach(function(tabset) {
@@ -861,5 +828,6 @@ r(111);</code></pre>
         }
       });
       </script>
-    </body>
-</html>
+    
+
+</body></html>

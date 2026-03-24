@@ -160,13 +160,6 @@ b_1 &amp; ECN_i=0
 <h2 class="anchored" data-anchor-id="graph-final-grade-on-ecn-major-status">Graph: Final Grade on ECN Major Status</h2>
 <p><span class="math inline">\(\widehat{final}_i=b_1+a_1 ECN_i\)</span>:</p>
 <div class="cell">
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning in is.na(x): is.na() applied to non-(list or vector) of type
-'expression'
-
-Warning in is.na(x): is.na() applied to non-(list or vector) of type
-'expression'</code></pre>
-</div>
 <div class="cell-output-display">
 <div id="fig-dummy-intercept-only" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Schematic graph with Hours studying on the x-axis and Final grade on the y-axis, both unlabeled numerically, with the y-axis starting at zero. Two horizontal lines span the full x-range: a solid dark-blue line for Non-major (ECN = 0) at a lower level, and a dashed purple line for Econ major (ECN = 1) at a higher level. A double-headed vertical arrow near the y-axis labeled b1 spans from the x-axis at y equals zero up to the non-major line, showing the y-intercept. A second double-headed vertical arrow between the two lines labeled a1 shows the upward shift from the dummy variable. The graph illustrates that with only a dummy regressor the model predicts a constant grade for each group, differing only by a1 above the baseline b1.">
 <figure class="quarto-float quarto-float-fig figure">
@@ -190,16 +183,6 @@ Figure&nbsp;1: Schematic regression lines showing the effect of a binary dummy v
 <h2 class="anchored" data-anchor-id="graph-final-grade-hours-and-ecn-major-status">Graph: Final Grade, Hours, and ECN Major Status</h2>
 <p><span class="math inline">\(\widehat{final}_i=b_1+b_2hrs_i+a_1 ECN_i\)</span>:</p>
 <div class="cell">
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning in is.na(x): is.na() applied to non-(list or vector) of type
-'expression'
-
-Warning in is.na(x): is.na() applied to non-(list or vector) of type
-'expression'
-
-Warning in is.na(x): is.na() applied to non-(list or vector) of type
-'expression'</code></pre>
-</div>
 <div class="cell-output-display">
 <div id="fig-dummy-parallel" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Schematic graph with Hours studying on the x-axis and Final grade on the y-axis, both unlabeled numerically, with the y-axis starting at zero. Two upward-sloping parallel lines: a solid dark-blue line for Non-major (ECN = 0) and a dashed purple line for Econ major (ECN = 1) above it. A double-headed vertical arrow near the y-axis labeled b1 spans from just above the x-axis to just below the y-intercept of the non-major line, with equal gaps at each end. A second double-headed vertical arrow slightly to the right labeled a1 shows the constant gap between the two parallel lines, with equal gaps at each end. A slope triangle on the non-major line shows a dotted horizontal run and a dotted vertical rise labeled b2, illustrating the shared slope of both lines.">
 <figure class="quarto-float quarto-float-fig figure">
@@ -228,19 +211,6 @@ Figure&nbsp;2: Schematic parallel regression lines showing a binary dummy variab
 <h2 class="anchored" data-anchor-id="graph-interacted-dummy-regression">Graph: Interacted Dummy Regression</h2>
 <p><span class="math inline">\(\widehat{final}_i=b_1+b_2hrs_i+a_1ECN_i+a_2(ECN_i\times hrs_i)\)</span>:</p>
 <div class="cell">
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning in is.na(x): is.na() applied to non-(list or vector) of type
-'expression'
-
-Warning in is.na(x): is.na() applied to non-(list or vector) of type
-'expression'
-
-Warning in is.na(x): is.na() applied to non-(list or vector) of type
-'expression'
-
-Warning in is.na(x): is.na() applied to non-(list or vector) of type
-'expression'</code></pre>
-</div>
 <div class="cell-output-display">
 <div id="fig-dummy-interaction" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Schematic graph with Hours studying on the x-axis and Final grade on the y-axis, both unlabeled numerically, with the y-axis starting at zero. Two upward-sloping lines diverge strongly as hours increase: a solid dark-blue line for Non-major (ECN = 0) with a shallower slope, and a dashed purple line for Econ major (ECN = 1) with a much steeper slope. A double-headed vertical arrow near the y-axis labeled b1 spans from just above the x-axis to just below the y-intercept of the non-major line. A text label a1 appears centered vertically between the two curves near the y-axis, indicating the intercept difference between the two groups. A slope triangle on the non-major line shows a dotted horizontal run and a dotted vertical rise labeled b2. An identical-run slope triangle on the Econ major line has a dashed tick separating the lower b2 portion from the upper dotted rise labeled a2, illustrating the extra slope for Econ majors. The Econ major curve label appears above the dashed line. The slope difference between the two groups is pronounced, making the a2 contribution visually prominent.">
 <figure class="quarto-float quarto-float-fig figure">
@@ -316,19 +286,6 @@ d_i=1\text{: }\hat{y}_i&amp;=b_1+b_2x_i+a_1d_i+a_2(d_i\cdot x_i)\\
 <h2 class="anchored" data-anchor-id="graph-price-on-mpg-by-country-of-origin">Graph: Price on MPG by Country of Origin</h2>
 <p>Graph of <span class="math inline">\(price\)</span> on <span class="math inline">\(mpg\)</span> across <span class="math inline">\(foreign\)</span>:</p>
 <div class="cell">
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning in is.na(x): is.na() applied to non-(list or vector) of type
-'expression'
-
-Warning in is.na(x): is.na() applied to non-(list or vector) of type
-'expression'
-
-Warning in is.na(x): is.na() applied to non-(list or vector) of type
-'expression'
-
-Warning in is.na(x): is.na() applied to non-(list or vector) of type
-'expression'</code></pre>
-</div>
 <div class="cell-output-display">
 <div id="fig-price-mpg-foreign" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Schematic graph with MPG on the x-axis and Price in dollars on the y-axis, both unlabeled numerically, with the y-axis starting at zero. Two downward-sloping regression lines start from nearly the same y-intercept: a solid dark-blue line for Domestic (foreign = 0) with a steeper negative slope and a dashed purple line for Foreign (foreign = 1) with a shallower negative slope, so the lines diverge as MPG increases with foreign cars priced higher at higher MPG levels. A double-headed vertical arrow near the y-axis labeled b1 spans from just above the x-axis to just below the domestic y-intercept, indicating the shared y-intercept value. A text label a1 approximately 0 appears just above the y-intercept zone, indicating no significant intercept difference between groups.">
 <figure class="quarto-float quarto-float-fig figure">
@@ -419,13 +376,13 @@ Valid   0 Domestic |         52      70.27      70.27      70.27
 <h2 class="anchored" data-anchor-id="creating-factor-variable-dummies-in-stata">Creating Factor Variable Dummies in Stata</h2>
 <p>We can easily create dummies for these discrete mutually exclusive <strong>factor variables</strong> in Stata:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">tab</span> shirtcolor, g(dcolor) <span class="co">// generate dummies</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="kw">reg</span> price dcolor1 dcolor2 ... <span class="co">// dummy regression</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">tab</span> shirtcolor, g(dcolor) <span class="co">// generate dummies</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="kw">reg</span> price dcolor1 dcolor2 ... <span class="co">// dummy regression</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>We can also call on dummy variables directly in our regression. However, Stata makes us first convert categorical variables into numeric variables before we do this (<em>R</em> does not):</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">encode</span> shirtcolor, g(dcolor) <span class="co">// conversion</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="kw">reg</span> price i.dcolor <span class="co">// regression with factor variable</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">encode</span> shirtcolor, g(dcolor) <span class="co">// conversion</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="kw">reg</span> price i.dcolor <span class="co">// regression with factor variable</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="end-of-lecture-material" class="level1">

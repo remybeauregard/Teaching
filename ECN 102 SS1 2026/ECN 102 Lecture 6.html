@@ -1,8 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="generator" content="quarto-1.9.36" />
+<html lang="en"><head>
+<script src="L6_files/libs/clipboard/clipboard.min.js"></script>
+<script src="L6_files/libs/quarto-html/tabby.min.js"></script>
+<script src="L6_files/libs/quarto-html/popper.min.js"></script>
+<script src="L6_files/libs/quarto-html/tippy.umd.min.js"></script>
+<link href="L6_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="L6_files/libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="L6_files/libs/quarto-html/quarto-syntax-highlighting-845c23b38eaddc0f92fda52bfe77a8c8.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.9.36">
 
   <meta name="author" content="Remy Beauregard">
   <title>ECN 102: Analysis of Economics Data</title>
@@ -121,11 +126,11 @@
   </style>
   <meta name="description" content="Lecture slides 6 for ECN 102.">
 </head>
-<body>
+<body class="quarto-light">
   <div class="reveal">
     <div class="slides">
 
-<section id="title-slide" class="quarto-title-block">
+<section id="title-slide" class="quarto-title-block center">
   <h1 class="title">ECN 102: Analysis of Economics Data</h1>
   <p class="subtitle">Chapter 6: The Least Squares Estimator</p>
 
@@ -167,22 +172,11 @@ Remy Beauregard
 <p><span class="math display">\[E[y|x]=\beta_1+\beta_2x\]</span></p>
 </section>
 <section id="graphical-representation-yx-vs.-eyx" class="slide level2">
-<h2>Graphical Representation: Y|X vs. E[Y|X]</h2>
-<div class="cell">
-<div class="cell-output-display">
-<div id="fig-cond-values" class="quarto-float quarto-figure quarto-figure-center" alt="Scatter plot illustrating the population regression model. A line labeled β₁+β₂x passes through the conditional mean E[Y|X=x] (diamond marker) at the value X=x. Individual conditional values Y|X are scattered as dots around the line. At the highlighted value X=x, a dashed vertical line separates points above the line, labeled u greater than 0, from points below it, labeled u less than 0, showing that the error term u is the deviation of each Y|X observation from its conditional mean.">
-<figure class="quarto-float quarto-float-fig">
-<div aria-describedby="fig-cond-values-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img data-src="L6_files/figure-revealjs/fig-cond-values-1.png" alt="Scatter plot illustrating the population regression model. A line labeled β₁+β₂x passes through the conditional mean E[Y|X=x] (diamond marker) at the value X=x. Individual conditional values Y|X are scattered as dots around the line. At the highlighted value X=x, a dashed vertical line separates points above the line, labeled u greater than 0, from points below it, labeled u less than 0, showing that the error term u is the deviation of each Y|X observation from its conditional mean." width="528" />
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-cond-values-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure 1: Population regression model
-</figcaption>
-</figure>
-</div>
-</div>
-</div>
-</section>
+<h2>Graphical Representation: Y|X vs.&nbsp;E[Y|X]</h2>
+
+<img data-src="L6_files/figure-revealjs/fig-cond-values-1.png" alt="Scatter plot illustrating the population regression model. A line labeled β₁+β₂x passes through the conditional mean E[Y|X=x] (diamond marker) at the value X=x. Individual conditional values Y|X are scattered as dots around the line. At the highlighted value X=x, a dashed vertical line separates points above the line, labeled u greater than 0, from points below it, labeled u less than 0, showing that the error term u is the deviation of each Y|X observation from its conditional mean." width="528" class="r-stretch quarto-figure-center" id="fig-cond-values"><p class="caption">
+Figure&nbsp;1: Population regression model
+</p></section>
 <section id="variance-of-yx-and-homoskedasticity" class="slide level2">
 <h2>Variance of Y|X and Homoskedasticity</h2>
 <p>Since <span class="math inline">\(u\)</span> is the difference between <span class="math inline">\(Y\)</span> and <span class="math inline">\(Y|X\)</span>, it follows that <span class="math display">\[Var[y|x]=Var[u|x]\]</span></p>
@@ -199,10 +193,10 @@ Figure 1: Population regression model
 <div id="fig-homo" class="quarto-float quarto-figure quarto-figure-center" alt="Scatter plot of Y against X illustrating homoskedasticity. A regression line runs through the data. The vertical spread of points around the line is roughly constant across all values of X, showing that error variance does not change with X.">
 <figure class="quarto-float quarto-float-fig">
 <div aria-describedby="fig-homo-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img data-src="L6_files/figure-revealjs/fig-homo-1.png" alt="Scatter plot of Y against X illustrating homoskedasticity. A regression line runs through the data. The vertical spread of points around the line is roughly constant across all values of X, showing that error variance does not change with X." width="432" />
+<img data-src="L6_files/figure-revealjs/fig-homo-1.png" alt="Scatter plot of Y against X illustrating homoskedasticity. A regression line runs through the data. The vertical spread of points around the line is roughly constant across all values of X, showing that error variance does not change with X." width="432">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-homo-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure 2: Homoskedastic data: constant error variance across X
+Figure&nbsp;2: Homoskedastic data: constant error variance across X
 </figcaption>
 </figure>
 </div>
@@ -215,17 +209,16 @@ Figure 2: Homoskedastic data: constant error variance across X
 <div id="fig-hetero" class="quarto-float quarto-figure quarto-figure-center" alt="Scatter plot of Y against X illustrating heteroskedasticity. A regression line runs through the data. The vertical spread of points around the line grows larger as X increases, showing that error variance rises with X.">
 <figure class="quarto-float quarto-float-fig">
 <div aria-describedby="fig-hetero-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img data-src="L6_files/figure-revealjs/fig-hetero-1.png" alt="Scatter plot of Y against X illustrating heteroskedasticity. A regression line runs through the data. The vertical spread of points around the line grows larger as X increases, showing that error variance rises with X." width="432" />
+<img data-src="L6_files/figure-revealjs/fig-hetero-1.png" alt="Scatter plot of Y against X illustrating heteroskedasticity. A regression line runs through the data. The vertical spread of points around the line grows larger as X increases, showing that error variance rises with X." width="432">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-hetero-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure 3: Heteroskedastic data: error variance increases with X
+Figure&nbsp;3: Heteroskedastic data: error variance increases with X
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
-</div>
-</div>
+</div></div>
 </section>
 <section id="conditional-distribution-of-y-summary" class="slide level2">
 <h2>Conditional Distribution of Y: Summary</h2>
@@ -262,9 +255,9 @@ Figure 3: Heteroskedastic data: error variance increases with X
 <h2>What the Four Assumptions Give Us</h2>
 <p>What can we do with these assumptions?</p>
 <p>Assumptions (1) + (2) allow us to say that <span class="math inline">\(E[b_2]=\beta_2\)</span>.</p>
-<p>Assumptions (3) + (4)<a href="#/fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> allow us to say that <span class="math inline">\(\sigma^2_{b_2}=\frac{\sigma^2_u}{\sum_{i=1}^n(x_i-\bar{x})^2}\)</span></p>
+<p>Assumptions (3) + (4)<sup>1</sup> allow us to say that <span class="math inline">\(\sigma^2_{b_2}=\frac{\sigma^2_u}{\sum_{i=1}^n(x_i-\bar{x})^2}\)</span></p>
 <p>Finally, our CLT says that our computed statistic will be normally distributed whenever <span class="math inline">\(n&gt;30\)</span>.</p>
-</section>
+<aside><ol class="aside-footnotes"><li id="fn1"><p>and some algebra</p></li></ol></aside></section>
 <section id="asymptotic-normality-of-the-ols-estimator" class="slide level2">
 <h2>Asymptotic Normality of the OLS Estimator</h2>
 <p>All together, these assumptions give us:</p>
@@ -276,31 +269,20 @@ Figure 3: Heteroskedastic data: error variance increases with X
 <section id="unbiasedness-and-consistency-of-ols" class="slide level2">
 <h2>Unbiasedness and Consistency of OLS</h2>
 <p>We can claim that our OLS estimator <span class="math inline">\(b_2\)</span> is both <em>unbiased</em> and <em>consistent</em> under these four population assumptions: <span class="math display">\[\underbrace{E[b_2]=\beta_2}_{\text{Unbiased}}\text{ and }\underbrace{\sigma^2_{b_2}=\frac{\sigma^2_u}{\sum_{i=1}^{\boldsymbol{n}}(x_i-\bar{x})^2}\rightarrow0\text{ as }n\rightarrow\infty}_{\text{Consistent}}\]</span></p>
-<div class="cell">
-<div class="cell-output-display">
-<div id="fig-ols-properties" class="quarto-float quarto-figure quarto-figure-center" alt="Density plot showing three bell-shaped sampling distribution curves. Two blue curves are centered at β₂, the true parameter value marked by a dashed vertical line: a wide, flat long-dashed curve for the OLS estimator at small n, and a tall, narrow solid curve for OLS at large n, illustrating that OLS is unbiased at all sample sizes and consistent as n increases. A purple curve centered to the right of β₂ represents a biased estimator whose distribution does not converge to the true value. The horizontal axis shows the estimator value and the vertical axis shows sampling density.">
-<figure class="quarto-float quarto-float-fig">
-<div aria-describedby="fig-ols-properties-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img data-src="L6_files/figure-revealjs/fig-ols-properties-1.png" alt="Density plot showing three bell-shaped sampling distribution curves. Two blue curves are centered at β₂, the true parameter value marked by a dashed vertical line: a wide, flat long-dashed curve for the OLS estimator at small n, and a tall, narrow solid curve for OLS at large n, illustrating that OLS is unbiased at all sample sizes and consistent as n increases. A purple curve centered to the right of β₂ represents a biased estimator whose distribution does not converge to the true value. The horizontal axis shows the estimator value and the vertical axis shows sampling density." width="480" />
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ols-properties-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure 4: Sampling distributions of the OLS estimator <span class="math inline">\(b_2\)</span> (unbiased and consistent) versus a biased estimator
-</figcaption>
-</figure>
-</div>
-</div>
-</div>
-</section>
+
+<img data-src="L6_files/figure-revealjs/fig-ols-properties-1.png" alt="Density plot showing three bell-shaped sampling distribution curves. Two blue curves are centered at β₂, the true parameter value marked by a dashed vertical line: a wide, flat long-dashed curve for the OLS estimator at small n, and a tall, narrow solid curve for OLS at large n, illustrating that OLS is unbiased at all sample sizes and consistent as n increases. A purple curve centered to the right of β₂ represents a biased estimator whose distribution does not converge to the true value. The horizontal axis shows the estimator value and the vertical axis shows sampling density." width="480" class="r-stretch quarto-figure-center" id="fig-ols-properties"><p class="caption">
+Figure&nbsp;4: Sampling distributions of the OLS estimator <span class="math inline">\(b_2\)</span> (unbiased and consistent) versus a biased estimator
+</p></section>
 <section id="ols-is-blue-best-linear-unbiased-estimator" class="slide level2">
 <h2>OLS is BLUE: Best Linear Unbiased Estimator</h2>
 <p>We also call OLS <strong>BLUE</strong>: the <strong>Best Linear Unbiased Estimator</strong>:</p>
 <ul>
-<li><p><strong>best</strong> means that OLS has the minimum variance of all estimators in its class (not proven<a href="#/fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> in class)</p></li>
+<li><p><strong>best</strong> means that OLS has the minimum variance of all estimators in its class (not proven<sup>1</sup> in class)</p></li>
 <li><p><strong>linear</strong> means our assumed population model that we are estimating is linear</p></li>
 <li><p><strong>unbiased</strong> means our conditional error term is mean zero</p></li>
 <li><p><strong>estimator</strong> because we are estimating <span class="math inline">\(\beta_2\)</span> with <span class="math inline">\(b_2\)</span></p></li>
 </ul>
-</section>
+<aside><ol class="aside-footnotes"><li id="fn2"><p>If you are curious how we would show this, we use something called the <strong>Gauss-Markov theorem</strong> to show any other estimator would have higher variance.</p></li></ol></aside></section>
 <section id="standard-error-of-the-slope-coefficient" class="slide level2">
 <h2>Standard Error of the Slope Coefficient</h2>
 <p>Since we do not actually observe <span class="math inline">\(u\)</span> and thus do not know <span class="math inline">\(\sigma^2_u\)</span>, however, we replace <span class="math inline">\(\sigma^2_u\)</span> with <span class="math inline">\(s^2_e\)</span> and take a square root to get: <span class="math display">\[s_{b_2}=\frac{s_e}{\sqrt{\sum_{i=1}^n(x_i-\bar{x})^2}}\]</span></p>
@@ -316,7 +298,7 @@ Figure 4: Sampling distributions of the OLS estimator <span class="math inline"
 </ol>
 </section>
 <section id="graphical-representation-scattered-vs.-clustered-data" class="slide level2">
-<h2>Graphical Representation: Scattered vs. Clustered Data</h2>
+<h2>Graphical Representation: Scattered vs.&nbsp;Clustered Data</h2>
 <div class="columns">
 <div class="column" style="width:50%;">
 <p><strong>Clustered regressors</strong> (imprecise):</p>
@@ -325,10 +307,10 @@ Figure 4: Sampling distributions of the OLS estimator <span class="math inline"
 <div id="fig-slope-clustered" class="quarto-float quarto-figure quarto-figure-center" alt="Scatter plot of Y against X where all data points are clustered in a narrow band of X values near the center of the horizontal axis. Many plausible regression lines are drawn through the cluster as a fan, showing that the slope coefficient b₂ can take a wide range of values — illustrating high estimation imprecision when the regressor has little spread.">
 <figure class="quarto-float quarto-float-fig">
 <div aria-describedby="fig-slope-clustered-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img data-src="L6_files/figure-revealjs/fig-slope-clustered-1.png" alt="Scatter plot of Y against X where all data points are clustered in a narrow band of X values near the center of the horizontal axis. Many plausible regression lines are drawn through the cluster as a fan, showing that the slope coefficient b₂ can take a wide range of values — illustrating high estimation imprecision when the regressor has little spread." width="432" />
+<img data-src="L6_files/figure-revealjs/fig-slope-clustered-1.png" alt="Scatter plot of Y against X where all data points are clustered in a narrow band of X values near the center of the horizontal axis. Many plausible regression lines are drawn through the cluster as a fan, showing that the slope coefficient b₂ can take a wide range of values — illustrating high estimation imprecision when the regressor has little spread." width="432">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-slope-clustered-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure 5: Slope estimates from clustered X data
+Figure&nbsp;5: Slope estimates from clustered X data
 </figcaption>
 </figure>
 </div>
@@ -341,17 +323,16 @@ Figure 5: Slope estimates from clustered X data
 <div id="fig-slope-spread" class="quarto-float quarto-figure quarto-figure-center" alt="Scatter plot of Y against X where data points are spread widely across the full range of X values. Many regression lines are drawn through the data as a fan, but they are tightly clustered together, showing that the slope coefficient b₂ is estimated precisely when the regressor is widely spread. The true population regression line is shown as a blue dashed line.">
 <figure class="quarto-float quarto-float-fig">
 <div aria-describedby="fig-slope-spread-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img data-src="L6_files/figure-revealjs/fig-slope-spread-1.png" alt="Scatter plot of Y against X where data points are spread widely across the full range of X values. Many regression lines are drawn through the data as a fan, but they are tightly clustered together, showing that the slope coefficient b₂ is estimated precisely when the regressor is widely spread. The true population regression line is shown as a blue dashed line." width="432" />
+<img data-src="L6_files/figure-revealjs/fig-slope-spread-1.png" alt="Scatter plot of Y against X where data points are spread widely across the full range of X values. Many regression lines are drawn through the data as a fan, but they are tightly clustered together, showing that the slope coefficient b₂ is estimated precisely when the regressor is widely spread. The true population regression line is shown as a blue dashed line." width="432">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-slope-spread-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure 6: Slope estimates from spread-out X data
+Figure&nbsp;6: Slope estimates from spread-out X data
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
-</div>
-</div>
+</div></div>
 </section>
 <section id="threats-to-the-regression-assumptions" class="slide level2">
 <h2>Threats to the Regression Assumptions</h2>
@@ -377,7 +358,7 @@ Figure 6: Slope estimates from spread-out X data
 <li>Homoskedasticity is violated:</li>
 </ol>
 <p>Heteroskedasticity, or errors that vary in magnitude with x, can be accommodated by using <strong>robust standard errors</strong>. This is a relatively easy correction in Stata (or any program) that adjusts our residuals with the magnitude of <span class="math inline">\(X\)</span> to avoid potential heteroskedasticity.</p>
-<p>You are not responsible for the robust standard error formula. Broadly, however, we expect it to undo the problematic <span class="math inline">\(f(x)\)</span> making our errors heteroskedastic: <span class="math inline">\(f(x)\sigma^2_u\)</span> (with <span class="math inline">\(f&#39;(x)&gt;0\)</span> or <span class="math inline">\(f&#39;(x)&lt;0\)</span>)</p>
+<p>You are not responsible for the robust standard error formula. Broadly, however, we expect it to undo the problematic <span class="math inline">\(f(x)\)</span> making our errors heteroskedastic: <span class="math inline">\(f(x)\sigma^2_u\)</span> (with <span class="math inline">\(f'(x)&gt;0\)</span> or <span class="math inline">\(f'(x)&lt;0\)</span>)</p>
 </section>
 <section id="assumption-violation-4-independence" class="slide level2">
 <h2>Assumption Violation 4: Independence</h2>
@@ -388,7 +369,7 @@ Figure 6: Slope estimates from spread-out X data
 <p>We also may see errors correlated across units of observation (in cross-sectional or panel data) and will see a method in later chapters for dealing with such error dependence. Like robust standard errors, this will also be relatively simple to implement.</p>
 </section>
 <section>
-<section id="end-of-lecture-material" class="title-slide slide level1">
+<section id="end-of-lecture-material" class="title-slide slide level1 center">
 <h1>End of Lecture Material</h1>
 
 </section>
@@ -396,25 +377,19 @@ Figure 6: Slope estimates from spread-out X data
 <h2>Knowledge Check 6</h2>
 <p>For the following pairs of scenarios, state for which you would expect <span class="math inline">\(\beta_2\)</span> to be <em>more precisely estimated</em> and why:</p>
 <ol type="a">
-<li><p><span class="math inline">\(n=45\)</span> vs. <span class="math inline">\(n=100\)</span></p></li>
-<li><p>The regressor ranges from 10 to 20 vs. from 10 to 50</p></li>
-<li><p>The standard error of the regression <span class="math inline">\(s_e=2\)</span> vs. <span class="math inline">\(s_e=9\)</span></p></li>
+<li><p><span class="math inline">\(n=45\)</span> vs.&nbsp;<span class="math inline">\(n=100\)</span></p></li>
+<li><p>The regressor ranges from 10 to 20 vs.&nbsp;from 10 to 50</p></li>
+<li><p>The standard error of the regression <span class="math inline">\(s_e=2\)</span> vs.&nbsp;<span class="math inline">\(s_e=9\)</span></p></li>
 </ol>
-<div class="quarto-auto-generated-content" style="display: none;">
+
+</section></section>
+
+    </div>
+  <div class="quarto-auto-generated-content" style="display: none;">
 <div class="footer footer-default">
 
 </div>
-</div>
-</section></section>
-<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
-<hr />
-<ol>
-<li id="fn1"><p>and some algebra<a href="#/fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn2"><p>If you are curious how we would show this, we use something called the <strong>Gauss-Markov theorem</strong> to show any other estimator would have higher variance.<a href="#/fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-</ol>
-</section>
-    </div>
-  </div>
+</div></div>
 
   <script>window.backupDefine = window.define; window.define = undefined;</script>
   <script src="L6_files/libs/revealjs/dist/reveal.js"></script>
@@ -436,7 +411,17 @@ Figure 6: Slope estimates from spread-out X data
 
       // Full list of configuration options available at:
       // https://revealjs.com/config/
-      Reveal.initialize({ 
+      Reveal.initialize({
+'controlsAuto': true,
+'previewLinksAuto': false,
+'pdfSeparateFragments': false,
+'autoAnimateEasing': "ease",
+'autoAnimateDuration': 1,
+'autoAnimateUnmatched': true,
+'jumpToSlide': true,
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'smaller': true,
+ 
         // Display controls in the bottom right corner
         controls: false,
 
@@ -605,7 +590,8 @@ Figure 6: Slope estimates from spread-out X data
         },
 
         // reveal.js plugins
-        plugins: [
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, QuartoSupport,
+
           RevealMath,
           RevealNotes,
           RevealSearch,
@@ -651,7 +637,7 @@ Figure 6: Slope estimates from spread-out X data
       })();
     </script>
 
-    <script id = "quarto-html-after-body" type="application/javascript">
+    <script id="quarto-html-after-body" type="application/javascript">
       window.document.addEventListener("DOMContentLoaded", function (event) {
         const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
         tabsets.forEach(function(tabset) {
@@ -819,5 +805,6 @@ Figure 6: Slope estimates from spread-out X data
         }
       });
       </script>
-    </body>
-</html>
+    
+
+</body></html>
