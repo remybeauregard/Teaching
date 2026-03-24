@@ -10,13 +10,14 @@ Each course lives in its own directory:
 |---|---|
 | `ECN 102 SS1 2026/` | Analysis of Economics Data — Summer Session 1 2026 |
 | `ECN 101-B Cloyne/` | Intermediate Macroeconomic Theory — Section B |
-| `Reading Group/` | ECN 099 Reading Group |
+| `ECN 099 Reading Group/` | ECN 099 Undergraduate Reading Group |
 
 Each directory contains `.qmd` source files alongside their pre-rendered HTML and PDF outputs. Both source and rendered outputs are committed to the repository. After editing a `.qmd`, re-render and commit both.
 
 **Document types:**
 - **Syllabi** — HTML (`cosmo` theme) + PDF; include term/year in filename (e.g. `ECN 102 Syllabus SS1 2026.html`)
 - **Slides** — Reveal.js HTML + Beamer PDF + plain HTML fallback; omit term/year from filename (e.g. `ECN 102 Lecture 1.html`)
+- **Homework / assignments** — HTML (`cosmo` theme) + PDF; omit term/year from filename. Answer-key files append `AK` (e.g. `ECN 102 Homework 1 AK.html`). Code and output are shown (`echo: true`).
 
 ## Rendering
 
