@@ -1,0 +1,135 @@
+---
+title: "ECN 102: Analysis of Econ Data"
+subtitle: "SS1 2025 Beauregard"
+author: "Midterm Practice"
+output: pdf_document
+header-includes:
+  \usepackage{multicol}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+require("Statamarkdown")
+```
+
+Practice exercises come from \textit{Analysis of Economics Data} (2022) by Colin Cameron. Exercises appear at the end of each chapter. Answers to odd exercises appear at the end of the textbook. These questions have been selected to help prepare you for the midterm. 
+ 
+ \underline{Chapter 1:} 
+
+- Q2
+
+- Q3
+
+\underline{Chapter 2:} 
+
+- Q2
+
+- Q9
+
+- Q12 
+
+\underline{Chapter 3:}
+
+- Q3 
+
+- Q5
+
+\underline{Chapter 4:} 
+
+- Q9
+
+- Q10 
+
+\underline{Chapter 5:} 
+
+- Q9 (not part \textit{c})
+
+- Q10 (not part \textit{c})
+
+\underline{Chapter 6:}
+
+- Q1
+
+- Q10
+
+\underline{Chapter 7:}
+
+- Q5
+
+- Q13
+
+\newpage
+
+\begin{center}
+\huge{Even Question Answers}
+\end{center}
+
+\underline{Chapter 1}:
+
+- Q2: 
+
+a) Numerical, cross-section 
+
+b) Categorical (y/n), time series 
+
+c) Numerical, cross-section 
+
+d) Numerical, time series
+
+e) Numerical, panel 
+
+\underline{Chapter 2}:
+
+- Q2: 
+
+a) $\sum_{i=1}^62 = 2\times6=12$
+
+b) $\sum_{i=1}^4\frac2i=\frac21 + \frac22 + \frac23 + \frac24 = 2+1+0.5+0.\overline{66}=4.1\overline{66}$
+
+c) $\sum_{i=1}^33i^3=3+(3\times2^3)+(3\times3^3)=108$
+
+d) $\sum_{i=4}^6i=4+5+6=15$
+
+e) $\sum_{i=1}^4(5+2i)=5\times4+2(1)+2(2)+2(3)+2(4)=40$
+
+- Q12:
+
+a) Positive skew 
+
+b) Positive skew
+
+c) Not enough information 
+
+d) Positive skew
+
+\underline{Chapter 4}:
+
+- Q10: 
+
+$80\pm\frac{60}{\sqrt{100}}\times t^*_{100-1,0.025}$
+
+```{stata}
+di invttail(99,0.025)
+```
+
+$80\pm\frac{60}{\sqrt{100}}\times1.98=(68.12,91.88)$ \newpage
+
+\underline{Chapter 5}:
+
+- Q10: 
+
+a) $r_{xy}=\frac{Cov(x,y)}{s_xs_y}=\frac{40}{\sqrt{400}\times\sqrt{16}}=0.5$
+
+b) $b_2=\frac{Cov(x,y)}{Var(x)}=\frac{40}{400}=0.1$
+
+c) $s_x,s_y=1\rightarrow b_2=r_{xy}\frac{s_y}{s_x}=r_{xy}\times1\rightarrow b^{standardized}_2=0.5$
+
+\underline{Chapter 6}:
+
+- Q10: 
+
+a) True; definition of standardizing a r.v. 
+
+b) False; not true for all sample sizes 
+
+c) True; CLT for large enough sample sizes

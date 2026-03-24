@@ -1,0 +1,38 @@
+---
+title: "ECN 102: Analysis of Econ Data"
+subtitle: "SS1 2025 Beauregard"
+author: "Department of Economics, UC Davis"
+date: "Midterm Formula Sheet"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = F)
+```
+
+# Univariate Data
+
+$$\bar{x}=\frac1n\sum_{i=1}^nx_i\text{  and  } s_x^2=\frac{1}{n-1}\sum_{i=1}^n(x_i-\bar{x})^2$$
+
+$$\bar{x}\pm t^*_{\alpha/2;n-1}\times(s_x/\sqrt{n})\text{}\text{  and  }t=\frac{\bar{x}-\mu_0}{s_x/\sqrt{n}}$$
+
+$$ttail(df,t)=\Pr(T>t)\text{ where }T\sim T(df)$$
+
+$$invttail(df,p)\rightarrow t^*:\Pr(T>t^*)=p\text{ where }T\sim T(df)$$
+
+# Bivariate data
+
+$$r_{xy}=\frac{\sum_{i=1}^n(x_i-\bar{x})(y_i-\bar{y})}{\sqrt{\sum_{i=1}^n(x_i-\bar{x})^2\times\sum_{i=1}^n(y_i-\bar{y})^2}} = \frac{s_{xy}}{s_x\times s_y}$$
+
+$$\hat{y}=b_1+b_2x$$
+
+$$b_2=\frac{\sum_{i=1}^n(x_i-\bar{x})(y_i-\bar{y})}{\sum_{i=1}^n(x_i-\bar{x})^2}$$
+
+$$b_1=\bar{y}-b_2\bar{x}\text{ and } b_2 = r_{xy}\frac{s_y}{s_x}$$
+
+$$TSS=\sum_{i=1}^n(y_i-\bar{y})^2\text{ and } ResSS=\sum_{i=1}^n(y_i-\hat{y}_i)^2\text{ and } ExpSS=\sum_{i=1}^n(\hat{y}_i-\bar{y})^2$$
+
+$$R^2=\frac{ExpSS}{TSS}=1-\frac{ResSS}{TSS}$$
+
+$$b_2\pm t^*_{\alpha/2;n-2}\times s_{b_2}\text{ and }t=\frac{b_2-\beta_2}{s_{b_2}}$$
+$$s_{b_2}=\frac{s_e}{\sqrt{\sum_{i=1}^n(x_i-\bar{x})^2}}\text{ and } s_e=\sqrt{\frac{1}{n-2}\sum_{i=1}^n(y_i-\hat{y}_i)^2}$$

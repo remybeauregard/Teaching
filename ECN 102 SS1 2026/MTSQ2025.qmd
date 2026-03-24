@@ -1,0 +1,232 @@
+---
+title: "ECN 102: Analysis of Econ Data"
+subtitle: "SQ 2025 Beauregard"
+author: "Department of Economics, UC Davis"
+date: "Midterm Exam"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = F)
+require("Statamarkdown")
+```
+
+\begin{center}
+This exam consists of 5 short-answer questions (with sub-parts) and 5 multiple choice questions. You will have a maximum of 50 minutes to complete this exam. No additional time may be taken without prior accommodation. Show all work to receive full credit. You may use only the calculators provided by the instructor. For questions requiring computation, it suffices to express your final answer with 2 decimal places. There is a formula sheet and scratch paper provided at the end of this exam. You may remove these pages and discard them after the exam. If you plan to use any of these extra pages for your final answers, please write your name and student ID at the top of each scratch page to ensure they are not lost. 
+
+This exam is worth 70 points. 
+
+\end{center}
+
+\vspace{25pt}\textbf{Name:}
+
+\vspace{25pt}\textbf{Student ID:}
+
+\newpage
+
+# Question 1: Sample Means [10 points]
+Suppose we know $J\sim(4,4)$ and we draw 35 samples of size 49 and obtain 35 sample means. 
+
+a) How would we properly denote/write the sample mean of $J$? (You do not need to explain) [2 points] \vspace{50pt}
+
+For the distribution of \underline{sample means} of $J$: 
+
+b) What would you expect the population mean to be equal to? [2 points] \vspace{50pt}
+
+c) What would you expect the population standard deviation to be equal to? [3 points] \vspace{50pt}
+
+d) What range would you expect 99.7\% of the sample means of $J$ to fall under? Explain. [3 points] \vspace{50pt}
+
+# Question 2: Summation Notation [6 points]
+
+Please calculate the following sums: 
+
+a) [3 points] $$\sum_{i=1}^3x_i\text{ with }x=[7,3,42,5,1]$$ \vspace{50pt}
+
+b) [3 points] $$\frac15\sum_{i=3}^5(i+1)$$ \newpage
+
+# Question 3: Summary Statistics [10 points]
+
+Suppose you obtain the following summary for a sample of data with \texttt{summarize x, detail}: 
+```{stata,echo=F}
+qui set obs 100
+qui g x=rnormal(100,1)
+
+su x, d
+```
+
+a) Interpret the mean, median, and skewness of this data. [3 points] \vspace{50pt}
+
+b) Interpret the kurtosis of this data. [3 points] \vspace{50pt}
+
+c) Is this data (roughly) normally distributed? Explain. [4 points] \vspace{50pt}
+
+# Question 4: Univariate Inference [11 points]
+
+You are given the following from Stata: 
+```{stata invttail,echo=F}
+di _n"invttail(59,0.025)=" invttail(59,0.025) _n "invttail(59,0.05)=" ///
+  invttail(59,0.05) _n "invttail(58,0.025)=" invttail(58,0.025) _n ///
+  "invttail(58,0.05)=" invttail(58,0.05) _n "invttail(57,0.025)=" ///
+  invttail(57,0.025) _n "invttail(57,0.05)=" invttail(57,0.05)
+```
+
+\newpage Suppose you then use the \texttt{summarize} command to obtain the following results for the three variables below. The variables \textit{price} and \textit{weight} have been transformed to represent units of \underline{thousands}. 
+```{stata summarize,echo=F,collectcode=T}
+sysuse auto
+qui replace weight = weight/1000
+qui replace price = price/1000
+qui drop in 6/20
+summarize mpg weight price  
+```
+
+a) Can we say that \textit{mpg} has higher dispersion than \textit{price}? Why or why not? [3 points] \vspace{125pt}
+
+b) Provide a 95\% CI for the mean of \textit{weight}. Interpret your answer. [3 points] \vspace{125pt}
+
+c) The claim is made that the average weight of a car in 1978 was below 3.25 thousand lbs. Using your sample data, test this claim at the 5\% significance level. Clearly state your null and alternate hypotheses, your test statistic, and your conclusion. [5 points] \newpage
+
+# Q5: Bivariate Data [23 points]
+
+a) Write down the population model (equation) for a bivariate regression of $Y$ on $X$ if linearity, unbiasedness, homoskedasticity, and independence hold. [2 points] \vspace{75pt}
+
+b) Assuming our four population assumptions hold and our sample is large enough, complete the statement about the distribution of $\frac{b_2-\beta_2}{\sigma_{b_2}}\sim\_\_(\_\_,\_\_)$. [5 points] \vspace{75pt}
+
+Suppose we run the following regression and obtain these results: 
+```{stata,echo=T}
+reg price mpg
+```
+
+c) Write down the estimated (sample) relationship between \textit{price} and \textit{mpg}. [2 points] \vspace{60pt}
+
+d) If we were to add \texttt{,robust} to the end of our regression code, list all the quantities in our regression results that would change. Why might we add this option? [4 points] \newpage
+
+Interpret the t-statistic and p-value for the OLS slope coefficient from the regression output:
+
+e) What is the name of the test this referring to? What are its null and alternate hypotheses? [3 points] \vspace{50pt}
+
+f) What is the conclusion of this test? [2 points] \vspace{50pt}
+
+g) How many degrees of freedom will this test have? (You do not need to explain) [2 points] \vspace{50pt}
+
+h) What would we expect the price to be for a car with an mpg of 25? [3 points] \vspace{50pt}
+
+# Multiple Choice [2 points each]
+
+Only one answer is correct for each question. Choose the best possible answer. 
+
+## MC 1
+
+Remy wants to find out the most popular boba shop in Davis. For two days in a row, he goes to the quad at noon and asks everyone sitting there their favorite place for boba (after making sure they are a student). He then compiles this data into a single spreadsheet. 
+
+This data will be: 
+
+a) Experimental, categorical, panel
+
+b) Experimental, numerical, time-series
+
+c) Observational, numerical, cross-section
+
+d) Observational, categorical, repeated cross-section 
+
+e) None of the above 
+
+## MC 2
+
+We define \textit{residuals} as: 
+
+a) horizontal deviations of actual data points from the sample regression line 
+
+b) horizontal deviations of actual data points from the population regression line 
+
+c) vertical deviations of actual data points from the sample regression line 
+
+d) vertical deviations of actual data points from the population regression line
+
+## MC 3
+
+We define \textit{error terms} as: 
+
+a) horizontal deviations of actual data points from the sample regression line 
+
+b) horizontal deviations of actual data points from the population regression line 
+
+c) vertical deviations of actual data points from the sample regression line 
+
+d) vertical deviations of actual data points from the population regression line
+
+## MC 4
+
+For a r.v. X with population mean $\mu$ and population variance $\sigma^2$, the \textit{standard error} of $X$ is: 
+
+a) An estimator for $\sigma_{\bar{X}}$
+
+d) Always equal to $\sigma_{\bar{X}}$
+
+b) An estimator for $\sigma_X$
+
+c) Always equal to $\sigma_X$
+
+e) None of the above 
+
+## MC 5
+
+Suppose a r.v. $Z\sim(6,36)$. We would expect the transformed r.v. $\tilde{Z}\equiv(Z-6)/6$ to be: 
+
+a) Normally distributed for any sample size 
+
+b) Normally distributed as $n\rightarrow\infty$
+
+c) Distributed identically to $Z$
+
+d) All of the above 
+
+e) None of the above 
+
+\newpage 
+
+\begin{center}
+\large
+\textbf{Scratch paper }
+\end{center}
+\newpage
+
+\large
+\begin{center}
+\textbf{Beauregard, UC Davis Economics}
+
+\textbf{Formula sheet}
+\end{center} \normalsize
+
+# Univariate Data
+
+$$\bar{x}=\frac1n\sum_{i=1}^nx_i\text{  and  } s_x^2=\frac{1}{n-1}\sum_{i=1}^n(x_i-\bar{x})^2$$
+
+$$\bar{x}\pm t^*_{\alpha/2;n-1}\times(s_x/\sqrt{n})\text{}\text{  and  }t=\frac{\bar{x}-\mu_0}{s_x/\sqrt{n}}$$
+
+$$ttail(df,t)=\Pr(T>t)\text{ where }T\sim T(df)$$
+
+$$invttail(df,p)\rightarrow t^*:\Pr(T>t^*)=p\text{ where }T\sim T(df)$$
+
+# Bivariate data
+
+$$r_{xy}=\frac{\sum_{i=1}^n(x_i-\bar{x})(y_i-\bar{y})}{\sqrt{\sum_{i=1}^n(x_i-\bar{x})^2\times\sum_{i=1}^n(y_i-\bar{y})^2}} = \frac{s_{xy}}{s_x\times s_y}$$
+
+$$\hat{y}=b_1+b_2x$$
+
+$$b_2=\frac{\sum_{i=1}^n(x_i-\bar{x})(y_i-\bar{y})}{\sum_{i=1}^n(x_i-\bar{x})^2}$$
+
+$$b_1=\bar{y}-b_2\bar{x}\text{ and } b_2 = r_{xy}\frac{s_y}{s_x}$$
+
+$$TSS=\sum_{i=1}^n(y_i-\bar{y})^2\text{ and } ResSS=\sum_{i=1}^n(y_i-\hat{y}_i)^2\text{ and } ExpSS=\sum_{i=1}^n(\hat{y}_i-\bar{y})^2$$
+
+$$R^2=\frac{ExpSS}{TSS}=1-\frac{ResSS}{TSS}$$
+
+$$b_2\pm t^*_{\alpha/2;n-2}\times s_{b_2}\text{ and }t=\frac{b_2-\beta_2}{s_{b_2}}$$
+$$s_{b_2}=\frac{s_e}{\sqrt{\sum_{i=1}^n(x_i-\bar{x})^2}}\text{ and } s_e=\sqrt{\frac{1}{n-2}\sum_{i=1}^n(y_i-\hat{y}_i)^2}$$
+\newpage 
+
+\begin{center}
+\large
+\textbf{Scratch paper }
+\end{center}
