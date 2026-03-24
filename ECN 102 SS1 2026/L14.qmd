@@ -128,9 +128,9 @@ ggplot(df2, aes(x, y, color = group, linetype = group)) +
   annotate("text", x = 2.1, y = b1 + b2 * 1.5 + a1 / 2,
            label = expression(italic(a)[1]),
            color = "#333333", size = 3.2, hjust = 0) +
-  annotate("text", x = 7, y = b1 + b2 * 7 - 3.5,
+  annotate("text", x = 7, y = b1 + b2 * 7 - 6.5,
            label = "Non-major (ECN = 0)", color = "#003087", size = 3.0, hjust = 0.5) +
-  annotate("text", x = 7, y = b1 + a1 + b2 * 7 + 3.5,
+  annotate("text", x = 7, y = b1 + a1 + b2 * 7 + 6.5,
            label = "Econ major (ECN = 1)", color = "#ac47be", size = 3.0, hjust = 0.5) +
   coord_cartesian(xlim = c(0, 10), ylim = c(45, 100)) +
   labs(x = "Hours studying", y = "Final grade") +
@@ -216,7 +216,6 @@ d=0\text{: }\hat{y}&=b_1+b_2x+a_1d+a_2(d\cdot x)\\
 &=b_1+b_2x+a_1(0)+a_2(0)x\\
 &=b_1+b_2x
 \end{align*}$$
-
 $$\begin{align*}
 d=1\text{: }\hat{y}&=b_1+b_2x+a_1d+a_2(d\cdot x)\\
 &=b_1+b_2x+a_1(1)+a_2(1)x\\
@@ -225,7 +224,9 @@ d=1\text{: }\hat{y}&=b_1+b_2x+a_1d+a_2(d\cdot x)\\
 &=c_1+c_2x
 \end{align*}$$
 
-## Example: Car Prices, MPG, and Country of Origin {.smaller shrink=20}
+## Example: Car Prices, MPG, and Country of Origin {.smaller shrink=35}
+
+\vspace{2em}
 
 How would we interpret the following regression results with indicator variable *foreign*?
 
@@ -284,6 +285,8 @@ When we conduct inference on dummy variables with a leave-out group, we are not 
 
 ## Example: Values of the Foreign Variable {.smaller shrink=20}
 
+\vspace{3em}
+
 In our car example, our variable *foreign* takes the following values:
 
 ```{stata}
@@ -299,7 +302,9 @@ To estimate a regression using dummies for the values of *foreign*, we would nee
 
 3. Drop our constant term and include both dummies
 
-## Avoiding the Dummy Variable Trap {.smaller shrink=20}
+## Avoiding the Dummy Variable Trap {.smaller shrink=35}
+
+\vspace{3em}
 
 Do we run into the dummy variable trap here? Why or why not?
 
