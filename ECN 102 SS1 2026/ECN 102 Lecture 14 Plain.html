@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.36">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Remy Beauregard">
+
+<title>ECN 102: Analysis of Economics Data</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="L14_files/libs/clipboard/clipboard.min.js"></script>
+<script src="L14_files/libs/quarto-html/quarto.js" type="module"></script>
+<script src="L14_files/libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="L14_files/libs/quarto-html/popper.min.js"></script>
+<script src="L14_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="L14_files/libs/quarto-html/anchor.min.js"></script>
+<link href="L14_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="L14_files/libs/quarto-html/quarto-syntax-highlighting-845c23b38eaddc0f92fda52bfe77a8c8.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="L14_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="L14_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="L14_files/libs/bootstrap/bootstrap-138a6193a3bd40baf1e627da441a4734.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<meta name="description" content="Lecture slides 14 for ECN 102.">
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="quarto-light">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="ECN 102 Lecture 14.html"><i class="bi bi-file-slides"></i>RevealJS</a></li><li><a href="ECN 102 Lecture 14.pdf"><i class="bi bi-file-pdf"></i>Beamer</a></li></ul></div></div>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">ECN 102: Analysis of Economics Data</h1>
+<p class="subtitle lead">Chapter 14: Indicator Variables</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Remy Beauregard </p>
+          </div>
+  </div>
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="indicator-variables-introduction" class="level2">
+<h2 class="anchored" data-anchor-id="indicator-variables-introduction">Indicator Variables: Introduction</h2>
+<p>We previously asserted that categorical variables, such as “shirt color”, are not typically included in regression, since it is difficult to interpret a numerical coefficient for a discrete categorical series.</p>
+<p>One common exception is using <strong>indicator variables</strong> which encode categorical information. A special kind of indicator variable is called a <strong>dummy variable</strong> which are coded as being only zero or one.</p>
+<p>We may have a single indicator variable for a binary outcome (<em>male</em>=1 vs.&nbsp;<em>male</em>=0) or a set of indicator variables that span the possible options (<em>red shirt, blue shirt, green shirt, …</em>). Indicator variables give us a powerful way to analyze differences in means and slopes for different groups within our regression.</p>
+</section>
+<section id="simple-dummy-variable-regression" class="level2">
+<h2 class="anchored" data-anchor-id="simple-dummy-variable-regression">Simple Dummy Variable Regression</h2>
+<p>Suppose we want to estimate the average final grade in ECN102 for Econ majors and non-majors. We could define a dummy variable <span class="math inline">\(ECN=1\)</span> for Economics majors and 0 otherwise.</p>
+<p>We then regress <span class="math inline">\(\widehat{final}=b_1+a_1\times ECN\)</span>:</p>
+<p><span class="math display">\[\widehat{final}_i=\begin{cases}
+b_1+a_1 &amp; ECN_i =1 \\
+b_1 &amp; ECN_i=0
+\end{cases}\]</span></p>
+<p>Our coefficient <span class="math inline">\(a_1\)</span> on <span class="math inline">\(ECN\)</span> is then the average difference in final grade between Econ majors and non-majors. This is the simplest use of a dummy variable.</p>
+</section>
+<section id="graph-final-grade-on-ecn-major-status" class="level2">
+<h2 class="anchored" data-anchor-id="graph-final-grade-on-ecn-major-status">Graph: Final Grade on ECN Major Status</h2>
+<p><span class="math inline">\(\widehat{final}=b_1+a_1 ECN\)</span>:</p>
+<div class="cell">
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in is.na(x): is.na() applied to non-(list or vector) of type
+'expression'</code></pre>
+</div>
+<div class="cell-output-display">
+<div id="fig-dummy-intercept-only" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Schematic graph with Hours studying on the x-axis and Final grade on the y-axis, both axes unlabeled numerically. Two horizontal lines span the full x-range: a solid dark-blue line for Non-major (ECN = 0) at a lower level, and a dashed purple line for Econ major (ECN = 1) at a higher level. A double-headed vertical arrow between the two lines near x = 2.5 is labeled a1, indicating the intercept shift from the dummy variable. The graph is conceptual and shows that with only a dummy regressor the model predicts a constant average grade for each group, with the two groups differing only by a1.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-dummy-intercept-only-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="L14_files/figure-html/fig-dummy-intercept-only-1.png" class="img-fluid figure-img" alt="Schematic graph with Hours studying on the x-axis and Final grade on the y-axis, both axes unlabeled numerically. Two horizontal lines span the full x-range: a solid dark-blue line for Non-major (ECN = 0) at a lower level, and a dashed purple line for Econ major (ECN = 1) at a higher level. A double-headed vertical arrow between the two lines near x = 2.5 is labeled a1, indicating the intercept shift from the dummy variable. The graph is conceptual and shows that with only a dummy regressor the model predicts a constant average grade for each group, with the two groups differing only by a1." width="528">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-dummy-intercept-only-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Schematic regression lines showing the effect of a binary dummy variable on the outcome, with no continuous regressor.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="dummy-variables-in-multivariate-regression" class="level2">
+<h2 class="anchored" data-anchor-id="dummy-variables-in-multivariate-regression">Dummy Variables in Multivariate Regression</h2>
+<p>We may also want to include dummy variables in a multivariate regression with other continuous numerical regressors. In this case, the partial effect (estimated coefficient) of the dummy variable is the change in our outcome when our dummy goes from 0 to 1, all other regressors held constant. The total effect is our partial effect added to the product of any correlated movement in other variables and its associated coefficient.</p>
+<p>We now run the regression: <span class="math display">\[\widehat{final}_i=b_1+b_2hrs+a_1 ECN\]</span> where <span class="math inline">\(hrs\)</span> is the number of hours spent studying and <span class="math inline">\(ECN=1\)</span> is being an Econ major. Now, our estimated coefficient <span class="math inline">\(a_1\)</span> is the average difference in final grades between Econ majors and non-majors holding time spent studying fixed.</p>
+</section>
+<section id="graph-final-grade-hours-and-ecn-major-status" class="level2">
+<h2 class="anchored" data-anchor-id="graph-final-grade-hours-and-ecn-major-status">Graph: Final Grade, Hours, and ECN Major Status</h2>
+<p><span class="math inline">\(\widehat{final}=b_1+b_2hrs+a_1 ECN\)</span>:</p>
+<div class="cell">
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in is.na(x): is.na() applied to non-(list or vector) of type
+'expression'</code></pre>
+</div>
+<div class="cell-output-display">
+<div id="fig-dummy-parallel" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Schematic graph with Hours studying on the x-axis and Final grade on the y-axis, both unlabeled numerically and on the same scale as the preceding graph. Two upward-sloping lines with equal slope b2 run in parallel: a solid dark-blue line for Non-major (ECN = 0) at a lower level and a dashed purple line for Econ major (ECN = 1) at a higher level. A double-headed vertical arrow near x = 1.5 is labeled a1, showing that the constant vertical gap between the two lines equals a1 regardless of hours studied. The parallel slopes illustrate that b2 is the same for both groups when there is no interaction term.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-dummy-parallel-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="L14_files/figure-html/fig-dummy-parallel-1.png" class="img-fluid figure-img" alt="Schematic graph with Hours studying on the x-axis and Final grade on the y-axis, both unlabeled numerically and on the same scale as the preceding graph. Two upward-sloping lines with equal slope b2 run in parallel: a solid dark-blue line for Non-major (ECN = 0) at a lower level and a dashed purple line for Econ major (ECN = 1) at a higher level. A double-headed vertical arrow near x = 1.5 is labeled a1, showing that the constant vertical gap between the two lines equals a1 regardless of hours studied. The parallel slopes illustrate that b2 is the same for both groups when there is no interaction term." width="528">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-dummy-parallel-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: Schematic parallel regression lines showing a binary dummy variable added to a regression with a continuous regressor.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="interacting-a-dummy-variable-with-a-regressor" class="level2">
+<h2 class="anchored" data-anchor-id="interacting-a-dummy-variable-with-a-regressor">Interacting a Dummy Variable with a Regressor</h2>
+<p>Finally, we could <strong>interact</strong> our dummy variable with another regressor to capture the average difference in <em>slopes</em> between one category and another. Adding to our regression of final grades, we could regress <span class="math display">\[\widehat{final}_i=b_1+b_2hrs+a_1ECN+a_2(ECN\times hrs)\]</span></p>
+<p>Now:</p>
+<ul>
+<li><p><span class="math inline">\(b_2\)</span> captures the change in final grade associated with 1 additional hour of studying for <em>non</em>-majors</p></li>
+<li><p><span class="math inline">\(a_1\)</span> captures the average difference in overall final grades between majors and non-majors</p></li>
+<li><p><span class="math inline">\(b_2+a_2\)</span> captures the change in final grade associated with 1 additional hour of studying for <em>majors</em></p></li>
+</ul>
+</section>
+<section id="graph-interacted-dummy-regression" class="level2">
+<h2 class="anchored" data-anchor-id="graph-interacted-dummy-regression">Graph: Interacted Dummy Regression</h2>
+<p><span class="math inline">\(\widehat{final}=b_1+b_2hrs+a_1ECN+a_2(ECN\times hrs)\)</span>:</p>
+<div class="cell">
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in is.na(x): is.na() applied to non-(list or vector) of type
+'expression'</code></pre>
+</div>
+<div class="cell-output-display">
+<div id="fig-dummy-interaction" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Schematic graph with Hours studying on the x-axis and Final grade on the y-axis, both unlabeled numerically and on the same scale as the preceding graphs. Two upward-sloping lines diverge as hours increase: a solid dark-blue line for Non-major (ECN = 0) with a shallower slope b2, and a dashed purple line for Econ major (ECN = 1) with a steeper slope b2 plus a2. A double-headed vertical arrow near the left axis labeled a1 marks the initial intercept gap between the two groups at zero hours. As hours increase the gap between the lines grows because a2 is positive, illustrating how the interaction term allows the return to studying to differ between the two groups.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-dummy-interaction-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="L14_files/figure-html/fig-dummy-interaction-1.png" class="img-fluid figure-img" alt="Schematic graph with Hours studying on the x-axis and Final grade on the y-axis, both unlabeled numerically and on the same scale as the preceding graphs. Two upward-sloping lines diverge as hours increase: a solid dark-blue line for Non-major (ECN = 0) with a shallower slope b2, and a dashed purple line for Econ major (ECN = 1) with a steeper slope b2 plus a2. A double-headed vertical arrow near the left axis labeled a1 marks the initial intercept gap between the two groups at zero hours. As hours increase the gap between the lines grows because a2 is positive, illustrating how the interaction term allows the return to studying to differ between the two groups." width="528">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-dummy-interaction-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3: Schematic regression lines showing a binary dummy variable interacted with a continuous regressor.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="interpreting-the-interacted-dummy-slopes-and-intercepts" class="level2">
+<h2 class="anchored" data-anchor-id="interpreting-the-interacted-dummy-slopes-and-intercepts">Interpreting the Interacted Dummy: Slopes and Intercepts</h2>
+<p>For an interacted dummy variable regression: <span class="math display">\[\hat{y}=b_1+b_2x+a_1d+a_2(d\times x)\]</span></p>
+<ul>
+<li><p><span class="math inline">\(a_1&gt;0\)</span> means the intercept for <span class="math inline">\(d=1\)</span> is <em>higher</em> than for <span class="math inline">\(d=0\)</span></p></li>
+<li><p><span class="math inline">\(a_1&lt;0\)</span> means the intercept for <span class="math inline">\(d=1\)</span> is <em>lower</em> than for <span class="math inline">\(d=0\)</span></p></li>
+<li><p><span class="math inline">\(a_2&gt;0\)</span> means the slope for <span class="math inline">\(d_1\)</span> is <em>steeper</em> than for <span class="math inline">\(d=0\)</span></p></li>
+<li><p><span class="math inline">\(a_2&lt;0\)</span> means the slope for <span class="math inline">\(d_1\)</span> is <em>less steep</em> than for <span class="math inline">\(d=0\)</span></p></li>
+</ul>
+<p>If <span class="math inline">\(a_2\)</span> is larger than <span class="math inline">\(b_2\)</span> in magnitude but has the opposite sign, the slope for <span class="math inline">\(d=1\)</span> will go in the <em>opposite direction</em> than for <span class="math inline">\(d=0\)</span>.</p>
+</section>
+<section id="interacted-dummy-two-separate-group-regressions" class="level2">
+<h2 class="anchored" data-anchor-id="interacted-dummy-two-separate-group-regressions">Interacted Dummy: Two Separate Group Regressions</h2>
+<p>Plugging in <span class="math inline">\(d=0\)</span> and <span class="math inline">\(d=1\)</span>, we see that we are actually just running two different bivariate regressions for two groups:</p>
+<p><span class="math display">\[\begin{align*}
+d=0\text{: }\hat{y}&amp;=b_1+b_2x+a_1d+a_2(d\cdot x)\\
+&amp;=b_1+b_2x+a_1(0)+a_2(0)x\\
+&amp;=b_1+b_2x
+\end{align*}\]</span></p>
+<p><span class="math display">\[\begin{align*}
+d=1\text{: }\hat{y}&amp;=b_1+b_2x+a_1d+a_2(d\cdot x)\\
+&amp;=b_1+b_2x+a_1(1)+a_2(1)x\\
+&amp;=b_1+b_2x+a_1+a_2x\\
+&amp;= \underbrace{(a_1+b_1)}_{c_1} + \underbrace{(a_2+b_2)}_{c_2}x\\
+&amp;=c_1+c_2x
+\end{align*}\]</span></p>
+</section>
+<section id="example-car-prices-mpg-and-country-of-origin" class="level2 smaller" data-shrink="20">
+<h2 class="smaller anchored" data-shrink="20" data-anchor-id="example-car-prices-mpg-and-country-of-origin">Example: Car Prices, MPG, and Country of Origin</h2>
+<p>How would we interpret the following regression results with indicator variable <em>foreign</em>?</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>      Source |       SS           df       MS      Number of obs   =        74
+-------------+----------------------------------   F(3, 70)        =      9.48
+       Model |   183435281         3  61145093.6   Prob &gt; F        =    0.0000
+    Residual |   451630115        70  6451858.79   R-squared       =    0.2888
+-------------+----------------------------------   Adj R-squared   =    0.2584
+       Total |   635065396        73  8699525.97   Root MSE        =    2540.1
+
+------------------------------------------------------------------------------
+       price | Coefficient  Std. err.      t    P&gt;|t|     [95% conf. interval]
+-------------+----------------------------------------------------------------
+         mpg |  -329.2551   74.98545    -4.39   0.000    -478.8088   -179.7013
+     foreign |  -13.58741   2634.664    -0.01   0.996    -5268.258    5241.084
+ mpgXforeign |   78.88826   112.4812     0.70   0.485    -145.4485     303.225
+       _cons |   12600.54   1527.888     8.25   0.000     9553.261    15647.81
+------------------------------------------------------------------------------</code></pre>
+</div>
+</div>
+<p><span class="math display">\[price=\beta_1+\beta_2mpg+\alpha_1foreign+\alpha_2(mpg\times foreign)+u\]</span></p>
+</section>
+<section id="graph-price-on-mpg-by-country-of-origin" class="level2">
+<h2 class="anchored" data-anchor-id="graph-price-on-mpg-by-country-of-origin">Graph: Price on MPG by Country of Origin</h2>
+<p>Graph of <span class="math inline">\(price\)</span> on <span class="math inline">\(mpg\)</span> across <span class="math inline">\(foreign\)</span>:</p>
+</section>
+<section id="ordered-and-unordered-categorical-variables" class="level2">
+<h2 class="anchored" data-anchor-id="ordered-and-unordered-categorical-variables">Ordered and Unordered Categorical Variables</h2>
+<p>We may use indicator variables that take values other than 0 or 1 if we have an <em>ordered</em> or <em>ranked</em> categorical variable, such as class year (freshman, sophomore, etc.). We could capture these with a single variable called <span class="math inline">\(Class\)</span> which takes values 0, 1, 2, or 3 depending on the incoming year (with 4 for super-senior+). Our only caveat in this case would be that we are assuming the effect of going from freshman to sophomore is the same as going from junior to senior.</p>
+<p>For <em>unordered</em> categorical variables, we may instead want to use a set of dummy variables, each representing a category in our set, such as shirt colors. We say these dummies are <strong>mutually exclusive</strong> and <strong>exhaustive</strong> if all observations fall into exactly one category. We can check this by adding the sum of the sample means for our dummies — they should sum to 1 exactly.</p>
+</section>
+<section id="the-dummy-variable-trap" class="level2">
+<h2 class="anchored" data-anchor-id="the-dummy-variable-trap">The Dummy Variable Trap</h2>
+<p>We previously discussed the issue of <em>perfect collinearity</em> between regressors — we cannot estimate two separate regressors that are exact linear combinations of each other. For dummy variables, this means we cannot include dummy variables for all categories in our regression without errors — we must leave out one variable. We call this group, unsurprisingly, the <strong>leave-out group</strong>, and all regression results are compared to this group. We may want to choose this group carefully to yield the best interpretation of our results.</p>
+<p>Failing to remove one mutually exclusive dummy variable from a set that spans all categories is called the <strong>dummy variable trap</strong> and will lead to errors in estimation. We can also avoid this by including all dummies but <em>dropping the constant term</em>.</p>
+</section>
+<section id="why-the-dummy-variable-trap-occurs" class="level2">
+<h2 class="anchored" data-anchor-id="why-the-dummy-variable-trap-occurs">Why the Dummy Variable Trap Occurs</h2>
+<p>Why do we encounter the dummy variable trap?</p>
+<p>Suppose we have a category <span class="math inline">\(c\)</span> that takes values 1, 2, or 3 and every observation falls into exactly one category. Now suppose we construct dummy variables <span class="math inline">\(d_1,d_2,d_3\)</span> for if an observation falls into category 1, 2, or 3, respectively.</p>
+<p>If <span class="math inline">\(d_1=0\)</span> and <span class="math inline">\(d_2=0\)</span>, it <strong>must</strong> be the case that <span class="math inline">\(d_3=1\)</span>.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
+<p>We can then rewrite <span class="math inline">\(d_3\)</span> as <span class="math inline">\(d_3=1-d_1-d_2\)</span>. This means <span class="math inline">\(d_3\)</span> is a <em>linear combination</em> of other regressors in our model and thus <em>perfectly collinear</em>. If we try to include <span class="math inline">\(d_3\)</span> in our model along with <span class="math inline">\(d_1\)</span> and <span class="math inline">\(d_2\)</span>, we will not be able to estimate our coefficients.</p>
+</section>
+<section id="rule-at-most-n1-dummy-variables" class="level2">
+<h2 class="anchored" data-anchor-id="rule-at-most-n1-dummy-variables">Rule: At Most n−1 Dummy Variables</h2>
+<p>Generally, if we have <span class="math inline">\(n\)</span> mutually exclusive and exhaustive categories each with a dummy variable, we can include at most <span class="math inline">\(n-1\)</span> dummy variables in our regression (<span class="math inline">\(d_1,...,d_{n-1}\)</span>).</p>
+<p>The last dummy variable, <span class="math inline">\(d_n\)</span>, would be equal to: <span class="math display">\[d_n=1-\sum_{i=1}^{n-1}d_i\]</span></p>
+<p>More generally, if we choose the dummy variable for category <span class="math inline">\(j\)</span> to be our leave-out group, we will include all dummies <span class="math inline">\(d_{i\neq j}\)</span> in our regression and have <span class="math inline">\(d_j=1-\sum_{i\neq j}d_i\)</span>.</p>
+</section>
+<section id="inference-on-dummy-variables" class="level2">
+<h2 class="anchored" data-anchor-id="inference-on-dummy-variables">Inference on Dummy Variables</h2>
+<p>When we conduct inference on dummy variables with a leave-out group, we are not testing whether the included dummy is different from zero, but rather <em>if the difference between that group and the leave-out group</em> is zero. Our F-test for overall significance, however, still measures whether all <em>included</em> regressors meaningfully predict our outcome variable.</p>
+</section>
+<section id="example-values-of-the-foreign-variable" class="level2 smaller" data-shrink="20">
+<h2 class="smaller anchored" data-shrink="20" data-anchor-id="example-values-of-the-foreign-variable">Example: Values of the Foreign Variable</h2>
+<p>In our car example, our variable <em>foreign</em> takes the following values:</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>foreign -- Car origin
+----------------------------------------------------------------
+                   |      Freq.    Percent      Valid       Cum.
+-------------------+--------------------------------------------
+Valid   0 Domestic |         52      70.27      70.27      70.27
+        1 Foreign  |         22      29.73      29.73     100.00
+        Total      |         74     100.00     100.00           
+----------------------------------------------------------------</code></pre>
+</div>
+</div>
+<p>To estimate a regression using dummies for the values of <em>foreign</em>, we would need to either:</p>
+<ol type="1">
+<li><p>Include only a dummy on foreign and not domestic</p></li>
+<li><p>Include only a dummy on domestic and not foreign</p></li>
+<li><p>Drop our constant term and include both dummies</p></li>
+</ol>
+</section>
+<section id="avoiding-the-dummy-variable-trap" class="level2 smaller" data-shrink="20">
+<h2 class="smaller anchored" data-shrink="20" data-anchor-id="avoiding-the-dummy-variable-trap">Avoiding the Dummy Variable Trap</h2>
+<p>Do we run into the dummy variable trap here? Why or why not?</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>      Source |       SS           df       MS      Number of obs   =        74
+-------------+----------------------------------   F(3, 71)        =    155.75
+       Model |  2.9930e+09         3   997676875   Prob &gt; F        =    0.0000
+    Residual |   454803695        71  6405685.84   R-squared       =    0.8681
+-------------+----------------------------------   Adj R-squared   =    0.8625
+       Total |  3.4478e+09        74  46592355.7   Root MSE        =    2530.9
+
+------------------------------------------------------------------------------
+       price | Coefficient  Std. err.      t    P&gt;|t|     [95% conf. interval]
+-------------+----------------------------------------------------------------
+         mpg |  -294.1955   55.69172    -5.28   0.000    -405.2417   -183.1494
+    domestic |   11905.42   1158.634    10.28   0.000     9595.164    14215.67
+     foreign |   13672.71   1481.406     9.23   0.000     10718.87    16626.55
+------------------------------------------------------------------------------</code></pre>
+</div>
+</div>
+<p><span class="math display">\[\widehat{price}=\beta_2mpg+\delta_1domestic+\delta_2foreign\]</span></p>
+</section>
+<section id="creating-factor-variable-dummies-in-stata" class="level2">
+<h2 class="anchored" data-anchor-id="creating-factor-variable-dummies-in-stata">Creating Factor Variable Dummies in Stata</h2>
+<p>We can easily create dummies for these discrete mutually exclusive <strong>factor variables</strong> in Stata:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">tab</span> shirtcolor, g(dcolor) <span class="co">// generate dummies</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="kw">reg</span> price dcolor1 dcolor2 ... <span class="co">// dummy regression</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>We can also call on dummy variables directly in our regression. However, Stata makes us first convert categorical variables into numeric variables before we do this (<em>R</em> does not):</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">encode</span> shirtcolor, g(dcolor) <span class="co">// conversion</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="kw">reg</span> price i.dcolor <span class="co">// regression with factor variable</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="end-of-lecture-material" class="level1">
+<h1>End of Lecture Material</h1>
+<section id="knowledge-check-14" class="level2">
+<h2 class="anchored" data-anchor-id="knowledge-check-14">Knowledge Check 14</h2>
+<p>Suppose we estimate the following regression: <span class="math display">\[y = \beta_1 + \beta_2x + \alpha_1d + \alpha_2(d\times x)+ u\]</span> where <span class="math inline">\(d\)</span> is a dummy variable for being in category <span class="math inline">\(C\)</span> or not. How would we interpret the coefficients <span class="math inline">\(b_1,b_2,a_1,\)</span> and <span class="math inline">\(a_2\)</span>?</p>
+</section>
+</section>
+
+
+<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p>Or if <span class="math inline">\(d_1=1\)</span> or <span class="math inline">\(d_2=1\)</span>, it must be the case that <span class="math inline">\(d_3=0\)</span>.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section></div></main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

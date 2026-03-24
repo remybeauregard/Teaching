@@ -93,6 +93,7 @@ Apply every substitution below throughout the entire document:
 | `\&` | `&` |
 | `\includegraphics[...]{file}` | `![Caption](file){width=100% fig-alt="..."}` — see Step 5 |
 | `---` (LaTeX em-dash) | `—` |
+| `\begin{eqnarray}...\end{eqnarray}` | `$$\begin{aligned}...\end{aligned}$$` — replace `&=` alignment with `&=`, replace `\\` line breaks with `\\`; `eqnarray` is not supported by MathJax and must always be converted |
 
 For code chunk options, convert from comma-separated header style to `#|` YAML style:
 - `results=F` / `results=FALSE` → `#| results: false`
@@ -148,6 +149,7 @@ Work through this checklist and fix anything that fails:
 - [ ] **WCAG 1.4.1** — No underline on non-link text; color is never the *sole* means of conveying information (e.g. chart lines distinguished only by color should also be labeled or use different line styles)
 - [ ] **WCAG 1.4.3** — `simple` theme used (verified contrast); do not override theme colors without checking contrast ratio
 - [ ] **WCAG 2.4.2** — `<meta name="description">` present in both `revealjs` and `html` format blocks
+- [ ] **Math rendering** — No `eqnarray` environments anywhere in the document (MathJax does not support `eqnarray`); all must be converted to `aligned`
 - [ ] **WCAG 2.4.4** — No link text reading "click here", "here", or a bare URL
 - [ ] **WCAG 2.4.5** — No `toc` in slides (toc is for syllabi only)
 - [ ] **WCAG 2.4.6** — All headings are unique and descriptive

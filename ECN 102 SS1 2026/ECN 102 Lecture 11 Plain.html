@@ -1,0 +1,820 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.36">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Remy Beauregard">
+
+<title>ECN 102: Analysis of Economics Data</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="L11_files/libs/clipboard/clipboard.min.js"></script>
+<script src="L11_files/libs/quarto-html/quarto.js" type="module"></script>
+<script src="L11_files/libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="L11_files/libs/quarto-html/popper.min.js"></script>
+<script src="L11_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="L11_files/libs/quarto-html/anchor.min.js"></script>
+<link href="L11_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="L11_files/libs/quarto-html/quarto-syntax-highlighting-845c23b38eaddc0f92fda52bfe77a8c8.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="L11_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="L11_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="L11_files/libs/bootstrap/bootstrap-138a6193a3bd40baf1e627da441a4734.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<meta name="description" content="Lecture slides 11 for ECN 102.">
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="quarto-light">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="ECN 102 Lecture 11.html"><i class="bi bi-file-slides"></i>RevealJS</a></li><li><a href="ECN 102 Lecture 11.pdf"><i class="bi bi-file-pdf"></i>Beamer</a></li></ul></div></div>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">ECN 102: Analysis of Economics Data</h1>
+<p class="subtitle lead">Chapter 11: Multivariate Inference</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Remy Beauregard </p>
+          </div>
+  </div>
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="overview-of-multivariate-inference" class="level2">
+<h2 class="anchored" data-anchor-id="overview-of-multivariate-inference">Overview of Multivariate Inference</h2>
+<p>Just like in the bivariate case, different samples of data we draw from a population will yield different regression lines and estimated coefficients. Having estimated these quantities for our sample regression line, we want tools to test assumptions on our population parameters and relationships based on these sample estimations. To do this, we need multivariate inference.</p>
+</section>
+<section id="population-assumptions" class="level2">
+<h2 class="anchored" data-anchor-id="population-assumptions">Population Assumptions</h2>
+<p>Just like for bivariate regression, we make four assumptions about the population multivariate model. These are similar to before but accommodate multiple (<span class="math inline">\(k\)</span>) coefficients for <span class="math inline">\(k-1\)</span> regressors:</p>
+<p><span class="math display">\[y_i=\beta_1+\beta_2x_{2i}+\beta_3x_{3i}+...+\beta_kx_{ki}+u_i\text{ for all } i\]</span></p>
+<p><span class="math display">\[E[u_i|x_{2i},...,x_{ki}]=0\text{ for all }i\]</span></p>
+<p><span class="math display">\[Var[u_i|x_{2i},...,x_{ki}]=\sigma^2_u\text{ for all }i\]</span></p>
+<p><span class="math display">\[u_i\perp \!\!\! \perp u_j,\text{ for all }i\neq j\]</span></p>
+</section>
+<section id="the-four-assumptions" class="level2">
+<h2 class="anchored" data-anchor-id="the-four-assumptions">The Four Assumptions</h2>
+<p>Now, our assumptions about the population model take our <span class="math inline">\(k\)</span> regressors into account:</p>
+<ol type="1">
+<li><p>Our <em>linearity</em> assumption says that our true model is a <em>multavariate</em> linear regression</p></li>
+<li><p>Our <em>unbiasedness</em> assumption says the mean of our errors is zero conditional on <em>all</em> regressors</p></li>
+<li><p>Our <em>homoskedasticity</em> assumption says that our errors have a constant variance across <em>all</em> dimensions of regressors</p></li>
+<li><p>Our <em>independence</em> assumption says that no errors are correlated due to dependence <em>within or between</em> any regressors</p></li>
+</ol>
+</section>
+<section id="mean-and-variance-of-b_j" class="level2">
+<h2 class="anchored" data-anchor-id="mean-and-variance-of-b_j">Mean and Variance of <span class="math inline">\(b_j\)</span></h2>
+<p>The four assumptions above give us the population mean and variance of our multivariate OLS estimator <span class="math inline">\(b_j\)</span>:</p>
+<p><span class="math display">\[(1)+(2):E[b_j]=\beta_j, \hspace{5pt} j=1,...,k\text{ (unbiased)}\]</span></p>
+<p><span class="math display">\[(3)+(4):Var[b_j] = \sigma_{b_j}^2=\frac{\sigma^2_u}{\sum_{i=1}^n\tilde{x}_{ji}^2}\]</span></p>
+<p>where <span class="math inline">\(\tilde{x}_{ji}\)</span> is the residual of regressing <span class="math inline">\(x_{ji}\)</span> on an intercept and all other regressors. Along with our CLT as <span class="math inline">\(n\rightarrow\infty\)</span>, this means: <span class="math display">\[b_j\sim N\left(\beta_j,\sigma^2_{b_j}\right)\]</span></p>
+</section>
+<section id="how-additional-regressors-affect-variance" class="level2">
+<h2 class="anchored" data-anchor-id="how-additional-regressors-affect-variance">How Additional Regressors Affect Variance</h2>
+<p>For our population variance of <span class="math inline">\(b_j\)</span>, we see that adding additional regressors could increase or decrease the variance of our estimator:</p>
+<p><span class="math display">\[Var[b_j] = \sigma_{b_j}^2=\frac{\sigma^2_u}{\sum_{i=1}^n\tilde{x}_{ji}^2}\hspace{15pt}\left(\sigma_{b_j}=\frac{\sigma_u}{\sqrt{\sum_{i=1}^n\tilde{x}^2_{ji}}}\right)\]</span></p>
+<p>If we add additional regressors that are highly correlated with <span class="math inline">\(x_j\)</span> and thus share most of its variation, our <span class="math inline">\(\tilde{x}_{ji}\)</span> residual will shrink and our variance will increase. However, as we are better able to predict our outcomes and our model fit improves, our <span class="math inline">\(\sigma_u^2\)</span> will decrease. Thus, we cannot be sure how adding more regressors will impact the variance of our coefficient without more information.</p>
+</section>
+<section id="standard-error-of-b_j" class="level2">
+<h2 class="anchored" data-anchor-id="standard-error-of-b_j">Standard Error of <span class="math inline">\(b_j\)</span></h2>
+<p>Just like in bivariate regression, we do not know <span class="math inline">\(\sigma_u\)</span> in reality and thus must use our sample equivalent, <span class="math inline">\(s_e\)</span> or our RMSE. We make the substitution and obtain the following formula for the <em>standard error of</em> <span class="math inline">\(b_j\)</span> (an estimator for <span class="math inline">\(\sigma_{b_j}\)</span>):</p>
+<p><span class="math display">\[\left(\sigma_{b_j}=\frac{\boldsymbol{\sigma_u}}{\sqrt{\sum_{i=1}^n\tilde{x}^2_{ji}}}\right)\hspace{15pt}s_{b_j}=\frac{\boldsymbol{s_e}}{\sqrt{\sum_{i=1}^n\tilde{x}_{ji}^2}}\]</span></p>
+<p>This is the standard error Stata will report to us for any coefficient in a multivariate regression.</p>
+</section>
+<section id="precision-of-the-estimator" class="level2">
+<h2 class="anchored" data-anchor-id="precision-of-the-estimator">Precision of the Estimator</h2>
+<p>Just like bivariate regression, we want to consider when our coefficient of interest, <span class="math inline">\(b_j\)</span>, will be more precisely estimated (have a smaller standard error). As before with bivariate regression, our coefficient will be <em>more</em> precisely estimated when:</p>
+<ol type="1">
+<li><p>Our data is closer to our sample regression line (RMSE is low)</p></li>
+<li><p>Our sample size increases</p></li>
+</ol>
+<p>Now, however, we also have:</p>
+<ol start="3" type="1">
+<li>When <span class="math inline">\(x_j\)</span> is less well explained by our other regressors, or when we have more independent or unique variation of <span class="math inline">\(x_j\)</span> from all other regressors</li>
+</ol>
+</section>
+<section id="the-t-statistic" class="level2">
+<h2 class="anchored" data-anchor-id="the-t-statistic">The t-Statistic</h2>
+<p>With our population mean and variance of <span class="math inline">\(b_j\)</span>, we can standardize: <span class="math display">\[Z=\frac{b_j-\beta_j}{\sigma_{b_j}}\sim N(0,1)\]</span></p>
+<p>Since we do not know <span class="math inline">\(\sigma_{b_j}\)</span>, we can instead use our standard error of <span class="math inline">\(b_j\)</span> in the denominator and calculate a t-statistic. Our t-stat will take the form: <span class="math display">\[t=\frac{b_j-\beta_j}{s_{b_j}}\sim T(n-k)\]</span></p>
+<p>Our only difference from bivariate regression will then be that we have <span class="math inline">\(\boldsymbol{n-k}\)</span> degrees of freedom instead of <span class="math inline">\(n-2\)</span>.</p>
+</section>
+<section id="properties-of-the-ols-estimator" class="level2">
+<h2 class="anchored" data-anchor-id="properties-of-the-ols-estimator">Properties of the OLS Estimator</h2>
+<p>Our multivariate OLS<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> estimator <span class="math inline">\(b_j\)</span> is still:</p>
+<ol type="1">
+<li><p>Unbiased (hits its parameter exactly in expectation)</p></li>
+<li><p>Consistent (has a variance that goes to zero as <span class="math inline">\(n\rightarrow\infty\)</span>)</p></li>
+<li><p>BLUE<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> (proven with the <strong>Gauss-Markov Thoerem</strong>)</p></li>
+</ol>
+</section>
+<section id="confidence-intervals-and-hypothesis-testing" class="level2">
+<h2 class="anchored" data-anchor-id="confidence-intervals-and-hypothesis-testing">Confidence Intervals and Hypothesis Testing</h2>
+<p>Like before, we can construct a confidence interval for our coefficient <span class="math inline">\(b_j\)</span> as: <span class="math display">\[b_j\pm t^*_{n-k,\alpha/2}\times s_{b_j}\]</span></p>
+<p>And (inversely) conduct 2-sided hypothesis testing on individual parameters. The <strong>default test of association</strong> that Stata will run for us with any regression with have hypotheses:</p>
+<p><span class="math display">\[H_0:\beta_j=0\]</span> <span class="math display">\[H_A:\beta_j\neq0\]</span></p>
+</section>
+<section id="regression-output-in-stata" class="level2 smaller" data-shrink="30">
+<h2 class="smaller anchored" data-shrink="30" data-anchor-id="regression-output-in-stata">Regression Output in Stata</h2>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>      Source |       SS           df       MS      Number of obs   =        69
+-------------+----------------------------------   F(2, 66)        =     14.19
+       Model |   173465736         2    86732868   Prob &gt; F        =    0.0000
+    Residual |   403331223        66  6111079.13   R-squared       =    0.3007
+-------------+----------------------------------   Adj R-squared   =    0.2795
+       Total |   576796959        68  8482308.22   Root MSE        =    2472.1
+
+------------------------------------------------------------------------------
+       price | Coefficient  Std. err.      t    P&gt;|t|     [95% conf. interval]
+-------------+----------------------------------------------------------------
+         mpg |   -20.7178   86.23695    -0.24   0.811    -192.8954    151.4598
+      weight |   1.888939   .6380781     2.96   0.004     .6149747    3.162903
+       _cons |   859.8055   3595.098     0.24   0.812    -6318.039     8037.65
+------------------------------------------------------------------------------</code></pre>
+</div>
+</div>
+<p><span class="math display">\[\widehat{price}=\underbrace{859.81}_{b_1}-\underbrace{20.72}_{b_2}\underbrace{mpg}_{x_2}+\underbrace{1.89}_{b_3}\underbrace{weight}_{x_3}\]</span></p>
+</section>
+<section id="adjusted-r²-and-statistical-significance" class="level2">
+<h2 class="anchored" data-anchor-id="adjusted-r²-and-statistical-significance">Adjusted R² and Statistical Significance</h2>
+<p>We have previously stated that adjusted R-squared (<span class="math inline">\(\bar{R}^2\)</span>) will only increase if our additional regressor contributes more to our model fit than the additional regressor penalty. This is somewhat analogous to a significance test of a single additional parameter <span class="math inline">\(b_j\)</span>, but <span class="math inline">\(\bar{R}^2\)</span> has a much lower threshold for increasing than rejecting the null for our standard 5% significance level, 2-sided t-test of <span class="math inline">\(b_j\)</span>.</p>
+<p>Thus, we cannot say that <span class="math inline">\(\bar{R}^2\)</span> increasing is sufficient evidence to say that the coefficient on our additional regressor <span class="math inline">\(b_j\)</span> is <em>statistically significantly different from zero</em>.</p>
+</section>
+<section id="adding-a-regressor-example" class="level2 smaller" data-shrink="30">
+<h2 class="smaller anchored" data-shrink="30" data-anchor-id="adding-a-regressor-example">Adding a Regressor: Example</h2>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>Old adj R2: 0.2795
+
+      Source |       SS           df       MS      Number of obs   =        69
+-------------+----------------------------------   F(3, 65)        =     10.71
+       Model |   190778138         3  63592712.8   Prob &gt; F        =    0.0000
+    Residual |   386018821        65  5938751.09   R-squared       =    0.3308
+-------------+----------------------------------   Adj R-squared   =    0.2999
+       Total |   576796959        68  8482308.22   Root MSE        =      2437
+
+------------------------------------------------------------------------------
+       price | Coefficient  Std. err.      t    P&gt;|t|     [95% conf. interval]
+-------------+----------------------------------------------------------------
+         mpg |  -24.44972   85.04044    -0.29   0.775    -194.2872    145.3878
+      weight |   2.214518   .6572859     3.37   0.001     .9018274    3.527209
+    headroom |  -674.1284   394.8313    -1.71   0.093    -1462.661    114.4041
+       _cons |   1974.477   3603.676     0.55   0.586    -5222.561    9171.514
+------------------------------------------------------------------------------</code></pre>
+</div>
+</div>
+<p>We see that our <span class="math inline">\(\bar{R}^2\)</span> does increase when we add <em>headroom</em>, but the individual test on this regressor fails to reject the null at 5%.</p>
+</section>
+<section id="pooled-t-test-for-two-parameters" class="level2">
+<h2 class="anchored" data-anchor-id="pooled-t-test-for-two-parameters">Pooled t-Test for Two Parameters</h2>
+<p>We may want to conduct a t-test that includes two parameters, such as the difference between coefficients being zero. To do this, we must adjust the standard error to account for covariance between both coefficients: <span class="math display">\[H_0:\beta_2-\beta_3=0\]</span><span class="math display">\[H_A:\beta_2-\beta_3\neq0\]</span></p>
+<p><span class="math display">\[t=\frac{b_2-b_3-0}{se(b_2-b_3)}\sim T(n-k)\]</span></p>
+<p>where <span class="math inline">\(se(b_2-b_3)\)</span> is the <em>pooled standard error</em> between <span class="math inline">\(b_2\)</span> and <span class="math inline">\(b_3\)</span>. Fortunately, Stata will compute this pooled standard error for us when running a 2-parameter or “pooled” t-test.</p>
+</section>
+<section id="joint-hypothesis-testing" class="level2">
+<h2 class="anchored" data-anchor-id="joint-hypothesis-testing">Joint Hypothesis Testing</h2>
+<p>However, we may want to <strong>jointly</strong> test more than one linear restriction on our model parameters, something our t-test cannot do. We would want to conduct such a test if:</p>
+<ol type="1">
+<li><p>We are trying to determine which (set of) regressors to include in our regression</p></li>
+<li><p>We can to test linear relationships between variables implied by economic theory.</p></li>
+</ol>
+<p>For example, we may want to test whether <span class="math inline">\(\beta_2=0\)</span> and <span class="math inline">\(\beta_3=0\)</span> <strong>at the same time</strong>. We would say we are making two <em>linear restrictions</em> on our model. We use the variable <span class="math inline">\(q\)</span> to count LRs.</p>
+</section>
+<section id="the-f-distribution" class="level2">
+<h2 class="anchored" data-anchor-id="the-f-distribution">The F-Distribution</h2>
+<p>Joint hypothesis testing will give us a statistic with an <strong>F-distribution</strong>. This distribution is <strong>right-skewed</strong> and takes non-negative values, depending on <strong>two</strong> degrees of freedom measures. The order of these two degrees of freedom matters, where <span class="math inline">\(F(v_1,v_2)\neq F(v_2,v_1)\)</span>.</p>
+<p><span class="math display">\[v_1=q\text{, the number of linear restrictions}\]</span><span class="math display">\[v_2=n-k\text{ as before}\]</span></p>
+<p>When our first degrees of freedom is one, our F distribution will be the square of the T: <span class="math inline">\(F_{1,v_2}=(T_{v2})^2\)</span></p>
+</section>
+<section id="f-distribution-vs.-t-distribution" class="level2">
+<h2 class="anchored" data-anchor-id="f-distribution-vs.-t-distribution">F-Distribution vs.&nbsp;t-Distribution</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p>Compared to a t distribution (that approximates a std normal):</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-t-vs-normal" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Schematic density plot with four symmetric bell-shaped curves. The standard normal N(0,1) in solid dark blue has the tallest peak and thinnest tails. T(df=30) in dotted dark gray is nearly identical to the normal. T(df=15) in dot-dash dark red is slightly wider. T(df=5) in dashed purple has the lowest peak and heaviest tails. An inline mini-legend of colored line segments with labels occupies the upper-left corner, illustrating convergence of the t-distribution to the standard normal as degrees of freedom increase. Numeric axis values are omitted.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-t-vs-normal-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="L11_files/figure-html/fig-t-vs-normal-1.png" class="img-fluid figure-img" alt="Schematic density plot with four symmetric bell-shaped curves. The standard normal N(0,1) in solid dark blue has the tallest peak and thinnest tails. T(df=30) in dotted dark gray is nearly identical to the normal. T(df=15) in dot-dash dark red is slightly wider. T(df=5) in dashed purple has the lowest peak and heaviest tails. An inline mini-legend of colored line segments with labels occupies the upper-left corner, illustrating convergence of the t-distribution to the standard normal as degrees of freedom increase. Numeric axis values are omitted." width="432">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-t-vs-normal-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: t-distributions with df = 5, 15, 30 and the standard normal N(0,1).
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:50%;">
+<p>We expect an F distribution (that approximates a <span class="math inline">\(\chi^2(1)\)</span>):</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-f-vs-chisq" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Schematic density plot with four right-skewed curves concentrated near zero with long right tails. The chi-squared(1) limiting distribution in solid dark blue sits highest near zero. F(1,30) in dotted dark gray closely tracks chi-squared(1). F(1,15) in dot-dash dark red is slightly lower near zero. F(1,5) in dashed purple is the lowest near zero and diverges most from the limit. An inline mini-legend of colored line segments with labels occupies the upper-right corner, illustrating convergence of F(1, df) to chi-squared(1) as the second degree of freedom increases. Numeric axis values are omitted.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-f-vs-chisq-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="L11_files/figure-html/fig-f-vs-chisq-1.png" class="img-fluid figure-img" alt="Schematic density plot with four right-skewed curves concentrated near zero with long right tails. The chi-squared(1) limiting distribution in solid dark blue sits highest near zero. F(1,30) in dotted dark gray closely tracks chi-squared(1). F(1,15) in dot-dash dark red is slightly lower near zero. F(1,5) in dashed purple is the lowest near zero and diverges most from the limit. An inline mini-legend of colored line segments with labels occupies the upper-right corner, illustrating convergence of F(1, df) to chi-squared(1) as the second degree of freedom increases. Numeric axis values are omitted." width="432">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-f-vs-chisq-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: F(1, df) distributions with df = 5, 15, 30 and chi-squared(1).
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="f-distribution-critical-values" class="level2">
+<h2 class="anchored" data-anchor-id="f-distribution-critical-values">F-Distribution: Critical Values</h2>
+<p>Just like our standard normal and T, we can compute inverse probabilities or critical values for our <span class="math inline">\(F(v_1,v_2)\)</span> distribution with:</p>
+<ul>
+<li><p><code>Ftail(v1,v2,F)</code> <span class="math inline">\(\rightarrow\Pr(F&gt;f)\)</span></p></li>
+<li><p><code>invFtail(v1,v2,α)</code> <span class="math inline">\(\rightarrow F^*\text{ s.t. }\Pr(F&gt;F^*)=\alpha\)</span></p></li>
+</ul>
+<p>A shortcut is that the null of a joint test with <span class="math inline">\(v_2=n-k&gt;10\)</span> will always be rejected if <span class="math inline">\(F&gt;5\)</span> for any <span class="math inline">\(v_1\)</span>.</p>
+</section>
+<section id="default-f-test-overall-significance" class="level2">
+<h2 class="anchored" data-anchor-id="default-f-test-overall-significance">Default F-Test: Overall Significance</h2>
+<p>Like our default t-tests for <span class="math inline">\(\beta_j=0\)</span>, Stata also runs a default F-test for us: the test of <strong>overall significance</strong>. This tests whether or not all of our regressors are jointly able to explain variation in our outcome variable: <span class="math display">\[H_0: \beta_2=\beta_3=\beta_4=...=0\]</span> <span class="math display">\[H_A:\text{ at least one }\beta_j\neq0\]</span></p>
+<p>Note: we do not need <em>all</em> our parameters to be nonzero to reject this null. Instead, we say that <em>at least one</em> of these parameters need be nonzero.</p>
+</section>
+<section id="f-test-output-in-stata" class="level2 smaller" data-shrink="30">
+<h2 class="smaller anchored" data-shrink="30" data-anchor-id="f-test-output-in-stata">F-Test Output in Stata</h2>
+<p>We can see Stata compute this default joint F-test of overall significance for us and report the corresponding p-value in our regression output:</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>      Source |       SS           df       MS      Number of obs   =        69
+-------------+----------------------------------   F(3, 65)        =     10.71
+       Model |   190778138         3  63592712.8   Prob &gt; F        =    0.0000
+    Residual |   386018821        65  5938751.09   R-squared       =    0.3308
+-------------+----------------------------------   Adj R-squared   =    0.2999
+       Total |   576796959        68  8482308.22   Root MSE        =      2437
+
+------------------------------------------------------------------------------
+       price | Coefficient  Std. err.      t    P&gt;|t|     [95% conf. interval]
+-------------+----------------------------------------------------------------
+         mpg |  -24.44972   85.04044    -0.29   0.775    -194.2872    145.3878
+      weight |   2.214518   .6572859     3.37   0.001     .9018274    3.527209
+    headroom |  -674.1284   394.8313    -1.71   0.093    -1462.661    114.4041
+       _cons |   1974.477   3603.676     0.55   0.586    -5222.561    9171.514
+------------------------------------------------------------------------------</code></pre>
+</div>
+</div>
+</section>
+<section id="interpreting-the-f-test" class="level2">
+<h2 class="anchored" data-anchor-id="interpreting-the-f-test">Interpreting the F-Test</h2>
+<p>In this example, we have three coefficients of interest that we set equal to zero (three <em>linear restrictions</em>) in our test of overall significance, <span class="math inline">\(\beta_2,\beta_3,\beta_4\)</span>, so our <span class="math inline">\(v_1=3\)</span>.</p>
+<p>We have <span class="math inline">\(k=4\)</span> total coefficients including our constant term and 69 observations, so our <span class="math inline">\(v_2=n-k=69-4=65\)</span>. For a test of overall significance, our <span class="math inline">\((v_1,v_2)\)</span> will be (<span class="math inline">\(k-1,n-k\)</span>).</p>
+<p>Thus, Stata reports <span class="math inline">\(F(3,65)=10.71\)</span> with p-value <span class="math inline">\(\approx0\)</span>. We reject our null hypothesis for the overall significance test and say that at least one regressor does statistically significantly predict our outcome variable (but we cannot say which one).</p>
+</section>
+<section id="unrestricted-and-restricted-models" class="level2">
+<h2 class="anchored" data-anchor-id="unrestricted-and-restricted-models">Unrestricted and Restricted Models</h2>
+<p>Our F-test operates by comparing what we call the <strong>unrestricted model</strong> and the <strong>restricted model</strong>. The <em>unrestricted</em> model is our regression as normal. The <em>restricted</em> model is our original model with all of our linear restrictions added in.</p>
+<p>In the case of our overall significance test, we had linear restrictions that the coefficients on all regressors were zero: <span class="math inline">\(\beta_2=...=\beta_k=0\)</span>. Thus, we would plug these into our regression: <span class="math display">\[\begin{align*}
+\text{Unrestricted model: } y &amp;= \beta_1+\beta_2x_2+...+\beta_kx_k+u \\
+\text{Restricted model: }y &amp;= \beta_1+0x_2+...+0x_k+u\\
+&amp;= \beta_1+u
+\end{align*}\]</span> We then compare the explanatory power of both models. We reject the null if our <strong>unrestricted</strong> model explains variation in our outcome variable <strong>statistically significantly more</strong> than our <strong>restricted</strong> model.</p>
+</section>
+<section id="computing-the-f-statistic" class="level2">
+<h2 class="anchored" data-anchor-id="computing-the-f-statistic">Computing the F-Statistic</h2>
+<p>Under assumptions (1)-(4) for our population multivariate regression model, we can compute our F-statistic as:</p>
+<p><span class="math display">\[F=\frac{(ResSS_r-ResSS_u)/q}{ResSS_u/(n-k)}\]</span></p>
+<p>where <span class="math inline">\(ResSS_i\)</span> is the residual sum of squares from our unrestricted (u) and restricted (r) models, respectively, and <span class="math inline">\(q\)</span> is the number of linear restrictions we make.</p>
+<p>For the test of overall significant, <span class="math inline">\(q=k-1\)</span>.</p>
+</section>
+<section id="the-f-test-is-two-sided" class="level2">
+<h2 class="anchored" data-anchor-id="the-f-test-is-two-sided">The F-Test is Two-Sided</h2>
+<p>While our F distribution is right-skewed and bounded below at zero (and thus we are only testing whether <span class="math inline">\(F&gt;F^*\)</span>), our F-test is still a two-sided test. This should make intuitive sense, as we are testing whether or not one or more linear restrictions between parameters hold. If these assumptions do not hold, it could be in either direction: <span class="math inline">\(\beta_j&lt;0\)</span> or <span class="math inline">\(\beta_j&gt;0\)</span>.</p>
+<p>In the simplest cast of testing a single regressor, we saw that <span class="math inline">\(F_{1,v2}=(T_{v2})^2\)</span>, further cemeting that our F-test is a two-sided test. A positive or negative t-statistic will always become a positive number when squared into an F-statistic: <span class="math inline">\((-t)^2=F\)</span> and <span class="math inline">\((t)^2=F\)</span>.</p>
+</section>
+<section id="types-of-f-tests" class="level2">
+<h2 class="anchored" data-anchor-id="types-of-f-tests">Types of F-Tests</h2>
+<p>We have seen an F-test for <em>overall significance</em>, the test run by default in Stata for any regression. However, we may also have F-tests for:</p>
+<ul>
+<li><p>A subset of regressors, where we compare models with and without a set of linear restrictions. Most commonly this is setting some coefficients equal to zero, but could also be more complicated linear restrictions.</p></li>
+<li><p>A single regressor, which will give the same p-value as the corresponding t-test on that single regressor.</p></li>
+</ul>
+<p>For all F-tests, our first degrees of freedom measure is the number of linear restrictions we make going from the unrestricted to the restricted model and the second degrees of freedom measure is <span class="math inline">\(n-k\)</span> as before.</p>
+</section>
+<section id="limiting-distribution-chi-squared" class="level2">
+<h2 class="anchored" data-anchor-id="limiting-distribution-chi-squared">Limiting Distribution: Chi-Squared</h2>
+<p>We described the standard normal distribution as the <em>limiting distribution</em> of our t distribution: <span class="math inline">\(T(n-k)\rightarrow N(0,1)\)</span> as <span class="math inline">\(n\rightarrow\infty\)</span></p>
+<p>Our standard normal distribution always looks the same regardless of sample size. Our t distribution will look more and more like the standard normal (kurtosis<span class="math inline">\(\rightarrow3\)</span>) as our sample size increases.</p>
+<p>The <strong>chi-squared</strong> <span class="math inline">\(\chi^2(q)\)</span> distribution is the limiting distribution for our F distribution. A chi-squared distribution is also right-skewed and takes only non-negative values.</p>
+<p>Our chi-squared distribution with <span class="math inline">\(v_1=q\)</span> will also always look the same regardless of sample size. Our F distribution with <span class="math inline">\(v_1=q\)</span> will look and more like the chi-squared distribution with <span class="math inline">\(v_1=q\)</span> as our sample size increases: <span class="math inline">\(F(q,n-k)\rightarrow\chi^2(q)\)</span> as <span class="math inline">\(n\rightarrow\infty\)</span>.</p>
+</section>
+<section id="end-of-lecture-material" class="level1">
+<h1>End of lecture material</h1>
+<section id="knowledge-check-11" class="level2">
+<h2 class="anchored" data-anchor-id="knowledge-check-11">Knowledge Check 11</h2>
+<p>Consider the Cobb-Douglas model of production: <span class="math display">\[Y=AK^{\beta_2}L^{\beta_3}\]</span> We can log transform<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> both sides to yield something we can estimate with multivariate OLS: <span class="math display">\[\ln Y = \ln A + \beta_2\ln K + \beta_3\ln L\]</span></p>
+<p>Suppose we want to test the assumption of <em>constant returns to scale</em>: that <span class="math inline">\(\beta_2+\beta_3=1\)</span>. Describe and explain how we could conduct this test (and interpret its output) using:</p>
+<ul>
+<li><p>A pooled t-test</p></li>
+<li><p>An F-test</p></li>
+</ul>
+</section>
+<section id="knowledge-check-11-pooled-t-test-answer" class="level2 smaller" data-shrink="20">
+<h2 class="smaller anchored" data-shrink="20" data-anchor-id="knowledge-check-11-pooled-t-test-answer">Knowledge Check 11 — Pooled t-Test Answer</h2>
+<p>To test our assumption of CRS using a pooled t-test, we would write down the following hypotheses: <span class="math display">\[H_0:\beta_2+\beta_3=1\]</span> <span class="math display">\[H_A:\beta_2+\beta_3\neq1\]</span> We would then run a log-log regression to estimate: <span class="math display">\[\ln Y = \beta_1 + \beta_2\ln K + \beta_3\ln L+u\]</span> with a dataset containing <span class="math inline">\(Y\)</span>, <span class="math inline">\(K\)</span>, and <span class="math inline">\(L\)</span> and find <span class="math inline">\(b_2,b_3\)</span> along with standard errors.</p>
+<p>Finally, we would conduct a pooled t-test and construct the statistic: <span class="math display">\[t=\frac{b_2+b_3-1}{se(b_2
++b_3)}\sim T(n-3)\]</span> where <span class="math inline">\(se(b_2+b_3)\)</span> is the pooled standard error for <span class="math inline">\(b_2,b_3\)</span> (that we did not write down in detail). We would then compare this to a critical value <span class="math inline">\(t^*_{n-3,\alpha/2}\)</span> from <code>ttail()</code>.</p>
+<p>If <span class="math inline">\(|t|&gt;|t^*|\)</span>, we will reject the null and conclude <em>our economy does not exhibit constant returns to scale</em>. If <span class="math inline">\(|t|\leq|t^*|\)</span>, we will fail to reject the null and conclude <em>our economy does appear to exhibit constant returns to scale.</em> We could also convert our t-statistic into a p-value and compare this to <span class="math inline">\(\alpha\)</span> to make the same conclusion.</p>
+</section>
+<section id="knowledge-check-11-f-test-answer-part-1" class="level2 smaller" data-shrink="10">
+<h2 class="smaller anchored" data-shrink="10" data-anchor-id="knowledge-check-11-f-test-answer-part-1">Knowledge Check 11 — F-Test Answer, Part 1</h2>
+<p>To test our assumption of CRS using a joint F-test, we would write down the following: <span class="math display">\[H_0:\beta_2+\beta_3=1\]</span> <span class="math display">\[H_A:\beta_2+\beta_3\neq1\]</span></p>
+<p>We would then estimate two regressions — the restricted model (r) and unrestricted model (u). The unrestricted model would be our normal regression: <span class="math display">\[\ln Y = \beta_1 + \beta_2\ln K + \beta_3\ln L+u \tag{1}\]</span></p>
+<p>The restricted model would be our regression <em>with the assumptions made under the null plugged into our model</em>. In this case, we could solve for either <span class="math inline">\(\beta_2\)</span> or <span class="math inline">\(\beta_3\)</span>: <span class="math display">\[H_0: \beta_2 = 1-\beta_3\text{ or }\beta_3=1-\beta_2\]</span> Now we can plug this into our unrestricted model to get our restricted model: <span class="math display">\[\ln Y = \beta_1 + (1-\beta_3)\ln K + \beta_3\ln L + u \tag{2}\]</span></p>
+</section>
+<section id="knowledge-check-11-f-test-answer-part-2" class="level2 smaller" data-shrink="10">
+<h2 class="smaller anchored" data-shrink="10" data-anchor-id="knowledge-check-11-f-test-answer-part-2">Knowledge Check 11 — F-Test Answer, Part 2</h2>
+<p>Finally, we will estimate models (1) and (2) with OLS and compute the <span class="math inline">\(ResSS\)</span> for each. We will then construct our F-statistic with: <span class="math display">\[F=\frac{(ResSS_r-ResSS_u)/q}{ResSS_u/(n-k)}\sim F(1,n-3)\]</span> where <span class="math inline">\(q\)</span> is our number of linear restrictions, in this case <span class="math inline">\(q=1\)</span>, <span class="math inline">\(k\)</span> is our number of estimated regression coefficients, in this case <span class="math inline">\(k=3\)</span>, and <span class="math inline">\(n\)</span> is our sample size.</p>
+<p>We will then compare this F-statistic to a critical value <span class="math inline">\(F^*_{q,n-k,\alpha}\)</span> we obtain with the <code>invFtail()</code> function in Stata.</p>
+<p>If <span class="math inline">\(F&gt;F^*\)</span>, we will reject the null and conclude <em>our economy does not exhibit constant returns to scale</em>. If <span class="math inline">\(F\leq F^*\)</span>, we will fail to reject the null and conclude <em>our economy does appear to exhibit constant returns to scale.</em> We could also convert our F-statistic into a p-value with <code>Ftail()</code> and compare this to <span class="math inline">\(\alpha\)</span> to make the same conclusion.</p>
+</section>
+</section>
+
+
+<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p>Ordinary Least Squares estimator(s) are obtained by minimizing <span class="math inline">\(\sum_i e_i^2\)</span><a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>“Best Linear Unbiased Estimator” or minimum variance among all similar estimators.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p><span class="math inline">\(\ln(ab)=\ln(a)+\ln(b);\ln(a^b)=b\times\ln(a)\)</span><a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section></div></main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

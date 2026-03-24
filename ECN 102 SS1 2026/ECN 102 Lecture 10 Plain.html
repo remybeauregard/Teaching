@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.36">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Remy Beauregard">
+
+<title>ECN 102: Analysis of Economics Data</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="L10_files/libs/clipboard/clipboard.min.js"></script>
+<script src="L10_files/libs/quarto-html/quarto.js" type="module"></script>
+<script src="L10_files/libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="L10_files/libs/quarto-html/popper.min.js"></script>
+<script src="L10_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="L10_files/libs/quarto-html/anchor.min.js"></script>
+<link href="L10_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="L10_files/libs/quarto-html/quarto-syntax-highlighting-845c23b38eaddc0f92fda52bfe77a8c8.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="L10_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="L10_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="L10_files/libs/bootstrap/bootstrap-138a6193a3bd40baf1e627da441a4734.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<meta name="description" content="Lecture slides 10 for ECN 102.">
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="quarto-light">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="ECN 102 Lecture 10.html"><i class="bi bi-file-slides"></i>RevealJS</a></li><li><a href="ECN 102 Lecture 10.pdf"><i class="bi bi-file-pdf"></i>Beamer</a></li></ul></div></div>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">ECN 102: Analysis of Economics Data</h1>
+<p class="subtitle lead">Chapter 10: Multivariate Regression</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Remy Beauregard </p>
+          </div>
+  </div>
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="motivation-for-multivariate-regression" class="level2">
+<h2 class="anchored" data-anchor-id="motivation-for-multivariate-regression">Motivation for Multivariate Regression</h2>
+<p>Previously, we modeled and conducted inference on the relationship between two variables, X and Y. However, we are likely to encounter many scenarios where we think more than one explanatory variable is important for explaining an outcome variable. In this case, we need to utilize multivariate regression.</p>
+</section>
+<section id="challenges-of-multivariate-regression" class="level2">
+<h2 class="anchored" data-anchor-id="challenges-of-multivariate-regression">Challenges of Multivariate Regression</h2>
+<p>Multivariate regression is a bit more complicated than bivariate:</p>
+<ol type="1">
+<li><p>We cannot produce a scatterplot in more than 2 (or 3) dimensions, meaning we may not easily be able to visualize our series together in a single plot.</p></li>
+<li><p>We also cannot compute correlation between more than two variables, meaning our statistics will be a bit more complicated.</p></li>
+<li><p>We may think that some regressors covary with others, meaning we will need to work harder to isolate the unique contribution each regressor makes to changes in our outcome variable.</p></li>
+</ol>
+</section>
+<section id="pairwise-correlations" class="level2">
+<h2 class="anchored" data-anchor-id="pairwise-correlations">Pairwise Correlations</h2>
+<p>We may still want to think about correlation between variables in the multivariate case, but we are restricting to two variables at a time. Instead, we may compute and display a set of <strong>pairwise correlations</strong>: how each variable of interest varies with all other variables individually. We have seen an example of this in Stata:</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>(obs=69)
+
+             |    price      mpg   weight    rep78
+-------------+------------------------------------
+       price |   1.0000
+         mpg |  -0.4559   1.0000
+      weight |   0.5478  -0.8055   1.0000
+       rep78 |   0.0066   0.4023  -0.4003   1.0000</code></pre>
+</div>
+</div>
+</section>
+<section id="the-multivariate-regression-model" class="level2">
+<h2 class="anchored" data-anchor-id="the-multivariate-regression-model">The Multivariate Regression Model</h2>
+<p>Our multivariate regression model will look quite similar to the bivariate model but with additional terms: <span class="math display">\[\hat{y}=b_1+b_2x_2+b_3x_3+...+b_kx_k\]</span></p>
+<p>where <span class="math inline">\(\hat{y}\)</span> is our outcome or <em>dependent</em> variable and <span class="math inline">\(x_2...x_k\)</span> are our <span class="math inline">\(k-1\)</span> independent variables or <em>regressors</em>. <span class="math inline">\(b_2...b_k\)</span> are then the estimated coefficients associated with each regressor.</p>
+<p>Our <span class="math inline">\(i^{th}\)</span> observation will be given as <span class="math inline">\(\hat{y}_i=b_1+b_2x_{2i}+...+b_kx_{ki}\)</span>.</p>
+</section>
+<section id="residuals-in-multivariate-regression" class="level2">
+<h2 class="anchored" data-anchor-id="residuals-in-multivariate-regression">Residuals in Multivariate Regression</h2>
+<p>Just like bivariate regression, our <em>residual</em> is the vertical distance between our actual and fitted values: <span class="math inline">\(e_i=y_i-\hat{y}_i\)</span>, which can now be expanded to <span class="math display">\[e_i=y_i-\underbrace{b_1-b_2x_{2i}-b_3x_{3i}-...-b_kx_{ki}}_{\hat{y}_i}\]</span></p>
+<p>However, we need to know how to estimate the <span class="math inline">\(k\)</span> unknown coefficients in our regression model, <span class="math inline">\(b_1,...,b_k\)</span></p>
+</section>
+<section id="normal-equations-first-order-conditions" class="level2">
+<h2 class="anchored" data-anchor-id="normal-equations-first-order-conditions">Normal Equations (First-Order Conditions)</h2>
+<p>Our <span class="math inline">\(k\)</span> OLS coefficients are found as the solution to <span class="math inline">\(k\)</span> first order conditions or <strong>normal equations</strong> set equal to zero: <span class="math display">\[\sum_{i=1}^nx_{1i}(y_i-b_1-b_2x_{2i}-...-b_kx_{ki})=0\]</span> <span class="math display">\[\sum_{i=1}^nx_{2i}(y_i-b_1-b_2x_{2i}-...-b_kx_{ki})=0\]</span> <span class="math display">\[...\]</span> <span class="math display">\[\sum_{i=1}^nx_{ki}(y_i-b_1-b_2x_{2i}-...-b_kx_{ki})=0\]</span></p>
+<p>We obtain these by applying the chain rule to <span class="math inline">\(\frac{\partial}{\partial b_j}\sum_i e_i^2\)</span> for <span class="math inline">\(j=1,...,k\)</span>.</p>
+</section>
+<section id="orthogonality" class="level2">
+<h2 class="anchored" data-anchor-id="orthogonality">Orthogonality</h2>
+<p>Given our definition of our residual as <span class="math inline">\(e_i=y_i-\hat{y}_i\)</span> and our normal equations above, we can rewrite these FOCs as <span class="math display">\[\sum_{i=1}^nx_{ji}e_i=0\text{ for }j=1,...,k\]</span> We see that this means the sum of the products of each regressor and the residual is zero, also called <strong>orthgonality</strong>.</p>
+<p>Since we know that our constant term means <span class="math inline">\(x_{1i}=1\)</span> for all <span class="math inline">\(i\)</span>, we can show that <span class="math inline">\(\sum_ie_i=0\)</span> for OLS: <span class="math display">\[\sum_{i=1}^nx_{1i}e_i=0\rightarrow\sum_{i=1}^n1e_i=0\rightarrow\sum_{i=1}^ne_i=0\]</span></p>
+</section>
+<section id="perfect-collinearity" class="level2">
+<h2 class="anchored" data-anchor-id="perfect-collinearity">Perfect Collinearity</h2>
+<p>An additional constraint on our multivariate regression is that our regressors are not <strong>perfectly colinear</strong> with each other (or with linear combinations of each other). For example, if we had a regressor <span class="math inline">\(x_2=3x_3\)</span>, we could not include both <span class="math inline">\(x_2\)</span> and <span class="math inline">\(x_3\)</span> in our multivariate regression.</p>
+<p>Even if our regressors are not <em>perfectly</em> colinear, we may still be concerned if two or more of our regressors are highly (but not perfectly) correlated.</p>
+<p>Since we are solving <span class="math inline">\(k\)</span> FOCs to find <span class="math inline">\(k\)</span> unknown coefficients, we also need to ensure that our sample size exceeds our number of regressors: <span class="math inline">\(n&gt;k\)</span></p>
+</section>
+<section id="estimating-coefficients-the-formula-for-b_j" class="level2">
+<h2 class="anchored" data-anchor-id="estimating-coefficients-the-formula-for-b_j">Estimating Coefficients: The Formula for <span class="math inline">\(b_j\)</span></h2>
+<p>Unlike bivariate regression, we cannot easily express a complete formula for our coefficient estimates.</p>
+<p>If we consider <span class="math inline">\(b_j\)</span> to be the coefficient on the <span class="math inline">\(j^{th}\)</span> regressor in a multivariate regression, our coefficient will be equal to the ratio of the covariance (with our residual) to the variance of <em>the residual of a regression of <span class="math inline">\(x_j\)</span> on all other regressors</em>:</p>
+<p><span class="math display">\[b_j=\frac{\sum_{i=1}^n\tilde{x}_{ji}(y_i-\bar{y})}{\sum_{i=1}^n\tilde{x}_{ji}^2}=\frac{Cov(\tilde{x}_j,y)}{Var(\tilde{x}_j)}\]</span></p>
+<p>where our residual <span class="math inline">\(\tilde{x}_{ji}=x_{ji}-\hat{x}_{ji}\)</span> and <span class="math inline">\(\hat{x}_{ji}\)</span> is the predicted value of <span class="math inline">\(x_{ji}\)</span> from a regression of <span class="math inline">\(x_j\)</span> on all other regressors <span class="math inline">\(x_{j'\neq j}\)</span>.</p>
+</section>
+<section id="implications-of-the-b_j-formula" class="level2">
+<h2 class="anchored" data-anchor-id="implications-of-the-b_j-formula">Implications of the <span class="math inline">\(b_j\)</span> Formula</h2>
+<p>Given our formula, we can see that:</p>
+<ol type="1">
+<li><p><span class="math inline">\(\tilde{x}_{ji}=x_{ji}-\bar{x}_{ji}\)</span> if <span class="math inline">\(x_j\)</span> is independent of all other regressors</p></li>
+<li><p><span class="math inline">\(\tilde{x}_{ji}=x_{ji}-\bar{x}_{ji}\)</span> if <span class="math inline">\(x_j\)</span> is our only regressor (<em>bivariate regression</em>)</p></li>
+<li><p><span class="math inline">\(\tilde{x}_{ji}=0\)</span> if <span class="math inline">\(x_j\)</span> is perfectly colinear (exactly overlaps) with one or more other regressor <span class="math inline">\(x_{j'\neq j}\)</span> in our model</p></li>
+</ol>
+<p>In cases (1) and (2), we see that <span class="math inline">\(b_j=b_j^{\text{bivariate}}\)</span> when we plug in <span class="math inline">\(\tilde{x}_j\)</span>.</p>
+<p>In case (3), we see that <span class="math inline">\(\tilde{x}_j=0\)</span> will mean <em>we cannot estimate</em> <span class="math inline">\(b_2\)</span> as we will have a zero in our denominator.</p>
+</section>
+<section id="overlapping-variation-diagram" class="level2">
+<h2 class="anchored" data-anchor-id="overlapping-variation-diagram">Overlapping Variation: Diagram</h2>
+<p>Variation of <span class="math inline">\(x_j\)</span> overlapping with other regressors:</p>
+<div class="cell">
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in is.na(x): is.na() applied to non-(list or vector) of type
+'expression'
+
+Warning in is.na(x): is.na() applied to non-(list or vector) of type
+'expression'
+
+Warning in is.na(x): is.na() applied to non-(list or vector) of type
+'expression'</code></pre>
+</div>
+<div class="cell-output-display">
+<div id="fig-venn-overlap" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-pos="H" alt="Schematic Venn diagram with three overlapping circles illustrating regressor variation in multivariate OLS. The top circle has a blue border and is labeled x_2 above it. The bottom-left circle has a purple border and is labeled x_3 to its left. The bottom-right circle has a red border and is labeled x_4 to its right. Each circle represents the total variation of one regressor. Only the non-overlapping portion of each circle is shaded, labeled Unique variation outside the circle. The unshaded overlapping regions represent shared variation that cannot be uniquely attributed to any one regressor; an arrow from outside the diagram points to the central overlap region, labeled Shared variation.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-venn-overlap-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="L10_files/figure-html/fig-venn-overlap-1.png" class="img-fluid figure-img" data-fig-pos="H" alt="Schematic Venn diagram with three overlapping circles illustrating regressor variation in multivariate OLS. The top circle has a blue border and is labeled x_2 above it. The bottom-left circle has a purple border and is labeled x_3 to its left. The bottom-right circle has a red border and is labeled x_4 to its right. Each circle represents the total variation of one regressor. Only the non-overlapping portion of each circle is shaded, labeled Unique variation outside the circle. The unshaded overlapping regions represent shared variation that cannot be uniquely attributed to any one regressor; an arrow from outside the diagram points to the central overlap region, labeled Shared variation." width="528">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-venn-overlap-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Total variation of each regressor (full circle) and the unique variation used for OLS estimation (shaded non-overlapping region).
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="why-unique-variation-matters" class="level2">
+<h2 class="anchored" data-anchor-id="why-unique-variation-matters">Why Unique Variation Matters</h2>
+<p>Why do we need to identify unique variation of <span class="math inline">\(x_j\)</span>, <span class="math inline">\(\tilde{x}_j\)</span>?</p>
+<p>Suppose we want to estimate the associated change in <span class="math inline">\(y\)</span> when <span class="math inline">\(x_2\)</span> changes: this is our coefficient <span class="math inline">\(b_2\)</span>. However, we also know that <span class="math inline">\(x_2\)</span> and <span class="math inline">\(x_3\)</span> are correlated and both appear in our regression<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>.</p>
+<p>Now, suppose we observe that:</p>
+<ul>
+<li><p><span class="math inline">\(x_2\)</span> increases</p></li>
+<li><p><span class="math inline">\(x_3\)</span> increases</p></li>
+<li><p><span class="math inline">\(y\)</span> increases</p></li>
+</ul>
+<p>Did <span class="math inline">\(y\)</span> increase because <span class="math inline">\(x_2\)</span> changed? Or did <span class="math inline">\(y\)</span> increase because <span class="math inline">\(x_3\)</span> changed and <span class="math inline">\(x_2\)</span> changed <em>because it is correlated with</em> <span class="math inline">\(x_3\)</span>? If variation in <span class="math inline">\(x_2\)</span> and <span class="math inline">\(x_3\)</span> (or any regressors) is allowed to overlap, we cannot identify the <em>unique</em> contribution <span class="math inline">\(x_2\)</span> makes to changes in <span class="math inline">\(y\)</span>.</p>
+</section>
+<section id="example-estimating-coefficients-in-practice" class="level2">
+<h2 class="anchored" data-anchor-id="example-estimating-coefficients-in-practice">Example: Estimating Coefficients in Practice</h2>
+<p>What would this look like in practice? Suppose we want to estimate <span class="math display">\[\widehat{final}_i=b_1+b_2MT+b_3StataQuiz+b_4HWavg+b_5KCavg\]</span> for your grade on the final as a function of your other grades in this class. How would we estimate <span class="math inline">\(b_3\)</span>, the coefficient on <em>StataQuiz</em>?</p>
+<p>First, we would regress <em>StataQuiz</em> scores on all other regressors. Then, we would find the residuals of this regression. Finally, we would compute the ratio of the covariance of <span class="math inline">\(x_3\)</span> residuals with the residuals from our main regression to the variance of <span class="math inline">\(x_3\)</span> residuals.</p>
+</section>
+<section id="partial-effect-vs.-total-effect-definitions" class="level2">
+<h2 class="anchored" data-anchor-id="partial-effect-vs.-total-effect-definitions">Partial Effect vs.&nbsp;Total Effect: Definitions</h2>
+<p>There are two effects from our regressor <span class="math inline">\(b_j\)</span> we might be interested in: the <strong>partial effect</strong> or the <strong>total effect</strong></p>
+<ul>
+<li><p>The <em>partial effect</em> is the impact on our outcome variable when <span class="math inline">\(x_j\)</span> changes and <em>all other regressors are held constant</em>.</p></li>
+<li><p>The <em>total effect</em> is the impact on our outcome variable when <span class="math inline">\(x_j\)</span> changes and we allow all other regressors <span class="math inline">\(x_{j'\neq j}\)</span> that may covary with <span class="math inline">\(x_j\)</span> to change and impact our outcome variable through their associated coefficients.</p></li>
+</ul>
+<p>It follows that the partial effect will be equal to the total effect if our regressor <span class="math inline">\(x_j\)</span> is <em>independent from all other regressors</em> <span class="math inline">\(x_{j'\neq j}\)</span>.</p>
+</section>
+<section id="partial-and-total-effects-formulas" class="level2">
+<h2 class="anchored" data-anchor-id="partial-and-total-effects-formulas">Partial and Total Effects: Formulas</h2>
+<p>We express the <strong>partial effect</strong> as: <span class="math display">\[\frac{\partial\hat{y}}{\partial x_j}=b_j\]</span></p>
+<p>We express the <strong>total effect</strong> as: <span class="math display">\[\begin{align*}
+\frac{d\hat{y}}{d x_j} &amp;= \underbrace{\frac{\partial\hat{y}}{\partial x_j}}_{b_j}\underbrace{\frac{\partial x_j}{\partial x_j}}_1+\sum_{j'\neq j}\underbrace{\frac{\partial\hat{y}}{\partial x_{j'}}}_{b_{j'}}\frac{\partial x_{j'}}{\partial x_j} \\
+&amp;= \underbrace{b_j}_{\text{direct effect}}+\underbrace{\sum_{j'\neq j}b_{j'}\frac{\partial x_{j'}}{\partial x_j}}_{\text{indirect effect(s)}}
+\end{align*}\]</span></p>
+</section>
+<section id="total-effect-equals-bivariate-coefficient" class="level2">
+<h2 class="anchored" data-anchor-id="total-effect-equals-bivariate-coefficient">Total Effect Equals Bivariate Coefficient</h2>
+<p>With some math, we can also show that the <em>total effect</em> of <span class="math inline">\(x_j\)</span> in a multivariate regression of y is equal to the <span class="math inline">\(b_2\)</span> coefficient from a bivariate regression of y on <span class="math inline">\(x_j\)</span>.</p>
+<p>This should make sense: the total effect is the direct effect of <span class="math inline">\(x_j\)</span> on y plus any indirect effects through other variables. The sum of these effects must then be equal to the effect of <span class="math inline">\(x_j\)</span> on y alone in a bivariate regression.</p>
+</section>
+<section id="model-fit-in-multivariate-regression" class="level2">
+<h2 class="anchored" data-anchor-id="model-fit-in-multivariate-regression">Model Fit in Multivariate Regression</h2>
+<p>Luckily, our measures of model fit do not need to change much to accommodate multivariate regression, since they depend on our residual (<span class="math inline">\(e=y-\hat{y}\)</span>):</p>
+<ul>
+<li><p>RMSE <span class="math display">\[s_e=\sqrt{\frac{1}{\boldsymbol{n-k}}\sum_{i=1}^n(y_i-\hat{y}_i)^2}\]</span></p></li>
+<li><p><span class="math inline">\(R^2\)</span> <span class="math display">\[\frac{ExpSS}{TSS}=\frac{\sum_{i=1}^n(\hat{y}_i-\bar{y})^2}{\sum_{i=1}^n(y_i-\bar{y})^2}\]</span></p></li>
+</ul>
+<p>Notice: we now have <span class="math inline">\(n-k\)</span> degrees of freedom in our RMSE denominator, since we are estimating coefficients on <span class="math inline">\(k\)</span> regressors (instead of two) to use in our calculation.</p>
+</section>
+<section id="the-problem-with-r2" class="level2">
+<h2 class="anchored" data-anchor-id="the-problem-with-r2">The Problem with <span class="math inline">\(R^2\)</span></h2>
+<p>Unhelpfully, our <span class="math inline">\(R^2\)</span> will always weakly increase as we add regressors<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>, but we may face other downsides to endlessly adding regressors to our model.</p>
+<p>We therefore might want to introduce a measure of model fit that:</p>
+<ol type="1">
+<li><p>Allows us to compare standardized fit between models</p></li>
+<li><p>Penalizes models that endlessly add (useless) regressors</p></li>
+</ol>
+</section>
+<section id="adjusted-r2" class="level2">
+<h2 class="anchored" data-anchor-id="adjusted-r2">Adjusted <span class="math inline">\(R^2\)</span></h2>
+<p>Thus, we introduce <strong>adjusted R-squared</strong>:</p>
+<p><span class="math display">\[\bar{R}^2=1-\frac{ResSS/(n-k)}{TSS/(n-1)}\in[0,1]\]</span></p>
+<p>This statistic still gives us a standardized measure of model fit but also <em>is decreasing in the number of regressors we add</em> (<span class="math inline">\(k\)</span>). We typically prefer to use this statistic for multivariate regressions over the standard <span class="math inline">\(R^2\)</span>.</p>
+</section>
+<section id="multivariate-regression-example" class="level2 smaller" data-shrink="30">
+<h2 class="smaller anchored" data-shrink="30" data-anchor-id="multivariate-regression-example">Multivariate Regression Example</h2>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>      Source |       SS           df       MS      Number of obs   =        69
+-------------+----------------------------------   F(3, 65)        =     12.44
+       Model |   210350667         3  70116888.9   Prob &gt; F        =    0.0000
+    Residual |   366446292        65  5637635.26   R-squared       =    0.3647
+-------------+----------------------------------   Adj R-squared   =    0.3354
+       Total |   576796959        68  8482308.22   Root MSE        =    2374.4
+
+------------------------------------------------------------------------------
+       price | Coefficient  Std. err.      t    P&gt;|t|     [95% conf. interval]
+-------------+----------------------------------------------------------------
+         mpg |  -52.21724   83.73955    -0.62   0.535    -219.4567    115.0222
+      weight |   2.111488   .6190081     3.41   0.001      .875243    3.347732
+       rep78 |   820.8123   320.8986     2.56   0.013     179.9335    1461.691
+       _cons |  -1939.871   3622.351    -0.54   0.594    -9174.206    5294.465
+------------------------------------------------------------------------------</code></pre>
+</div>
+</div>
+<p><span class="math display">\[\widehat{price}=\underbrace{-1939.87}_{b_1}-\underbrace{52.22}_{b_2}\underbrace{mpg}_{x_2}+\underbrace{2.11}_{b_3}\underbrace{weight}_{x_3}+\underbrace{820.81}_{b_4}\underbrace{rep78}_{x_4}\]</span></p>
+</section>
+<section id="end-of-lecture-material" class="level1">
+<h1>End of Lecture Material</h1>
+<section id="knowledge-check-10" class="level2">
+<h2 class="anchored" data-anchor-id="knowledge-check-10">Knowledge Check 10</h2>
+<ol type="1">
+<li><p>What is the difference between R-squared and adjusted R-squared? Why might we prefer the second as a measure of multivariate model fit?</p></li>
+<li><p>Why do we have <span class="math inline">\(n-k\)</span> degrees of freedom in our multivariate RMSE instead of <span class="math inline">\(n-2\)</span>?</p></li>
+<li><p>How do we compute the coefficient <span class="math inline">\(b_j\)</span> in a multivariate regression with <span class="math inline">\(k&gt;2\)</span> regressors (in words)?</p></li>
+<li><p>How does the partial effect of <span class="math inline">\(x_j\)</span> differ from the total effect?</p></li>
+</ol>
+</section>
+</section>
+
+
+<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p><span class="math inline">\(y=b_1+b_2x_2+b_3x_3+e\)</span><a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>Since <span class="math inline">\(\sum e_i^2\)</span> will never increase as more regressors are added, R-squared will either remain unchanged or increase as more regressors are added.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section></div></main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

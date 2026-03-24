@@ -1,0 +1,113 @@
+---
+title: "ECN 102: Analysis of Economics Data"
+subtitle: "Chapter 15: Marginal Effects"
+author: "Remy Beauregard"
+lang: en
+format:
+  revealjs:
+    output-file: "ECN 102 Lecture 15.html"
+    slide-level: 2
+    theme: simple
+    transition: none
+    smaller: true
+    include-in-header:
+      text: |
+        <meta name="description" content="Lecture slides 15 for ECN 102.">
+  beamer:
+    output-file: "ECN 102 Lecture 15.pdf"
+  html:
+    output-file: "ECN 102 Lecture 15 Plain.html"
+    include-in-header:
+      text: |
+        <meta name="description" content="Lecture slides 15 for ECN 102.">
+execute:
+  echo: false
+---
+
+## Marginal Effects: Overview
+
+Previously, interpreting the partial effect of a regressor has been as simple as looking at its associated coefficient. However, we may want to estimate **nonlinear models** with quadratic forms, log transformations, or interaction terms. In these cases, computing the **marginal effect** of x on y will require a bit more math.
+
+As before, we denote the marginal effect as $$ME_x=\frac{\Delta\hat{y}}{\Delta x}$$
+
+## Marginal Effects: Partial Derivatives
+
+To compute our marginal effect, we generally take the partial derivative of our predicted values with respect to our regressor of interest.
+
+If we had a quadratic model such as $\hat{y}=b_1+b_2x+b_3x^2$, we would compute: $$\frac{d}{dx}\hat{y}=b_2+2xb_3$$
+
+As we see, this marginal effect includes an $x$ in it. We need to know which value of x to plug in to compute the proper marginal effect.
+
+## Marginal Effects: MEM, MER, and AME
+
+There are three common types of marginal effects we compute:
+
+1. Marginal effect at the mean (**MEM**) where we plug in $x=\bar{x}$ for each regressor present in our derivative
+
+2. Marginal effect at a representative value (**MER**) where we plug in $x=x^*$ for each regressor
+
+3. Average marginal effect (**AME**) where we take the average of marginal effects at each value of $x$
+
+We can write the AME as $\frac1n\sum_{i=1}^nME_i$
+
+## Marginal Effects: Interacted Regressors
+
+We may also have a regression with **interacted regressors** — terms that depend on more than one regressor. In this case, our derivative may include more than one regressor for which we would plug in corresponding values.
+
+If a given regressor is interacted with others in our regression, we would need a joint F-test to determine whether or not that variable contributes overall to our regression. We could not use a t-test as we are testing multiple linear restrictions (for multiple coefficients) at once.
+
+## Marginal Effects: Interaction Example and Joint F-Test
+
+Suppose we estimate the regression
+
+$$y=\beta_1+\beta_2x+\beta_3z+\beta_4(x\times z)+u$$
+
+$$\Rightarrow\frac{\partial}{\partial x}\hat{y}=b_2+b_4z$$
+
+If we wanted to test joint significance of all regressors including $x$ with an F-test, our hypotheses would (jointly) be:
+
+$$H_0:\beta_2=0\cap\beta_4=0$$ $$H_A: \beta_2\neq0\cup\beta_4\neq0$$
+
+## Marginal Effects: Log-Linear Models
+
+For log-linear models, we estimate $\frac{\Delta\ln \hat{y}}{\Delta x}=b_2\approx\frac{\Delta\hat{y}/y}{\Delta x}$. To isolate our desired marginal effect of $\frac{\Delta\hat{y}}{\Delta x}$, we need to rearrange our terms:
+
+$$\frac{\Delta\ln\hat{y}}{\Delta x} = b_2$$
+
+$$\frac{\Delta\ln\hat{y}}{\Delta x}\approx\frac{\Delta\hat{y}/y}{\Delta x} = b_2$$
+
+$$y\left(\frac{\Delta\hat{y}/y}{\Delta x}\right) = (b_2)y$$
+
+$$\underbrace{\frac{\Delta\hat{y}}{\Delta x} =b_2y}_{\text{Marginal effect}}$$
+
+## Marginal Effects: Linear-Log and Log-Log Models
+
+Similarly for linear-log and log-log models, we will estimate our marginal effects as:
+
+$$\frac{\Delta\hat{y}}{\Delta x}=\frac{b_2}{x}\text{ (linear-log)}$$
+
+$$\frac{\Delta\hat{y}}{\Delta x}=b_2\times\frac{y}{x}\text{ (log-log)}$$
+
+## When to Use Each Model
+
+When would we use each of these models?
+
+- We use log transformations when we are concerned with a proportional change in one or more variables rather than a level change.
+
+- We use a quadratic model if we think the effects of a regressor are nonlinear or change with values of x. A common example is *age*: average earnings initially increase with *age* but then decrease as we start to retire.
+
+- We use an interacted model if we think there is relevant covariance between regressors that we want to model. For example, we may want to interact *age* with *education* to capture how the returns to aging vary with level of education.
+
+# End of lecture material
+
+## Knowledge Check 15
+
+Compute the marginal effect at the mean (MEM) of a 1-unit change in x for the following models; $\bar{x}=4$, $\bar{y}=10$, $\bar{z}=7$:
+
+a) $\ln y = \beta_1+\beta_2x+u$
+
+b) $y = \beta_1+\beta_2x+\beta_3x^2+u$
+
+c) $y=\beta_1+\beta_2x+\beta_3z+\beta_4(x\times z)+u$
+
+d) $\ln y=\beta_1+\beta_2\ln x + u$
