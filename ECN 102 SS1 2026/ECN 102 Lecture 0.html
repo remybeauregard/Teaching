@@ -1,8 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="generator" content="quarto-1.9.36" />
+<html lang="en"><head>
+<script src="L0_files/libs/clipboard/clipboard.min.js"></script>
+<script src="L0_files/libs/quarto-html/tabby.min.js"></script>
+<script src="L0_files/libs/quarto-html/popper.min.js"></script>
+<script src="L0_files/libs/quarto-html/tippy.umd.min.js"></script>
+<link href="L0_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="L0_files/libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="L0_files/libs/quarto-html/quarto-syntax-highlighting-845c23b38eaddc0f92fda52bfe77a8c8.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.9.36">
 
   <meta name="author" content="Remy Beauregard">
   <title>ECN 102: Analysis of Economics Data</title>
@@ -121,11 +126,11 @@
   </style>
   <meta name="description" content="Lecture slides 0 for ECN 102.">
 </head>
-<body>
+<body class="quarto-light">
   <div class="reveal">
     <div class="slides">
 
-<section id="title-slide" class="quarto-title-block">
+<section id="title-slide" class="quarto-title-block center">
   <h1 class="title">ECN 102: Analysis of Economics Data</h1>
   <p class="subtitle">Introduction to ECN 102</p>
 
@@ -155,9 +160,9 @@ Remy Beauregard
 <h2>Interested in Research?</h2>
 <p>Considering research?</p>
 <ul>
-<li><p>Undergraduate research program (Prof. Wilson)</p></li>
+<li><p>Undergraduate research program (Prof.&nbsp;Wilson)</p></li>
 <li><p>…ECN <strong>140</strong>, 141, 142</p></li>
-<li><p>Honors thesis (Prof. Peri)</p></li>
+<li><p>Honors thesis (Prof.&nbsp;Peri)</p></li>
 <li><p>Check hallway postings</p></li>
 <li><p>Davis Economic Collective (DEC)</p></li>
 <li><p>UWIES (Undergrad. Womxn in Economics Society)</p></li>
@@ -186,7 +191,7 @@ Remy Beauregard
 <section id="course-logistics" class="slide level2">
 <h2>Course Logistics</h2>
 <p>For questions about course logistics, always consult the <strong>syllabus</strong> and Canvas page first! While I am happy to answer questions, these sources already address many FAQs.</p>
-<p>Make sure to check all Canvas <strong>announcements</strong>, as I most commonly use these to convey course information (e.g. deadline changes, grades posted, etc.)</p>
+<p>Make sure to check all Canvas <strong>announcements</strong>, as I most commonly use these to convey course information (e.g.&nbsp;deadline changes, grades posted, etc.)</p>
 <div class="fragment">
 <p>Let’s go through the <a href="ECN%20102%20Syllabus%20SS1%202026.html">syllabus</a> now…</p>
 </div>
@@ -194,14 +199,14 @@ Remy Beauregard
 <section id="knowledge-check-0" class="slide level2">
 <h2>Knowledge Check 0</h2>
 <p>Make sure you have put the dates for our midterm, Stata quiz, and final exam into your calendar! Once you have done this, please write “I have put the exam dates into my calendar” in a note and submit that to Canvas as your knowledge check for today.</p>
-<div class="quarto-auto-generated-content" style="display: none;">
+
+</section>
+    </div>
+  <div class="quarto-auto-generated-content" style="display: none;">
 <div class="footer footer-default">
 
 </div>
-</div>
-</section>
-    </div>
-  </div>
+</div></div>
 
   <script>window.backupDefine = window.define; window.define = undefined;</script>
   <script src="L0_files/libs/revealjs/dist/reveal.js"></script>
@@ -223,7 +228,17 @@ Remy Beauregard
 
       // Full list of configuration options available at:
       // https://revealjs.com/config/
-      Reveal.initialize({ 
+      Reveal.initialize({
+'controlsAuto': true,
+'previewLinksAuto': false,
+'pdfSeparateFragments': false,
+'autoAnimateEasing': "ease",
+'autoAnimateDuration': 1,
+'autoAnimateUnmatched': true,
+'jumpToSlide': true,
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'smaller': false,
+ 
         // Display controls in the bottom right corner
         controls: false,
 
@@ -392,7 +407,8 @@ Remy Beauregard
         },
 
         // reveal.js plugins
-        plugins: [
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, QuartoSupport,
+
           RevealMath,
           RevealNotes,
           RevealSearch,
@@ -400,7 +416,7 @@ Remy Beauregard
         ]
       });
     </script>
-    <script id = "quarto-html-after-body" type="application/javascript">
+    <script id="quarto-html-after-body" type="application/javascript">
       window.document.addEventListener("DOMContentLoaded", function (event) {
         const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
         tabsets.forEach(function(tabset) {
@@ -568,5 +584,6 @@ Remy Beauregard
         }
       });
       </script>
-    </body>
-</html>
+    
+
+</body></html>
