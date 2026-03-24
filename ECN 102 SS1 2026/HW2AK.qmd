@@ -1,0 +1,128 @@
+---
+title: "ECN 102: Analysis of Economics Data"
+subtitle: "Homework 2 Answer Key"
+author: "Beauregard"
+lang: en
+format:
+  html:
+    output-file: "ECN 102 Homework 2 AK.html"
+    theme: cosmo
+    include-in-header:
+      text: |
+        <meta name="description" content="Homework 2 answer key for ECN 102.">
+  pdf:
+    output-file: "ECN 102 Homework 2 AK.pdf"
+execute:
+  echo: true
+---
+
+```{r}
+#| label: setup
+#| include: false
+require("Statamarkdown")
+```
+
+## Question 1: Population mean and variance
+
+Let X denote the number of days it will rain in Davis, CA in July. Suppose $X=0$ with probability 0.75, $X=1$ with probability 0.13, $X=2$ with probability 0.08, and $X=3$ with probability 0.04 (assume these are all the possible values X can take).
+
+a) Obtain the population mean, $\mu=E[X]$, from first principles
+
+$\boldsymbol{\mu=0\times0.75+1\times0.13+2\times0.08+3\times0.04=0.41}$
+
+b) Obtain $\sigma^2=E[(x-\mu)^2]$ from first principles
+
+$\boldsymbol{\sigma^2=(0-0.41)^2\times0.75+(1-0.41)^2\times0.13+(2-0.41)^2\times0.08+(3-0.41)^2\times0.04)=0.64}$
+
+c) Find the standard deviation of X
+
+$\boldsymbol{\sigma=\sqrt{\sigma^2}=\sqrt{0.64}=0.8}$
+
+d) What do these Greek letters $\mu$ and $\sigma$ correspond to, specifically? How do these differ from $\bar{x}$ and $s$? **Mu is our population mean and sigma is our population standard deviation. X-bar and s are our sample statistic counterparts.**
+
+## Question 2: Mean and variance of the sample mean
+
+Let $\bar{X}$ be the mean of a random sample of size $n=400$ from a random variable $X$ that is *not* distributed normally, with mean 45 and variance 100.
+
+a) Give the mean of $\bar{X}$ $\boldsymbol{E[\bar{X}]=\mu=45}$
+
+b) Give the variance and standard deviation of $\bar{X}$ $\boldsymbol{Var[\bar{X}]=\frac{\sigma^2}{n}=\frac{100}{400}=\frac14,SD[\bar{X}]=\sqrt{\frac14}=\frac12}$
+
+c) Is $X$ normally distributed? Is $\bar{X}$ likely to be normally distributed? Explain. **X is not normally distributed, given in the question. However, due to the CLT with $\boldsymbol{n=400>30}$, $\bar{X}$ is expected to be normally distributed, such that** $\boldsymbol{\bar{X}\sim N(45,\frac14)}$.
+
+## Question 3: The t distribution
+
+For a given T distribution, the following Stata commands give areas in the **right tail** of the distribution:
+
+- `di ttail(9,1.2)` gives $\Pr(T>1.2)$ for $T\sim T(9)$ (a t-distribution with $n=10,df=9$).
+
+- `di invttail(9,0.025)` gives $t^*:\Pr(T>t^*)=0.025$ again for $T\sim T(9)$
+
+Now, for $T\sim T(44)$, use these Stata commands to find:
+
+a) $\Pr(T > 2)$ **`di ttail(44,2)`**
+
+b) $\Pr(|T|>2)$ **`di ttail(44,2)*2`**
+
+c) $\Pr(T < -1.8)$ **`di ttail(44,1.8)` or `di 1-ttail(44,-1.8)`; distribution is symmetric**
+
+d) $\Pr(T < 1.8)$ **`di 1-ttail(44,1.8)` or `di ttail(44,-1.8)`; probabilities sum to 1**
+
+e) $\Pr(T > 0)$ **0.50; distribution is symmetric and centered at 0**
+
+f) $t^*:\Pr(T<-t^*)=0.025$ **`di -invttail(44,0.025)` or `di invttail(44,1-0.025)`; symmetric**
+
+g) $t^*:\Pr(T > t^*)=0.05$ **`di invttail(44,0.05)`**
+
+h) $t^*:\Pr(|T|>|t^*|)=\Pr(T<-t^*\text{ or }T>t^*)=0.05$ **`di invttail(44,0.05/2)`; 2-sided, symmetric**
+
+i) $t^*:\Pr(T>t^*)=0.5$ **0; distribution is symmetric with 50% above or below zero**
+
+**Note: (e) and (i) should be answerable without access to Stata**
+
+## Question 4: T-testing in Stata
+
+Use AED_CALELECTRICITY.DTA from hw1. Suppose we want to test whether the spot price of electricity is different from its one-day ahead forward price.
+
+a) Describe the variables present in the dataset. Which variable corresponds to the spot price? Which corresponds to the forward price? Is there a variable for the difference between the two?
+
+```{stata}
+#| label: describe-data
+#| collectcode: true
+use AED_CALELECTRICITY, clear
+describe 
+```
+
+**Spot price is *niso*, forward price is *npx*, difference is *diff*.**
+
+b) It is given above that we want to test whether the difference between these two series is different from zero. Is this a one-sided or two-sided test? What would our null and alternate hypotheses be? $$\text{Two-sided test; } H_0:\mu_{\text{diff}}=0,H_A:\mu_{\text{diff}}\neq0$$
+
+c) To run a ttest on a variable in Stata, we use `ttest [VARNAME]=[NULL VALUE]`. Include the output Stata gives for running this command.
+
+```{stata}
+#| label: ttest
+ttest diff=0
+```
+
+d) What is the conclusion of our test based on the p-value approach?
+
+**Our p-value for our 2-sided test is $0.8561>\alpha=0.05$, meaning we **fail to reject** our null hypothesis. We have **insufficient** evidence to say that the spot price and forward price are different for this sample.**
+
+e) What is the conclusion of our test based on the critical value approach? (You may need to compute an additional quantity to answer this)
+
+```{stata}
+#| label: critical-value
+di invttail(681-1,0.025)
+```
+
+**Our t-stat of $0.17<t^*_{0.025,680}=1.96$ meaning we also fail to reject our null with the critical value approach.**
+
+f) What is the conclusion of our test based on the given confidence interval?
+
+**Our difference value of 0 assumed under the null *is* included in our 95% confidence interval, meaning we also fail to reject our null.**
+
+g) If we had instead wanted to test whether the difference between the spot price and forward price was *greater than zero*, what would our hypotheses have been? What would our conclusion have been? $$\text{One-sided test; } H_0:\mu_{\text{diff}}\leq0,H_A:\mu_{\text{diff}}>0$$ **Our p-value is now $0.4325>\alpha=0.05$, so we again fail to reject our null. We also have insufficient evidence to say that the difference between the forward and spot prices is greater than zero.**
+
+h) Why does Stata provide three p-values and alternate hypotheses in its output for `ttest` but only one t-statistic?
+
+**Our computed t-statistic will be the same for all three tests, but our alternate hypothesis will change and thus the p-value associated with our statistic and/or critical value we compare our statistic to will also change.**

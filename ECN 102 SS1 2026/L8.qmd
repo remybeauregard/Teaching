@@ -1,5 +1,5 @@
 ---
-title: "ECN 102: Analysis of Econ Data"
+title: "ECN 102: Analysis of Economics Data"
 subtitle: "Chapter 8: Bivariate Practice (With Answers)"
 author: "Remy Beauregard"
 lang: en

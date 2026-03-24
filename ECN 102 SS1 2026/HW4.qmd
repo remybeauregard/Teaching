@@ -1,0 +1,81 @@
+---
+title: "ECN 102: Analysis of Economics Data"
+subtitle: "Homework 4"
+author: "Beauregard"
+lang: en
+format:
+  html:
+    output-file: "ECN 102 Homework 4.html"
+    theme: cosmo
+    include-in-header:
+      text: |
+        <meta name="description" content="Homework 4 for ECN 102.">
+  pdf:
+    output-file: "ECN 102 Homework 4.pdf"
+execute:
+  echo: true
+---
+
+**Submission rules**: homework must be submitted as *one pdf*; please do not submit multiple files.
+
+## Question 1: Log interpretation
+
+*AED (2022) Ch.9 Question 8*
+
+For each of the following, say what model (i.e. write down $\hat{y}=b_1+b_2x$) leads to the given interpretation of the slope coefficient (your intercept term will be arbitrary):
+
+a) A one unit change in $x$ is associated with a 0.3 unit change in $y$
+
+b) A one unit change in $x$ is associated with a 0.3 percent change in $y$
+
+c) A one percent change in $x$ is associated with a 0.3 percent change in $y$
+
+d) A one percent change in $x$ is associated with a 0.3 unit change in $y$
+
+## Question 2: Population model
+
+a) What are the four population assumptions for multivariate regression? How do these differ from our bivariate population assumptions?
+
+b) Explain in words what it means for our multivariate OLS estimator to be:
+
+1. unbiased
+
+2. consistent
+
+3. BLUE
+
+## Question 3: Estimation
+
+a) Explain two ways our multivariate OLS coefficient $\beta_j$ could be more precisely estimated compared to an alternative setting.
+
+Suppose we run a multivariate regression in Stata with 4 regressors and a constant with $n=50$. Interpret the following output:
+
+b) t = 3.3 for $b_2$
+
+c) P>|t| = 0.09 for $b_3$
+
+d) Prob > F = 0.04
+
+For the overall test yielding $F(v_1,v_2)=2.74$,
+
+e) what will $v_1$ and $v_2$ be equal to?
+
+f) how would we find $F^*_{v_1,v_2,\alpha}$?
+
+## Question 4: Adding regressors
+
+Suppose we start with a given multivariate regression and then want to add one more regressor. In each case, discuss (1) what each result means and then (2) whether we have sufficient proof to say our coefficient is statistically significantly different from zero at $\alpha=0.05$.
+
+a) Including the regressor increased our R-squared
+
+b) Including the regressor increased our adjusted R-squared
+
+c) Including the regressor decreased our RMSE
+
+d) A t-test of our regressor yielded $p=0.10$
+
+If we instead conducted an F-test of our single regressor,
+
+e) what would be the p-value for that computed F-statistic? How do we know?
+
+f) what would our F-statistic be equal to? Why?
