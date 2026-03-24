@@ -6,13 +6,13 @@ date: "Spring 2026"
 lang: en
 format:
   revealjs:
-    output-file: "ECN 099 Slides SP2026.html"
+    output-file: "ECN 099 Slides SQ2026.html"
     smaller: true
     include-in-header:
       text: |
         <meta name="description" content="Discussion slides for ECN 099: Undergraduate Reading Group, Spring 2026, UC Davis.">
   beamer:
-    output-file: "ECN 099 Slides SP2026.pdf"
+    output-file: "ECN 099 Slides SQ2026.pdf"
     fontsize: 10pt
 ---
 

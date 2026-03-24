@@ -4,7 +4,7 @@ subtitle: "Spring 2026"
 lang: en
 format:
   html:
-    output-file: "ECN 099 Syllabus SP2026.html"
+    output-file: "ECN 099 Syllabus SQ2026.html"
     toc: true
     toc-depth: 2
     toc-title: "Contents"
@@ -19,7 +19,7 @@ format:
           dl.course-info dd::after { display: block; content: ""; }
         </style>
   pdf:
-    output-file: "ECN 099 Syllabus SP2026.pdf"
+    output-file: "ECN 099 Syllabus SQ2026.pdf"
     documentclass: article
     fontsize: 12pt
     geometry: "top=2cm, bottom=2cm, left=2cm, right=2cm"
