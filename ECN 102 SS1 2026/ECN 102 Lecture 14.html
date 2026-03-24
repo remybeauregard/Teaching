@@ -218,7 +218,7 @@ Remy Beauregard
 <section id="simple-dummy-variable-regression" class="slide level2">
 <h2>Simple Dummy Variable Regression</h2>
 <p>Suppose we want to estimate the average final grade in ECN102 for Econ majors and non-majors. We could define a dummy variable <span class="math inline">\(ECN=1\)</span> for Economics majors and 0 otherwise.</p>
-<p>We then regress <span class="math inline">\(\widehat{final}=b_1+a_1\times ECN\)</span>:</p>
+<p>We then estimate <span class="math inline">\(final_i=\beta_1+\alpha_1 ECN_i+u_i\)</span>:</p>
 <p><span class="math display">\[\widehat{final}_i=\begin{cases}
 b_1+a_1 &amp; ECN_i =1 \\
 b_1 &amp; ECN_i=0
@@ -227,43 +227,43 @@ b_1 &amp; ECN_i=0
 </section>
 <section id="graph-final-grade-on-ecn-major-status" class="slide level2">
 <h2>Graph: Final Grade on ECN Major Status</h2>
-<p><span class="math inline">\(\widehat{final}=b_1+a_1 ECN\)</span>:</p>
+<p><span class="math inline">\(\widehat{final}_i=b_1+a_1 ECN_i\)</span>:</p>
 
-<img data-src="L14_files/figure-revealjs/fig-dummy-intercept-only-1.png" alt="Schematic graph with Hours studying on the x-axis and Final grade on the y-axis, both axes unlabeled numerically. Two horizontal lines span the full x-range: a solid dark-blue line for Non-major (ECN = 0) at a lower level, and a dashed purple line for Econ major (ECN = 1) at a higher level. A double-headed vertical arrow between the two lines near x = 2.5 is labeled a1, indicating the intercept shift from the dummy variable. The graph is conceptual and shows that with only a dummy regressor the model predicts a constant average grade for each group, with the two groups differing only by a1." width="528" class="r-stretch quarto-figure-center" id="fig-dummy-intercept-only"><p class="caption">
+<img data-src="L14_files/figure-revealjs/fig-dummy-intercept-only-1.png" alt="Schematic graph with Hours studying on the x-axis and Final grade on the y-axis, both unlabeled numerically, with the y-axis starting at zero. Two horizontal lines span the full x-range: a solid dark-blue line for Non-major (ECN = 0) at a lower level, and a dashed purple line for Econ major (ECN = 1) at a higher level. A double-headed vertical arrow near the y-axis labeled b1 spans from the x-axis at y equals zero up to the non-major line, showing the y-intercept. A second double-headed vertical arrow between the two lines labeled a1 shows the upward shift from the dummy variable. The graph illustrates that with only a dummy regressor the model predicts a constant grade for each group, differing only by a1 above the baseline b1." width="528" class="r-stretch quarto-figure-center" id="fig-dummy-intercept-only"><p class="caption">
 Figure&nbsp;1: Schematic regression lines showing the effect of a binary dummy variable on the outcome, with no continuous regressor.
 </p></section>
 <section id="dummy-variables-in-multivariate-regression" class="slide level2">
 <h2>Dummy Variables in Multivariate Regression</h2>
 <p>We may also want to include dummy variables in a multivariate regression with other continuous numerical regressors. In this case, the partial effect (estimated coefficient) of the dummy variable is the change in our outcome when our dummy goes from 0 to 1, all other regressors held constant. The total effect is our partial effect added to the product of any correlated movement in other variables and its associated coefficient.</p>
-<p>We now run the regression: <span class="math display">\[\widehat{final}_i=b_1+b_2hrs+a_1 ECN\]</span> where <span class="math inline">\(hrs\)</span> is the number of hours spent studying and <span class="math inline">\(ECN=1\)</span> is being an Econ major. Now, our estimated coefficient <span class="math inline">\(a_1\)</span> is the average difference in final grades between Econ majors and non-majors holding time spent studying fixed.</p>
+<p>We now estimate: <span class="math display">\[final_i=\beta_1+\beta_2hrs_i+\alpha_1 ECN_i+u_i\]</span> where <span class="math inline">\(hrs\)</span> is the number of hours spent studying and <span class="math inline">\(ECN=1\)</span> is being an Econ major. Now, our estimated coefficient <span class="math inline">\(a_1\)</span> is the average difference in final grades between Econ majors and non-majors holding time spent studying fixed.</p>
 </section>
 <section id="graph-final-grade-hours-and-ecn-major-status" class="slide level2">
 <h2>Graph: Final Grade, Hours, and ECN Major Status</h2>
-<p><span class="math inline">\(\widehat{final}=b_1+b_2hrs+a_1 ECN\)</span>:</p>
+<p><span class="math inline">\(\widehat{final}_i=b_1+b_2hrs_i+a_1 ECN_i\)</span>:</p>
 
-<img data-src="L14_files/figure-revealjs/fig-dummy-parallel-1.png" alt="Schematic graph with Hours studying on the x-axis and Final grade on the y-axis, both unlabeled numerically and on the same scale as the preceding graph. Two upward-sloping lines with equal slope b2 run in parallel: a solid dark-blue line for Non-major (ECN = 0) at a lower level and a dashed purple line for Econ major (ECN = 1) at a higher level. A double-headed vertical arrow near x = 1.5 is labeled a1, showing that the constant vertical gap between the two lines equals a1 regardless of hours studied. The parallel slopes illustrate that b2 is the same for both groups when there is no interaction term." width="528" class="r-stretch quarto-figure-center" id="fig-dummy-parallel"><p class="caption">
+<img data-src="L14_files/figure-revealjs/fig-dummy-parallel-1.png" alt="Schematic graph with Hours studying on the x-axis and Final grade on the y-axis, both unlabeled numerically, with the y-axis starting at zero. Two upward-sloping parallel lines: a solid dark-blue line for Non-major (ECN = 0) and a dashed purple line for Econ major (ECN = 1) above it. A double-headed vertical arrow near the y-axis labeled b1 spans from just above the x-axis to just below the y-intercept of the non-major line, with equal gaps at each end. A second double-headed vertical arrow slightly to the right labeled a1 shows the constant gap between the two parallel lines, with equal gaps at each end. A slope triangle on the non-major line shows a dotted horizontal run and a dotted vertical rise labeled b2, illustrating the shared slope of both lines." width="528" class="r-stretch quarto-figure-center" id="fig-dummy-parallel"><p class="caption">
 Figure&nbsp;2: Schematic parallel regression lines showing a binary dummy variable added to a regression with a continuous regressor.
 </p></section>
 <section id="interacting-a-dummy-variable-with-a-regressor" class="slide level2">
 <h2>Interacting a Dummy Variable with a Regressor</h2>
-<p>Finally, we could <strong>interact</strong> our dummy variable with another regressor to capture the average difference in <em>slopes</em> between one category and another. Adding to our regression of final grades, we could regress <span class="math display">\[\widehat{final}_i=b_1+b_2hrs+a_1ECN+a_2(ECN\times hrs)\]</span></p>
+<p>Finally, we could <strong>interact</strong> our dummy variable with another regressor to capture the average difference in <em>slopes</em> between one category and another. Adding to our regression of final grades, we could estimate <span class="math display">\[final_i=\beta_1+\beta_2hrs_i+\alpha_1ECN_i+\alpha_2(ECN_i\times hrs_i)+u_i\]</span></p>
 <p>Now:</p>
 <ul>
-<li><p><span class="math inline">\(b_2\)</span> captures the change in final grade associated with 1 additional hour of studying for <em>non</em>-majors</p></li>
-<li><p><span class="math inline">\(a_1\)</span> captures the average difference in overall final grades between majors and non-majors</p></li>
-<li><p><span class="math inline">\(b_2+a_2\)</span> captures the change in final grade associated with 1 additional hour of studying for <em>majors</em></p></li>
+<li><p><span class="math inline">\(\beta_2\)</span> captures the change in final grade associated with 1 additional hour of studying for <em>non</em>-majors</p></li>
+<li><p><span class="math inline">\(\alpha_1\)</span> captures the average difference in overall final grades between majors and non-majors</p></li>
+<li><p><span class="math inline">\(\beta_2+\alpha_2\)</span> captures the change in final grade associated with 1 additional hour of studying for <em>majors</em></p></li>
 </ul>
 </section>
 <section id="graph-interacted-dummy-regression" class="slide level2">
 <h2>Graph: Interacted Dummy Regression</h2>
-<p><span class="math inline">\(\widehat{final}=b_1+b_2hrs+a_1ECN+a_2(ECN\times hrs)\)</span>:</p>
+<p><span class="math inline">\(\widehat{final}_i=b_1+b_2hrs_i+a_1ECN_i+a_2(ECN_i\times hrs_i)\)</span>:</p>
 
-<img data-src="L14_files/figure-revealjs/fig-dummy-interaction-1.png" alt="Schematic graph with Hours studying on the x-axis and Final grade on the y-axis, both unlabeled numerically and on the same scale as the preceding graphs. Two upward-sloping lines diverge as hours increase: a solid dark-blue line for Non-major (ECN = 0) with a shallower slope b2, and a dashed purple line for Econ major (ECN = 1) with a steeper slope b2 plus a2. A double-headed vertical arrow near the left axis labeled a1 marks the initial intercept gap between the two groups at zero hours. As hours increase the gap between the lines grows because a2 is positive, illustrating how the interaction term allows the return to studying to differ between the two groups." width="528" class="r-stretch quarto-figure-center" id="fig-dummy-interaction"><p class="caption">
+<img data-src="L14_files/figure-revealjs/fig-dummy-interaction-1.png" alt="Schematic graph with Hours studying on the x-axis and Final grade on the y-axis, both unlabeled numerically, with the y-axis starting at zero. Two upward-sloping lines diverge strongly as hours increase: a solid dark-blue line for Non-major (ECN = 0) with a shallower slope, and a dashed purple line for Econ major (ECN = 1) with a much steeper slope. A double-headed vertical arrow near the y-axis labeled b1 spans from just above the x-axis to just below the y-intercept of the non-major line. A text label a1 appears centered vertically between the two curves near the y-axis, indicating the intercept difference between the two groups. A slope triangle on the non-major line shows a dotted horizontal run and a dotted vertical rise labeled b2. An identical-run slope triangle on the Econ major line has a dashed tick separating the lower b2 portion from the upper dotted rise labeled a2, illustrating the extra slope for Econ majors. The Econ major curve label appears above the dashed line. The slope difference between the two groups is pronounced, making the a2 contribution visually prominent." width="528" class="r-stretch quarto-figure-center" id="fig-dummy-interaction"><p class="caption">
 Figure&nbsp;3: Schematic regression lines showing a binary dummy variable interacted with a continuous regressor.
 </p></section>
 <section id="interpreting-the-interacted-dummy-slopes-and-intercepts" class="slide level2">
 <h2>Interpreting the Interacted Dummy: Slopes and Intercepts</h2>
-<p>For an interacted dummy variable regression: <span class="math display">\[\hat{y}=b_1+b_2x+a_1d+a_2(d\times x)\]</span></p>
+<p>For an interacted dummy variable regression: <span class="math display">\[\hat{y}_i=b_1+b_2x_i+a_1d_i+a_2(d_i\times x_i)\]</span></p>
 <ul>
 <li><p><span class="math inline">\(a_1&gt;0\)</span> means the intercept for <span class="math inline">\(d=1\)</span> is <em>higher</em> than for <span class="math inline">\(d=0\)</span></p></li>
 <li><p><span class="math inline">\(a_1&lt;0\)</span> means the intercept for <span class="math inline">\(d=1\)</span> is <em>lower</em> than for <span class="math inline">\(d=0\)</span></p></li>
@@ -274,18 +274,25 @@ Figure&nbsp;3: Schematic regression lines showing a binary dummy variable intera
 </section>
 <section id="interacted-dummy-two-separate-group-regressions" class="slide level2">
 <h2>Interacted Dummy: Two Separate Group Regressions</h2>
-<p>Plugging in <span class="math inline">\(d=0\)</span> and <span class="math inline">\(d=1\)</span>, we see that we are actually just running two different bivariate regressions for two groups:</p>
-<p><span class="math display">\[\begin{align*}
-d=0\text{: }\hat{y}&amp;=b_1+b_2x+a_1d+a_2(d\cdot x)\\
-&amp;=b_1+b_2x+a_1(0)+a_2(0)x\\
-&amp;=b_1+b_2x
+<p>Plugging in <span class="math inline">\(d=0\)</span> and <span class="math inline">\(d=1\)</span>, we see that we are actually just running two different bivariate regressions for two groups: <span class="math display">\[\begin{align*}
+d_i=0\text{: }\hat{y}_i&amp;=b_1+b_2x_i+a_1d_i+a_2(d_i\cdot x_i)\\
+&amp;=b_1+b_2x_i+a_1(0)+a_2(0)x_i\\
+&amp;=b_1+b_2x_i
 \end{align*}\]</span> <span class="math display">\[\begin{align*}
-d=1\text{: }\hat{y}&amp;=b_1+b_2x+a_1d+a_2(d\cdot x)\\
-&amp;=b_1+b_2x+a_1(1)+a_2(1)x\\
-&amp;=b_1+b_2x+a_1+a_2x\\
-&amp;= \underbrace{(a_1+b_1)}_{c_1} + \underbrace{(a_2+b_2)}_{c_2}x\\
-&amp;=c_1+c_2x
+d_i=1\text{: }\hat{y}_i&amp;=b_1+b_2x_i+a_1d_i+a_2(d_i\cdot x_i)\\
+&amp;=b_1+b_2x_i+a_1(1)+a_2(1)x_i\\
+&amp;=b_1+b_2x_i+a_1+a_2x_i\\
+&amp;= \underbrace{(a_1+b_1)}_{c_1} + \underbrace{(a_2+b_2)}_{c_2}x_i\\
+&amp;=c_1+c_2x_i
 \end{align*}\]</span></p>
+</section>
+<section id="interacted-dummy-standard-errors-of-linear-combinations" class="slide level2">
+<h2>Interacted Dummy: Standard Errors of Linear Combinations</h2>
+<p>From the preceding derivation, the interacted regression estimates <span class="math inline">\(b_1+b_2x_i\)</span> for <span class="math inline">\(d_i=0\)</span> and <span class="math inline">\((a_1+b_1)+(a_2+b_2)x_i\)</span> for <span class="math inline">\(d_i=1\)</span>.</p>
+<p><strong>Point estimate:</strong> The total slope for <span class="math inline">\(d=1\)</span> is <span class="math inline">\(c_2=a_2+b_2\)</span>, obtained directly by adding the two estimated coefficients from the regression table.</p>
+<p><strong>Standard error:</strong> Computing <span class="math inline">\(\text{se}(c_2)\)</span> is more involved. Because <span class="math inline">\(c_2\)</span> is a <em>linear combination</em> of two estimates, its variance depends on both individual variances and their covariance:</p>
+<p><span class="math display">\[\text{se}(c_2)=\sqrt{\text{Var}(a_2)+\text{Var}(b_2)+2\,\text{Cov}(a_2,b_2)}\]</span></p>
+<p>We compute both in Stata using the <code>lincom</code> command.</p>
 </section>
 <section id="example-car-prices-mpg-and-country-of-origin" class="slide level2 smaller" data-shrink="35">
 <h2>Example: Car Prices, MPG, and Country of Origin</h2>
@@ -309,12 +316,15 @@ d=1\text{: }\hat{y}&amp;=b_1+b_2x+a_1d+a_2(d\cdot x)\\
 ------------------------------------------------------------------------------</code></pre>
 </div>
 </div>
-<p><span class="math display">\[price=\beta_1+\beta_2mpg+\alpha_1foreign+\alpha_2(mpg\times foreign)+u\]</span></p>
+<p><span class="math display">\[\text{Pop. model: }price_i=\beta_1+\beta_2mpg_i+\alpha_1foreign_i+\alpha_2(mpg_i\times foreign_i)+u_i\]</span> <span class="math display">\[b_1=12600.54\]</span> <span class="math display">\[b_2=-329.26\]</span> <span class="math display">\[a_1=-13.59\]</span> <span class="math display">\[a_2=78.89\]</span></p>
 </section>
 <section id="graph-price-on-mpg-by-country-of-origin" class="slide level2">
 <h2>Graph: Price on MPG by Country of Origin</h2>
 <p>Graph of <span class="math inline">\(price\)</span> on <span class="math inline">\(mpg\)</span> across <span class="math inline">\(foreign\)</span>:</p>
-</section>
+
+<img data-src="L14_files/figure-revealjs/fig-price-mpg-foreign-1.png" alt="Schematic graph with MPG on the x-axis and Price in dollars on the y-axis, both unlabeled numerically, with the y-axis starting at zero. Two downward-sloping regression lines start from nearly the same y-intercept: a solid dark-blue line for Domestic (foreign = 0) with a steeper negative slope and a dashed purple line for Foreign (foreign = 1) with a shallower negative slope, so the lines diverge as MPG increases with foreign cars priced higher at higher MPG levels. A double-headed vertical arrow near the y-axis labeled b1 spans from just above the x-axis to just below the domestic y-intercept, indicating the shared y-intercept value. A text label a1 approximately 0 appears just above the y-intercept zone, indicating no significant intercept difference between groups." width="528" class="r-stretch quarto-figure-center" id="fig-price-mpg-foreign"><p class="caption">
+Figure&nbsp;4: Schematic regression lines for car price on miles per gallon, by domestic and foreign origin.
+</p></section>
 <section id="ordered-and-unordered-categorical-variables" class="slide level2">
 <h2>Ordered and Unordered Categorical Variables</h2>
 <p>We may use indicator variables that take values other than 0 or 1 if we have an <em>ordered</em> or <em>ranked</em> categorical variable, such as class year (freshman, sophomore, etc.). We could capture these with a single variable called <span class="math inline">\(Class\)</span> which takes values 0, 1, 2, or 3 depending on the incoming year (with 4 for super-senior+). Our only caveat in this case would be that we are assuming the effect of going from freshman to sophomore is the same as going from junior to senior.</p>
@@ -385,7 +395,7 @@ Valid   0 Domestic |         52      70.27      70.27      70.27
 ------------------------------------------------------------------------------</code></pre>
 </div>
 </div>
-<p><span class="math display">\[\widehat{price}=\beta_2mpg+\delta_1domestic+\delta_2foreign\]</span></p>
+<p><span class="math display">\[\widehat{price}_i=b_2mpg_i+\delta_1domestic_i+\delta_2foreign_i\]</span></p>
 </section>
 <section id="creating-factor-variable-dummies-in-stata" class="slide level2">
 <h2>Creating Factor Variable Dummies in Stata</h2>
@@ -407,7 +417,7 @@ Valid   0 Domestic |         52      70.27      70.27      70.27
 </section>
 <section id="knowledge-check-14" class="slide level2">
 <h2>Knowledge Check 14</h2>
-<p>Suppose we estimate the following regression: <span class="math display">\[y = \beta_1 + \beta_2x + \alpha_1d + \alpha_2(d\times x)+ u\]</span> where <span class="math inline">\(d\)</span> is a dummy variable for being in category <span class="math inline">\(C\)</span> or not. How would we interpret the coefficients <span class="math inline">\(b_1,b_2,a_1,\)</span> and <span class="math inline">\(a_2\)</span>?</p>
+<p>Suppose we estimate the following regression: <span class="math display">\[y_i = \beta_1 + \beta_2x_i + \alpha_1d_i + \alpha_2(d_i\times x_i)+ u_i\]</span> where <span class="math inline">\(d\)</span> is a dummy variable for being in category <span class="math inline">\(C\)</span> or not. How would we interpret the coefficients <span class="math inline">\(b_1,b_2,a_1,\)</span> and <span class="math inline">\(a_2\)</span>?</p>
 
 </section></section>
 
