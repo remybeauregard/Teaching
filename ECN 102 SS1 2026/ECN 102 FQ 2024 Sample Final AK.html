@@ -222,14 +222,21 @@ Sorted by:
 <p>We now estimate <span class="math inline">\(\widehat{salary}=\beta_1+\beta_2age+\alpha_1sex+\alpha_2(age\times sex)\)</span> with OLS and obtain the following:</p>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
-<pre><code>no; dataset in memory has changed since last saved
-r(4);
+<pre><code>      Source |       SS           df       MS      Number of obs   =       776
+-------------+----------------------------------   F(3, 772)       =      4.32
+       Model |  7.6433e+09         3  2.5478e+09   Prob &gt; F        =    0.0049
+    Residual |  4.5478e+11       772   589087072   R-squared       =    0.0165
+-------------+----------------------------------   Adj R-squared   =    0.0127
+       Total |  4.6242e+11       775   596669065   Root MSE        =     24271
 
-
-age not found
-r(111);
-
-r(111);</code></pre>
+------------------------------------------------------------------------------
+      salary | Coefficient  Std. err.      t    P&gt;|t|     [95% conf. interval]
+-------------+----------------------------------------------------------------
+         age |   1706.862   1579.951     1.08   0.280    -1394.648    4808.373
+         sex |  -53271.99   58521.46    -0.91   0.363    -168152.1    61608.08
+     ageXsex |   1807.953   2165.534     0.83   0.404    -2443.081    6058.986
+       _cons |  -7612.026   42668.87    -0.18   0.858    -91372.78    76148.73
+------------------------------------------------------------------------------</code></pre>
 </div>
 </div>
 <p>(<strong>Hint</strong>: review variable descriptions on page 2)</p>

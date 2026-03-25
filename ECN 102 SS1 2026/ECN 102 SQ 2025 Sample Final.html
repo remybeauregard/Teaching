@@ -217,10 +217,7 @@ Sorted by: foreign
 <p>Suppose we run the following regression using the dataset described above:</p>
 <div class="cell" data-collectcode="true">
 <div class="cell-output cell-output-stdout">
-<pre><code>no; dataset in memory has changed since last saved
-r(4);
-
-      Source |       SS           df       MS      Number of obs   =        74
+<pre><code>      Source |       SS           df       MS      Number of obs   =        74
 -------------+----------------------------------   F(1, 72)        =     27.92
        Model |   177453129         1   177453129   Prob &gt; F        =    0.0000
     Residual |   457612267        72  6355725.93   R-squared       =    0.2794
@@ -245,15 +242,19 @@ r(4);
 <p>Suppose we now estimate the following model:</p>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
-<pre><code>no; dataset in memory has changed since last saved
-r(4);
+<pre><code>      Source |       SS           df       MS      Number of obs   =        74
+-------------+----------------------------------   F(1, 72)        =     31.00
+       Model |  3.37819527         1  3.37819527   Prob &gt; F        =    0.0000
+    Residual |  7.84533782        72  .108963025   R-squared       =    0.3010
+-------------+----------------------------------   Adj R-squared   =    0.2913
+       Total |  11.2235331        73  .153747029   Root MSE        =     .3301
 
-
-
-variable ln_mpg not found
-r(111);
-
-r(111);</code></pre>
+------------------------------------------------------------------------------
+    ln_price | Coefficient  Std. err.      t    P&gt;|t|     [95% conf. interval]
+-------------+----------------------------------------------------------------
+      ln_mpg |   -.826847   .1484986    -5.57   0.000    -1.122873   -.5308204
+       _cons |   11.14146   .4507755    24.72   0.000     10.24286    12.04007
+------------------------------------------------------------------------------</code></pre>
 </div>
 </div>
 <ol start="6" type="a">

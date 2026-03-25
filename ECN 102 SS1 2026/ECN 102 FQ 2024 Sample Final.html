@@ -118,14 +118,28 @@ window.Quarto = {
 <p><strong>For this exam, we will use a dataset that includes annual salary, demographic characteristics, and other metrics for a sample of individuals. The variables present in the dataset are listed here, along with their format and labels.</strong></p>
 <div class="cell" data-collectcode="true">
 <div class="cell-output cell-output-stdout">
-<pre><code>no; dataset in memory has changed since last saved
-r(4);
-
-
-no; dataset in memory has changed since last saved
-r(4);
-
-r(4);</code></pre>
+<pre><code>Contains data from SalaryCameron.dta
+ Observations:           776                  Data for A. Colin Cameron (2022), ANALYSIS OF ECONOMIC DATA, Amazon
+    Variables:            12                  22 Jan 2022 15:50
+-----------------------------------------------------------------------------------------------------------------------------------------
+Variable      Storage   Display    Value
+    name         type    format    label      Variable label
+-----------------------------------------------------------------------------------------------------------------------------------------
+salary          float   %9.0g                 Annual Salary in dollars
+lnsalary        float   %9.0g                 Natural Logarithm of Annual Salary
+satverb         int     %32.0g                SAT test verbal score (highest self-reported score as of 2007)
+satmath         int     %32.0g                SAT test mathematics score (highest self-reported score as of 2007)
+highgrade       byte    %8.0g                 Highest grade ever completed
+age             float   %9.0g                 Age in years
+sex             byte    %14.0g                1 = female 0 = male
+minority        float   %9.0g                 1 = minority 0 = not minority
+height          float   %9.0g                 Height in inches
+weight          int     %8.0g                 Weight in pounds
+genhealth       byte    %9.0g                 Health status: 1=Excellent 2=VeryGood 3=Good 4=Fair 5=Poor
+actscore        float   %32.0g                ACT test score (highest self-reported score as of 2007)
+-----------------------------------------------------------------------------------------------------------------------------------------
+Sorted by: 
+     Note: Dataset has changed since last saved.</code></pre>
 </div>
 </div>
 <section id="question-1-summary-statistics-16-points" class="level2">
@@ -139,14 +153,11 @@ r(4);</code></pre>
 </ol>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
-<pre><code>no; dataset in memory has changed since last saved
-r(4);
-
-
-variable height not found
-r(111);
-
-r(111);</code></pre>
+<pre><code>    Variable |        Obs        Mean    Std. dev.       Min        Max
+-------------+---------------------------------------------------------
+      height |        776    67.68814    4.198084         50         83
+      weight |        776    171.3015     43.5782         92        475
+      salary |        776    36184.23    24426.81        300     130254</code></pre>
 </div>
 </div>
 <ol start="6" type="a">

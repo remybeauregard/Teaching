@@ -67,6 +67,7 @@ We will work with the 1978 automotive dataset. Variables in the dataset and thei
 ```{stata}
 #| include: false
 #| collectcode: true
+qui clear all 
 qui sysuse auto
 la var price "Price ($)"
 desc

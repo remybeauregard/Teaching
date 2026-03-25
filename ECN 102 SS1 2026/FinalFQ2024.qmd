@@ -44,6 +44,7 @@ This exam is worth 100 points.
 
 ```{stata}
 #| collectcode: true
+qui clear all
 qui u SalaryCameron
 qui drop in 1/100
 des
