@@ -238,7 +238,7 @@ Figure&nbsp;1: Total variation of each regressor (full circle) and the unique va
 <aside><ol class="aside-footnotes"><li id="fn1"><p><span class="math inline">\(y=b_1+b_2x_2+b_3x_3+e\)</span></p></li></ol></aside></section>
 <section id="example-estimating-coefficients-in-practice" class="slide level2">
 <h2>Example: Estimating Coefficients in Practice</h2>
-<p>What would this look like in practice? Suppose we want to estimate <span class="math display">\[\widehat{final}_i=b_1+b_2MT+b_3StataQuiz+b_4HWavg+b_5KCavg\]</span> for your grade on the final as a function of your other grades in this class. How would we estimate <span class="math inline">\(b_3\)</span>, the coefficient on <em>StataQuiz</em>?</p>
+<p>What would this look like in practice? Suppose we want to estimate <span class="math display">\[final_i=\beta_1+\beta_2MT+\beta_3StataQuiz+\beta_4HWavg+\beta_5KCavg\]</span> for your grade on the final as a function of your other grades in this class. How would we estimate <span class="math inline">\(\beta_3\)</span>, the coefficient on <em>StataQuiz</em>?</p>
 <p>First, we would regress <em>StataQuiz</em> scores on all other regressors. Then, we would find the residuals of this regression. Finally, we would compute the ratio of the covariance of <span class="math inline">\(x_3\)</span> residuals with the residuals from our main regression to the variance of <span class="math inline">\(x_3\)</span> residuals.</p>
 </section>
 <section id="partial-effect-vs.-total-effect-definitions" class="slide level2">

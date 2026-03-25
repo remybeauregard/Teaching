@@ -226,7 +226,7 @@ Did $y$ increase because $x_2$ changed? Or did $y$ increase because $x_3$ change
 
 ## Example: Estimating Coefficients in Practice
 
-What would this look like in practice? Suppose we want to estimate $$\widehat{final}_i=b_1+b_2MT+b_3StataQuiz+b_4HWavg+b_5KCavg$$ for your grade on the final as a function of your other grades in this class. How would we estimate $b_3$, the coefficient on *StataQuiz*?
+What would this look like in practice? Suppose we want to estimate $$final_i=\beta_1+\beta_2MT+\beta_3StataQuiz+\beta_4HWavg+\beta_5KCavg$$ for your grade on the final as a function of your other grades in this class. How would we estimate $\beta_3$, the coefficient on *StataQuiz*?
 
 First, we would regress *StataQuiz* scores on all other regressors. Then, we would find the residuals of this regression. Finally, we would compute the ratio of the covariance of $x_3$ residuals with the residuals from our main regression to the variance of $x_3$ residuals.
 

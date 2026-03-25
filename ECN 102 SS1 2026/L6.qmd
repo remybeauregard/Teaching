@@ -436,7 +436,7 @@ How can we deal with threats to these four population regression assumptions? Do
 
 1. Linearity is violated:
 
-Nonlinearity can be accommodated by least squares regressions to allow for quadratic or other such relationships. This will affect *how* we estimate our coefficients but will not shut down estimation. We will see examples of fitting nonlinear sample regression models in later chapters, such as $\hat{y}=b_1+b_2x+b_3x^2$ or a *quadratic* model.
+Nonlinearity can be accommodated by least squares regressions to allow for quadratic or other such relationships. This will affect *how* we estimate our coefficients but will not shut down estimation. We will see examples of fitting nonlinear sample regression models in later chapters, such as $y=\beta_1+\beta_2x+\beta_3x^2+u$ or a *quadratic* model.
 
 ## Assumption Violation 2: Unbiasedness
 

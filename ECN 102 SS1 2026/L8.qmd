@@ -101,7 +101,7 @@ Population model:
 
 . . .
 
-$$y_i = \beta_1 + \beta_2x_i+u_i$$
+$$\text{lifeexp}_i = \beta_1 + \beta_2 \text{hlthgdp}_i + u_i$$
 
 - What four assumptions do we make to use OLS?
 
