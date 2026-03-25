@@ -143,6 +143,9 @@ We could choose to use log base 10, base 5, or any other base, but we almost alw
 
 ## Knowledge Check 9 {.smaller shrink=35}
 
+Describe what we are doing here. What kind of regression is this and how would you write it? What do these results say? Interpret the coefficient, t-stat, p-value, and confidence interval for $b_2$.
+
+
 ```{stata}
 #| label: kc9-code
 #| echo: true
@@ -152,4 +155,3 @@ g ln_close = ln(close) // log transform closing price variable
 reg ln_close month
 ```
 
-Describe what we are doing here. What kind of regression is this and how would you write it? What do these results say? Interpret the coefficient, t-stat, p-value, and confidence interval for $b_2$.

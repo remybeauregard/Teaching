@@ -110,7 +110,7 @@ Let's simulate 1000 draws of increasingly large samples of fair coin tosses, wit
 
 ## Stata: Simulating Coin Toss Sample Means {shrink=20}
 
-A peak under the hood of our simulation:
+A peek under the hood of our simulation:
 
 ```{stata}
 #| label: coin-toss

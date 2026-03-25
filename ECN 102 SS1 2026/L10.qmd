@@ -291,6 +291,7 @@ This statistic still gives us a standardized measure of model fit but also *is d
 
 ```{stata}
 #| label: reg-auto
+qui clear all 
 qui sysuse auto
 reg price mpg weight rep78
 ```
