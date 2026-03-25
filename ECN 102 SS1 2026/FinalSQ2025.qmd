@@ -1,272 +1,229 @@
 ---
-title: "ECN 102: Analysis of Econ Data"
-subtitle: "SS1 2025 Beauregard"
-author: "Department of Economics, UC Davis"
-date: "Final Exam"
-output: pdf_document
+title: "ECN 102: Analysis of Economics Data"
+subtitle: "Final Exam SQ 2025"
+author: "Beauregard, Department of Economics, UC Davis"
+lang: en
+format:
+  html:
+    output-file: "ECN 102 SQ 2025 Sample Final.html"
+    theme: cosmo
+    include-in-header:
+      text: |
+        <meta name="description" content="Sample final exam for ECN 102.">
+  pdf:
+    output-file: "ECN 102 SQ 2025 Sample Final.pdf"
+execute:
+  echo: false
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = T)
+```{r}
+#| label: setup
+#| include: false
 require("Statamarkdown")
 ```
 
-\begin{center}
-This exam consists of 5 short-answer questions (with sub-parts) and 5 multiple choice questions. You will have a maximum of 100 minutes to complete this exam. No additional time may be taken without prior accommodation. Show all work to receive full credit. You may use only the calculators provided by the instructor. For questions requiring computation, it suffices to express your final answer with 2 decimal places. There is a formula sheet and scratch paper provided at the end of this exam. You may remove these pages and discard them after the exam. If you plan to use any of these extra pages for your final answers, please write your name and student ID at the top of each to ensure they are not lost. 
+::: {style="text-align: center"}
+This exam consists of 5 short-answer questions (with sub-parts) and 5 multiple choice questions. You will have a maximum of 100 minutes to complete this exam. No additional time may be taken without prior accommodation. Show all work to receive full credit. You may use only the calculators provided by the instructor. For questions requiring computation, it suffices to express your final answer with 2 decimal places. There is a formula sheet and scratch paper provided at the end of this exam. You may remove these pages and discard them after the exam. If you plan to use any of these extra pages for your final answers, please write your name and student ID at the top of each to ensure they are not lost.
 
-This exam is worth 100 points. 
+This exam is worth 100 points.
+:::
 
-\end{center}
+**Name:**
 
-\vspace{25pt}\textbf{Name:}
+**Student ID:**
 
-\vspace{25pt}\textbf{Student ID:}
+{{< pagebreak >}}
 
-\newpage
+## Question 1: Ordinary Least Squares (OLS) Estimator [15 points]
 
-# Question 1: Ordinary Least Squares (OLS) Estimator [15 points]
+Suppose we run a multivariate regression of an outcome $y$ on $k-1>1$ regressors and a constant for a sample of size $n$. We will refer to our general OLS estimator as $b_j$, with $j=2,...,k$ (we do not care about the constant term but still need to estimate it). Please answer the following:
 
-Suppose we run a multivariate regression of an outcome $y$ on $k-1>1$ regressors and a constant for a sample of size $n$. We will refer to our general OLS estimator as $b_j$, with $j=2,...,k$ (we do not care about the constant term but still need to estimate it). Please answer the following: 
+a. What does $b_j$ represent in words? Please be as specific as possible. [2 points]
 
-a. What does $b_j$ represent in words? Please be as specific as possible. [2 points] \vspace{75pt}
+b. What is the difference between $x_j$ and $\tilde{x}_j$? [2 points]
 
-b. What is the difference between $x_j$ and $\tilde{x}_j$? [2 points] \vspace{75pt}
+c. What does it mean for our estimator $b_j$ to be **unbiased**? Explain in words. [3 points]
 
-c. What does it mean for our estimator $b_j$ to be \underline{unbiased}? Explain in words. [3 points] \vspace{75pt}
+d. What does it mean for our estimator $b_j$ to be **consistent**? Explain in words. [3 points]
 
-d. What does it mean for our estimator $b_j$ to be \underline{consistent}? Explain in words. [3 points] \vspace{75pt}
+e. What does it mean for our estimator $b_j$ to be the Best Linear Unbiased Estimator (BLUE)? Explain in words. [3 points]
 
-e. What does it mean for our estimator $b_j$ to be the Best Linear Unbiased Estimator (BLUE)? Explain in words. [3 points] \vspace{75pt}
+f. If we know our regressor $x_j$ is **not** normally distributed, should we still expect $\beta_j$ to be normally distributed? Why or why not? [2 points]
 
-f. If we know our regressor $x_j$ is \underline{not} normally distributed, should we still expect $\beta_j$ to be normally distributed? Why or why not? [2 points] \newpage 
+## Question 2: OLS Regression Output [20 points]
 
-# Question 2: OLS Regression Output [20 points]
+We will work with the 1978 automotive dataset. Variables in the dataset and their labels are given below:
 
-We will work with the 1978 automotive dataset. Variables in the dataset and their labels are given below: 
-
-```{stata,echo=F,collectcode=T}
+```{stata}
+#| collectcode: true
 qui sysuse auto
 la var price "Price ($)"
 desc
 ```
 
-Suppose we now estimate a regression model and obtain the following results: 
+Suppose we now estimate a regression model and obtain the following results:
 
 ```{stata}
 reg price mpg weight headroom
 ```
 
-a. Write down the \underline{population} regression model we are estimating using variable names. [2 points]  \vspace{75pt}
+a. Write down the **population** regression model we are estimating using variable names. [2 points]
 
-b. Write down the \underline{sample} regression model we have estimated above using variable names. [2 points]  \vspace{75pt}
+b. Write down the **sample** regression model we have estimated above using variable names. [2 points]
 
-c. Interpret the coefficient on \textit{mpg} in words. [3 points]  \vspace{75pt}
+c. Interpret the coefficient on *mpg* in words. [3 points]
 
-d. We see the 95\% confidence interval for \textit{headroom} includes zero and that $\texttt{P>|t|}$ for \textit{headroom}$=0.090$. Do these results surprise you? Why or why not? [3 points]  \vspace{75pt}
+d. We see the 95% confidence interval for *headroom* includes zero and that `P>|t|` for *headroom* $=0.090$. Do these results surprise you? Why or why not? [3 points]
 
-e. Interpret the p-value for \textit{weight}. What null and alternate hypotheses does this p-value correspond to? What is the name of this test? State your full conclusion in words for this test [4 points] \vspace{75pt}
+e. Interpret the p-value for *weight*. What null and alternate hypotheses does this p-value correspond to? What is the name of this test? State your full conclusion in words for this test. [4 points]
 
-f. Interpret the $R^2$ of our regression in words. [2 points]  \vspace{75pt}
+f. Interpret the $R^2$ of our regression in words. [2 points]
 
-g. Interpret $\texttt{Prob>F}$ from the table. What null and alternate hypotheses does this p-value correspond to? What is the name of this test? State your full conclusion in words for this test. [4 points] \newpage 
+g. Interpret `Prob>F` from the table. What null and alternate hypotheses does this p-value correspond to? What is the name of this test? State your full conclusion in words for this test. [4 points]
 
-# Question 3: Intuition for Inference [16 points]
+## Question 3: Intuition for Inference [16 points]
 
-Here we will ask questions about regression inference (bivariate or multivariate). 
+Here we will ask questions about regression inference (bivariate or multivariate).
 
-a. If we write down $\alpha=0.05$ for a test of inference, what could this quantity represent? [2 points] 
-\newline \textit{(Hint: You should have two answers)} \vspace{75pt}
+a. If we write down $\alpha=0.05$ for a test of inference, what could this quantity represent? [2 points]
 
-b. Given our answer above, why would we not want to set $\alpha=0$? Why would we not want to set $\alpha=1$? Please give a short explanation for each. [4 points] \vspace{75pt}
+*(Hint: You should have two answers)*
 
-c. Given our standard choice of $\alpha=0.05$, what are \underline{three} ways we can maximize the \underline{power} of our inference? Please give a short explanation for each. [6 points] \vspace{125pt}
+b. Given our answer above, why would we not want to set $\alpha=0$? Why would we not want to set $\alpha=1$? Please give a short explanation for each. [4 points]
 
-Suppose we have a test of association for our regression coefficient $\beta_j$ with standard null and alternate hypotheses. For this test: 
+c. Given our standard choice of $\alpha=0.05$, what are **three** ways we can maximize the **power** of our inference? Please give a short explanation for each. [6 points]
 
-d. What would it mean to commit a \underline{Type I} error? [2 points] \vspace{75pt}
+Suppose we have a test of association for our regression coefficient $\beta_j$ with standard null and alternate hypotheses. For this test:
 
-e. What would it mean to commit a \underline{Type II} error? [2 points] \newpage 
+d. What would it mean to commit a **Type I** error? [2 points]
 
-# Question 4: Errors and Prediction [14 points]
+e. What would it mean to commit a **Type II** error? [2 points]
 
-Suppose we are worried our data violates homoskedasticity and so choose to use robust standard errors: 
+## Question 4: Errors and Prediction [14 points]
 
-a. Will this cause our \underline{standard errors} to grow, shrink, or stay the same size (compared to using default standard errors)? You do not need to explain. [2 points] \vspace{75pt}
+Suppose we are worried our data violates homoskedasticity and so choose to use robust standard errors:
 
-b. Will this cause our \underline{t-statistics} to grow, shrink, or stay the same size (compared to using default standard errors)? Please explain. [3 points] \vspace{75pt}
+a. Will this cause our **standard errors** to grow, shrink, or stay the same size (compared to using default standard errors)? You do not need to explain. [2 points]
 
-c. Will this cause our \underline{regression coefficients} to grow, shrink, or stay the same size (compared to using default standard errors)? Please explain. [3 points] \vspace{75pt}
+b. Will this cause our **t-statistics** to grow, shrink, or stay the same size (compared to using default standard errors)? Please explain. [3 points]
 
-d. Will this cause our \underline{confidence intervals} to get wider, narrower, or stay the same size (compared to using default standard errors)? Please explain. [3 points] \vspace{75pt}
+c. Will this cause our **regression coefficients** to grow, shrink, or stay the same size (compared to using default standard errors)? Please explain. [3 points]
 
-e. Suppose we run \texttt{scatter y x} and confirm our data indeed looks heteroskedastic. Please draw an example of what this scatterplot might look like below. [3 points] \newpage 
+d. Will this cause our **confidence intervals** to get wider, narrower, or stay the same size (compared to using default standard errors)? Please explain. [3 points]
 
-# Question 5: OLS and Logs [25 points]
+e. Suppose we run `scatter y x` and confirm our data indeed looks heteroskedastic. Please draw an example of what this scatterplot might look like below. [3 points]
+
+## Question 5: OLS and Logs [25 points]
 
 Suppose we run the following regression using the dataset described above:
 
-```{stata,collectcode=T}
-gen ln_mpg = ln(mpg) // ln() is natural log function 
+```{stata}
+#| collectcode: true
+gen ln_mpg = ln(mpg) // ln() is natural log function
 reg price ln_mpg
 ```
 
-a. What name could we give this type of regression? [2 points] \vspace{50pt}
+a. What name could we give this type of regression? [2 points]
 
-b. How would we interpret the $b_2$ coefficient we estimate with this regression? [3 points] \vspace{50pt}
+b. How would we interpret the $b_2$ coefficient we estimate with this regression? [3 points]
 
-c. Give an expression for the marginal effect of \textit{mpg} in this regression. [3 points] \vspace{65pt}
+c. Give an expression for the marginal effect of *mpg* in this regression. [3 points]
 
-d. Find the MEM of \textit{mpg} if $\overline{mpg}=21.30$, $\overline{price}=6165.3$. [3 points] \vspace{65pt}
+d. Find the MEM of *mpg* if $\overline{mpg}=21.30$, $\overline{price}=6165.3$. [3 points]
 
-e. Find the MER of \textit{mpg} in this regression for $mpg^*=25$, $price^*=6000$. [3 points] \newpage 
+e. Find the MER of *mpg* in this regression for $mpg^*=25$, $price^*=6000$. [3 points]
 
-Suppose we now estimate the following model: 
+Suppose we now estimate the following model:
 
 ```{stata}
 gen ln_price = ln(price)
-reg ln_price ln_mpg 
+reg ln_price ln_mpg
 ```
 
-f. What name could we give this new type of regression? [2 points] \vspace{50pt}
+f. What name could we give this new type of regression? [2 points]
 
-g. How would we interpret the $b_2$ coefficient we estimate with this regression? [3 points] \vspace{75pt}
+g. How would we interpret the $b_2$ coefficient we estimate with this regression? [3 points]
 
-h. Give an expression for the marginal effect of \textit{mpg} in this regression. [3 points] \vspace{75pt}
+h. Give an expression for the marginal effect of *mpg* in this regression. [3 points]
 
-i. Give an expression for the MEM of \textit{mpg} in this regression if $\overline{mpg}=21.30$, $\overline{price}=6165.3$. [3 points] \newpage 
+i. Give an expression for the MEM of *mpg* in this regression if $\overline{mpg}=21.30$, $\overline{price}=6165.3$. [3 points]
 
-# Multiple Choice [2 points each]
+## Multiple Choice [2 points each]
 
-Here we will think about different types of data. Only one answer is correct. Choose the \underline{best} answer.
+Here we will think about different types of data. Only one answer is correct. Choose the **best** answer.
 
-## MC 1
+### MC 1
 
-If we collect \underline{experimental} data on a new campus initiative from UC Davis students, which of the following must be true? 
+If we collect **experimental** data on a new campus initiative from UC Davis students, which of the following must be true?
 
-a) We randomized the days of the week we interviewed students about the initiative 
+a) We randomized the days of the week we interviewed students about the initiative
 
-b) We randomized the parts of campus where we interviewed students about the initiative 
+b) We randomized the parts of campus where we interviewed students about the initiative
 
-c) We randomized the time of day we interviewed students about the initiative 
+c) We randomized the time of day we interviewed students about the initiative
 
-d) We did not know whether students had taken part in the initiative or not 
+d) We did not know whether students had taken part in the initiative or not
 
-e) None of the above 
+e) None of the above
 
-## MC 2
+### MC 2
 
-If we collect \underline{ordered}, \underline{categorical} data on student class year, which of the following is true? 
+If we collect **ordered**, **categorical** data on student class year, which of the following is true?
 
-a) We can include the variable for class year directly in a regression 
+a) We can include the variable for class year directly in a regression
 
-b) We must assign each unique value of class year a number before we can include this in a regression 
+b) We must assign each unique value of class year a number before we can include this in a regression
 
-c) We must create a different dummy variable for each unique value of class year before we can include these in a regression 
+c) We must create a different dummy variable for each unique value of class year before we can include these in a regression
 
-d) We cannot include class year in a regression 
+d) We cannot include class year in a regression
 
-e) None of the above 
+e) None of the above
 
-## MC 3 
+### MC 3
 
-If we collect \underline{unordered}, \underline{categorical} data on student major, which of the following is true? 
+If we collect **unordered**, **categorical** data on student major, which of the following is true?
 
-a) We can include the variable for major directly in a regression 
+a) We can include the variable for major directly in a regression
 
-b) We must assign each unique value of major a number before we can include this in a regression 
+b) We must assign each unique value of major a number before we can include this in a regression
 
-c) We must create a different dummy variable for each unique value of major before we can include these in a regression 
+c) We must create a different dummy variable for each unique value of major before we can include these in a regression
 
-d) We cannot include major in a regression 
+d) We cannot include major in a regression
 
-e) None of the above 
+e) None of the above
 
-## MC 4 
+### MC 4
 
-If we survey students passing by the MU on their GPA (once per student) on the first day of fall quarter, which of the following is true? 
+If we survey students passing by the MU on their GPA (once per student) on the first day of fall quarter, which of the following is true?
 
-a) Our data will be experimental, numerical, time-series  
+a) Our data will be experimental, numerical, time-series
 
-b) Our data will be experimental, numerical, cross-sectional  
+b) Our data will be experimental, numerical, cross-sectional
 
-c) Our data will be observational, categorical, panel  
+c) Our data will be observational, categorical, panel
 
-d) Our data will be observational, numerical, cross-sectional  
+d) Our data will be observational, numerical, cross-sectional
 
-e) None of the above 
+e) None of the above
 
-## MC 5 
+### MC 5
 
-When considering a sample from a population, which of the following is true? 
+When considering a sample from a population, which of the following is true?
 
-a) A representative sample will lead to proper inference while a non-representative sample may lead to biased inference 
+a) A representative sample will lead to proper inference while a non-representative sample may lead to biased inference
 
-b) It is often unfeasible or impossible to survey an entire population, so we choose a sample size $n<N$ to be well-powered for our inference 
+b) It is often unfeasible or impossible to survey an entire population, so we choose a sample size $n<N$ to be well-powered for our inference
 
-c) We often consider hypothetical or future subjects as members of our population, such as future students or those who almost took a class but dropped last minute 
+c) We often consider hypothetical or future subjects as members of our population, such as future students or those who almost took a class but dropped last minute
 
-d) While we estimate results from our sample, our ultimate goal is to generalize these results back to the population 
+d) While we estimate results from our sample, our ultimate goal is to generalize these results back to the population
 
-e) All of the above 
+e) All of the above
 
-\newpage  
+## BONUS [up to 10 extra points]
 
-# BONUS [up to 10 extra points]
+In order to prove that $\bar{X}\sim (\mu,\sigma^2/n)$ we needed to make three assumptions about our random variable $X$. Please name each of these three assumptions and describe in detail what they mean for $X$ (e.g. what it would mean for them to be true versus not true). You may find it helpful to use a specific example of $X$ in your answer, such as a coin toss or die roll.
 
-In order to prove that $\bar{X}\sim (\mu,\sigma^2/n)$ we needed to make three assumptions about our random variable $X$. Please name each of these three assumptions and describe in detail what they mean for $X$ (e.g. what it would mean for them to be true versus not true). You may find it helpful to use a specific example of $X$ in your answer, such as a coin toss or die roll. 
-
-\textit{Note: you do \underline{not} need to replicate the proofs for $\mu_{\bar{X}},\sigma^2_{\bar{X}}$} 
-
-\newpage
-
-\begin{center}
-\large
-\textbf{Scratch paper }
-\end{center}
-\newpage
-
-\large
-\begin{center}
-\textbf{Beauregard, UC Davis Economics}
-
-\textbf{Formula sheet}
-\end{center} \normalsize
-
-# Univariate Data
-
-$$\bar{x}=\frac1n\sum_{i=1}^nx_i\text{  and  } s_x^2=\frac{1}{n-1}\sum_{i=1}^n(x_i-\bar{x})^2$$
-
-$$\bar{x}\pm t^*_{\alpha/2;n-1}\times(s_x/\sqrt{n})\text{}\text{  and  }t=\frac{\bar{x}-\mu_0}{s_x/\sqrt{n}}$$
-
-$$ttail(df,t)=\Pr(T>t)\text{ where }T\sim T(df)$$
-
-$$invttail(df,p)\rightarrow t^*:\Pr(T>t^*)=p\text{ where }T\sim T(df)$$
-
-# Bivariate data
-
-$$r_{xy}=\frac{\sum_{i=1}^n(x_i-\bar{x})(y_i-\bar{y})}{\sqrt{\sum_{i=1}^n(x_i-\bar{x})^2\times\sum_{i=1}^n(y_i-\bar{y})^2}} = \frac{s_{xy}}{s_x\times s_y}$$
-
-$$\hat{y}=b_1+b_2x\text{ and }b_2=\frac{\sum_{i=1}^n(x_i-\bar{x})(y_i-\bar{y})}{\sum_{i=1}^n(x_i-\bar{x})^2}$$
-
-$$b_1=\bar{y}-b_2\bar{x}\text{ and } b_2 = r_{xy}\frac{s_y}{s_x}$$
-
-$$TSS=\sum_{i=1}^n(y_i-\bar{y})^2\text{ and } ResSS=\sum_{i=1}^n(y_i-\hat{y}_i)^2\text{ and } ExpSS=\sum_{i=1}^n(\hat{y}_i-\bar{y})^2$$
-
-$$R^2=\frac{ExpSS}{TSS}=1-\frac{ResSS}{TSS}$$
-
-$$b_2\pm t^*_{\alpha/2;n-2}\times s_{b_2}\text{ and }t=\frac{b_2-\beta_2}{s_{b_2}}$$
-$$s_{b_2}=\frac{s_e}{\sqrt{\sum_{i=1}^n(x_i-\bar{x})^2}}\text{ and } s_e=\sqrt{\frac{1}{n-2}\sum_{i=1}^n(y_i-\hat{y}_i)^2}$$
-
-# Multivariate data
-$$\hat{y}=b_1+b_2x_2+...+b_kx_x\text{ and } b_j=\frac{\sum_{i=1}^n\tilde{x}_{ji}(y_i-\bar{y})}{\sum_{i=1}^n\tilde{x}_{ji}^2}$$
-
-$$b_j\pm t^*_{\alpha/2,n-k}\times s_{b_j}\text{ and }t=\frac{b_j-\beta_j}{s_{b_j}}\text{ and } s_{b_j}=\frac{s_e}{\sqrt{\sum_{i=1}^n\tilde{x}_{ji}^2}}$$
-
-$$\bar{R}^2=1-\frac{ResSS/(n-k)}{TSS/(n-1)}\text{ and } F_{q,n-k}=\frac{(ResSS_r-ResSS_u)/(q)}{ResSS_u/(n-k)}$$
-
-\newpage 
-
-\begin{center}
-\large
-\textbf{Scratch paper }
-\end{center}
+*Note: you do **not** need to replicate the proofs for $\mu_{\bar{X}},\sigma^2_{\bar{X}}$*

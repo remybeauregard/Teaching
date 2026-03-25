@@ -1,301 +1,349 @@
 ---
-title: "ECN 102: Analysis of Econ Data"
-subtitle: "SS1 2025 Beauregard"
-author: "Department of Economics, UC Davis"
-date: "Final Exam"
-output: pdf_document
-header-includes:
-    \usepackage{multicol}
+title: "ECN 102: Analysis of Economics Data"
+subtitle: "Final Exam SQ 2025 -- Answer Key"
+author: "Beauregard, Department of Economics, UC Davis"
+lang: en
+format:
+  html:
+    output-file: "ECN 102 SQ 2025 Sample Final AK.html"
+    theme: cosmo
+    include-in-header:
+      text: |
+        <meta name="description" content="Sample final exam answer key for ECN 102.">
+  pdf:
+    output-file: "ECN 102 SQ 2025 Sample Final AK.pdf"
+execute:
+  echo: false
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = T)
+```{r}
+#| label: setup
+#| include: false
 require("Statamarkdown")
 ```
 
-\begin{center}
-This exam consists of 5 short-answer questions (with sub-parts) and 5 multiple choice questions. You will have a maximum of 100 minutes to complete this exam. No additional time may be taken without prior accommodation. Show all work to receive full credit. You may use only the calculators provided by the instructor. For questions requiring computation, it suffices to express your final answer with 2 decimal places. There is a formula sheet and scratch paper provided at the end of this exam. You may remove these pages and discard them after the exam. If you plan to use any of these extra pages for your final answers, please write your name and student ID at the top of each to ensure they are not lost. 
+::: {style="text-align: center"}
+This exam consists of 5 short-answer questions (with sub-parts) and 5 multiple choice questions. You will have a maximum of 100 minutes to complete this exam. No additional time may be taken without prior accommodation. Show all work to receive full credit. You may use only the calculators provided by the instructor. For questions requiring computation, it suffices to express your final answer with 2 decimal places. There is a formula sheet and scratch paper provided at the end of this exam. You may remove these pages and discard them after the exam. If you plan to use any of these extra pages for your final answers, please write your name and student ID at the top of each to ensure they are not lost.
 
-This exam is worth 100 points. 
+This exam is worth 100 points.
+:::
 
-\vspace{125pt}
+**Solution Guide**
 
-\huge \textbf{Solution Guide}
-\end{center}\normalsize
+{{< pagebreak >}}
 
-\newpage
+## Question 1: Ordinary Least Squares (OLS) Estimator [15 points]
 
-# Question 1: Ordinary Least Squares (OLS) Estimator [15 points]
+Suppose we run a multivariate regression of an outcome $y$ on $k-1>1$ regressors and a constant for a sample of size $n$. We will refer to our general OLS estimator as $b_j$, with $j=2,...,k$ (we do not care about the constant term but still need to estimate it). Please answer the following:
 
-Suppose we run a multivariate regression of an outcome $y$ on $k-1>1$ regressors and a constant for a sample of size $n$. We will refer to our general OLS estimator as $b_j$, with $j=2,...,k$ (we do not care about the constant term but still need to estimate it). Please answer the following: 
+a. What does $b_j$ represent in words? Please be as specific as possible. [2 points]
 
-a. What does $b_j$ represent in words? Please be as specific as possible. [2 points] 
+**$b_j$ is the associated change in $y$ when $x_j$ changes by one unit, all else held constant.**
 
-\textbf{$b_j$ is the associated change in $y$ when $x_j$ changes by one unit, all else held constant.}
+b. What is the difference between $x_j$ and $\tilde{x}_j$? [2 points]
 
-b. What is the difference between $x_j$ and $\tilde{x}_j$? [2 points] 
+**$x_j$ is the total variation of our regressor; $\tilde{x}_j$ is the unique or independent variation of $x_j$ not explained/predicted by all other regressors in our model.**
 
-\textbf{$x_j$ is the total variation of our regressor; $\tilde{x}_j$ is the unique or independent variation of $x_j$ not explained/predicted by all other regressors in our model.}
+c. What does it mean for our estimator $b_j$ to be **unbiased**? Explain in words. [3 points]
 
-c. What does it mean for our estimator $b_j$ to be \underline{unbiased}? Explain in words. [3 points] 
+**The population mean of the distribution of our estimator is centered at the correct population parameter value; $\mathbb{E}[b_j]=\beta_j$**
 
-\textbf{The population mean of the distribution of our estimator is centered at the correct population parameter value; $\mathbb{E}[b_j]=\beta_j$}
+d. What does it mean for our estimator $b_j$ to be **consistent**? Explain in words. [3 points]
 
-d. What does it mean for our estimator $b_j$ to be \underline{consistent}? Explain in words. [3 points] 
-
-\textbf{The precision of our estimator $b_j$ (or variance of the distribution of our estimator) decreases as our sample size grows larger; $\sigma^2_{b_j}\rightarrow0$ as $n\rightarrow\infty$.}
+**The precision of our estimator $b_j$ (or variance of the distribution of our estimator) decreases as our sample size grows larger; $\sigma^2_{b_j}\rightarrow0$ as $n\rightarrow\infty$.**
 
 e. What does it mean for our estimator $b_j$ to be the Best Linear Unbiased Estimator (BLUE)? Explain in words. [3 points]
 
-\textbf{$b_j$ is our \underline{B}est \underline{L}inear \underline{U}nbiased \underline{E}stimator, meaning it has the smallest variance of all similar estimators. This means that using $b_j$ from OLS will maximize the power of our inference relative to any other linear, unbiased estimator.}
+**$b_j$ is our Best Linear Unbiased Estimator (BLUE), meaning it has the smallest variance of all similar estimators. This means that using $b_j$ from OLS will maximize the power of our inference relative to any other linear, unbiased estimator.**
 
-f. If we know our regressor $x_j$ is \underline{not} normally distributed, should we still expect $\beta_j$ to be normally distributed? Why or why not? [2 points] 
+f. If we know our regressor $x_j$ is **not** normally distributed, should we still expect $\beta_j$ to be normally distributed? Why or why not? [2 points]
 
-\textbf{Yes. The CLT says that we can expect the distribution of a statistic like $b_j$ to be normally distributed, for a large enough sample, even if the underlying variable(s) are not normally distributed. In order to use OLS, we are assuming that our sample size is large enough to use the CLT.}
+**Yes. The CLT says that we can expect the distribution of a statistic like $b_j$ to be normally distributed, for a large enough sample, even if the underlying variable(s) are not normally distributed. In order to use OLS, we are assuming that our sample size is large enough to use the CLT.**
 
-# Question 2: OLS Regression Output [20 points]
+## Question 2: OLS Regression Output [20 points]
 
 We will work with the 1978 automotive dataset. Variables in the dataset and their labels are given below:
 
-```{stata,echo=F,collectcode=T}
+```{stata}
+#| include: false
+#| collectcode: true
 qui sysuse auto
 la var price "Price ($)"
 desc
 ```
 
-Suppose we now estimate a regression model and obtain the following results: 
+Suppose we now estimate a regression model and obtain the following results:
 
 ```{stata}
 reg price mpg weight headroom
 ```
 
-a. Write down the \underline{population} regression model we are estimating using variable names. [2 points]  
+a. Write down the **population** regression model we are estimating using variable names. [2 points]
+
 $$\boldsymbol{price=\beta_1+\beta_2mpg+\beta_3weight+\beta_4headroom+u}$$
 
-b. Write down the \underline{sample} regression model we have estimated above using variable names. [2 points] 
+b. Write down the **sample** regression model we have estimated above using variable names. [2 points]
+
 $$\boldsymbol{\widehat{price}=3158.31-56.19mpg+2.06weight-675.60headroom}$$
 
-c. Interpret the coefficient on \textit{mpg} in words. [3 points]  
+c. Interpret the coefficient on *mpg* in words. [3 points]
 
-\textbf{A one unit increase in mpg is associated with a \$56.19 lower car price, all else held constant.}
+**A one unit increase in mpg is associated with a \$56.19 lower car price, all else held constant.**
 
-d. We see the 95\% confidence interval for \textit{headroom} includes zero and that $\texttt{P>|t|}$ for \textit{headroom}$=0.090$. Do these results surprise you? Why or why not? [3 points]  
+d. We see the 95% confidence interval for *headroom* includes zero and that `P>|t|` for *headroom* $=0.090$. Do these results surprise you? Why or why not? [3 points]
 
-\textbf{No, these results are not surprising. We know that failing to reject the null of the test of association ($0.090>\alpha=0.05$) means the value assumed under the null must fall inside the corresponding 95\% confidence interval. As we fail to reject the null, our null value of 0 is also within the interval.}
+**No, these results are not surprising. We know that failing to reject the null of the test of association ($0.090>\alpha=0.05$) means the value assumed under the null must fall inside the corresponding 95% confidence interval. As we fail to reject the null, our null value of 0 is also within the interval.**
 
-e. Interpret the p-value for \textit{weight}. What null and alternate hypotheses does this p-value correspond to? What is the name of this test? State your full conclusion in words for this test [4 points]
+e. Interpret the p-value for *weight*. What null and alternate hypotheses does this p-value correspond to? What is the name of this test? State your full conclusion in words for this test. [4 points]
 
-$H_0:\beta_3=0$ 
+$H_0:\beta_3=0$
 
 $H_A:\beta_3\neq0$
 
-\textbf{$p=0.003$; this is the probabilty of drawing a t-statistic at least as large as 3.13 from a $T(70-4)$ distribution assuming the null is true (assuming there is no statistically significant association between weight and price). We reject the null of the test of association for weight and price and say there is a statistically significant association of weight on price, all else held constant.}
+**$p=0.003$; this is the probability of drawing a t-statistic at least as large as 3.13 from a $T(70-4)$ distribution assuming the null is true (assuming there is no statistically significant association between weight and price). We reject the null of the test of association for weight and price and say there is a statistically significant association of weight on price, all else held constant.**
 
-f. Interpret the $R^2$ of our regression in words. [2 points]  
+f. Interpret the $R^2$ of our regression in words. [2 points]
 
-\textbf{$R^2=0.3221$, meaning 32.21\% of the variation in price can be accounted for/explained by our model (all regressors together).}
+**$R^2=0.3221$, meaning 32.21% of the variation in price can be accounted for/explained by our model (all regressors together).**
 
-g. Interpret $\texttt{Prob>F}$ from the table. What null and alternate hypotheses does this p-value correspond to? What is the name of this test? State your full conclusion in words for this test. [4 points]
+g. Interpret `Prob>F` from the table. What null and alternate hypotheses does this p-value correspond to? What is the name of this test? State your full conclusion in words for this test. [4 points]
 
-$H_0:\beta_2=\beta_3=\beta_4=0$ 
+$H_0:\beta_2=\beta_3=\beta_4=0$
 
 $H_A:\text{at least one }\beta_j\neq0$
 
-\textbf{$p\approx0$; this is the probability of drawing an F-statistic at least as large as 11.09 from a $F(3,70-4)$ distribution assuming the null is true (assuming none of our regressors have any power to explain variation in our outcome variable). We reject the null of the test of overall significance and say that at least one of our regressors does statistically explain variation in price, although we cannot say definitively which one(s).}
+**$p\approx0$; this is the probability of drawing an F-statistic at least as large as 11.09 from a $F(3,70-4)$ distribution assuming the null is true (assuming none of our regressors have any power to explain variation in our outcome variable). We reject the null of the test of overall significance and say that at least one of our regressors does statistically explain variation in price, although we cannot say definitively which one(s).**
 
-# Question 3: Intuition for Inference [16 points]
+## Question 3: Intuition for Inference [16 points]
 
-Here we will ask questions about regression inference (bivariate or multivariate). 
+Here we will ask questions about regression inference (bivariate or multivariate).
 
-a. If we write down $\alpha=0.05$ for a test of inference, what could this quantity represent? [2 points] 
-\newline \textit{(Hint: You should have two answers)} 
+a. If we write down $\alpha=0.05$ for a test of inference, what could this quantity represent? [2 points]
 
-\textbf{This quantity could represent our statistical significance value, which we compare to our p-value, or to the test size, the probability of committing a Type I error.}
+*(Hint: You should have two answers)*
 
-b. Given our answer above, why would we not want to set $\alpha=0$? Why would we not want to set $\alpha=1$? Please give a short explanation for each. [4 points] 
+**This quantity could represent our statistical significance value, which we compare to our p-value, or the test size, the probability of committing a Type I error.**
 
-\textbf{Setting $\alpha=0$ would mean never rejecting the null hypothesis; setting $\alpha=1$ would mean always rejecting the null hypothesis. We would like to be able to reject the null when it is false ($\alpha>0$) but also not reject the null when it is true ($\alpha<1$). We would like to select $\alpha$ to balance the chances of a Type I and Type II error.}
+b. Given our answer above, why would we not want to set $\alpha=0$? Why would we not want to set $\alpha=1$? Please give a short explanation for each. [4 points]
 
-c. Given our standard choice of $\alpha=0.05$, what are \underline{three} ways we can maximize the \underline{power} of our inference? Please give a short explanation for each. [6 points] 
+**Setting $\alpha=0$ would mean never rejecting the null hypothesis; setting $\alpha=1$ would mean always rejecting the null hypothesis. We would like to be able to reject the null when it is false ($\alpha>0$) but also not reject the null when it is true ($\alpha<1$). We would like to select $\alpha$ to balance the chances of a Type I and Type II error.**
 
-\textbf{To maximize power, we can:}
+c. Given our standard choice of $\alpha=0.05$, what are **three** ways we can maximize the **power** of our inference? Please give a short explanation for each. [6 points]
 
-\textbf{1. Choose to use our best estimator with minimum variance}
+**To maximize power, we can:**
 
-\textbf{2. Select the largest sample size possible}
+**1. Choose to use our best estimator with minimum variance**
 
-\textbf{3. Target a large rather than small effect size so that our null and alternate distributions are (hypothetically) centered further away from each other.} \vspace{15pt}
+**2. Select the largest sample size possible**
 
-Suppose we have a test of association for our regression coefficient $\beta_j$ with standard null and alternate hypotheses. For this test: 
+**3. Target a large rather than small effect size so that our null and alternate distributions are (hypothetically) centered further away from each other.**
 
-d. What would it mean to commit a \underline{Type I} error? [2 points] 
+Suppose we have a test of association for our regression coefficient $\beta_j$ with standard null and alternate hypotheses. For this test:
 
-\textbf{This would mean we are rejecting the null when the null is in fact true; there is no statistically significant association between $x_j$ and $y$ but we are claiming there is.}
+d. What would it mean to commit a **Type I** error? [2 points]
 
-e. What would it mean to commit a \underline{Type II} error? [2 points] 
+**This would mean we are rejecting the null when the null is in fact true; there is no statistically significant association between $x_j$ and $y$ but we are claiming there is.**
 
-\textbf{This would mean we are failing to reject the null when the null is in fact false; there is a statistically significant association between $x_j$ and $y$ but we are claiming there is not.}
+e. What would it mean to commit a **Type II** error? [2 points]
 
-# Question 4: Errors and Prediction [14 points]
+**This would mean we are failing to reject the null when the null is in fact false; there is a statistically significant association between $x_j$ and $y$ but we are claiming there is not.**
 
-Suppose we are worried our data violates homoskedasticity and so choose to use robust standard errors: 
+## Question 4: Errors and Prediction [14 points]
 
-a. Will this cause our \underline{standard errors} to grow, shrink, or stay the same size (compared to using default standard errors)? You do not need to explain. [2 points] 
+Suppose we are worried our data violates homoskedasticity and so choose to use robust standard errors:
 
-\textbf{Implementing robust standard errors for heteroskedastic data would cause our standard errors to grow compared to the default.}
+a. Will this cause our **standard errors** to grow, shrink, or stay the same size (compared to using default standard errors)? You do not need to explain. [2 points]
 
-b. Will this cause our \underline{t-statistics} to grow, shrink, or stay the same size (compared to using default standard errors)? Please explain. [3 points] 
+**Implementing robust standard errors for heteroskedastic data would cause our standard errors to grow compared to the default.**
 
-\textbf{As we use the standard error in the denominator of our t-statistics, larger standard errors would cause our t-statistics to shrink compared to the default.}
+b. Will this cause our **t-statistics** to grow, shrink, or stay the same size (compared to using default standard errors)? Please explain. [3 points]
 
-c. Will this cause our \underline{regression coefficients} to grow, shrink, or stay the same size (compared to using default standard errors)? Please explain. [3 points] 
+**As we use the standard error in the denominator of our t-statistics, larger standard errors would cause our t-statistics to shrink compared to the default.**
 
-\textbf{Using robust standard errors does not affect our coefficient estimates, so these would remain the same}
+c. Will this cause our **regression coefficients** to grow, shrink, or stay the same size (compared to using default standard errors)? Please explain. [3 points]
 
-d. Will this cause our \underline{confidence intervals} to get wider, narrower, or stay the same size (compared to using default standard errors)? Please explain. [3 points] 
+**Using robust standard errors does not affect our coefficient estimates, so these would remain the same.**
 
-\textbf{As we use the standard error to construct our CI, larger standard errors would lead to a wider confidence interval compared to the default.}
+d. Will this cause our **confidence intervals** to get wider, narrower, or stay the same size (compared to using default standard errors)? Please explain. [3 points]
 
-e. Suppose we run \texttt{scatter y x} and confirm our data indeed looks heteroskedastic. Please draw an example of what this scatterplot might look like below. [3 points] 
+**As we use the standard error to construct our CI, larger standard errors would lead to a wider confidence interval compared to the default.**
 
-\includegraphics{het} \vspace{-65pt}
+e. Suppose we run `scatter y x` and confirm our data indeed looks heteroskedastic. Please draw an example of what this scatterplot might look like below. [3 points]
 
-\textbf{Left: error variance increasing in $x$. Right: error variance decreasing in $x$.} 
+```{r}
+#| label: fig-hetero
+#| message: false
+#| fig-height: 2.8
+#| fig-width: 5.5
+#| fig-cap: "Two scatter plots illustrating heteroskedasticity: error variance increasing in x (left) and decreasing in x (right)."
+#| fig-alt: "Two schematic side-by-side scatter plots with regression lines. Left panel labeled 'Increasing variance': data points spread in a fan widening to the right, with tight clustering at low x and large spread at high x. Right panel labeled 'Decreasing variance': the fan is reversed, with large spread at low x and tight clustering at high x. A dark blue OLS regression line runs through the center of each panel. Numeric axis values are omitted as the graphs are purely illustrative."
+library(ggplot2)
 
-# Question 5: OLS and Logs [25 points]
+set.seed(42)
+n <- 200
+x <- runif(n, 0, 10)
+
+df <- data.frame(
+  x = rep(x, 2),
+  y = c(5 + x + rnorm(n, 0, 0.45 * x + 0.1),
+        5 + x + rnorm(n, 0, 0.45 * (10 - x) + 0.1)),
+  panel = factor(
+    rep(c("Increasing variance", "Decreasing variance"), each = n),
+    levels = c("Increasing variance", "Decreasing variance")
+  )
+)
+
+ggplot(df, aes(x = x, y = y)) +
+  geom_point(color = "#ac47be", size = 0.7, alpha = 0.55) +
+  geom_smooth(method = "lm", se = FALSE, color = "#003087", linewidth = 0.9) +
+  facet_wrap(~ panel) +
+  theme_classic() +
+  labs(x = "x", y = "y") +
+  theme(
+    axis.text  = element_blank(),
+    axis.ticks = element_blank(),
+    strip.background = element_blank(),
+    strip.text = element_text(size = 10, color = "#333333")
+  )
+```
+
+**Left: error variance increasing in $x$. Right: error variance decreasing in $x$.**
+
+## Question 5: OLS and Logs [25 points]
 
 Suppose we run the following regression using the dataset described above:
 
-```{stata,collectcode=T}
-gen ln_mpg = ln(mpg) // ln() is natural log function 
+```{stata}
+#| collectcode: true
+gen ln_mpg = ln(mpg) // ln() is natural log function
 reg price ln_mpg
 ```
 
-a. What name could we give this type of regression? [2 points] 
+a. What name could we give this type of regression? [2 points]
 
-\textbf{Linear-log regression}
+**Linear-log regression**
 
-b. How would we interpret the $b_2$ coefficient we estimate with this regression? [3 points] 
+b. How would we interpret the $b_2$ coefficient we estimate with this regression? [3 points]
 
-\textbf{A 1\% change in mpg is associated with a $\frac{-5992.73}{100}=-\$59.93$ decrease in car price.}
+**A 1% change in mpg is associated with a $\frac{-5992.73}{100}=-\$59.93$ decrease in car price.**
 
-c. Give an expression for the marginal effect of \textit{mpg} in this regression. [3 points] 
+c. Give an expression for the marginal effect of *mpg* in this regression. [3 points]
 
 $$\boldsymbol{\frac{\Delta\widehat{price}}{\Delta mpg}=\left(\frac{\Delta\widehat{price}}{\Delta mpg / mpg}\right)\frac1{mpg}=b_2\cdot\frac1{mpg}=\frac{-5992.73}{mpg}}$$
 
-d. Find the MEM of \textit{mpg} if $\overline{mpg}=21.3$, $\overline{price}=6165.3$. [3 points] 
+d. Find the MEM of *mpg* if $\overline{mpg}=21.3$, $\overline{price}=6165.3$. [3 points]
 
 $$\boldsymbol{MEM=\frac{-5992.73}{21.3}=-281.35}$$
 
-e. Find the MER of \textit{mpg} in this regression for $mpg^*=25$, $price^*=6000$. [3 points] 
+e. Find the MER of *mpg* in this regression for $mpg^*=25$, $price^*=6000$. [3 points]
 
 $$\boldsymbol{MER=\frac{-5992.73}{25}=-239.71}$$
 
-Suppose we now estimate the following model: 
+Suppose we now estimate the following model:
 
 ```{stata}
 gen ln_price = ln(price)
-reg ln_price ln_mpg 
+reg ln_price ln_mpg
 ```
 
-f. What name could we give this new type of regression? [2 points] 
+f. What name could we give this new type of regression? [2 points]
 
-\textbf{Log-log regression}
+**Log-log regression**
 
-g. How would we interpret the $b_2$ coefficient we estimate with this regression? [3 points] 
+g. How would we interpret the $b_2$ coefficient we estimate with this regression? [3 points]
 
-\textbf{A 1\% change in mpg is associated with a -0.83\% decrease in car price.}
+**A 1% change in mpg is associated with a -0.83% decrease in car price.**
 
-h. Give an expression for the marginal effect of \textit{mpg} in this regression. [3 points] 
+h. Give an expression for the marginal effect of *mpg* in this regression. [3 points]
 
-$$\boldsymbol{\frac{\Delta\widehat{price}}{\Delta mpg}=\left(\frac{\Delta\widehat{price}/price}{\Delta mpg / mpg}\right)\frac {price}{mpg}=b_2\left(\frac{price}{mpg}\right)=-0.83\left(\frac{price}{mpg}\right)}$$
+$$\boldsymbol{\frac{\Delta\widehat{price}}{\Delta mpg}=\left(\frac{\Delta\widehat{price}/price}{\Delta mpg / mpg}\right)\frac{price}{mpg}=b_2\left(\frac{price}{mpg}\right)=-0.83\left(\frac{price}{mpg}\right)}$$
 
-i. Give an expression for the MEM of \textit{mpg} in this regression if $\overline{mpg}=21.3$, $\overline{price}=6165.3$. [3 points]
+i. Give an expression for the MEM of *mpg* in this regression if $\overline{mpg}=21.3$, $\overline{price}=6165.3$. [3 points]
 
 $$\boldsymbol{MEM=-0.83\left(\frac{6165.3}{21.30}\right)=-240.24}$$
 
-# Multiple Choice [2 points each]
+## Multiple Choice [2 points each]
 
-Here we will think about different types of data. Only one answer is correct. Choose the \underline{best} answer.
+Here we will think about different types of data. Only one answer is correct. Choose the **best** answer.
 
-## MC 1
+### MC 1
 
-If we collect \underline{experimental} data on a new campus initiative from UC Davis students, which of the following must be true? 
+If we collect **experimental** data on a new campus initiative from UC Davis students, which of the following must be true?
 
-a) We randomized the days of the week we interviewed students about the initiative 
+a) We randomized the days of the week we interviewed students about the initiative
 
-b) We randomized the parts of campus where we interviewed students about the initiative 
+b) We randomized the parts of campus where we interviewed students about the initiative
 
-c) We randomized the time of day we interviewed students about the initiative 
+c) We randomized the time of day we interviewed students about the initiative
 
-d) We did not know whether students had taken part in the initiative or not 
+d) We did not know whether students had taken part in the initiative or not
 
-\textbf{e) None of the above} 
+**e) None of the above**
 
-## MC 2
+### MC 2
 
-If we collect \underline{ordered}, \underline{categorical} data on student class year, which of the following is true? 
+If we collect **ordered**, **categorical** data on student class year, which of the following is true?
 
-a) We can include the variable for class year directly in a regression 
+a) We can include the variable for class year directly in a regression
 
-\textbf{b) We must assign each unique value of class year a number before we can include this in a regression}
+**b) We must assign each unique value of class year a number before we can include this in a regression**
 
-c) We must create a different dummy variable for each unique value of class year before we can include these in a regression 
+c) We must create a different dummy variable for each unique value of class year before we can include these in a regression
 
-d) We cannot include class year in a regression 
+d) We cannot include class year in a regression
 
-e) None of the above 
+e) None of the above
 
-## MC 3 
+### MC 3
 
-If we collect \underline{unordered}, \underline{categorical} data on student major, which of the following is true? 
+If we collect **unordered**, **categorical** data on student major, which of the following is true?
 
-a) We can include the variable for major directly in a regression 
+a) We can include the variable for major directly in a regression
 
-b) We must assign each unique value of major a number before we can include this in a regression 
+b) We must assign each unique value of major a number before we can include this in a regression
 
-\textbf{c) We must create a different dummy variable for each unique value of major before we can include these in a regression}
+**c) We must create a different dummy variable for each unique value of major before we can include these in a regression**
 
-d) We cannot include major in a regression 
+d) We cannot include major in a regression
 
-e) None of the above 
+e) None of the above
 
-## MC 4 
+### MC 4
 
-If we survey students passing by the MU on their GPA (once per student) on the first day of fall quarter, which of the following is true? 
+If we survey students passing by the MU on their GPA (once per student) on the first day of fall quarter, which of the following is true?
 
-a) Our data will be experimental, numerical, time-series  
+a) Our data will be experimental, numerical, time-series
 
-b) Our data will be experimental, numerical, cross-sectional  
+b) Our data will be experimental, numerical, cross-sectional
 
-c) Our data will be observational, categorical, panel  
+c) Our data will be observational, categorical, panel
 
-\textbf{d) Our data will be observational, numerical, cross-sectional}
+**d) Our data will be observational, numerical, cross-sectional**
 
-e) None of the above 
+e) None of the above
 
-## MC 5 
+### MC 5
 
-When considering a sample from a population, which of the following is true? 
+When considering a sample from a population, which of the following is true?
 
-a) A representative sample will lead to proper inference while a non-representative sample may lead to biased inference 
+a) A representative sample will lead to proper inference while a non-representative sample may lead to biased inference
 
-b) It is often unfeasible or impossible to survey an entire population, so we choose a sample size $n<N$ to be well-powered for our inference 
+b) It is often unfeasible or impossible to survey an entire population, so we choose a sample size $n<N$ to be well-powered for our inference
 
-c) We often consider hypothetical or future subjects as members of our population, such as future students or those who almost took a class but dropped last minute 
+c) We often consider hypothetical or future subjects as members of our population, such as future students or those who almost took a class but dropped last minute
 
-d) While we estimate results from our sample, our ultimate goal is to generalize these results back to the population 
+d) While we estimate results from our sample, our ultimate goal is to generalize these results back to the population
 
-\textbf{e) All of the above}
+**e) All of the above**
 
-# BONUS [up to 10 extra points]
+## BONUS [up to 10 extra points]
 
-In order to prove that $\bar{X}\sim (\mu,\sigma^2/n)$ we needed to make three assumptions about our random variable $X$. Please name each of these three assumptions and describe in detail what they mean for $X$ (e.g. what it would mean for them to be true versus not true). You may find it helpful to use a specific example of $X$ in your answer, such as a coin toss or die roll. 
+In order to prove that $\bar{X}\sim (\mu,\sigma^2/n)$ we needed to make three assumptions about our random variable $X$. Please name each of these three assumptions and describe in detail what they mean for $X$ (e.g. what it would mean for them to be true versus not true). You may find it helpful to use a specific example of $X$ in your answer, such as a coin toss or die roll.
 
-\textit{Note: you do \underline{not} need to replicate the proofs for $\mu_{\bar{X}},\sigma^2_{\bar{X}}$} 
+*Note: you do **not** need to replicate the proofs for $\mu_{\bar{X}},\sigma^2_{\bar{X}}$*
 
-\textbf{1. Common mean. We assume that all realizations of $X$ have the same population mean; $\mathbb{E}[X_i]=\mu\hspace{3pt}\forall\hspace{3pt}i$. In the world of a coin flip, we are flipping a fair coin (50/50 odds) each time.}
+**1. Common mean. We assume that all realizations of $X$ have the same population mean; $\mathbb{E}[X_i]=\mu\,\forall\,i$. In the world of a coin flip, we are flipping a fair coin (50/50 odds) each time.**
 
-\textbf{2. Common variance. We assume that all realizations of $X$ have the same spread; $Var[X_i]=\sigma^2\hspace{3pt}\forall\hspace{3pt}i$. In the world of a coin flip, this again means that we are flipping a coin with the same odds each time.}
+**2. Common variance. We assume that all realizations of $X$ have the same spread; $Var[X_i]=\sigma^2\,\forall\,i$. In the world of a coin flip, this again means that we are flipping a coin with the same odds each time.**
 
-\textbf{3. Independence of observations. We assume that each realization of $X$ does not depend on any previous realizations or affect any future realizations; $X_i\perp X_j\hspace{3pt}\forall\hspace{3pt}i\neq j$. For our coin flip, this means the odds of a heads each time are 50/50 and do not depend on what was previously flipped.}
+**3. Independence of observations. We assume that each realization of $X$ does not depend on any previous realizations or affect any future realizations; $X_i\perp X_j\,\forall\,i\neq j$. For our coin flip, this means the odds of a heads each time are 50/50 and do not depend on what was previously flipped.**
