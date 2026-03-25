@@ -4,5 +4,7 @@ project:
 format:
   revealjs:
     html-math-method: mathjax
+    favicon: favicon.ico
   html:
     html-math-method: mathjax
+    favicon: favicon.ico

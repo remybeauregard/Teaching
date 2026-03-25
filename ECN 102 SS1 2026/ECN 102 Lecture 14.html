@@ -357,10 +357,14 @@ Figure&nbsp;4: Schematic regression lines for car price on miles per gallon, by 
 <p>In our car example, our variable <em>foreign</em> takes the following values:</p>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
-<pre><code>no variables defined
-r(111);
-
-r(111);</code></pre>
+<pre><code>foreign -- Car origin
+----------------------------------------------------------------
+                   |      Freq.    Percent      Valid       Cum.
+-------------------+--------------------------------------------
+Valid   0 Domestic |         52      70.27      70.27      70.27
+        1 Foreign  |         22      29.73      29.73     100.00
+        Total      |         74     100.00     100.00           
+----------------------------------------------------------------</code></pre>
 </div>
 </div>
 <p>To estimate a regression using dummies for the values of <em>foreign</em>, we would need to either:</p>
@@ -375,10 +379,20 @@ r(111);</code></pre>
 <p>Do we run into the dummy variable trap here? Why or why not?</p>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
-<pre><code>foreign not found
-r(111);
+<pre><code>      Source |       SS           df       MS      Number of obs   =        74
+-------------+----------------------------------   F(3, 71)        =    155.75
+       Model |  2.9930e+09         3   997676875   Prob &gt; F        =    0.0000
+    Residual |   454803695        71  6405685.84   R-squared       =    0.8681
+-------------+----------------------------------   Adj R-squared   =    0.8625
+       Total |  3.4478e+09        74  46592355.7   Root MSE        =    2530.9
 
-r(111);</code></pre>
+------------------------------------------------------------------------------
+       price | Coefficient  Std. err.      t    P&gt;|t|     [95% conf. interval]
+-------------+----------------------------------------------------------------
+         mpg |  -294.1955   55.69172    -5.28   0.000    -405.2417   -183.1494
+    domestic |   11905.42   1158.634    10.28   0.000     9595.164    14215.67
+     foreign |   13672.71   1481.406     9.23   0.000     10718.87    16626.55
+------------------------------------------------------------------------------</code></pre>
 </div>
 </div>
 <p><span class="math display">\[\widehat{price}_i=b_2mpg_i+\delta_1domestic_i+\delta_2foreign_i\]</span></p>

@@ -1,7 +1,7 @@
 ---
 title: "ECN 102: Analysis of Economics Data"
 subtitle: "Final Exam SS1 2025 -- Answer Key"
-author: "Beauregard, Department of Economics, UC Davis"
+author: "Remy Beauregard, Department of Economics, UC Davis"
 lang: en
 format:
   html:
