@@ -1,7 +1,7 @@
 ---
 title: "ECN 102: Analysis of Economics Data"
 subtitle: "Final Practice"
-author: "Beauregard"
+author: "Remy Beauregard"
 lang: en
 format:
   html:
