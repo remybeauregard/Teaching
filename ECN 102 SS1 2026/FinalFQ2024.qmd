@@ -1,0 +1,205 @@
+---
+title: "ECN 102: Analysis of Econ Data"
+subtitle: "FQ 2024 Beauregard"
+author: "Department of Economics, UC Davis"
+date: "Final Exam"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = F)
+require("Statamarkdown")
+```
+
+\begin{center}
+This exam consists of 5 short-answer questions (with sub-parts) and 5 multiple choice questions. You will have a maximum of 2 hours to complete this exam. No additional time may be taken without prior accommodation. Make sure to read every question thoroughly and carefully. Make sure to answer all parts of all questions completely and fully explain when asked. Show all work to receive full credit. 
+
+You may use only the calculators provided by the instructor. Graphing calculators, phone calculators, and other non-standard calculators may not be used. For questions requiring computation, it suffices to express your final answer with 2 significant figures. 
+
+There is a formula sheet and scratch paper provided at the end of this exam. You may remove these pages and discard them after the exam. If you plan to use any of these extra pages for your final answers, you must write your name and student ID at the top of each scratch page to ensure it is not lost. 
+
+This exam is worth 100 points. 
+
+\end{center}
+
+\vspace{25pt}\textbf{Name:}
+
+\vspace{25pt}\textbf{Student ID:}
+
+\vspace{25pt}\textbf{Section:}
+
+\newpage
+
+\textbf{For this exam, we will use a dataset that includes annual salary, demographic characteristics, and other metrics for a sample of individuals. The variables present in the dataset are listed here, along with their format and labels.}
+\footnotesize
+```{stata,collectcode=T,echo=F}
+qui u SalaryCameron
+qui drop in 1/100
+des
+```
+\normalsize
+# Question 1: Summary Statistics [16 points]
+
+a) Is this sample of data likely to be observational or experimental? Explain. [2 points]\vspace{50pt}
+
+b) Is this sample of data likely to be cross-section, time series, panel, or repeated cross-section? Explain. [2 points] \vspace{50pt}
+
+c) How else could we classify data for our variable \textit{salary}? Explain. [2 points] \vspace{50pt}
+
+d) What type of \underline{variable} is \textit{minority} if we include it in a regression? Explain. [2 points] \vspace{50pt}
+
+e) Are any other \underline{variables} the same type as our variable \textit{minority} when used in regression? [2 points] \newpage
+
+```{stata}
+su height weight salary
+```
+
+f) Which variable above has the greatest dispersion? Which has the least? [3 points] \vspace{100pt}
+
+g) What would we expect the standard error of \textit{height} to be? What is this an estimator for? [3 points] \vspace{75pt}
+
+# Question 2: Bivariate Regression [16 points]
+
+Suppose we want to run a regression to predict \textit{salary} using \textit{age} with OLS. 
+
+a) Write down the population regression model we are trying to estimate. [2 points] \vspace{50pt}
+
+b) What will the \underline{homoskedasticity} assumption imply for this regression? [2 points]\vspace{50pt}
+
+c) What will the \underline{linearity} assumption imply for this regression? [2 points]\vspace{50pt}
+
+```{stata,echo=F,results=F}
+reg salary age
+```
+
+d) Suppose we estimate this regression and find that our 95\% confidence interval for $b_2$ is $(478.28,4733.39)$. What conclusion about our population coefficient $\beta_2$ on \textit{age} does this imply? [3 points] \vspace{50pt}
+
+e) Suppose our R-squared for this regression is 0.0074. What does this mean in words? [2 points] \vspace{50pt}
+
+Suppose instead we estimated a regression of salary on the \underline{log of age}. 
+
+f) What would we call this type of regression? [2 points]\vspace{50pt}
+
+g) How would we interpret $b_2$ for this regression in words? [3 points]\vspace{50pt}
+
+# Question 3: Multivariate Regression [23 points]
+
+We now estimate $\widehat{salary}=\beta_1+\beta_2age+\alpha_1sex+\alpha_2(age\times sex)$ with OLS and obtain the following: 
+
+```{stata}
+g ageXsex = age*sex
+reg salary age sex ageXsex
+```
+(\underline{Hint}: review variable descriptions on page 2)
+
+a) What type of variable is \textit{sex} in this regression? [2 points] \vspace{35pt}
+
+b) Interpret the value of $b_2$ in words. [2 points] \newpage
+
+c) Interpret the value of $a_1$ in words. [2 points] \vspace{50pt}
+
+d) Interpret the value of $a_2$ in words. [2 points] \vspace{50pt}
+
+e) What conclusion should we draw from the reported F-statistic and its associated p-value? [3 points] \vspace{75pt}
+
+f) Which of our coefficients are statistically different from zero at $\alpha=5$\%? Which are not? [3 points] \vspace{100pt}
+
+g) If our four population assumptions hold, how would we expect $b_2$ to be distributed? Your answer should take the form $b_2\sim\_\_(\_\_,\_\_)$. Use Greek letters when appropriate. [3 points] \vspace{75pt}
+
+h) Find an expression for the marginal effect of \textit{age} in this regression. [3 points] \vspace{75pt}
+
+i) Why are our values for R-squared and Adj R-squared different in this regression? Why might we prefer one instead of the other for multivariate regressions? [3 points] \newpage
+
+# Question 4: Hypothesis Testing [18 points]
+
+For a general multivariate OLS regression with sample size $n$, $k-1$ regressors ($x_2,...,x_k$) and a constant, and $j=1,...,k$ as our index of coefficients:  
+
+a) What are the null and alternate hypotheses for the default test of \underline{association} for a single $b_j$? [2 points] \vspace{75pt}
+
+b) Suppose we reject this null hypothesis for the default test of association for $b_j$ above. How would we interpret this conclusion in words? [4 points] \vspace{75pt}
+
+c) Name the two models that are compared when computing the statistic for the default test of \underline{overall significance}. Write down the population model for both. [6 points] \vspace{125pt}
+
+d) If the p-value for the default test of association for $b_j$ is 0.035, what would we expect the p-value to be for an F-test of the single regressor $b_j$? [3 points] \vspace{100pt} 
+
+e) If the t-statistic for the default test of association for $b_j$ is 2.12, what would we expect the F-statistic to be for an F-test of the single regressor $b_j$? [3 points] \newpage 
+
+# Question 5: Miscellaneous [17 points]
+
+a) If the default p-values reported for all coefficients from a multivariate regression of $y$ on $x_2,...,x_k$ are above 0.05 but we observe \texttt{Prob > F = 0.035}, what can we conclude about our regressors? [4 points] \vspace{80pt}
+
+b) What assumption or assumptions are we concerned may be violated if we choose to use \underline{robust} standard errors in our regression? [3 points] \vspace{80pt}
+
+c) What assumption or assumptions are we concerned may be violated if we choose to use \underline{clustered} standard errors in our regression? [3 points] \vspace{80pt}
+
+d) If we suspect but \underline{are not sure} that our data is homoskedastic, what type of standard errors should we use? Are we concerned that doing so may lead to problems? Why or why not? [4 points] \vspace{100pt}
+
+e) Compute the following sum [3 points]: $$\sum_{i=2}^3(3i)^{i-1}-i$$ \newpage 
+
+# Multiple Choice [2 points each]: 
+
+Only one answer is correct for each question. Read carefully and choose the best possible answer.
+
+## MC 1 \& 2 
+
+Suppose the probability of \underline{not} rejecting $H_0$ is 0.95 when $\beta_j=0$ and 0.3 when $\beta_j\neq0$ for a test on OLS $b_j$.  
+
+The \underline{power} of this test will be equal to: 
+
+a) 0.05
+
+b) 0.95
+
+c) 0.7
+
+d) 0.3
+
+The \underline{size} of this test will be equal to: 
+
+a) 0.05
+
+b) 0.95
+
+c) 0.7
+
+d) 0.3
+
+## MC 3
+
+A trial judge says he believes he made a Type II error when sentencing a defendant. The precedent in court is that individuals are \underline{innocent until proven guilty}. If the judge is correct, which of the following took place? 
+
+a) The defendant was truly guilty and was found guilty 
+
+b) The defendant was truly guilty but was found innocent
+
+c) The defendant was truly innocent and was found innocent 
+
+d) The defendant was truly innocent but was found guilty
+
+## MC 4
+
+If $\frac{Q-7}{3}\sim (0,1)$, it \underline{must} be true that: 
+
+a) $E[Q] = 0$
+
+b) $Var[Q] = 3$
+
+c) $Q\sim N$
+
+d) $\sigma_Q=9$
+
+e) None of the above 
+
+## MC 5
+
+In which of the following scenarios did we make a \underline{mistake}?
+
+a) We claimed that $R^2$ and $\bar{R}^2$ should always be the same for a bivariate regression.
+
+b) We claimed that the null hypothesis for a computed statistic should be rejected at a significance level of $\alpha$ if the $100(1-\alpha)$\% confidence interval for that statistic does not include the null value. 
+
+c) We claimed that the sample standard deviation of X will always be \underline{weakly} greater ($\geq$) than the standard error of $\bar{X}$ for any sample size. 
+
+d) We claimed that the total effect of $b_j$ from multivariate OLS of y on $x_2,...,x_k$ will always be equal to the partial effect if $x_j$ is independent from all other regressors. 
+
+e) None of the above

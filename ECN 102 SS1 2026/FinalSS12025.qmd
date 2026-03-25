@@ -1,0 +1,229 @@
+---
+title: "ECN 102: Analysis of Economics Data"
+subtitle: "Final Exam SS1 2025"
+author: "Beauregard, Department of Economics, UC Davis"
+lang: en
+format:
+  html:
+    output-file: "ECN 102 SS1 2025 Sample Final.html"
+    theme: cosmo
+    include-in-header:
+      text: |
+        <meta name="description" content="Sample final exam for ECN 102.">
+  pdf:
+    output-file: "ECN 102 SS1 2025 Sample Final.pdf"
+execute:
+  echo: false
+---
+
+```{r}
+#| label: setup
+#| include: false
+require("Statamarkdown")
+```
+
+::: {style="text-align: center"}
+This exam consists of 5 short-answer questions (with sub-parts) and 5 multiple choice questions. You will have a maximum of 100 minutes to complete this exam. No additional time may be taken without prior accommodation. Show all work to receive full credit. You may use only the calculators provided by the instructor. For questions requiring computation, it suffices to express your final answer with 2 decimal places. There is a formula sheet and scratch paper provided at the end of this exam. You may remove these pages and discard them after the exam. If you plan to use any of these extra pages for your final answers, please write your name and student ID at the top of each to ensure they are not lost.
+
+This exam is worth 100 points.
+:::
+
+**Name:**
+
+**Student ID:**
+
+{{< pagebreak >}}
+
+## Question 1: Ordinary Least Squares (OLS) Estimator [15 points]
+
+Suppose we run a multivariate regression of an outcome $y$ on $k-1>1$ regressors and a constant for a sample of size $n$. We will refer to our general OLS estimator as $b_j$, with $j=2,...,k$ (we do not care about the constant term but still need to estimate it). Please answer the following:
+
+a. What does $b_j$ represent in words? Please be as specific as possible. [2 points]
+
+b. What is the difference between $x_j$ and $\tilde{x}_j$? [2 points]
+
+c. What does it mean for our estimator $b_j$ to be **unbiased**? Explain in words. [3 points]
+
+d. What does it mean for our estimator $b_j$ to be **consistent**? Explain in words. [3 points]
+
+e. What does it mean for our estimator $b_j$ to be the Best Linear Unbiased Estimator (BLUE)? Explain in words. [3 points]
+
+f. If we know our regressor $x_j$ is **not** normally distributed, should we still expect $\beta_j$ to be normally distributed? Why or why not? [2 points]
+
+## Question 2: OLS Regression Output [20 points]
+
+We will work with the 1978 automotive dataset. Variables in the dataset and their labels are given below:
+
+```{stata}
+#| collectcode: true
+qui sysuse auto
+la var price "Price ($)"
+desc
+```
+
+Suppose we now estimate a regression model and obtain the following results:
+
+```{stata}
+reg price mpg weight headroom
+```
+
+a. Write down the **population** regression model we are estimating using variable names. [2 points]
+
+b. Write down the **sample** regression model we have estimated above using variable names. [2 points]
+
+c. Interpret the coefficient on *mpg* in words. [3 points]
+
+d. We see the 95% confidence interval for *headroom* includes zero and that `P>|t|` for *headroom* $=0.090$. Do these results surprise you? Why or why not? [3 points]
+
+e. Interpret the p-value for *weight*. What null and alternate hypotheses does this p-value correspond to? What is the name of this test? State your full conclusion in words for this test. [4 points]
+
+f. Interpret the $R^2$ of our regression in words. [2 points]
+
+g. Interpret `Prob>F` from the table. What null and alternate hypotheses does this p-value correspond to? What is the name of this test? State your full conclusion in words for this test. [4 points]
+
+## Question 3: Intuition for Inference [16 points]
+
+Here we will ask questions about regression inference (bivariate or multivariate).
+
+a. If we write down $\alpha=0.05$ for a test of inference, what could this quantity represent? [2 points]
+
+*(Hint: You should have two answers)*
+
+b. Given our answer above, why would we not want to set $\alpha=0$? Why would we not want to set $\alpha=1$? Please give a short explanation for each. [4 points]
+
+c. Given our standard choice of $\alpha=0.05$, what are **three** ways we can maximize the **power** of our inference? Please give a short explanation for each. [6 points]
+
+Suppose we have a test of association for our regression coefficient $\beta_j$ with standard null and alternate hypotheses. For this test:
+
+d. What would it mean to commit a **Type I** error? [2 points]
+
+e. What would it mean to commit a **Type II** error? [2 points]
+
+## Question 4: Errors and Prediction [14 points]
+
+Suppose we are worried our data violates homoskedasticity and so choose to use robust standard errors:
+
+a. Will this cause our **standard errors** to grow, shrink, or stay the same size (compared to using default standard errors)? You do not need to explain. [2 points]
+
+b. Will this cause our **t-statistics** to grow, shrink, or stay the same size (compared to using default standard errors)? Please explain. [3 points]
+
+c. Will this cause our **regression coefficients** to grow, shrink, or stay the same size (compared to using default standard errors)? Please explain. [3 points]
+
+d. Will this cause our **confidence intervals** to get wider, narrower, or stay the same size (compared to using default standard errors)? Please explain. [3 points]
+
+e. Suppose we run `scatter y x` and confirm our data indeed looks heteroskedastic. Please draw an example of what this scatterplot might look like below. [3 points]
+
+## Question 5: OLS and Logs [25 points]
+
+Suppose we run the following regression using the dataset described above:
+
+```{stata}
+#| collectcode: true
+gen ln_mpg = ln(mpg) // ln() is natural log function
+reg price ln_mpg
+```
+
+a. What name could we give this type of regression? [2 points]
+
+b. How would we interpret the $b_2$ coefficient we estimate with this regression? [3 points]
+
+c. Give an expression for the marginal effect of *mpg* in this regression. [3 points]
+
+d. Find the MEM of *mpg* if $\overline{mpg}=21.30$, $\overline{price}=6165.3$. [3 points]
+
+e. Find the MER of *mpg* in this regression for $mpg^*=25$, $price^*=6000$. [3 points]
+
+Suppose we now estimate the following model:
+
+```{stata}
+gen ln_price = ln(price)
+reg ln_price ln_mpg
+```
+
+f. What name could we give this new type of regression? [2 points]
+
+g. How would we interpret the $b_2$ coefficient we estimate with this regression? [3 points]
+
+h. Give an expression for the marginal effect of *mpg* in this regression. [3 points]
+
+i. Give an expression for the MEM of *mpg* in this regression if $\overline{mpg}=21.30$, $\overline{price}=6165.3$. [3 points]
+
+## Multiple Choice [2 points each]
+
+Here we will think about different types of data. Only one answer is correct. Choose the **best** answer.
+
+### MC 1
+
+If we collect **experimental** data on a new campus initiative from UC Davis students, which of the following must be true?
+
+a) We randomized the days of the week we interviewed students about the initiative
+
+b) We randomized the parts of campus where we interviewed students about the initiative
+
+c) We randomized the time of day we interviewed students about the initiative
+
+d) We did not know whether students had taken part in the initiative or not
+
+e) None of the above
+
+### MC 2
+
+If we collect **ordered**, **categorical** data on student class year, which of the following is true?
+
+a) We can include the variable for class year directly in a regression
+
+b) We must assign each unique value of class year a number before we can include this in a regression
+
+c) We must create a different dummy variable for each unique value of class year before we can include these in a regression
+
+d) We cannot include class year in a regression
+
+e) None of the above
+
+### MC 3
+
+If we collect **unordered**, **categorical** data on student major, which of the following is true?
+
+a) We can include the variable for major directly in a regression
+
+b) We must assign each unique value of major a number before we can include this in a regression
+
+c) We must create a different dummy variable for each unique value of major before we can include these in a regression
+
+d) We cannot include major in a regression
+
+e) None of the above
+
+### MC 4
+
+If we survey students passing by the MU on their GPA (once per student) on the first day of fall quarter, which of the following is true?
+
+a) Our data will be experimental, numerical, time-series
+
+b) Our data will be experimental, numerical, cross-sectional
+
+c) Our data will be observational, categorical, panel
+
+d) Our data will be observational, numerical, cross-sectional
+
+e) None of the above
+
+### MC 5
+
+When considering a sample from a population, which of the following is true?
+
+a) A representative sample will lead to proper inference while a non-representative sample may lead to biased inference
+
+b) It is often unfeasible or impossible to survey an entire population, so we choose a sample size $n<N$ to be well-powered for our inference
+
+c) We often consider hypothetical or future subjects as members of our population, such as future students or those who almost took a class but dropped last minute
+
+d) While we estimate results from our sample, our ultimate goal is to generalize these results back to the population
+
+e) All of the above
+
+## BONUS [up to 10 extra points]
+
+In order to prove that $\bar{X}\sim (\mu,\sigma^2/n)$ we needed to make three assumptions about our random variable $X$. Please name each of these three assumptions and describe in detail what they mean for $X$ (e.g. what it would mean for them to be true versus not true). You may find it helpful to use a specific example of $X$ in your answer, such as a coin toss or die roll.
+
+*Note: you do **not** need to replicate the proofs for $\mu_{\bar{X}},\sigma^2_{\bar{X}}$*
